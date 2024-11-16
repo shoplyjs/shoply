@@ -1,26 +1,19 @@
 /* eslint-disable no-console */
-import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
-import { AssetServerPlugin } from '@vendure/asset-server-plugin';
-import { ADMIN_API_PATH, API_PORT, SHOP_API_PATH } from '@vendure/common/lib/shared-constants';
+import { AdminUiPlugin } from '@shoplyjs/admin-ui-plugin';
+import { AssetServerPlugin } from '@shoplyjs/asset-server-plugin';
+import { ADMIN_API_PATH, API_PORT, SHOP_API_PATH } from '@shoplyjs/common/lib/shared-constants';
 import {
-    Asset,
     DefaultJobQueuePlugin,
     DefaultLogger,
     DefaultSearchPlugin,
     dummyPaymentHandler,
-    LanguageCode,
     LogLevel,
     VendureConfig,
-} from '@vendure/core';
-import { ElasticsearchPlugin } from '@vendure/elasticsearch-plugin';
-import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
-import { BullMQJobQueuePlugin } from '@vendure/job-queue-plugin/package/bullmq';
+} from '@shoplyjs/core';
+import { defaultEmailHandlers, EmailPlugin } from '@shoplyjs/email-plugin';
 import 'dotenv/config';
-import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
 import path from 'path';
 import { DataSourceOptions } from 'typeorm';
-
-import { MultivendorPlugin } from './example-plugins/multivendor-plugin/multivendor.plugin';
 
 /**
  * Config settings used during development
@@ -126,6 +119,7 @@ export const devConfig: VendureConfig = {
 
 function getDbConfig(): DataSourceOptions {
     const dbType = process.env.DB || 'mysql';
+    console.log('Using db type', dbType);
     switch (dbType) {
         case 'postgres':
             console.log('Using postgres connection');
