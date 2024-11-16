@@ -1,5 +1,5 @@
 {
-    "name": "@vendure/harden-plugin",
+    "name": "@shoplyjs/harden-plugin",
     "version": "2.3.3",
     "license": "MIT",
     "main": "lib/index.js",

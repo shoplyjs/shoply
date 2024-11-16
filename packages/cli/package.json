@@ -1,5 +1,5 @@
 {
-    "name": "@vendure/cli",
+    "name": "@shoplyjs/cli",
     "version": "2.3.3",
     "description": "A modern, headless ecommerce framework",
     "repository": {

@@ -1,5 +1,5 @@
 {
-    "name": "@vendure/testing",
+    "name": "@shoplyjs/testing",
     "version": "2.3.3",
     "description": "End-to-end testing tools for Vendure projects",
     "keywords": [

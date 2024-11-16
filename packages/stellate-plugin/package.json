@@ -1,5 +1,5 @@
 {
-    "name": "@vendure/stellate-plugin",
+    "name": "@shoplyjs/stellate-plugin",
     "version": "2.3.3",
     "license": "MIT",
     "main": "lib/index.js",

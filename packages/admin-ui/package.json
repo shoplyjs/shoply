@@ -1,5 +1,5 @@
 {
-    "name": "@vendure/admin-ui",
+    "name": "@shoplyjs/admin-ui",
     "version": "2.3.3",
     "license": "MIT",
     "scripts": {

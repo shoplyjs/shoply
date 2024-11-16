@@ -1,5 +1,5 @@
 {
-    "name": "@vendure/elasticsearch-plugin",
+    "name": "@shoplyjs/elasticsearch-plugin",
     "version": "2.3.3",
     "license": "MIT",
     "main": "lib/index.js",

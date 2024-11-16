@@ -1,5 +1,5 @@
 {
-    "name": "@vendure/admin-ui-plugin",
+    "name": "@shoplyjs/admin-ui-plugin",
     "version": "2.3.3",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",

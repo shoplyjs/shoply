@@ -1,5 +1,5 @@
 {
-    "name": "@vendure/ui-devkit",
+    "name": "@shoplyjs/ui-devkit",
     "version": "2.3.3",
     "description": "A library for authoring Vendure Admin UI extensions",
     "keywords": [
