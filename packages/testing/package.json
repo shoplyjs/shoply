@@ -1,6 +1,6 @@
 {
     "name": "@shoplyjs/testing",
-    "version": "2.3.3",
+    "version": "2.3.4",
     "description": "End-to-end testing tools for Vendure projects",
     "keywords": [
         "vendure",

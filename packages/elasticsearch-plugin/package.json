@@ -1,6 +1,6 @@
 {
     "name": "@shoplyjs/elasticsearch-plugin",
-    "version": "2.3.3",
+    "version": "2.3.4",
     "license": "MIT",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",

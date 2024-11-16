@@ -1,6 +1,6 @@
 {
     "name": "@shoplyjs/payments-plugin",
-    "version": "2.3.3",
+    "version": "2.3.4",
     "license": "MIT",
     "main": "package/index.js",
     "types": "package/index.d.ts",
