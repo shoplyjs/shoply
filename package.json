@@ -92,6 +92,13 @@
       ]
     }
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "post-commit": "git update-index --again",
+      "pre-commit": "NODE_OPTIONS=\"--max-old-space-size=8096\" lint-staged"
+    }
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
