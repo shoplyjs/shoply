@@ -12,8 +12,8 @@ import {
     PaymentMethodHandler,
     RequestContext,
     TransactionalConnection,
-} from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { vi } from 'vitest';
@@ -218,9 +218,8 @@ describe('Payment process', () => {
     });
 
     it('transition Order to custom state, custom OrderPlacedStrategy sets as placed', async () => {
-        const { activeOrder: activeOrderPre } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-            GET_ACTIVE_ORDER,
-        );
+        const { activeOrder: activeOrderPre } =
+            await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
         expect(activeOrderPre).not.toBeNull();
 
         const { transitionOrderToState } = await adminClient.query<
@@ -236,9 +235,8 @@ describe('Payment process', () => {
         expect(transitionOrderToState.state).toBe('ValidatingPayment');
         expect(transitionOrderToState?.active).toBe(false);
 
-        const { activeOrder: activeOrderPost } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-            GET_ACTIVE_ORDER,
-        );
+        const { activeOrder: activeOrderPost } =
+            await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
         expect(activeOrderPost).toBeNull();
     });
 

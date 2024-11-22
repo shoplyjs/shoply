@@ -1,6 +1,6 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { Type } from '@vendure/common/lib/shared-types';
-import { Injector, Logger } from '@vendure/core';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { Type } from '@shoplyjs/common/lib/shared-types';
+import { Injector, Logger } from '@shoplyjs/core';
 
 import { serializeAttachments } from '../attachment-utils';
 import { loggerCtx } from '../constants';

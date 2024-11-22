@@ -11,7 +11,7 @@ import {
     PasswordResetEvent,
     RequestContext,
     ShippingLine,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import { Request } from 'express';
 
 import { EmailEventListener } from '../event-listener';

@@ -4,10 +4,10 @@ import {
     CreateProductOptionGroupInput,
     CreateProductOptionInput,
     CreateProductVariantInput,
-} from '@vendure/common/lib/generated-types';
-import { normalizeString } from '@vendure/common/lib/normalize-string';
-import { ID } from '@vendure/common/lib/shared-types';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/common/lib/generated-types';
+import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { ID } from '@shoplyjs/common/lib/shared-types';
+import { unique } from '@shoplyjs/common/lib/unique';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { TransactionalConnection } from '../../../connection/transactional-connection';
@@ -85,7 +85,7 @@ export class FastImporterService {
             beforeSave: async p => {
                 p.channels = unique([this.defaultChannel, this.importCtx.channel], 'id');
                 if (input.facetValueIds) {
-                    p.facetValues = input.facetValueIds.map(id => ({ id } as any));
+                    p.facetValues = input.facetValueIds.map(id => ({ id }) as any);
                 }
                 if (input.featuredAssetId) {
                     p.featuredAsset = { id: input.featuredAssetId } as any;
@@ -164,10 +164,10 @@ export class FastImporterService {
                 variant.channels = unique([this.defaultChannel, this.importCtx.channel], 'id');
                 const { optionIds } = input;
                 if (optionIds && optionIds.length) {
-                    variant.options = optionIds.map(id => ({ id } as any));
+                    variant.options = optionIds.map(id => ({ id }) as any);
                 }
                 if (input.facetValueIds) {
-                    variant.facetValues = input.facetValueIds.map(id => ({ id } as any));
+                    variant.facetValues = input.facetValueIds.map(id => ({ id }) as any);
                 }
                 variant.product = { id: input.productId } as any;
                 variant.taxCategory = { id: input.taxCategoryId } as any;

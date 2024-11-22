@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, NestModule } from '@nestjs/common';
-import { PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { PluginCommonModule, VendurePlugin } from '@shoplyjs/core';
 
 import { SentryAdminTestResolver } from './api/admin-test.resolver';
 import { testApiExtensions } from './api/api-extensions';

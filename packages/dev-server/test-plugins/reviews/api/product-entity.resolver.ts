@@ -1,12 +1,15 @@
 import { Args, Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { Api, ApiType, ListQueryBuilder, Product, TransactionalConnection } from '@vendure/core';
+import { Api, ApiType, ListQueryBuilder, Product, TransactionalConnection } from '@shoplyjs/core';
 
 import { ProductReview } from '../entities/product-review.entity';
 import { ProductReviewsArgs } from '../generated-shop-types';
 
 @Resolver('Product')
 export class ProductEntityResolver {
-    constructor(private listQueryBuilder: ListQueryBuilder, private connection: TransactionalConnection) {}
+    constructor(
+        private listQueryBuilder: ListQueryBuilder,
+        private connection: TransactionalConnection,
+    ) {}
 
     @ResolveField()
     reviews(@Api() apiType: ApiType, @Parent() product: Product, @Args() args: ProductReviewsArgs) {

@@ -21,7 +21,7 @@
         "graphql-query-complexity": "^0.12.0"
     },
     "devDependencies": {
-        "@vendure/common": "^2.3.3",
-        "@vendure/core": "^2.3.3"
+        "@shoplyjs/common": "^2.3.3",
+        "@shoplyjs/core": "^2.3.3"
     }
 }

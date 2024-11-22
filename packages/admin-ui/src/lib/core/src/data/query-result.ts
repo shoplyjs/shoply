@@ -1,5 +1,5 @@
 import { ApolloQueryResult, NetworkStatus } from '@apollo/client/core';
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { merge, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, finalize, map, skip, take, takeUntil, tap } from 'rxjs/operators';
@@ -17,7 +17,10 @@ import { GET_USER_STATUS } from './definitions/client-definitions';
  * @docsPage DataService
  */
 export class QueryResult<T, V extends Record<string, any> = Record<string, any>> {
-    constructor(private queryRef: QueryRef<T, V>, private apollo: Apollo) {
+    constructor(
+        private queryRef: QueryRef<T, V>,
+        private apollo: Apollo,
+    ) {
         this.valueChanges = queryRef.valueChanges;
     }
 

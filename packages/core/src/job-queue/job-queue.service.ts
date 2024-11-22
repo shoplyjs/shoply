@@ -1,5 +1,5 @@
 import { Injectable, OnModuleDestroy } from '@nestjs/common';
-import { JobQueue as GraphQlJobQueue } from '@vendure/common/lib/generated-types';
+import { JobQueue as GraphQlJobQueue } from '@shoplyjs/common/lib/generated-types';
 
 import { ConfigService, JobQueueStrategy, Logger } from '../config';
 
@@ -54,7 +54,10 @@ export class JobQueueService implements OnModuleDestroy {
         return this.configService.jobQueueOptions.jobQueueStrategy;
     }
 
-    constructor(private configService: ConfigService, private jobBufferService: JobBufferService) {}
+    constructor(
+        private configService: ConfigService,
+        private jobBufferService: JobBufferService,
+    ) {}
 
     /** @internal */
     onModuleDestroy() {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CurrencyService } from '@vendure/admin-ui/core';
+import { CurrencyService } from '@shoplyjs/admin-ui/core';
 import { CurrencyCode, LanguageCode } from '../../common/generated-types';
 
 import { LocaleCurrencyPipe } from './locale-currency.pipe';

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { AdminUiAppConfig, AdminUiAppDevModeConfig } from '@vendure/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { AdminUiAppConfig, AdminUiAppDevModeConfig } from '@shoplyjs/common/lib/shared-types';
 import { ChildProcess, spawn } from 'child_process';
 import { FSWatcher, watch as chokidarWatch } from 'chokidar';
 import * as fs from 'fs-extra';
@@ -117,7 +117,7 @@ function runWatchMode({
     additionalProcessArguments,
     ngCompilerPath,
 }: UiExtensionCompilerOptions & { command: UiExtensionBuildCommand }): AdminUiAppDevModeConfig {
-    const devkitPath = require.resolve('@vendure/ui-devkit');
+    const devkitPath = require.resolve('@shoplyjs/ui-devkit');
     let buildProcess: ChildProcess;
     let watcher: FSWatcher | undefined;
     let close: () => void = () => {

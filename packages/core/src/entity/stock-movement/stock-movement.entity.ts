@@ -1,5 +1,5 @@
-import { StockMovementType } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { StockMovementType } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 import { Column, Entity, Index, ManyToOne, TableInheritance } from 'typeorm';
 
 import { VendureEntity } from '../base/base.entity';

@@ -1,4 +1,4 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
 import fs from 'fs-extra';
 import path from 'path';
 import { beforeAll, describe, expect, it } from 'vitest';

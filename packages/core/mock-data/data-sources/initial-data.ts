@@ -1,4 +1,4 @@
-import { LanguageCode, Permission } from '@vendure/common/lib/generated-types';
+import { LanguageCode, Permission } from '@shoplyjs/common/lib/generated-types';
 
 import { InitialData } from '../../src/data-import';
 

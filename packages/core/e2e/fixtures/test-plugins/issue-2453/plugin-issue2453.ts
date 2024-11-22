@@ -1,4 +1,4 @@
-import { PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { PluginCommonModule, VendurePlugin } from '@shoplyjs/core';
 
 import { apiExtensions } from './api/index';
 import { CampaignTranslation } from './entities/campaign-translation.entity';

@@ -1,8 +1,8 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { getGraphQlInputName } from '@vendure/common/lib/shared-utils';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { getGraphQlInputName } from '@shoplyjs/common/lib/shared-utils';
 import {
     GraphQLInputType,
     GraphQLList,
@@ -29,7 +29,10 @@ import { validateCustomFieldValue } from '../common/validate-custom-field-value'
 export class ValidateCustomFieldsInterceptor implements NestInterceptor {
     private readonly inputsWithCustomFields: Set<string>;
 
-    constructor(private configService: ConfigService, private moduleRef: ModuleRef) {
+    constructor(
+        private configService: ConfigService,
+        private moduleRef: ModuleRef,
+    ) {
         this.inputsWithCustomFields = Object.keys(configService.customFields).reduce((inputs, entityName) => {
             inputs.add(`Create${entityName}Input`);
             inputs.add(`Update${entityName}Input`);

@@ -4,9 +4,9 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateTagInput,
-} from '@vendure/common/lib/generated-types';
-import { ID, PaginatedList, Type } from '@vendure/common/lib/shared-types';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/common/lib/generated-types';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
+import { unique } from '@shoplyjs/common/lib/unique';
 
 import { RequestContext } from '../../api/common/request-context';
 import { ListQueryOptions, Taggable } from '../../common/types/common-types';
@@ -23,7 +23,10 @@ import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-build
  */
 @Injectable()
 export class TagService {
-    constructor(private connection: TransactionalConnection, private listQueryBuilder: ListQueryBuilder) {}
+    constructor(
+        private connection: TransactionalConnection,
+        private listQueryBuilder: ListQueryBuilder,
+    ) {}
 
     findAll(ctx: RequestContext, options?: ListQueryOptions<Tag>): Promise<PaginatedList<Tag>> {
         return this.listQueryBuilder

@@ -1,4 +1,4 @@
-import { Json } from '@vendure/common/lib/shared-types';
+import { Json } from '@shoplyjs/common/lib/shared-types';
 
 import { Logger } from '../config/logger/vendure-logger';
 

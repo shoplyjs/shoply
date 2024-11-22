@@ -6,8 +6,8 @@ import {
     GetStockLocationListDocument,
     GetStockLocationListQuery,
     ItemOf,
-} from '@vendure/admin-ui/core';
-import { generateAllCombinations } from '@vendure/common/lib/shared-utils';
+} from '@shoplyjs/admin-ui/core';
+import { generateAllCombinations } from '@shoplyjs/common/lib/shared-utils';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 

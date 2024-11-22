@@ -4,7 +4,7 @@ import {
     Injector,
     RequestContext,
     User,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import { OAuth2Client } from 'google-auth-library';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';

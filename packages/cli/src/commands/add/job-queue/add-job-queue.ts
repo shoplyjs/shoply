@@ -45,12 +45,12 @@ async function addJobQueue(
     }
 
     addImportsToFile(serviceRef.classDeclaration.getSourceFile(), {
-        moduleSpecifier: '@vendure/core',
+        moduleSpecifier: '@shoplyjs/core',
         namedImports: ['JobQueue', 'JobQueueService', 'SerializedRequestContext'],
     });
 
     addImportsToFile(serviceRef.classDeclaration.getSourceFile(), {
-        moduleSpecifier: '@vendure/common/lib/generated-types',
+        moduleSpecifier: '@shoplyjs/common/lib/generated-types',
         namedImports: ['JobState'],
     });
 

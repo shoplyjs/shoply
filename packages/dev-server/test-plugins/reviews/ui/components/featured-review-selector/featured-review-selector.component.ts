@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CustomFieldControl, DataService, SharedModule } from '@vendure/admin-ui/core';
+import { CustomFieldControl, DataService, SharedModule } from '@shoplyjs/admin-ui/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -36,7 +36,10 @@ export class RelationReviewInputComponent implements OnInit, CustomFieldControl 
 
     reviews$: Observable<ProductReviewFragment[]>;
 
-    constructor(private dataService: DataService, private route: ActivatedRoute) {}
+    constructor(
+        private dataService: DataService,
+        private route: ActivatedRoute,
+    ) {}
 
     ngOnInit() {
         this.reviews$ = this.route.data.pipe(

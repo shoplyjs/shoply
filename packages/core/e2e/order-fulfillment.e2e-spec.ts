@@ -5,8 +5,8 @@ import {
     LanguageCode,
     manualFulfillmentHandler,
     mergeConfig,
-} from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { vi } from 'vitest';
@@ -147,9 +147,8 @@ describe('Order fulfillments', () => {
     });
 
     it('fulfillmentHandlers query', async () => {
-        const { fulfillmentHandlers } = await adminClient.query<Codegen.GetFulfillmentHandlersQuery>(
-            GET_FULFILLMENT_HANDLERS,
-        );
+        const { fulfillmentHandlers } =
+            await adminClient.query<Codegen.GetFulfillmentHandlersQuery>(GET_FULFILLMENT_HANDLERS);
 
         expect(fulfillmentHandlers.map(h => h.code)).toEqual([
             'manual-fulfillment',

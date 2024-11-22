@@ -1,5 +1,5 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { EntityHydrator, ShippingEligibilityChecker } from '@vendure/core';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { EntityHydrator, ShippingEligibilityChecker } from '@shoplyjs/core';
 
 export const countryCodeShippingEligibilityChecker = new ShippingEligibilityChecker({
     code: 'country-code-shipping-eligibility-checker',

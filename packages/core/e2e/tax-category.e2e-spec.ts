@@ -1,4 +1,4 @@
-import { createTestEnvironment } from '@vendure/testing';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -27,9 +27,8 @@ describe('TaxCategory resolver', () => {
     });
 
     it('taxCategories', async () => {
-        const { taxCategories } = await adminClient.query<Codegen.GetTaxCategoryListQuery>(
-            GET_TAX_CATEGORY_LIST,
-        );
+        const { taxCategories } =
+            await adminClient.query<Codegen.GetTaxCategoryListQuery>(GET_TAX_CATEGORY_LIST);
 
         expect(taxCategories.items.sort(sortById)).toEqual([
             { id: 'T_1', name: 'Standard Tax', isDefault: false },
@@ -105,9 +104,8 @@ describe('TaxCategory resolver', () => {
             isDefault: true,
         });
 
-        const { taxCategories } = await adminClient.query<Codegen.GetTaxCategoryListQuery>(
-            GET_TAX_CATEGORY_LIST,
-        );
+        const { taxCategories } =
+            await adminClient.query<Codegen.GetTaxCategoryListQuery>(GET_TAX_CATEGORY_LIST);
         expect(taxCategories.items.sort(sortById)).toEqual([
             { id: 'T_1', name: 'Standard Tax', isDefault: false },
             { id: 'T_2', name: 'Reduced Tax', isDefault: true },
@@ -133,9 +131,8 @@ describe('TaxCategory resolver', () => {
             isDefault: true,
         });
 
-        const { taxCategories } = await adminClient.query<Codegen.GetTaxCategoryListQuery>(
-            GET_TAX_CATEGORY_LIST,
-        );
+        const { taxCategories } =
+            await adminClient.query<Codegen.GetTaxCategoryListQuery>(GET_TAX_CATEGORY_LIST);
         expect(taxCategories.items.sort(sortById)).toEqual([
             { id: 'T_1', name: 'Standard Tax', isDefault: true },
             { id: 'T_2', name: 'Reduced Tax', isDefault: false },

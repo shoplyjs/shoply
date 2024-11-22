@@ -1,5 +1,5 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { Channel, RequestContext } from '@vendure/core';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { Channel, RequestContext } from '@shoplyjs/core';
 import { Request, Router } from 'express';
 import fs from 'fs-extra';
 import path from 'path';

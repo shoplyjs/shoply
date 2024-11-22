@@ -5,7 +5,7 @@ import {
     LanguageCode,
     PaymentMethodHandler,
     SettlePaymentResult,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import Stripe from 'stripe';
 
 import { getAmountFromStripeMinorUnits } from './stripe-utils';

@@ -1,5 +1,5 @@
-import { DefaultMoneyStrategy, Logger, mergeConfig, MoneyStrategy, VendurePlugin } from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+import { DefaultMoneyStrategy, Logger, mergeConfig, MoneyStrategy, VendurePlugin } from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import path from 'path';
 import { ColumnOptions } from 'typeorm';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';

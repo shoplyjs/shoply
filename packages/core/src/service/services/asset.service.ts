@@ -10,11 +10,11 @@ import {
     LogicalOperator,
     Permission,
     UpdateAssetInput,
-} from '@vendure/common/lib/generated-types';
-import { omit } from '@vendure/common/lib/omit';
-import { ID, PaginatedList, Type } from '@vendure/common/lib/shared-types';
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/common/lib/generated-types';
+import { omit } from '@shoplyjs/common/lib/omit';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { ReadStream as FSReadStream } from 'fs';
 import { ReadStream } from 'fs-extra';
 import { IncomingMessage } from 'http';

@@ -1,4 +1,4 @@
-import { AdminUiConfig } from '@vendure/common/lib/shared-types';
+import { AdminUiConfig } from '@shoplyjs/common/lib/shared-types';
 
 let vendureUiConfig: AdminUiConfig | undefined;
 

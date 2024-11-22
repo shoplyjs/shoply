@@ -3,9 +3,9 @@ import {
     CurrencyCode,
     ProductVariantPrice,
     StockMovementListOptions,
-} from '@vendure/common/lib/generated-types';
-import { DEFAULT_CHANNEL_CODE } from '@vendure/common/lib/shared-constants';
-import { PaginatedList } from '@vendure/common/lib/shared-types';
+} from '@shoplyjs/common/lib/generated-types';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
+import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContextCacheService } from '../../../cache/request-context-cache.service';
 import { Translated } from '../../../common/types/locale-types';

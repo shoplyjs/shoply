@@ -1,4 +1,4 @@
-import { PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { PluginCommonModule, VendurePlugin } from '@shoplyjs/core';
 
 import { BullMQJobQueueStrategy } from './bullmq-job-queue-strategy';
 import { BULLMQ_PLUGIN_OPTIONS } from './constants';

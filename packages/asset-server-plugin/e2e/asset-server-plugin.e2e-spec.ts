@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ConfigService, mergeConfig } from '@vendure/core';
-import { AssetFragment } from '@vendure/core/e2e/graphql/generated-e2e-admin-types';
-import { createTestEnvironment } from '@vendure/testing';
+import { ConfigService, mergeConfig } from '@shoplyjs/core';
+import { AssetFragment } from '@shoplyjs/core/e2e/graphql/generated-e2e-admin-types';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import { exec } from 'child_process';
 import fs from 'fs-extra';
 import gql from 'graphql-tag';
@@ -214,7 +214,7 @@ describe('AssetServerPlugin', () => {
                 return async () => {
                     const port = server.app.get(ConfigService).apiOptions.port;
                     const result = await curlWithPathAsIs(`http://localhost:${port}/assets${urlPath}`);
-                    expect(result).not.toContain('@vendure/asset-server-plugin');
+                    expect(result).not.toContain('@shoplyjs/asset-server-plugin');
                     expect(result.toLowerCase()).toContain('resource not found');
                 };
             }

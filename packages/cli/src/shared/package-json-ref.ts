@@ -26,7 +26,7 @@ export class PackageJson {
 
     determineVendureVersion(): string | undefined {
         const packageJson = this.getPackageJsonContent();
-        return packageJson.dependencies['@vendure/core'];
+        return packageJson.dependencies['@shoplyjs/core'];
     }
 
     async installPackages(requiredPackages: PackageToInstall[]) {
@@ -141,7 +141,7 @@ export class PackageJson {
             return false;
         }
         const packageJson = fs.readJsonSync(packageJsonPath);
-        return !!packageJson.dependencies?.['@vendure/core'];
+        return !!packageJson.dependencies?.['@shoplyjs/core'];
     }
 
     private async runPackageManagerInstall(dependencies: string[], isDev: boolean) {

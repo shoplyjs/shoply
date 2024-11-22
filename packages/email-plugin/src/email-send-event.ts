@@ -1,4 +1,4 @@
-import { RequestContext, VendureEvent } from '@vendure/core';
+import { RequestContext, VendureEvent } from '@shoplyjs/core';
 
 import { EmailDetails } from './types';
 

@@ -1,5 +1,5 @@
-import { Adjustment, AdjustmentType } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { Adjustment, AdjustmentType } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { VendureEntity } from '../../entity/base/base.entity';
 

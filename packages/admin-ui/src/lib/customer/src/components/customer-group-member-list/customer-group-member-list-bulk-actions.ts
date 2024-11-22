@@ -5,7 +5,7 @@ import {
     ModalService,
     NotificationService,
     Permission,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import {
     CustomerGroupMember,
     CustomerGroupMemberListComponent,

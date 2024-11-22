@@ -17,12 +17,12 @@ import {
     SplitOrderContents,
     Surcharge,
     TransactionalConnection,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 import { CONNECTED_PAYMENT_METHOD_CODE, MULTIVENDOR_PLUGIN_OPTIONS } from '../constants';
 import { MultivendorPluginOptions } from '../types';
 
-declare module '@vendure/core/dist/entity/custom-entity-fields' {
+declare module '@shoplyjs/core/dist/entity/custom-entity-fields' {
     interface CustomSellerFields {
         connectedAccountId: string;
     }

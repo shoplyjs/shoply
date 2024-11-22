@@ -1,6 +1,6 @@
 import { Inject, OnApplicationBootstrap } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import { EventBus, Injector, PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { EventBus, Injector, PluginCommonModule, VendurePlugin } from '@shoplyjs/core';
 import { buffer, debounceTime } from 'rxjs/operators';
 
 import { shopApiExtensions } from './api/api-extensions';

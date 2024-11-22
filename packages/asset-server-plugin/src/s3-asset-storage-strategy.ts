@@ -1,6 +1,6 @@
 import { PutObjectRequest, S3ClientConfig } from '@aws-sdk/client-s3';
 import { AwsCredentialIdentity, AwsCredentialIdentityProvider } from '@aws-sdk/types';
-import { AssetStorageStrategy, Logger } from '@vendure/core';
+import { AssetStorageStrategy, Logger } from '@shoplyjs/core';
 import { Request } from 'express';
 import * as path from 'node:path';
 import { Readable } from 'node:stream';

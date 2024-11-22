@@ -1,6 +1,6 @@
 import { DynamicModule } from '@nestjs/common';
-import { Type } from '@vendure/common/lib/shared-types';
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
+import { Type } from '@shoplyjs/common/lib/shared-types';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
 
 import { getConfig } from '../config/config-helpers';
 

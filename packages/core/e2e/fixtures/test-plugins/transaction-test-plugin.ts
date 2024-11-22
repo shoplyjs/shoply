@@ -14,7 +14,7 @@ import {
     User,
     VendureEvent,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import gql from 'graphql-tag';
 import { ReplaySubject, Subscription } from 'rxjs';
 import { vi } from 'vitest';

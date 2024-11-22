@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import { ConfigArg } from '@vendure/common/lib/generated-types';
+import { ConfigArg } from '@shoplyjs/common/lib/generated-types';
 import {
     Customer,
     Injector,
@@ -11,7 +11,7 @@ import {
     RequestContext,
     TransactionalConnection,
     UserInputError,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import Stripe from 'stripe';
 
 import { loggerCtx, STRIPE_PLUGIN_OPTIONS } from './constants';

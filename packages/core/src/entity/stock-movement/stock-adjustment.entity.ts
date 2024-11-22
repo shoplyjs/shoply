@@ -1,5 +1,5 @@
-import { StockMovementType } from '@vendure/common/lib/generated-types';
-import { DeepPartial } from '@vendure/common/lib/shared-types';
+import { StockMovementType } from '@shoplyjs/common/lib/generated-types';
+import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
 import { ChildEntity } from 'typeorm';
 
 import { StockMovement } from './stock-movement.entity';

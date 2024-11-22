@@ -5,8 +5,8 @@ import {
     OrderLine,
     PriceCalculationResult,
     RequestContext,
-} from '@vendure/core';
-import { createTestEnvironment } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import path from 'path';
 import { vi } from 'vitest';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

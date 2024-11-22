@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { DefaultJobQueuePlugin, DefaultSearchPlugin, mergeConfig, UuidIdStrategy } from '@vendure/core';
-import { createTestEnvironment, registerInitializer, SqljsInitializer } from '@vendure/testing';
+import { DefaultJobQueuePlugin, DefaultSearchPlugin, mergeConfig, UuidIdStrategy } from '@shoplyjs/core';
+import { createTestEnvironment, registerInitializer, SqljsInitializer } from '@shoplyjs/testing';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 

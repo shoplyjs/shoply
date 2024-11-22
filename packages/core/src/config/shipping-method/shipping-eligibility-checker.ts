@@ -1,5 +1,5 @@
-import { ConfigArg } from '@vendure/common/lib/generated-types';
-import { Json } from '@vendure/common/lib/shared-types';
+import { ConfigArg } from '@shoplyjs/common/lib/generated-types';
+import { Json } from '@shoplyjs/common/lib/shared-types';
 import { createHash } from 'crypto';
 
 import { RequestContext } from '../../api/common/request-context';

@@ -1,6 +1,6 @@
-import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
-import { DefaultJobQueuePlugin, dummyPaymentHandler, VendureConfig } from '@vendure/core';
-import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
+import { AdminUiPlugin } from '@shoplyjs/admin-ui-plugin';
+import { DefaultJobQueuePlugin, dummyPaymentHandler, VendureConfig } from '@shoplyjs/core';
+import { compileUiExtensions } from '@shoplyjs/ui-devkit/compiler';
 import path from 'path';
 
 export const config: VendureConfig = {

@@ -1,4 +1,4 @@
-import { LanguageCode, PluginCommonModule, Type, VendurePlugin } from '@vendure/core';
+import { LanguageCode, PluginCommonModule, Type, VendurePlugin } from '@shoplyjs/core';
 import { gql } from 'graphql-tag';
 
 import { braintreePaymentMethodHandler } from './braintree.handler';

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { LanguageCode } from '@vendure/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
 import {
     DefaultLogger,
     DefaultOrderPlacedStrategy,
@@ -8,8 +8,8 @@ import {
     orderPercentageDiscount,
     OrderState,
     RequestContext,
-} from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
@@ -125,9 +125,8 @@ describe('Draft Orders resolver', () => {
     });
 
     it('create draft order', async () => {
-        const { createDraftOrder } = await adminClient.query<Codegen.CreateDraftOrderMutation>(
-            CREATE_DRAFT_ORDER,
-        );
+        const { createDraftOrder } =
+            await adminClient.query<Codegen.CreateDraftOrderMutation>(CREATE_DRAFT_ORDER);
 
         expect(createDraftOrder.state).toBe('Draft');
         expect(createDraftOrder.active).toBe(false);
@@ -213,9 +212,8 @@ describe('Draft Orders resolver', () => {
     it('custom does not see draft orders in history', async () => {
         await shopClient.asUserWithCredentials(customers[0].emailAddress, 'test');
 
-        const { activeCustomer } = await shopClient.query<GetActiveCustomerOrdersQuery>(
-            GET_ACTIVE_CUSTOMER_ORDERS,
-        );
+        const { activeCustomer } =
+            await shopClient.query<GetActiveCustomerOrdersQuery>(GET_ACTIVE_CUSTOMER_ORDERS);
 
         expect(activeCustomer?.orders.totalItems).toBe(0);
         expect(activeCustomer?.orders.items.length).toBe(0);

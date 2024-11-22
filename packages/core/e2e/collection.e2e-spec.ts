@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ROOT_COLLECTION_NAME } from '@vendure/common/lib/shared-constants';
+import { ROOT_COLLECTION_NAME } from '@shoplyjs/common/lib/shared-constants';
 import {
     DefaultJobQueuePlugin,
     facetValueCollectionFilter,
     productIdCollectionFilter,
     variantIdCollectionFilter,
     variantNameCollectionFilter,
-} from '@vendure/core';
-import { createTestEnvironment, E2E_DEFAULT_CHANNEL_TOKEN } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createTestEnvironment, E2E_DEFAULT_CHANNEL_TOKEN } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

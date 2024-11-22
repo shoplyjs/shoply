@@ -1,4 +1,4 @@
-import { DeepPartial, ID, VendureEntity } from '@vendure/core';
+import { DeepPartial, ID, VendureEntity } from '@shoplyjs/core';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { SupplierStock } from './supplier-stock.entity';
 
@@ -9,25 +9,22 @@ import { SupplierStock } from './supplier-stock.entity';
  */
 @Entity('supplier_stock_in_transit')
 export class SupplierStockInTransit extends VendureEntity {
-  constructor(input?: DeepPartial<SupplierStockInTransit>) {
-    super(input);
-  }
+    constructor(input?: DeepPartial<SupplierStockInTransit>) {
+        super(input);
+    }
 
-  @Column({ nullable: true })
-  channelName?: string;
+    @Column({ nullable: true })
+    channelName?: string;
 
-  @Column()
-  channelOrderNo: string;
+    @Column()
+    channelOrderNo: string;
 
-  @Column()
-  quantity: number;
+    @Column()
+    quantity: number;
 
-  @ManyToOne(
-    () => SupplierStock,
-    (supplierStock) => supplierStock.stocksInTransits
-  )
-  supplierStock: SupplierStock;
+    @ManyToOne(() => SupplierStock, supplierStock => supplierStock.stocksInTransits)
+    supplierStock: SupplierStock;
 
-  @Column({ type: 'int' })
-  supplierStockId: ID;
+    @Column({ type: 'int' })
+    supplierStockId: ID;
 }

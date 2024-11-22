@@ -9,8 +9,8 @@ import {
     titleSetter,
     WidgetLayout,
     WidgetLayoutDefinition,
-} from '@vendure/admin-ui/core';
-import { assertNever } from '@vendure/common/lib/shared-utils';
+} from '@shoplyjs/admin-ui/core';
+import { assertNever } from '@shoplyjs/common/lib/shared-utils';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 

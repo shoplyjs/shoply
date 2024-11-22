@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { DataService, Dialog, GetCollectionListQuery, I18nService, ItemOf } from '@vendure/admin-ui/core';
+import { DataService, Dialog, GetCollectionListQuery, I18nService, ItemOf } from '@shoplyjs/admin-ui/core';
 import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap, tap } from 'rxjs/operators';
 
@@ -23,7 +23,10 @@ export class MoveCollectionsDialogComponent
     expandedIds: string[] = [];
     subCollections$: Observable<Array<ItemOf<GetCollectionListQuery, 'collections'>>>;
 
-    constructor(private dataService: DataService, private i18nService: I18nService) {}
+    constructor(
+        private dataService: DataService,
+        private i18nService: I18nService,
+    ) {}
 
     ngOnInit() {
         const getCollectionsResult = this.dataService.collection.getCollections();

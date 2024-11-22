@@ -1,4 +1,4 @@
-import { SearchInput } from '@vendure/common/lib/generated-types';
+import { SearchInput } from '@shoplyjs/common/lib/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { VendureEvent } from '../vendure-event';
@@ -16,7 +16,10 @@ type ExtendedSearchInput = SearchInput & {
  * @since 1.6.0
  */
 export class SearchEvent extends VendureEvent {
-    constructor(public ctx: RequestContext, public input: ExtendedSearchInput) {
+    constructor(
+        public ctx: RequestContext,
+        public input: ExtendedSearchInput,
+    ) {
         super();
     }
 }

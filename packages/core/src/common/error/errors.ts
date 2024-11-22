@@ -1,4 +1,4 @@
-import { ID } from '@vendure/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { LogLevel } from '../../config/logger/vendure-logger';
 import { coreEntitiesMap } from '../../entity/entities';

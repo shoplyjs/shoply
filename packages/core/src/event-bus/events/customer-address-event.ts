@@ -1,5 +1,5 @@
-import { CreateAddressInput, UpdateAddressInput } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { CreateAddressInput, UpdateAddressInput } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../../api';
 import { Address } from '../../entity/address/address.entity';

@@ -16,7 +16,7 @@ import {
     GetCustomerGroupsQuery,
     ItemOf,
     SelectionManager,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, takeUntil, tap } from 'rxjs/operators';
 
@@ -58,7 +58,10 @@ export class CustomerGroupMemberListComponent implements OnInit, OnDestroy {
     private refresh$ = new BehaviorSubject<boolean>(true);
     private destroy$ = new Subject<void>();
 
-    constructor(private router: Router, private dataService: DataService) {}
+    constructor(
+        private router: Router,
+        private dataService: DataService,
+    ) {}
 
     ngOnInit() {
         this.membersCurrentPage$ = this.route.paramMap.pipe(

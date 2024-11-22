@@ -6,9 +6,9 @@ import {
     SearchResult,
     SearchResultAsset,
     SinglePrice,
-} from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { Brackets, QueryBuilder, SelectQueryBuilder } from 'typeorm';
 
 import { SearchIndexItem } from '../entities/search-index-item.entity';

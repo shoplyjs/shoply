@@ -2,13 +2,13 @@ import { MiddlewareConsumer, NestModule } from '@nestjs/common';
 import {
     DEFAULT_AUTH_TOKEN_HEADER_KEY,
     DEFAULT_CHANNEL_TOKEN_KEY,
-} from '@vendure/common/lib/shared-constants';
+} from '@shoplyjs/common/lib/shared-constants';
 import {
     AdminUiAppConfig,
     AdminUiAppDevModeConfig,
     AdminUiConfig,
     Type,
-} from '@vendure/common/lib/shared-types';
+} from '@shoplyjs/common/lib/shared-types';
 import {
     ConfigService,
     createProxyHandler,
@@ -17,7 +17,7 @@ import {
     ProcessContext,
     registerPluginStartupMessage,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import express from 'express';
 import fs from 'fs-extra';
 import path from 'path';

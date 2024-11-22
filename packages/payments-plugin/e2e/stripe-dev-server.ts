@@ -1,4 +1,4 @@
-import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
+import { AdminUiPlugin } from '@shoplyjs/admin-ui-plugin';
 import {
     ChannelService,
     DefaultLogger,
@@ -8,8 +8,8 @@ import {
     mergeConfig,
     OrderService,
     RequestContext,
-} from '@vendure/core';
-import { createTestEnvironment, registerInitializer, SqljsInitializer, testConfig } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createTestEnvironment, registerInitializer, SqljsInitializer, testConfig } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 

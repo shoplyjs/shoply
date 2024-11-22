@@ -2,7 +2,7 @@ import {
     ConfigurableOperation,
     getDefaultConfigArgValue,
     toConfigurableOperationInput,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 
 describe('getDefaultConfigArgValue()', () => {
     it('returns a default string value', () => {

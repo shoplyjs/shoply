@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { omit } from '@vendure/common/lib/omit';
-import { pick } from '@vendure/common/lib/pick';
+import { omit } from '@shoplyjs/common/lib/omit';
+import { pick } from '@shoplyjs/common/lib/pick';
 import {
     defaultShippingCalculator,
     defaultShippingEligibilityChecker,
     manualFulfillmentHandler,
     mergeConfig,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import {
     createErrorResultGuard,
     createTestEnvironment,
     ErrorResultGuard,
     SimpleGraphQLClient,
-} from '@vendure/testing';
+} from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -1079,9 +1079,8 @@ describe('Orders resolver', () => {
         });
 
         it('order.fulfillments resolver for order list', async () => {
-            const { orders } = await adminClient.query<Codegen.GetOrderListFulfillmentsQuery>(
-                GET_ORDER_LIST_FULFILLMENTS,
-            );
+            const { orders } =
+                await adminClient.query<Codegen.GetOrderListFulfillmentsQuery>(GET_ORDER_LIST_FULFILLMENTS);
 
             expect(orders.items[0].fulfillments).toEqual([]);
             expect(orders.items[1].fulfillments?.sort(sortById)).toEqual([

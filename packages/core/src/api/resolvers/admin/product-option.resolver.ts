@@ -10,7 +10,7 @@ import {
     Permission,
     QueryProductOptionGroupArgs,
     QueryProductOptionGroupsArgs,
-} from '@vendure/common/lib/generated-types';
+} from '@shoplyjs/common/lib/generated-types';
 
 import { Translated } from '../../../common/types/locale-types';
 import { ProductOption } from '../../../entity/product-option/product-option.entity';

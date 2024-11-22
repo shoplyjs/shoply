@@ -1,6 +1,6 @@
 import { Client } from '@elastic/elasticsearch';
-import { SortOrder } from '@vendure/common/lib/generated-types';
-import { SimpleGraphQLClient } from '@vendure/testing';
+import { SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { SimpleGraphQLClient } from '@shoplyjs/testing';
 import { expect } from 'vitest';
 
 import { SearchGetPricesQuery, SearchInput } from '../../core/e2e/graphql/generated-e2e-admin-types';

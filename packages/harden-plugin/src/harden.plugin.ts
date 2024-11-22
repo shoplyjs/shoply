@@ -1,4 +1,4 @@
-import { Logger, VendurePlugin } from '@vendure/core';
+import { Logger, VendurePlugin } from '@shoplyjs/core';
 
 import { HARDEN_PLUGIN_OPTIONS, loggerCtx } from './constants';
 import { HideValidationErrorsPlugin } from './middleware/hide-validation-errors-plugin';

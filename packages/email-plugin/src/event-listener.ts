@@ -1,4 +1,4 @@
-import { Type } from '@vendure/common/lib/shared-types';
+import { Type } from '@shoplyjs/common/lib/shared-types';
 
 import { EmailEventHandler } from './handler/event-handler';
 import { EventWithContext } from './types';

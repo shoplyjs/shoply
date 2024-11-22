@@ -15,8 +15,8 @@ import {
     QueryFacetsArgs,
     QueryFacetValuesArgs,
     RemoveFacetFromChannelResult,
-} from '@vendure/common/lib/generated-types';
-import { PaginatedList } from '@vendure/common/lib/shared-types';
+} from '@shoplyjs/common/lib/generated-types';
+import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
 import { EntityNotFoundError } from '../../../common/error/errors';
 import { ErrorResultUnion } from '../../../common/error/error-result';

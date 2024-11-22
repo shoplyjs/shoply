@@ -21,7 +21,7 @@
         "node-fetch": "^2.7.0"
     },
     "devDependencies": {
-        "@vendure/common": "^2.3.3",
-        "@vendure/core": "^2.3.3"
+        "@shoplyjs/common": "^2.3.3",
+        "@shoplyjs/core": "^2.3.3"
     }
 }

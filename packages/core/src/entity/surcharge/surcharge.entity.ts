@@ -1,6 +1,6 @@
-import { TaxLine } from '@vendure/common/lib/generated-types';
-import { DeepPartial } from '@vendure/common/lib/shared-types';
-import { summate } from '@vendure/common/lib/shared-utils';
+import { TaxLine } from '@shoplyjs/common/lib/generated-types';
+import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { summate } from '@shoplyjs/common/lib/shared-utils';
 import { Column, Entity, Index, ManyToOne } from 'typeorm';
 
 import { Calculated } from '../../common/calculated-decorator';

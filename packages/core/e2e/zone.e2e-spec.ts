@@ -1,4 +1,4 @@
-import { createTestEnvironment } from '@vendure/testing';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

@@ -1,5 +1,5 @@
-import { CreateProductInput, UpdateProductInput } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { CreateProductInput, UpdateProductInput } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { Product } from '../../entity';

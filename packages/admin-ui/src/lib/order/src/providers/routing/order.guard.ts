@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { DataService, GetOrderStateQuery, GetOrderStateQueryVariables } from '@vendure/admin-ui/core';
+import { DataService, GetOrderStateQuery, GetOrderStateQueryVariables } from '@shoplyjs/admin-ui/core';
 import { gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,7 +18,10 @@ export const GET_ORDER_STATE = gql`
     providedIn: 'root',
 })
 export class OrderGuard {
-    constructor(private dataService: DataService, private router: Router) {}
+    constructor(
+        private dataService: DataService,
+        private router: Router,
+    ) {}
 
     canActivate(
         route: ActivatedRouteSnapshot,

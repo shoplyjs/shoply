@@ -1,4 +1,4 @@
-import { AssetStorageStrategy } from '@vendure/core';
+import { AssetStorageStrategy } from '@shoplyjs/core';
 import { createHash } from 'crypto';
 import { Request } from 'express';
 import { ReadStream } from 'fs';

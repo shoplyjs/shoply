@@ -1,4 +1,4 @@
-import { LogicalOperator } from '@vendure/common/lib/generated-types';
+import { LogicalOperator } from '@shoplyjs/common/lib/generated-types';
 import { describe, expect, it } from 'vitest';
 
 import { FilterParameter } from '../../../common/types/common-types';

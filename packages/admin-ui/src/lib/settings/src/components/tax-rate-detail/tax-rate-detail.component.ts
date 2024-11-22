@@ -15,7 +15,7 @@ import {
     TaxRateFragment,
     TypedBaseDetailComponent,
     UpdateTaxRateInput,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { mergeMap, take } from 'rxjs/operators';

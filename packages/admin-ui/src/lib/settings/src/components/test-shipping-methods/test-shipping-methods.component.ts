@@ -4,7 +4,7 @@ import {
     GetActiveChannelQuery,
     ShippingMethodQuote,
     TestEligibleShippingMethodsInput,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { Observable, Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { TestAddress } from '../test-address-form/test-address-form.component';

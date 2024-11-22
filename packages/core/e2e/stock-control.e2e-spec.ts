@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { pick } from '@vendure/common/lib/pick';
+import { pick } from '@shoplyjs/common/lib/pick';
 import {
     DefaultOrderPlacedStrategy,
     manualFulfillmentHandler,
@@ -7,8 +7,8 @@ import {
     Order,
     OrderState,
     RequestContext,
-} from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -1217,9 +1217,8 @@ describe('Stock control', () => {
 
                 expect(add2.errorCode).toBe(ErrorCode.INSUFFICIENT_STOCK_ERROR);
 
-                const { activeOrder } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                    GET_ACTIVE_ORDER,
-                );
+                const { activeOrder } =
+                    await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
                 expect(activeOrder!.lines.length).toBe(0);
             });
 

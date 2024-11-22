@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { summate } from '@vendure/common/lib/shared-utils';
+import { summate } from '@shoplyjs/common/lib/shared-utils';
 import {
     defaultShippingCalculator,
     defaultShippingEligibilityChecker,
@@ -12,8 +12,8 @@ import {
     RequestContextService,
     ShippingLine,
     ShippingLineAssignmentStrategy,
-} from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
@@ -31,7 +31,7 @@ import {
     SET_SHIPPING_METHOD,
 } from './graphql/shop-definitions';
 
-declare module '@vendure/core/dist/entity/custom-entity-fields' {
+declare module '@shoplyjs/core/dist/entity/custom-entity-fields' {
     interface CustomShippingMethodFields {
         minPrice: number;
         maxPrice: number;

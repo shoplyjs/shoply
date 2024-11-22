@@ -1,5 +1,5 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { idsAreEqual } from '../../../common/utils';
 import { buyXGetYFreeCondition } from '../conditions/buy-x-get-y-free-condition';

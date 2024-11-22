@@ -1,5 +1,5 @@
-import { ConfigArg } from '@vendure/common/lib/generated-types';
-import { pick } from '@vendure/common/lib/pick';
+import { ConfigArg } from '@shoplyjs/common/lib/generated-types';
+import { pick } from '@shoplyjs/common/lib/pick';
 
 import { RequestContext } from '../../api/common/request-context';
 import {

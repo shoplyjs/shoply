@@ -1,5 +1,5 @@
 import { Mutation, Resolver } from '@nestjs/graphql';
-import { DeepPartial } from '@vendure/common/lib/shared-types';
+import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
 import {
     ActiveOrderService,
     Ctx,
@@ -13,8 +13,8 @@ import {
     Transaction,
     TransactionalConnection,
     VendurePlugin,
-} from '@vendure/core';
-import { VendureEntity, EntityId, ID, OrderLine } from '@vendure/core';
+} from '@shoplyjs/core';
+import { VendureEntity, EntityId, ID, OrderLine } from '@shoplyjs/core';
 import gql from 'graphql-tag';
 import { Column, Entity, ManyToOne } from 'typeorm';
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { CreateCustomerInput, DataService, Dialog, GetCustomerListQuery } from '@vendure/admin-ui/core';
+import { CreateCustomerInput, DataService, Dialog, GetCustomerListQuery } from '@shoplyjs/admin-ui/core';
 import { concat, Observable, of, Subject } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
@@ -31,7 +31,10 @@ export class SelectCustomerDialogComponent implements OnInit, Dialog<SelectCusto
     createNew = false;
     note = '';
 
-    constructor(private dataService: DataService, private formBuilder: UntypedFormBuilder) {
+    constructor(
+        private dataService: DataService,
+        private formBuilder: UntypedFormBuilder,
+    ) {
         this.customerForm = this.formBuilder.group({
             title: '',
             firstName: ['', Validators.required],

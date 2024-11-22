@@ -1,4 +1,4 @@
-import { VendureLogger } from '@vendure/core';
+import { VendureLogger } from '@shoplyjs/core';
 
 /**
  * @description

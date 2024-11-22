@@ -1,5 +1,5 @@
-import { JobState } from '@vendure/common/lib/generated-types';
-import { ID, JsonCompatible } from '@vendure/common/lib/shared-types';
+import { JobState } from '@shoplyjs/common/lib/generated-types';
+import { ID, JsonCompatible } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../api/common/request-context';
 
@@ -58,8 +58,8 @@ export interface JobConfig<T extends JobData<T>> {
     settledAt?: Date;
 }
 
-export type JobOptions<Data extends JsonCompatible<Data>> = Pick<JobConfig<Data>, 'retries'>  & {
-    ctx?: RequestContext
+export type JobOptions<Data extends JsonCompatible<Data>> = Pick<JobConfig<Data>, 'retries'> & {
+    ctx?: RequestContext;
 };
 
-export type JobQueueStrategyJobOptions<Data extends JsonCompatible<Data>> = Omit<JobOptions<Data>, "retries">
+export type JobQueueStrategyJobOptions<Data extends JsonCompatible<Data>> = Omit<JobOptions<Data>, 'retries'>;

@@ -1,4 +1,4 @@
-import { CustomFieldConfig, Order, CustomOrderFields } from '@vendure/core';
+import { CustomFieldConfig, Order, CustomOrderFields } from '@shoplyjs/core';
 
 export interface OrderWithMollieReference extends Order {
     customFields: CustomOrderFields & {

@@ -1,4 +1,4 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
 
 import { ConfigArgDef } from '../../common/configurable-operation';
 import { UserInputError } from '../../common/error/errors';

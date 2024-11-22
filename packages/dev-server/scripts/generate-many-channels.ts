@@ -7,7 +7,7 @@ import {
     LanguageCode,
     RequestContextService,
     RoleService,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 import { devConfig } from '../dev-config';
 

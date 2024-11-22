@@ -1,7 +1,7 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
-import { LogicalOperator } from '@vendure/common/lib/generated-types';
-import { ID, Type } from '@vendure/common/lib/shared-types';
-import { unique } from '@vendure/common/lib/unique';
+import { LogicalOperator } from '@shoplyjs/common/lib/generated-types';
+import { ID, Type } from '@shoplyjs/common/lib/shared-types';
+import { unique } from '@shoplyjs/common/lib/unique';
 import {
     Brackets,
     FindOneOptions,

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { manualFulfillmentHandler, mergeConfig } from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+import { manualFulfillmentHandler, mergeConfig } from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -111,9 +111,8 @@ describe('Stock control', () => {
     });
 
     it('default StockLocation exists', async () => {
-        const { stockLocations } = await adminClient.query<Codegen.GetStockLocationsQuery>(
-            GET_STOCK_LOCATIONS,
-        );
+        const { stockLocations } =
+            await adminClient.query<Codegen.GetStockLocationsQuery>(GET_STOCK_LOCATIONS);
         expect(stockLocations.items.length).toBe(1);
         expect(stockLocations.items[0].name).toBe('Default Stock Location');
         defaultStockLocationId = stockLocations.items[0].id;

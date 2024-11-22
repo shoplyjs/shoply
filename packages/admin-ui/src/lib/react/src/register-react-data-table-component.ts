@@ -3,7 +3,7 @@ import {
     DataTableColumnId,
     DataTableCustomComponentService,
     DataTableLocationId,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { ElementType } from 'react';
 import {
     REACT_CUSTOM_COLUMN_COMPONENT_OPTIONS,

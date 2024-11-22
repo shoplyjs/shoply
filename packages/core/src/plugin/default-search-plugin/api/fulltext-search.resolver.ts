@@ -4,8 +4,8 @@ import {
     QuerySearchArgs,
     SearchInput,
     SearchResponse,
-} from '@vendure/common/lib/generated-types';
-import { Omit } from '@vendure/common/lib/omit';
+} from '@shoplyjs/common/lib/generated-types';
+import { Omit } from '@shoplyjs/common/lib/omit';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { Allow } from '../../../api/decorators/allow.decorator';

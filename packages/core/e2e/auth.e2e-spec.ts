@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { SUPER_ADMIN_USER_IDENTIFIER, SUPER_ADMIN_USER_PASSWORD } from '@vendure/common/lib/shared-constants';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+import {
+    SUPER_ADMIN_USER_IDENTIFIER,
+    SUPER_ADMIN_USER_PASSWORD,
+} from '@shoplyjs/common/lib/shared-constants';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 import path from 'path';
@@ -74,9 +77,8 @@ describe('Authorization & permissions', () => {
             let customerEmailAddress: string;
             beforeAll(async () => {
                 await adminClient.asSuperAdmin();
-                const { customers } = await adminClient.query<Codegen.GetCustomerListQuery>(
-                    GET_CUSTOMER_LIST,
-                );
+                const { customers } =
+                    await adminClient.query<Codegen.GetCustomerListQuery>(GET_CUSTOMER_LIST);
                 customerEmailAddress = customers.items[0].emailAddress;
             });
 

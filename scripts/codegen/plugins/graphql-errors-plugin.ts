@@ -44,8 +44,8 @@ const errorsVisitor: ASTVisitFn<ASTNode> = (node, key, parent) => {
             return node.type.kind === 'NamedType'
                 ? node.type.name.value
                 : node.type.kind === 'ListType'
-                ? node.type
-                : '';
+                  ? node.type
+                  : '';
         }
         case Kind.FIELD_DEFINITION: {
             const type = (node.type.kind === 'ListType' ? node.type.type : node.type) as unknown as string;
@@ -158,7 +158,7 @@ function generateIsErrorFunction(schema: GraphQLSchema) {
         .filter(node => inheritsFromErrorResult(node));
     return `
 const errorTypeNames = new Set<string>([${errorNodes.map(n => `'${n.name}'`).join(', ')}]);
-function isGraphQLError(input: any): input is import('@vendure/common/lib/generated-types').${ERROR_INTERFACE_NAME} {
+function isGraphQLError(input: any): input is import('@shoplyjs/common/lib/generated-types').${ERROR_INTERFACE_NAME} {
   return input instanceof ${ERROR_INTERFACE_NAME} || errorTypeNames.has(input.__typename);
 }`;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CurrencyCode, LanguageCode, Permission } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { CurrencyCode, LanguageCode, Permission } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 import { Request } from 'express';
 import { GraphQLResolveInfo } from 'graphql';
 import ms from 'ms';
@@ -25,7 +25,10 @@ import { getUserChannelsPermissions } from '../utils/get-user-channels-permissio
 @Injectable()
 export class RequestContextService {
     /** @internal */
-    constructor(private channelService: ChannelService, private configService: ConfigService) {}
+    constructor(
+        private channelService: ChannelService,
+        private configService: ConfigService,
+    ) {}
 
     /**
      * @description

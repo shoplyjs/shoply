@@ -1,4 +1,4 @@
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
 import {
     buildSchema,
     GraphQLEnumType,

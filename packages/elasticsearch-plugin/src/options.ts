@@ -7,8 +7,8 @@ import {
     LanguageCode,
     Product,
     ProductVariant,
-    RequestContext
-} from '@vendure/core';
+    RequestContext,
+} from '@shoplyjs/core';
 import deepmerge from 'deepmerge';
 
 import {
@@ -240,7 +240,9 @@ export interface ElasticsearchOptions {
      * ```
      */
     customProductMappings?: {
-        [fieldName: string]: CustomMapping<[Product, ProductVariant[], LanguageCode, Injector, RequestContext]>;
+        [fieldName: string]: CustomMapping<
+            [Product, ProductVariant[], LanguageCode, Injector, RequestContext]
+        >;
     };
     /**
      * @description

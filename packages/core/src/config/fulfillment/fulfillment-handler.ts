@@ -1,4 +1,4 @@
-import { ConfigArg, OrderLineInput } from '@vendure/common/lib/generated-types';
+import { ConfigArg, OrderLineInput } from '@shoplyjs/common/lib/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import {

@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { DeletionResponse, Permission } from '@vendure/common/lib/generated-types';
-import { CustomFieldsObject } from '@vendure/common/lib/shared-types';
+import { DeletionResponse, Permission } from '@shoplyjs/common/lib/generated-types';
+import { CustomFieldsObject } from '@shoplyjs/common/lib/shared-types';
 import {
     Allow,
     Ctx,
@@ -13,7 +13,7 @@ import {
     TranslationInput,
     ListQueryOptions,
     RelationPaths,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 class TemplateEntity extends VendureEntity {
     constructor() {

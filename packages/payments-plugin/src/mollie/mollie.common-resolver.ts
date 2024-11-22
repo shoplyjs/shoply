@@ -1,11 +1,11 @@
 import { Args, Mutation, ResolveField, Resolver } from '@nestjs/graphql';
-import { Allow, Ctx, Permission, RequestContext } from '@vendure/core';
+import { Allow, Ctx, Permission, RequestContext } from '@shoplyjs/core';
 
 import {
     MolliePaymentIntent,
     MolliePaymentIntentError,
     MolliePaymentIntentInput,
-    MolliePaymentIntentResult
+    MolliePaymentIntentResult,
 } from './graphql/generated-shop-types';
 import { MollieService } from './mollie.service';
 

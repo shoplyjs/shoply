@@ -1,4 +1,4 @@
-import { StockMovementType } from '@vendure/common/lib/generated-types';
+import { StockMovementType } from '@shoplyjs/common/lib/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { StockMovement } from '../../entity/stock-movement/stock-movement.entity';
@@ -16,7 +16,10 @@ import { VendureEvent } from '../vendure-event';
 export class StockMovementEvent extends VendureEvent {
     public readonly type: StockMovementType;
 
-    constructor(public ctx: RequestContext, public stockMovements: StockMovement[]) {
+    constructor(
+        public ctx: RequestContext,
+        public stockMovements: StockMovement[],
+    ) {
         super();
         this.type = stockMovements[0]?.type;
     }

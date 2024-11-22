@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { Permission } from '@vendure/common/lib/generated-shop-types';
-import { Allow, InternalServerError, VendurePlugin } from '@vendure/core';
+import { Permission } from '@shoplyjs/common/lib/generated-shop-types';
+import { Allow, InternalServerError, VendurePlugin } from '@shoplyjs/core';
 
 @Controller('test')
 export class TestController {

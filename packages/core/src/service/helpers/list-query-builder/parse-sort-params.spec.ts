@@ -1,4 +1,4 @@
-import { Type } from '@vendure/common/lib/shared-types';
+import { Type } from '@shoplyjs/common/lib/shared-types';
 import { fail } from 'assert';
 import { DefaultNamingStrategy } from 'typeorm';
 import { ColumnMetadata } from 'typeorm/metadata/ColumnMetadata';

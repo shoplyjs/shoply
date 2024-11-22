@@ -1,5 +1,5 @@
-import { JobListOptions } from '@vendure/common/lib/generated-types';
-import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
+import { JobListOptions } from '@shoplyjs/common/lib/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
 import { Job } from '../../job-queue';
 

@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, NestModule, OnApplicationBootstrap } from '@nestjs/common';
-import { Type } from '@vendure/common/lib/shared-types';
+import { Type } from '@shoplyjs/common/lib/shared-types';
 import {
     AssetStorageStrategy,
     Logger,
@@ -8,7 +8,7 @@ import {
     registerPluginStartupMessage,
     RuntimeVendureConfig,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import { createHash } from 'crypto';
 import express, { NextFunction, Request, Response } from 'express';
 import fs from 'fs-extra';

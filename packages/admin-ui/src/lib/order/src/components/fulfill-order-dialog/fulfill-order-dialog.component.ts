@@ -11,7 +11,7 @@ import {
     GlobalFlag,
     OrderDetailFragment,
     toConfigurableOperationInput,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'vdr-fulfill-order-dialog',
@@ -29,7 +29,10 @@ export class FulfillOrderDialogComponent implements Dialog<FulfillOrderInput>, O
     // Provided by modalService.fromComponent() call
     order: OrderDetailFragment;
 
-    constructor(private dataService: DataService, private changeDetector: ChangeDetectorRef) {}
+    constructor(
+        private dataService: DataService,
+        private changeDetector: ChangeDetectorRef,
+    ) {}
 
     ngOnInit(): void {
         this.dataService.settings.getGlobalSettings().single$.subscribe(({ globalSettings }) => {

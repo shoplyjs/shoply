@@ -6,9 +6,9 @@ import {
     SearchInput,
     SearchResponse,
     SearchResult,
-} from '@vendure/common/lib/generated-types';
-import { ID, JsonCompatible } from '@vendure/common/lib/shared-types';
-import { Asset, SerializedRequestContext } from '@vendure/core';
+} from '@shoplyjs/common/lib/generated-types';
+import { ID, JsonCompatible } from '@shoplyjs/common/lib/shared-types';
+import { Asset, SerializedRequestContext } from '@shoplyjs/core';
 
 export type ElasticSearchResult = SearchResult & {
     inStock: boolean;
@@ -278,10 +278,10 @@ type TypeVariationMap<GqlType extends GraphQlPrimitive, TsType> = {
     [Key in PrimitiveTypeVariations<GqlType>]: Key extends `[${string}!]!`
         ? TsType[]
         : Key extends `[${string}!]`
-        ? Maybe<TsType[]>
-        : Key extends `${string}!`
-        ? TsType
-        : Maybe<TsType>;
+          ? Maybe<TsType[]>
+          : Key extends `${string}!`
+            ? TsType
+            : Maybe<TsType>;
 };
 
 type GraphQlTypeMap = TypeVariationMap<'ID', ID> &

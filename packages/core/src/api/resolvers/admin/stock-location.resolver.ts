@@ -9,7 +9,7 @@ import {
     Permission,
     QueryStockLocationArgs,
     QueryStockLocationsArgs,
-} from '@vendure/common/lib/generated-types';
+} from '@shoplyjs/common/lib/generated-types';
 
 import { StockLocationService } from '../../../service/services/stock-location.service';
 import { RequestContext } from '../../common/request-context';

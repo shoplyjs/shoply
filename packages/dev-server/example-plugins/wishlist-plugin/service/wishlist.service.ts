@@ -8,7 +8,7 @@ import {
     RequestContext,
     TransactionalConnection,
     UserInputError,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 import { WishlistItem } from '../entities/wishlist-item.entity';
 

@@ -10,7 +10,7 @@ import {
     NotificationService,
     ProductListQueryDocument,
     TypedBaseListComponent,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { EMPTY, lastValueFrom } from 'rxjs';
 import { delay, switchMap } from 'rxjs/operators';
 

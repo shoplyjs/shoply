@@ -18,7 +18,7 @@ import {
     TaxRateModificationEvent,
     Type,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import { buffer, debounceTime, delay, filter, map } from 'rxjs/operators';
 
 import { generateSchemaExtensions } from './api/api-extensions';

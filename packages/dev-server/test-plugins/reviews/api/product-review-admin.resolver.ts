@@ -9,7 +9,7 @@ import {
     RequestContext,
     Transaction,
     TransactionalConnection,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 import { ProductReview } from '../entities/product-review.entity';
 import {
@@ -22,7 +22,10 @@ import {
 
 @Resolver()
 export class ProductReviewAdminResolver {
-    constructor(private connection: TransactionalConnection, private listQueryBuilder: ListQueryBuilder) {}
+    constructor(
+        private connection: TransactionalConnection,
+        private listQueryBuilder: ListQueryBuilder,
+    ) {}
 
     @Query()
     @Allow(Permission.ReadCatalog)

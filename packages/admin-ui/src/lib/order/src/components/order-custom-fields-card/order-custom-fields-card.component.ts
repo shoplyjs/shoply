@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { CustomFieldConfig, ModalService } from '@vendure/admin-ui/core';
+import { CustomFieldConfig, ModalService } from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'vdr-order-custom-fields-card',
@@ -15,7 +15,10 @@ export class OrderCustomFieldsCardComponent implements OnInit {
     @Output() updateClick = new EventEmitter<any>();
     customFieldForm: UntypedFormGroup;
     editable = false;
-    constructor(private formBuilder: UntypedFormBuilder, private modalService: ModalService) {}
+    constructor(
+        private formBuilder: UntypedFormBuilder,
+        private modalService: ModalService,
+    ) {}
 
     ngOnInit() {
         this.customFieldForm = this.formBuilder.group({});

@@ -1,5 +1,5 @@
-import { CreateChannelInput, UpdateChannelInput } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { CreateChannelInput, UpdateChannelInput } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../../api';
 import { Channel } from '../../entity';

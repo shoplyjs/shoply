@@ -9,7 +9,7 @@ import {
     ItemOf,
     JobState,
     SortOrder,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { Observable, timer } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 
@@ -28,7 +28,11 @@ export class JobListComponent
     queueFilter = new FormControl('all');
     stateFilter = new FormControl<JobState | string>('');
 
-    constructor(private dataService: DataService, router: Router, route: ActivatedRoute) {
+    constructor(
+        private dataService: DataService,
+        router: Router,
+        route: ActivatedRoute,
+    ) {
         super(router, route);
         super.setQueryFn(
             (...args: any[]) => this.dataService.settings.getAllJobs(...args),

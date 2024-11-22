@@ -5,15 +5,15 @@ import {
     DeletionResult,
     Permission,
     UpdateRoleInput,
-} from '@vendure/common/lib/generated-types';
+} from '@shoplyjs/common/lib/generated-types';
 import {
     CUSTOMER_ROLE_CODE,
     CUSTOMER_ROLE_DESCRIPTION,
     SUPER_ADMIN_ROLE_CODE,
     SUPER_ADMIN_ROLE_DESCRIPTION,
-} from '@vendure/common/lib/shared-constants';
-import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/common/lib/shared-constants';
+import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+import { unique } from '@shoplyjs/common/lib/unique';
 
 import { RequestContext } from '../../api/common/request-context';
 import { RelationPaths } from '../../api/decorators/relations.decorator';

@@ -1,5 +1,5 @@
-import { LanguageCode, LogicalOperator, SortOrder } from '@vendure/common/lib/generated-types';
-import { DeepRequired } from '@vendure/core';
+import { LanguageCode, LogicalOperator, SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { DeepRequired } from '@shoplyjs/core';
 import { describe, expect, it } from 'vitest';
 
 import { buildElasticBody } from './build-elastic-body';
@@ -482,7 +482,7 @@ describe('buildElasticBody()', () => {
         const result = buildElasticBody({ term: 'test' }, config, CHANNEL_ID, LanguageCode.en);
         expect(result.script_fields).toEqual({
             test: {
-                script: 'doc[\'property\'].dummyScript(test)',
+                script: "doc['property'].dummyScript(test)",
             },
         });
     });

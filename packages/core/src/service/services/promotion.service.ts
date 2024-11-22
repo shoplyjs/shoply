@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ApplyCouponCodeResult } from '@vendure/common/lib/generated-shop-types';
+import { ApplyCouponCodeResult } from '@shoplyjs/common/lib/generated-shop-types';
 import {
     AssignPromotionsToChannelInput,
     ConfigurableOperation,
@@ -11,10 +11,10 @@ import {
     RemovePromotionsFromChannelInput,
     UpdatePromotionInput,
     UpdatePromotionResult,
-} from '@vendure/common/lib/generated-types';
-import { omit } from '@vendure/common/lib/omit';
-import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/common/lib/generated-types';
+import { omit } from '@shoplyjs/common/lib/omit';
+import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { In, IsNull } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';

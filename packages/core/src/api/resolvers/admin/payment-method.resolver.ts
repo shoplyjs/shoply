@@ -11,8 +11,8 @@ import {
     Permission,
     QueryPaymentMethodArgs,
     QueryPaymentMethodsArgs,
-} from '@vendure/common/lib/generated-types';
-import { PaginatedList } from '@vendure/common/lib/shared-types';
+} from '@shoplyjs/common/lib/generated-types';
+import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
 import { Translated } from '../../../common/types/locale-types';
 import { PaymentMethod } from '../../../entity/payment-method/payment-method.entity';

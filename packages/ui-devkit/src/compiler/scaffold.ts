@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
 import * as fs from 'fs-extra';
 import { globSync } from 'glob';
 import * as path from 'path';
@@ -74,13 +74,16 @@ function generateModulePathMapping(extensions: AdminUiExtensionWithId[]) {
         return undefined;
     }
 
-    return extensionsWithAlias.reduce((acc, e) => {
-        // for imports from the index file if there is one
-        acc[e.pathAlias as string] = [`src/extensions/${e.id}`];
-        // direct access to files / deep imports
-        acc[`${e.pathAlias as string}/*`] = [`src/extensions/${e.id}/*`];
-        return acc;
-    }, {} as Record<string, string[]>);
+    return extensionsWithAlias.reduce(
+        (acc, e) => {
+            // for imports from the index file if there is one
+            acc[e.pathAlias as string] = [`src/extensions/${e.id}`];
+            // direct access to files / deep imports
+            acc[`${e.pathAlias as string}/*`] = [`src/extensions/${e.id}/*`];
+            return acc;
+        },
+        {} as Record<string, string[]>,
+    );
 }
 
 /**
@@ -177,8 +180,8 @@ function generateLazyExtensionRoutes(extensions: AdminUiExtensionWithId[]): stri
                 routes.push(`  {
     path: 'extensions/${module.route}',
     loadChildren: () => import('${getModuleFilePath(extension.id, module)}').then(m => m.${
-                    module.ngModuleName
-                }),
+        module.ngModuleName
+    }),
   }`);
             }
         }
@@ -265,7 +268,7 @@ function copyAdminUiSource(outputPath: string, modulePathMapping: Record<string,
     }
 
     const scaffoldDir = path.join(__dirname, '../scaffold');
-    const adminUiSrc = path.join(require.resolve('@vendure/admin-ui'), '../../static');
+    const adminUiSrc = path.join(require.resolve('@shoplyjs/admin-ui'), '../../static');
 
     if (!fs.existsSync(scaffoldDir)) {
         throw new Error(`Could not find the admin ui scaffold files at ${scaffoldDir}`);

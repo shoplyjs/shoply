@@ -25,8 +25,8 @@ import {
     UpdateCustomerEmailAddressResult,
     UpdateCustomerPasswordResult,
     VerifyCustomerAccountResult,
-} from '@vendure/common/lib/generated-shop-types';
-import { HistoryEntryType } from '@vendure/common/lib/generated-types';
+} from '@shoplyjs/common/lib/generated-shop-types';
+import { HistoryEntryType } from '@shoplyjs/common/lib/generated-types';
 import { Request, Response } from 'express';
 
 import { isGraphQlErrorResult } from '../../../common/error/error-result';

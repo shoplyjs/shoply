@@ -8,7 +8,7 @@ import {
     Permission,
     AssignShippingMethodsToChannelDocument,
     RemoveShippingMethodsFromChannelDocument,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { gql } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 

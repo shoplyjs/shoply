@@ -1,5 +1,5 @@
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { DataService } from '@vendure/admin-ui/core';
+import { DataService } from '@shoplyjs/admin-ui/core';
 import { DocumentNode } from 'graphql/index';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { firstValueFrom, Observable } from 'rxjs';

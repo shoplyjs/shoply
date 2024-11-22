@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Injector, Input, Optional } from '@angular/core';
-import { PageMetadataService } from '@vendure/admin-ui/core';
+import { PageMetadataService } from '@shoplyjs/admin-ui/core';
 import { ComponentProps, createContext, createElement, ElementType } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { HostedReactComponentContext } from '../types';

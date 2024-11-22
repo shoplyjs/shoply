@@ -13,9 +13,9 @@ import {
     ModalService,
     NotificationService,
     SelectionManager,
-} from '@vendure/admin-ui/core';
-import { normalizeString } from '@vendure/common/lib/normalize-string';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/admin-ui/core';
+import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 

@@ -6,7 +6,7 @@ import {
     Dialog,
     getCustomFieldsDefaults,
     ServerConfigService,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'vdr-customer-group-detail-dialog',
@@ -20,7 +20,10 @@ export class CustomerGroupDetailDialogComponent implements Dialog<CreateCustomer
     customFields: CustomFieldConfig[];
     form: UntypedFormGroup;
 
-    constructor(private serverConfigService: ServerConfigService, private formBuilder: UntypedFormBuilder) {
+    constructor(
+        private serverConfigService: ServerConfigService,
+        private formBuilder: UntypedFormBuilder,
+    ) {
         this.customFields = this.serverConfigService.getCustomFieldsFor('CustomerGroup');
     }
 

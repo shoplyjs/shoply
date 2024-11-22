@@ -1,4 +1,4 @@
-import { Logger } from '@vendure/core';
+import { Logger } from '@shoplyjs/core';
 import sharp, { FormatEnum, Region, ResizeOptions } from 'sharp';
 
 import { getValidFormat } from './common';

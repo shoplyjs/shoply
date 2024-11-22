@@ -1,4 +1,4 @@
-import { PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { PluginCommonModule, VendurePlugin } from '@shoplyjs/core';
 import { GraphQLScalarType, Kind } from 'graphql';
 import gql from 'graphql-tag';
 

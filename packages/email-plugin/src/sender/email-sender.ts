@@ -1,4 +1,4 @@
-import { InjectableStrategy } from '@vendure/core';
+import { InjectableStrategy } from '@shoplyjs/core';
 
 import { EmailDetails, EmailTransportOptions } from '../types';
 

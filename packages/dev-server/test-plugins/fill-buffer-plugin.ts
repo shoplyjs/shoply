@@ -7,7 +7,7 @@ import {
     ProductVariantService,
     RequestContext,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import gql from 'graphql-tag';
 
 @Resolver()

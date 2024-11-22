@@ -7,11 +7,11 @@ import {
     RequestContext,
     TransactionalConnection,
     VendurePlugin,
-} from '@vendure/core';
-import { CustomOrderFields } from '@vendure/core/dist/entity/custom-entity-fields';
+} from '@shoplyjs/core';
+import { CustomOrderFields } from '@shoplyjs/core/dist/entity/custom-entity-fields';
 import gql from 'graphql-tag';
 
-declare module '@vendure/core/dist/entity/custom-entity-fields' {
+declare module '@shoplyjs/core/dist/entity/custom-entity-fields' {
     interface CustomOrderFields {
         orderToken: string;
     }

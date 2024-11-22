@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CustomColumnComponent } from '@vendure/admin-ui/core';
+import { CustomColumnComponent } from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'slug-with-link',

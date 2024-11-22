@@ -1,5 +1,5 @@
-import { DefaultSearchPlugin, JobQueueService, mergeConfig } from '@vendure/core';
-import { createTestEnvironment } from '@vendure/testing';
+import { DefaultSearchPlugin, JobQueueService, mergeConfig } from '@shoplyjs/core';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

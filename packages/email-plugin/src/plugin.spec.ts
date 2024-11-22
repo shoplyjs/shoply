@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DEFAULT_CHANNEL_CODE } from '@vendure/common/lib/shared-constants';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
 import {
     DefaultLogger,
     EventBus,
@@ -15,9 +15,9 @@ import {
     PluginCommonModule,
     RequestContext,
     VendureEvent,
-} from '@vendure/core';
-import { ensureConfigLoaded } from '@vendure/core/dist/config/config-helpers';
-import { TestingLogger } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { ensureConfigLoaded } from '@shoplyjs/core/dist/config/config-helpers';
+import { TestingLogger } from '@shoplyjs/testing';
 import { createReadStream, readFileSync } from 'fs';
 import path from 'path';
 import { Readable } from 'stream';
@@ -979,8 +979,8 @@ describe('EmailPlugin', () => {
                 .setFrom('"test from" <noreply@test.com>')
                 .setRecipient(() => 'test@test.com')
                 .setSubject(async (_e, _ctx, _i) => {
-                    const service = _i.get(MockService)
-                    const mockData = await service.someAsyncMethod()
+                    const service = _i.get(MockService);
+                    const mockData = await service.someAsyncMethod();
                     return `Hello from ${mockData} and {{ subjectVar }}`;
                 })
                 .setTemplateVars(event => ({ subjectVar: 'foo' }));
@@ -993,7 +993,7 @@ describe('EmailPlugin', () => {
             expect(onSend.mock.calls[0][0].recipient).toBe('test@test.com');
             expect(onSend.mock.calls[0][0].from).toBe('"test from" <noreply@test.com>');
         });
-    })
+    });
 });
 
 class FakeCustomSender implements EmailSender {

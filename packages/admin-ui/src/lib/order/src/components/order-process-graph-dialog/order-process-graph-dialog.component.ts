@@ -5,7 +5,7 @@ import {
     Dialog,
     OrderProcessState,
     ServerConfigService,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { Observable } from 'rxjs';
 
 @Component({

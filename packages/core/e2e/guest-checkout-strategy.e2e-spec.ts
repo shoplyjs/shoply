@@ -1,4 +1,4 @@
-import { CreateCustomerInput, SetCustomerForOrderResult } from '@vendure/common/lib/generated-shop-types';
+import { CreateCustomerInput, SetCustomerForOrderResult } from '@shoplyjs/common/lib/generated-shop-types';
 import {
     GuestCheckoutStrategy,
     Order,
@@ -10,13 +10,13 @@ import {
     Injector,
     TransactionalConnection,
     ChannelService,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import {
     createErrorResultGuard,
     createTestEnvironment,
     ErrorResultGuard,
     SimpleGraphQLClient,
-} from '@vendure/testing';
+} from '@shoplyjs/testing';
 import path from 'path';
 import { IsNull } from 'typeorm';
 import { it, afterAll, beforeAll, describe, expect } from 'vitest';

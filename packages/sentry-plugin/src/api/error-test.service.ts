@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { TransactionalConnection } from '@vendure/core';
+import { TransactionalConnection } from '@shoplyjs/core';
 
 @Injectable()
 export class ErrorTestService {

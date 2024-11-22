@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { AdjustmentType, CustomFieldConfig, OrderDetailFragment } from '@vendure/admin-ui/core';
+import { AdjustmentType, CustomFieldConfig, OrderDetailFragment } from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'vdr-order-table',
@@ -59,7 +59,7 @@ export class OrderTableComponent implements OnInit {
                         value,
                     };
                 })
-                .filter(field => this.orderLineCustomFieldsVisible ? true : field.value != null);
+                .filter(field => (this.orderLineCustomFieldsVisible ? true : field.value != null));
             this.customFieldsForLine[line.id] = result;
         }
     }

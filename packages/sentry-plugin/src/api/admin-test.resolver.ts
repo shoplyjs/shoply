@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { Allow, Permission, UserInputError } from '@vendure/core';
+import { Allow, Permission, UserInputError } from '@shoplyjs/core';
 
 import { SentryService } from '../sentry.service';
 import { ErrorTestService } from './error-test.service';
@@ -8,7 +8,10 @@ declare const a: number;
 
 @Resolver()
 export class SentryAdminTestResolver {
-    constructor(private sentryService: SentryService, private errorTestService: ErrorTestService) {}
+    constructor(
+        private sentryService: SentryService,
+        private errorTestService: ErrorTestService,
+    ) {}
 
     @Allow(Permission.SuperAdmin)
     @Mutation()

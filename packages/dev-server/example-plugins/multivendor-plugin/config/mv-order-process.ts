@@ -1,5 +1,5 @@
-import { OrderType } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { OrderType } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 import {
     ChannelService,
     CustomOrderProcess,
@@ -14,7 +14,7 @@ import {
     RequestContextService,
     TransactionalConnection,
     User,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 let connection: TransactionalConnection;
 let orderService: OrderService;

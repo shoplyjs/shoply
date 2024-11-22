@@ -10,7 +10,7 @@ import {
     SimpleChanges,
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { CustomFieldConfig, GetAvailableCountriesQuery, ModalService } from '@vendure/admin-ui/core';
+import { CustomFieldConfig, GetAvailableCountriesQuery, ModalService } from '@shoplyjs/admin-ui/core';
 import { BehaviorSubject } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
@@ -34,7 +34,10 @@ export class AddressCardComponent implements OnInit, OnChanges {
     @Output() deleteAddress = new EventEmitter<string>();
     private dataDependenciesPopulated = new BehaviorSubject<boolean>(false);
 
-    constructor(private modalService: ModalService, private changeDetector: ChangeDetectorRef) {}
+    constructor(
+        private modalService: ModalService,
+        private changeDetector: ChangeDetectorRef,
+    ) {}
 
     ngOnInit(): void {
         const streetLine1 = this.addressForm.get('streetLine1') as UntypedFormControl;

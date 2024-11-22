@@ -1,6 +1,6 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { Omit } from '@vendure/common/lib/omit';
-import { ID } from '@vendure/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { Omit } from '@shoplyjs/common/lib/omit';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../api/common/request-context';
 import { Surcharge } from '../entity';

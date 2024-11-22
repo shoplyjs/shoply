@@ -1,6 +1,6 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { DeepPartial } from '@vendure/common/lib/shared-types';
-import { HasCustomFields, Translation, VendureEntity } from '@vendure/core';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { HasCustomFields, Translation, VendureEntity } from '@shoplyjs/core';
 import { Column, Entity, Index, ManyToOne } from 'typeorm';
 
 import { ScaffoldEntity } from './entity.template';

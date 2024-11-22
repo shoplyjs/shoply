@@ -1,11 +1,11 @@
-import { pick } from '@vendure/common/lib/pick';
-import { PromotionAction, PromotionCondition, PromotionOrderAction } from '@vendure/core';
+import { pick } from '@shoplyjs/common/lib/pick';
+import { PromotionAction, PromotionCondition, PromotionOrderAction } from '@shoplyjs/core';
 import {
     createErrorResultGuard,
     createTestEnvironment,
     E2E_DEFAULT_CHANNEL_TOKEN,
     ErrorResultGuard,
-} from '@vendure/testing';
+} from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

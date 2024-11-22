@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataTable2ColumnComponent } from '@vendure/admin-ui/core';
+import { DataTable2ColumnComponent } from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'vdr-order-total-column',

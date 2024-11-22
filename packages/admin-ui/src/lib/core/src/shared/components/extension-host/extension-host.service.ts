@@ -1,7 +1,11 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
-import { ActiveRouteData, ExtensionMessage, MessageResponse } from '@vendure/common/lib/extension-host-types';
-import { assertNever } from '@vendure/common/lib/shared-utils';
+import {
+    ActiveRouteData,
+    ExtensionMessage,
+    MessageResponse,
+} from '@shoplyjs/common/lib/extension-host-types';
+import { assertNever } from '@shoplyjs/common/lib/shared-utils';
 import { parse } from 'graphql';
 import { merge, Observer, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -16,7 +20,10 @@ export class ExtensionHostService implements OnDestroy {
     private cancellationMessage$ = new Subject<string>();
     private destroyMessage$ = new Subject<void>();
 
-    constructor(private dataService: DataService, private notificationService: NotificationService) {}
+    constructor(
+        private dataService: DataService,
+        private notificationService: NotificationService,
+    ) {}
 
     init(extensionWindow: Window, routeSnapshot: ActivatedRouteSnapshot) {
         this.extensionWindow = extensionWindow;

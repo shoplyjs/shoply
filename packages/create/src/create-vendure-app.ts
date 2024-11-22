@@ -30,7 +30,7 @@ let projectName: string | undefined;
 
 // Set the environment variable which can then be used to
 // conditionally modify behaviour of core or plugins.
-const createEnvVar: import('@vendure/common/lib/shared-constants').CREATING_VENDURE_APP =
+const createEnvVar: import('@shoplyjs/common/lib/shared-constants').CREATING_VENDURE_APP =
     'CREATING_VENDURE_APP';
 process.env[createEnvVar] = 'true';
 

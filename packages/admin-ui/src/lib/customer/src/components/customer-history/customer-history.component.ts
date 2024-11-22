@@ -6,7 +6,7 @@ import {
     HistoryEntryType,
     TimelineDisplayType,
     TimelineHistoryEntry,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'vdr-customer-history',

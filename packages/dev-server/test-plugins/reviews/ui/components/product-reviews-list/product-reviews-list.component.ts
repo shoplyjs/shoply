@@ -7,7 +7,7 @@ import {
     DataTableSortCollection,
     ItemOf,
     SharedModule,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -152,7 +152,11 @@ export class ProductReviewsListComponent
         .addSort({ name: 'authorLocation' })
         .connectToRoute(this.route);
 
-    constructor(private dataService: DataService, protected router: Router, route: ActivatedRoute) {
+    constructor(
+        private dataService: DataService,
+        protected router: Router,
+        route: ActivatedRoute,
+    ) {
         super(router, route);
         super.setQueryFn(
             (...args: any) => {

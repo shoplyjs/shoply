@@ -1,6 +1,6 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { mergeConfig, orderPercentageDiscount } from '@vendure/core';
-import { createTestEnvironment } from '@vendure/testing';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { mergeConfig, orderPercentageDiscount } from '@shoplyjs/core';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

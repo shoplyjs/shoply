@@ -1,6 +1,6 @@
-import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
-import { DefaultLogger, DefaultSearchPlugin, LogLevel, mergeConfig } from '@vendure/core';
-import { createTestEnvironment, registerInitializer, SqljsInitializer, testConfig } from '@vendure/testing';
+import { AdminUiPlugin } from '@shoplyjs/admin-ui-plugin';
+import { DefaultLogger, DefaultSearchPlugin, LogLevel, mergeConfig } from '@shoplyjs/core';
+import { createTestEnvironment, registerInitializer, SqljsInitializer, testConfig } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import localtunnel from 'localtunnel';
 import path from 'path';

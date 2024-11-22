@@ -47,7 +47,7 @@ export function getStaticAssetPath(staticAssetDef: StaticAssetDefinition): strin
 export function copyUiDevkit(outputPath: string) {
     const devkitDir = path.join(outputPath, STATIC_ASSETS_OUTPUT_DIR, 'devkit');
     fs.ensureDirSync(devkitDir);
-    fs.copySync(require.resolve('@vendure/ui-devkit'), path.join(devkitDir, 'ui-devkit.js'));
+    fs.copySync(require.resolve('@shoplyjs/ui-devkit'), path.join(devkitDir, 'ui-devkit.js'));
 }
 
 /**

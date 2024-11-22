@@ -1,11 +1,11 @@
-import { pick } from '@vendure/common/lib/pick';
+import { pick } from '@shoplyjs/common/lib/pick';
 import {
     defaultShippingEligibilityChecker,
     LanguageCode,
     mergeConfig,
     ShippingEligibilityChecker,
-} from '@vendure/core';
-import { createTestEnvironment } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

@@ -1,4 +1,4 @@
-import { OrderAddress } from '@vendure/common/lib/generated-types';
+import { OrderAddress } from '@shoplyjs/common/lib/generated-types';
 
 import { Address } from '../../../entity/address/address.entity';
 

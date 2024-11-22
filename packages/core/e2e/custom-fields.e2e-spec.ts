@@ -1,6 +1,6 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { Asset, CustomFields, mergeConfig, TransactionalConnection } from '@vendure/core';
-import { createTestEnvironment } from '@vendure/testing';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { Asset, CustomFields, mergeConfig, TransactionalConnection } from '@shoplyjs/core';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import { fail } from 'assert';
 import gql from 'graphql-tag';
 import path from 'path';

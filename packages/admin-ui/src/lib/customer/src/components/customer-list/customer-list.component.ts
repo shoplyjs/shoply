@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { CustomerListQueryDocument, LogicalOperator, TypedBaseListComponent } from '@vendure/admin-ui/core';
+import { CustomerListQueryDocument, LogicalOperator, TypedBaseListComponent } from '@shoplyjs/admin-ui/core';
 import { gql } from 'apollo-angular';
 
 export const CUSTOMER_LIST_QUERY = gql`

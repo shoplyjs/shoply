@@ -1,7 +1,7 @@
-import { omit } from '@vendure/common/lib/omit';
-import { pick } from '@vendure/common/lib/pick';
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+import { omit } from '@shoplyjs/common/lib/omit';
+import { pick } from '@shoplyjs/common/lib/pick';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addActionBarItem, addNavMenuSection } from '@vendure/admin-ui/core';
+import { addActionBarItem, addNavMenuSection } from '@shoplyjs/admin-ui/core';
 import { interval } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 

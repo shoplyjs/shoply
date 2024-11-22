@@ -4,8 +4,8 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateSellerInput,
-} from '@vendure/common/lib/generated-types';
-import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
+} from '@shoplyjs/common/lib/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { ListQueryOptions } from '../../common/types/common-types';

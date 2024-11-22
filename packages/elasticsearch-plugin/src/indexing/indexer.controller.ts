@@ -1,7 +1,7 @@
 import { Client } from '@elastic/elasticsearch';
 import { Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import { unique } from '@vendure/common/lib/unique';
+import { unique } from '@shoplyjs/common/lib/unique';
 import {
     Asset,
     asyncObservable,
@@ -26,7 +26,7 @@ import {
     TransactionalConnection,
     Translatable,
     Translation,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import { Observable } from 'rxjs';
 import { In, IsNull } from 'typeorm';
 
@@ -944,7 +944,13 @@ export class ElasticsearchIndexerController implements OnModuleInit, OnModuleDes
 
             const productCustomMappings = Object.entries(this.options.customProductMappings);
             for (const [name, def] of productCustomMappings) {
-                item[`product-${name}`] = await def.valueFn(v.product, variants, languageCode, this.injector, ctx);
+                item[`product-${name}`] = await def.valueFn(
+                    v.product,
+                    variants,
+                    languageCode,
+                    this.injector,
+                    ctx,
+                );
             }
             return item;
         } catch (err: any) {

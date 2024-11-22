@@ -1,4 +1,4 @@
-import { generateMigration, revertLastMigration, runMigrations } from '@vendure/core';
+import { generateMigration, revertLastMigration, runMigrations } from '@shoplyjs/core';
 import program from 'commander';
 
 import { devConfig } from './dev-config';

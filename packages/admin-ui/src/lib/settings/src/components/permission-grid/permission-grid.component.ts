@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { PermissionDefinition } from '@vendure/admin-ui/core';
+import { PermissionDefinition } from '@shoplyjs/admin-ui/core';
 
 export interface PermissionGridRow {
     label: string;
@@ -68,10 +68,10 @@ export class PermissionGridComponent implements OnInit {
                 permissions: [d],
             })),
             ...Array.from(crudGroups.entries()).map(([label, defs]) => ({
-                    label,
-                    description: this.extractCrudDescription(defs[0]),
-                    permissions: defs,
-                })),
+                label,
+                description: this.extractCrudDescription(defs[0]),
+                permissions: defs,
+            })),
         ];
     }
 

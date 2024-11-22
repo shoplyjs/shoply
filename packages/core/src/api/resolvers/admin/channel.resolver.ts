@@ -10,8 +10,8 @@ import {
     QueryChannelArgs,
     QueryChannelsArgs,
     UpdateChannelResult,
-} from '@vendure/common/lib/generated-types';
-import { PaginatedList } from '@vendure/common/lib/shared-types';
+} from '@shoplyjs/common/lib/generated-types';
+import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
 import { ErrorResultUnion, isGraphQlErrorResult } from '../../../common/error/error-result';
 import { Channel } from '../../../entity/channel/channel.entity';
@@ -24,7 +24,10 @@ import { Transaction } from '../../decorators/transaction.decorator';
 
 @Resolver('Channel')
 export class ChannelResolver {
-    constructor(private channelService: ChannelService, private roleService: RoleService) {}
+    constructor(
+        private channelService: ChannelService,
+        private roleService: RoleService,
+    ) {}
 
     @Query()
     @Allow(Permission.ReadSettings, Permission.ReadChannel)

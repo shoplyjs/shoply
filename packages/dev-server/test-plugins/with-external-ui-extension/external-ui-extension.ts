@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { hostExternalFrame } from '@vendure/admin-ui/core';
+import { hostExternalFrame } from '@shoplyjs/admin-ui/core';
 
 @NgModule({
     imports: [

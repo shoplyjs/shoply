@@ -1,5 +1,5 @@
-import { Permission } from '@vendure/common/lib/generated-types';
-import { DeepPartial } from '@vendure/common/lib/shared-types';
+import { Permission } from '@shoplyjs/common/lib/generated-types';
+import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
 import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 
 import { ChannelAware } from '../../common/types/common-types';

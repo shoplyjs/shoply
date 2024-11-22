@@ -8,13 +8,16 @@ import {
     TransactionalConnection,
     translateDeep,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import { gql } from 'graphql-tag';
 
 // Testing this issue https://github.com/typeorm/typeorm/issues/7707
 @Resolver()
 export class TestResolver {
-    constructor(private connection: TransactionalConnection, private listQueryBuilder: ListQueryBuilder) {}
+    constructor(
+        private connection: TransactionalConnection,
+        private listQueryBuilder: ListQueryBuilder,
+    ) {}
 
     @Query()
     test(@Ctx() ctx: RequestContext, @Args() args: any) {

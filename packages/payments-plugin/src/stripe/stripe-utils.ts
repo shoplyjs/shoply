@@ -1,4 +1,4 @@
-import { CurrencyCode, Order } from '@vendure/core';
+import { CurrencyCode, Order } from '@shoplyjs/core';
 
 /**
  * @description

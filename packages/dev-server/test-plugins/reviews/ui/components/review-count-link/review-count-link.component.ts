@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { CustomFieldConfigType, CustomFieldControl, SharedModule } from '@vendure/admin-ui/core';
+import { CustomFieldConfigType, CustomFieldControl, SharedModule } from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'review-count-link',

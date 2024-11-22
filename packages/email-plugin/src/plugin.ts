@@ -17,7 +17,7 @@ import {
     registerPluginStartupMessage,
     Type,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 import { isDevModeOptions, resolveTransportSettings } from './common';
 import { EMAIL_PLUGIN_OPTIONS, loggerCtx } from './constants';

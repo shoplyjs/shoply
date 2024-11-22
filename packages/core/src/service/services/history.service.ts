@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateCustomerInput as UpdateCustomerShopInput } from '@vendure/common/lib/generated-shop-types';
+import { UpdateCustomerInput as UpdateCustomerShopInput } from '@shoplyjs/common/lib/generated-shop-types';
 import {
     HistoryEntryListOptions,
     HistoryEntryType,
     OrderLineInput,
     UpdateAddressInput,
     UpdateCustomerInput,
-} from '@vendure/common/lib/generated-types';
-import { ID, PaginatedList, Type } from '@vendure/common/lib/shared-types';
+} from '@shoplyjs/common/lib/generated-types';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { TransactionalConnection } from '../../connection/transactional-connection';
@@ -193,7 +193,7 @@ export interface UpdateCustomerHistoryEntryArgs<T extends keyof CustomerHistoryE
  *
  * export const CUSTOMER_TAX_ID_VERIFICATION = 'CUSTOMER_TAX_ID_VERIFICATION';
  *
- * declare module '@vendure/core' {
+ * declare module '@shoplyjs/core' {
  *   interface CustomerHistoryEntryData {
  *     [CUSTOMER_TAX_ID_VERIFICATION]: {
  *       taxId: string;

@@ -1,5 +1,5 @@
-import { AssetType } from '@vendure/common/lib/generated-types';
-import { AssetPreviewStrategy, getAssetType, Logger, RequestContext } from '@vendure/core';
+import { AssetType } from '@shoplyjs/common/lib/generated-types';
+import { AssetPreviewStrategy, getAssetType, Logger, RequestContext } from '@shoplyjs/core';
 import path from 'path';
 import sharp from 'sharp';
 

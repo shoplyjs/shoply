@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { omit } from '@vendure/common/lib/omit';
-import { pick } from '@vendure/common/lib/pick';
+import { omit } from '@shoplyjs/common/lib/omit';
+import { pick } from '@shoplyjs/common/lib/pick';
 import {
     containsProducts,
     customerGroup,
@@ -13,13 +13,13 @@ import {
     minimumOrderAmount,
     orderPercentageDiscount,
     productsPercentageDiscount,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import {
     createErrorResultGuard,
     createTestEnvironment,
     E2E_DEFAULT_CHANNEL_TOKEN,
     ErrorResultGuard,
-} from '@vendure/testing';
+} from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
@@ -925,9 +925,8 @@ describe('Promotions applied to Orders', () => {
                 expect(removeCouponCode!.total).toBe(2200);
                 expect(removeCouponCode!.totalWithTax).toBe(2640);
 
-                const { activeOrder } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                    GET_ACTIVE_ORDER,
-                );
+                const { activeOrder } =
+                    await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
                 expect(getItemSale1Line(activeOrder!.lines).discounts.length).toBe(0);
                 expect(activeOrder!.total).toBe(2200);
                 expect(activeOrder!.totalWithTax).toBe(2640);
@@ -986,9 +985,8 @@ describe('Promotions applied to Orders', () => {
                 expect(removeCouponCode!.total).toBe(2200);
                 expect(removeCouponCode!.totalWithTax).toBe(2640);
 
-                const { activeOrder } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                    GET_ACTIVE_ORDER,
-                );
+                const { activeOrder } =
+                    await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
                 expect(getItemSale1Line(activeOrder!.lines).discounts.length).toBe(0);
                 expect(activeOrder!.total).toBe(2200);
                 expect(activeOrder!.totalWithTax).toBe(2640);
@@ -1534,9 +1532,8 @@ describe('Promotions applied to Orders', () => {
 
                 await addGuestCustomerToOrder();
 
-                const { activeOrder } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                    GET_ACTIVE_ORDER,
-                );
+                const { activeOrder } =
+                    await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
                 expect(activeOrder!.couponCodes).toEqual([]);
                 expect(activeOrder!.totalWithTax).toBe(6000);
             });
@@ -1627,9 +1624,8 @@ describe('Promotions applied to Orders', () => {
 
                 await logInAsRegisteredCustomer();
 
-                const { activeOrder } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                    GET_ACTIVE_ORDER,
-                );
+                const { activeOrder } =
+                    await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
                 expect(activeOrder!.totalWithTax).toBe(6000);
                 expect(activeOrder!.couponCodes).toEqual([]);
             });
@@ -1883,9 +1879,8 @@ describe('Promotions applied to Orders', () => {
         expect(addItemToOrder.discounts.length).toBe(1);
         expect(addItemToOrder.discounts[0].description).toBe('Test Promo');
 
-        const { activeOrder: check1 } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-            GET_ACTIVE_ORDER,
-        );
+        const { activeOrder: check1 } =
+            await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
         expect(check1!.discounts.length).toBe(1);
         expect(check1!.discounts[0].description).toBe('Test Promo');
 
@@ -1899,9 +1894,8 @@ describe('Promotions applied to Orders', () => {
         orderResultGuard.assertSuccess(removeOrderLine);
         expect(removeOrderLine.discounts.length).toBe(0);
 
-        const { activeOrder: check2 } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-            GET_ACTIVE_ORDER,
-        );
+        const { activeOrder: check2 } =
+            await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
         expect(check2!.discounts.length).toBe(0);
     });
 
@@ -2043,9 +2037,8 @@ describe('Promotions applied to Orders', () => {
                 quantity: 1,
             });
 
-            const { activeOrder: check1 } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                GET_ACTIVE_ORDER,
-            );
+            const { activeOrder: check1 } =
+                await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
 
             expect(check1!.lines[0].discountedUnitPriceWithTax).toBe(0);
             expect(check1!.totalWithTax).toBe(0);
@@ -2055,9 +2048,8 @@ describe('Promotions applied to Orders', () => {
                 CodegenShop.ApplyCouponCodeMutationVariables
             >(APPLY_COUPON_CODE, { couponCode: couponCode2 });
 
-            const { activeOrder: check2 } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                GET_ACTIVE_ORDER,
-            );
+            const { activeOrder: check2 } =
+                await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
             expect(check2!.lines[0].discountedUnitPriceWithTax).toBe(0);
             expect(check2!.totalWithTax).toBe(0);
         });
@@ -2080,9 +2072,8 @@ describe('Promotions applied to Orders', () => {
                 quantity: 1,
             });
 
-            const { activeOrder: check1 } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                GET_ACTIVE_ORDER,
-            );
+            const { activeOrder: check1 } =
+                await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
 
             expect(check1!.lines[0].discountedUnitPriceWithTax).toBe(0);
             expect(check1!.totalWithTax).toBe(0);
@@ -2092,9 +2083,8 @@ describe('Promotions applied to Orders', () => {
                 CodegenShop.ApplyCouponCodeMutationVariables
             >(APPLY_COUPON_CODE, { couponCode: couponCode2 });
 
-            const { activeOrder: check2 } = await shopClient.query<CodegenShop.GetActiveOrderQuery>(
-                GET_ACTIVE_ORDER,
-            );
+            const { activeOrder: check2 } =
+                await shopClient.query<CodegenShop.GetActiveOrderQuery>(GET_ACTIVE_ORDER);
             expect(check2!.lines[0].discountedUnitPriceWithTax).toBe(0);
             expect(check2!.totalWithTax).toBe(0);
         });

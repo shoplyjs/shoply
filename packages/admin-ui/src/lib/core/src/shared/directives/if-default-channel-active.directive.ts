@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { DEFAULT_CHANNEL_CODE } from '@vendure/common/lib/shared-constants';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
 import { tap } from 'rxjs/operators';
 
 import { UserStatus } from '../../common/generated-types';

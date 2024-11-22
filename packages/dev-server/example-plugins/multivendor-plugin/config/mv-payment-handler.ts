@@ -1,11 +1,11 @@
-import { OrderType } from '@vendure/common/lib/generated-types';
+import { OrderType } from '@shoplyjs/common/lib/generated-types';
 import {
     CreatePaymentResult,
     LanguageCode,
     PaymentMethodHandler,
     SettlePaymentErrorResult,
     SettlePaymentResult,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 import { MyConnectSdk } from '../payment/mv-connect-sdk';
 

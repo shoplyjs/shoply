@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomFieldType } from '@vendure/common/lib/shared-types';
-import { assertNever } from '@vendure/common/lib/shared-utils';
+import { CustomFieldType } from '@shoplyjs/common/lib/shared-types';
+import { assertNever } from '@shoplyjs/common/lib/shared-utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CustomFieldConfig } from '../../common/generated-types';

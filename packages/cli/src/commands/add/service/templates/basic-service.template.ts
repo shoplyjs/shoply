@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ID, Product, RequestContext, TransactionalConnection } from '@vendure/core';
+import { ID, Product, RequestContext, TransactionalConnection } from '@shoplyjs/core';
 
 @Injectable()
 export class BasicServiceTemplate {

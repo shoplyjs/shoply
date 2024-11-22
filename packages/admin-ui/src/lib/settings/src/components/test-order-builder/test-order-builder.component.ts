@@ -4,7 +4,7 @@ import {
     DataService,
     LocalStorageService,
     ProductSelectorSearchQuery,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 
 type SearchItem = ProductSelectorSearchQuery['search']['items'][number];
 
@@ -31,7 +31,10 @@ export class TestOrderBuilderComponent implements OnInit {
         return this.lines.reduce((sum, l) => sum + l.unitPriceWithTax * l.quantity, 0);
     }
 
-    constructor(private dataService: DataService, private localStorageService: LocalStorageService) {}
+    constructor(
+        private dataService: DataService,
+        private localStorageService: LocalStorageService,
+    ) {}
 
     ngOnInit() {
         this.lines = this.loadFromLocalStorage();

@@ -1,6 +1,6 @@
 // product-review.entity.ts
-import { DeepPartial } from '@vendure/common/lib/shared-types';
-import { VendureEntity, VendurePlugin } from '@vendure/core';
+import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { VendureEntity, VendurePlugin } from '@shoplyjs/core';
 import { Column, Entity } from 'typeorm';
 
 @Entity()

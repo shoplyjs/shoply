@@ -1,5 +1,5 @@
-import { CurrencyCode } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { CurrencyCode } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext, SerializedRequestContext } from '../../../api/common/request-context';
 import { Channel } from '../../../entity/channel/channel.entity';

@@ -8,8 +8,8 @@ import {
     GetAvailableCountriesQuery,
     GetCustomerAddressesDocument,
     OrderAddressFragment,
-} from '@vendure/admin-ui/core';
-import { pick } from '@vendure/common/lib/pick';
+} from '@shoplyjs/admin-ui/core';
+import { pick } from '@shoplyjs/common/lib/pick';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -32,7 +32,10 @@ export class SelectAddressDialogComponent implements OnInit, Dialog<CreateAddres
     useExisting = true;
     createNew = false;
 
-    constructor(private dataService: DataService, private formBuilder: UntypedFormBuilder) {}
+    constructor(
+        private dataService: DataService,
+        private formBuilder: UntypedFormBuilder,
+    ) {}
 
     ngOnInit(): void {
         this.addressForm = this.formBuilder.group({

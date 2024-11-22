@@ -9,8 +9,8 @@ import {
     OrderType,
     ServerConfigService,
     TypedBaseListComponent,
-} from '@vendure/admin-ui/core';
-import { Order } from '@vendure/common/lib/generated-types';
+} from '@shoplyjs/admin-ui/core';
+import { Order } from '@shoplyjs/common/lib/generated-types';
 import { tap } from 'rxjs/operators';
 
 @Component({
@@ -99,7 +99,10 @@ export class OrderListComponent
     canCreateDraftOrder = false;
     private activeChannelIsDefaultChannel = false;
 
-    constructor(protected serverConfigService: ServerConfigService, private channelService: ChannelService) {
+    constructor(
+        protected serverConfigService: ServerConfigService,
+        private channelService: ChannelService,
+    ) {
         super();
         super.configure({
             document: GetOrderListDocument,

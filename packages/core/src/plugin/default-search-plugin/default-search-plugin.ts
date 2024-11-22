@@ -1,7 +1,7 @@
 import { OnApplicationBootstrap, OnApplicationShutdown } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import { SearchReindexResponse } from '@vendure/common/lib/generated-types';
-import { ID, Type } from '@vendure/common/lib/shared-types';
+import { SearchReindexResponse } from '@shoplyjs/common/lib/generated-types';
+import { ID, Type } from '@shoplyjs/common/lib/shared-types';
 import { buffer, debounceTime, delay, filter, map } from 'rxjs/operators';
 import { Column } from 'typeorm';
 

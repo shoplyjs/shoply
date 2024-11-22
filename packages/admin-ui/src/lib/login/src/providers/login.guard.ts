@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
-import { AuthService } from '@vendure/admin-ui/core';
+import { AuthService } from '@shoplyjs/admin-ui/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,8 +10,11 @@ import { map } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root',
 })
-export class LoginGuard  {
-    constructor(private router: Router, private authService: AuthService) {}
+export class LoginGuard {
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+    ) {}
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
         return this.authService.checkAuthenticatedStatus().pipe(

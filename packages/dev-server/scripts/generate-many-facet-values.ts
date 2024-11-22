@@ -6,7 +6,7 @@ import {
     FacetValueService,
     LanguageCode,
     RequestContextService,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 import { devConfig } from '../dev-config';
 

@@ -1,4 +1,4 @@
-import { ID } from '@vendure/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, TableInheritance } from 'typeorm';
 
 import { LocaleString, Translatable, Translation } from '../../common/types/locale-types';

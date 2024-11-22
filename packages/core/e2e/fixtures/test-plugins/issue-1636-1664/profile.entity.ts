@@ -1,5 +1,5 @@
-import { DeepPartial } from '@vendure/common/lib/shared-types';
-import { User, VendureEntity } from '@vendure/core';
+import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { User, VendureEntity } from '@shoplyjs/core';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 import { ProfileAsset } from './profile-asset.entity';

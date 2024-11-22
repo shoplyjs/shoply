@@ -1,4 +1,4 @@
-import { Asset, PluginCommonModule, VendurePlugin } from '@vendure/core';
+import { Asset, PluginCommonModule, VendurePlugin } from '@shoplyjs/core';
 
 import { shopApiExtensions } from './api-extensions';
 import { CustomerAvatarResolver } from './customer-avatar.resolver';

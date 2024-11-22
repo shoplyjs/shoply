@@ -1,5 +1,5 @@
-import { CurrencyCode } from '@vendure/common/lib/generated-types';
-import { DeepPartial, ID } from '@vendure/common/lib/shared-types';
+import { CurrencyCode } from '@shoplyjs/common/lib/generated-types';
+import { DeepPartial, ID } from '@shoplyjs/common/lib/shared-types';
 import { Column, Entity, Index, ManyToOne } from 'typeorm';
 
 import { HasCustomFields } from '../../config/custom-field/custom-field-types';

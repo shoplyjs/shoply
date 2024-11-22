@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion, no-console */
-import { CurrencyCode, SortOrder } from '@vendure/common/lib/generated-types';
-import { pick } from '@vendure/common/lib/pick';
+import { CurrencyCode, SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { pick } from '@shoplyjs/common/lib/pick';
 import {
     DefaultJobQueuePlugin,
     DefaultLogger,
@@ -9,8 +9,8 @@ import {
     LanguageCode,
     LogLevel,
     mergeConfig,
-} from '@vendure/core';
-import { createTestEnvironment, E2E_DEFAULT_CHANNEL_TOKEN } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createTestEnvironment, E2E_DEFAULT_CHANNEL_TOKEN } from '@shoplyjs/testing';
 import { fail } from 'assert';
 import gql from 'graphql-tag';
 import path from 'path';

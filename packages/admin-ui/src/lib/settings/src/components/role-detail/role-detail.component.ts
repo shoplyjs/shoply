@@ -12,9 +12,9 @@ import {
     ROLE_FRAGMENT,
     TypedBaseDetailComponent,
     UpdateRoleInput,
-} from '@vendure/admin-ui/core';
-import { normalizeString } from '@vendure/common/lib/normalize-string';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/admin-ui/core';
+import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { gql } from 'apollo-angular';
 import { mergeMap, take } from 'rxjs/operators';
 

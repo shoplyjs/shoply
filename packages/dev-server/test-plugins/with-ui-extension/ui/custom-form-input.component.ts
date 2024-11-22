@@ -5,7 +5,7 @@ import {
     FormInputComponent,
     registerFormInputComponent,
     StringCustomFieldConfig, DataService,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 
 @Component({
     template: `

@@ -1,4 +1,4 @@
-import { isObject } from '@vendure/common/lib/shared-utils';
+import { isObject } from '@shoplyjs/common/lib/shared-utils';
 
 /**
  * Merges properties into a target entity. This is needed for the cases in which a

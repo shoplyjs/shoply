@@ -97,7 +97,7 @@ const codeTemplates: Record<
     (locationId: UIExtensionLocationId, metadata?: string) => string
 > = {
     actionBar: locationId => `
-import { addActionBarItem } from '@vendure/admin-ui/core';
+import { addActionBarItem } from '@shoplyjs/admin-ui/core';
 
 export default [
   addActionBarItem({
@@ -107,7 +107,7 @@ export default [
   }),
 ];`,
     actionBarDropdown: locationId => `
-import { addActionBarDropdownMenuItem } from '@vendure/admin-ui/core';
+import { addActionBarDropdownMenuItem } from '@shoplyjs/admin-ui/core';
 
 export default [
   addActionBarDropdownMenuItem({
@@ -117,7 +117,7 @@ export default [
   }),
 ];`,
     navMenu: locationId => `
-import { addNavMenuSection } from '@vendure/admin-ui/core';
+import { addNavMenuSection } from '@shoplyjs/admin-ui/core';
 
 export default [
   addNavMenuSection({
@@ -131,7 +131,7 @@ export default [
   ),
 ];`,
     detailComponent: locationId => `
-import { registerCustomDetailComponent } from '@vendure/admin-ui/core';
+import { registerCustomDetailComponent } from '@shoplyjs/admin-ui/core';
 
 export default [
   registerCustomDetailComponent({
@@ -140,7 +140,7 @@ export default [
   }),
 ];`,
     dataTable: (locationId, metadata) => `
-import { registerDataTableComponent } from '@vendure/admin-ui/core';
+import { registerDataTableComponent } from '@shoplyjs/admin-ui/core';
 
 export default [
   registerDataTableComponent({

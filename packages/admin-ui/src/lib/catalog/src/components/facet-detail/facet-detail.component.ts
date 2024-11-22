@@ -28,10 +28,10 @@ import {
     TypedBaseDetailComponent,
     UpdateFacetInput,
     UpdateFacetValueInput,
-} from '@vendure/admin-ui/core';
-import { SortOrder } from '@vendure/common/lib/generated-types';
-import { normalizeString } from '@vendure/common/lib/normalize-string';
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
+} from '@shoplyjs/admin-ui/core';
+import { SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
 import { gql } from 'apollo-angular';
 import { BehaviorSubject, combineLatest, EMPTY, forkJoin, Observable } from 'rxjs';
 import { debounceTime, map, mergeMap, switchMap, take, takeUntil } from 'rxjs/operators';

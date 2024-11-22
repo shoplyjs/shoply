@@ -1,4 +1,4 @@
-import { Injector, RequestContext } from '@vendure/core';
+import { Injector, RequestContext } from '@shoplyjs/core';
 
 import { EmailPluginDevModeOptions, EmailPluginOptions, EmailTransportOptions } from './types';
 
@@ -11,7 +11,7 @@ export function isDevModeOptions(
 export async function resolveTransportSettings(
     options: EmailPluginOptions,
     injector: Injector,
-    ctx?: RequestContext
+    ctx?: RequestContext,
 ): Promise<EmailTransportOptions> {
     if (typeof options.transport === 'function') {
         return options.transport(injector, ctx);

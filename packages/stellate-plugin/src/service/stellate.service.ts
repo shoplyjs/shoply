@@ -1,5 +1,5 @@
 import { Inject } from '@nestjs/common';
-import { Collection, ID, Logger, Product, ProductVariant } from '@vendure/core';
+import { Collection, ID, Logger, Product, ProductVariant } from '@shoplyjs/core';
 import fetch from 'node-fetch';
 
 import { loggerCtx, STELLATE_PLUGIN_OPTIONS } from '../constants';

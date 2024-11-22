@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { Asset } from '@vendure/common/lib/generated-types';
+import { Asset } from '@shoplyjs/common/lib/generated-types';
 import {
     Allow,
     AssetService,
@@ -9,11 +9,14 @@ import {
     Permission,
     RequestContext,
     Transaction,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 @Resolver()
 export class CustomerAvatarResolver {
-    constructor(private assetService: AssetService, private customerService: CustomerService) {}
+    constructor(
+        private assetService: AssetService,
+        private customerService: CustomerService,
+    ) {}
 
     @Transaction()
     @Mutation()

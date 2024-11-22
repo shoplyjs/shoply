@@ -1,4 +1,4 @@
-import { DeepPartial, ID } from '@vendure/common/lib/shared-types';
+import { DeepPartial, ID } from '@shoplyjs/common/lib/shared-types';
 import { ChildEntity, Index, ManyToOne } from 'typeorm';
 
 import { EntityId } from '../entity-id.decorator';

@@ -1,7 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Permission } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
-import { Allow, Ctx, RequestContext, Transaction } from '@vendure/core';
+import { Permission } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
+import { Allow, Ctx, RequestContext, Transaction } from '@shoplyjs/core';
 
 class TemplateService {
     async exampleQueryHandler(ctx: RequestContext, id: ID) {

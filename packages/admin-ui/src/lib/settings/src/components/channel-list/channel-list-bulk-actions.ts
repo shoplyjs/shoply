@@ -1,4 +1,4 @@
-import { createBulkDeleteAction, GetChannelsQuery, ItemOf, Permission } from '@vendure/admin-ui/core';
+import { createBulkDeleteAction, GetChannelsQuery, ItemOf, Permission } from '@shoplyjs/admin-ui/core';
 import { map, mergeMap } from 'rxjs/operators';
 
 export const deleteChannelsBulkAction = createBulkDeleteAction<ItemOf<GetChannelsQuery, 'channels'>>({

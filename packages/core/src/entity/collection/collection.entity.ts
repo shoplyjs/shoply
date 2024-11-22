@@ -1,5 +1,5 @@
-import { ConfigurableOperation } from '@vendure/common/lib/generated-types';
-import { DeepPartial, ID } from '@vendure/common/lib/shared-types';
+import { ConfigurableOperation } from '@shoplyjs/common/lib/generated-types';
+import { DeepPartial, ID } from '@shoplyjs/common/lib/shared-types';
 import {
     Column,
     Entity,

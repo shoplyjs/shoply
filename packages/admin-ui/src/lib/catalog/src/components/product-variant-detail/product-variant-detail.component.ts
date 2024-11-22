@@ -21,9 +21,9 @@ import {
     ProductVariantUpdateMutationDocument,
     TypedBaseDetailComponent,
     UpdateProductVariantInput,
-} from '@vendure/admin-ui/core';
-import { pick } from '@vendure/common/lib/pick';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/admin-ui/core';
+import { pick } from '@shoplyjs/common/lib/pick';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { combineLatest, concat, Observable } from 'rxjs';
 import {
     distinctUntilChanged,

@@ -1,6 +1,6 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { DEFAULT_CHANNEL_CODE } from '@vendure/common/lib/shared-constants';
-import { EntityHydrator, idsAreEqual, ShippingEligibilityChecker } from '@vendure/core';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
+import { EntityHydrator, idsAreEqual, ShippingEligibilityChecker } from '@shoplyjs/core';
 
 let entityHydrator: EntityHydrator;
 

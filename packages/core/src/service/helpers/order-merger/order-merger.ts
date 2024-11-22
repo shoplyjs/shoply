@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ID } from '@vendure/common/lib/shared-types';
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
+import { ID } from '@shoplyjs/common/lib/shared-types';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { idsAreEqual } from '../../../common/utils';

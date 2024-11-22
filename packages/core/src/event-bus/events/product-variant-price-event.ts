@@ -1,4 +1,4 @@
-import { CreateProductVariantInput, UpdateProductVariantInput } from '@vendure/common/lib/generated-types';
+import { CreateProductVariantInput, UpdateProductVariantInput } from '@shoplyjs/common/lib/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { ProductVariantPrice } from '../../entity';

@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { Allow, Ctx, Permission, RequestContext, Transaction } from '@vendure/core';
+import { Allow, Ctx, Permission, RequestContext, Transaction } from '@shoplyjs/core';
 
 import { MultivendorService } from '../service/mv.service';
 import { CreateSellerInput } from '../types';

@@ -1,5 +1,5 @@
 import { Controller, Headers, HttpStatus, Post, Req, Res } from '@nestjs/common';
-import type { PaymentMethod, RequestContext } from '@vendure/core';
+import type { PaymentMethod, RequestContext } from '@shoplyjs/core';
 import {
     InternalServerError,
     LanguageCode,
@@ -9,8 +9,8 @@ import {
     PaymentMethodService,
     RequestContextService,
     TransactionalConnection,
-} from '@vendure/core';
-import { OrderStateTransitionError } from '@vendure/core/dist/common/error/generated-graphql-shop-errors';
+} from '@shoplyjs/core';
+import { OrderStateTransitionError } from '@shoplyjs/core/dist/common/error/generated-graphql-shop-errors';
 import type { Response } from 'express';
 import type Stripe from 'stripe';
 

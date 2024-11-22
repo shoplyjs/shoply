@@ -1,5 +1,5 @@
-import { getGraphQlInputName } from '@vendure/common/lib/shared-utils';
-import { simpleDeepClone } from '@vendure/common/lib/simple-deep-clone';
+import { getGraphQlInputName } from '@shoplyjs/common/lib/shared-utils';
+import { simpleDeepClone } from '@shoplyjs/common/lib/simple-deep-clone';
 
 import { CustomFieldConfig } from '../../common/generated-types';
 
@@ -38,8 +38,8 @@ function transformRelations<T>(input: T, customFieldConfig: CustomFieldConfig[])
                         field.list && Array.isArray(entityValue)
                             ? entityValue.map(v => (typeof v === 'string' ? v : v?.id))
                             : entityValue === null
-                            ? null
-                            : entityValue?.id;
+                              ? null
+                              : entityValue?.id;
                 }
             }
         }

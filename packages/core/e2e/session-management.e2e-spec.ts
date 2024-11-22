@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { CachedSession, mergeConfig, SessionCacheStrategy } from '@vendure/core';
-import { createTestEnvironment } from '@vendure/testing';
+import { CachedSession, mergeConfig, SessionCacheStrategy } from '@shoplyjs/core';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -107,15 +107,13 @@ describe('Session caching', () => {
     it('clears cache for that user on logout', async () => {
         deleteSpy.mockClear();
         expect(deleteSpy.mock.calls.length).toBe(0);
-        await adminClient.query(
-            gql`
-                mutation Logout {
-                    logout {
-                        success
-                    }
+        await adminClient.query(gql`
+            mutation Logout {
+                logout {
+                    success
                 }
-            `,
-        );
+            }
+        `);
 
         expect(testSessionCache.size).toBe(0);
         expect(deleteSpy.mock.calls.length).toBeGreaterThan(0);

@@ -6,7 +6,7 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import { ProsemirrorService } from '@vendure/admin-ui/core';
+import { ProsemirrorService } from '@shoplyjs/admin-ui/core';
 import { useRichTextEditor } from '../react-hooks/use-rich-text-editor';
 
 export type RichTextEditorType = InputHTMLAttributes<HTMLInputElement> & {

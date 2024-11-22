@@ -1,4 +1,4 @@
-import { PageLocationId, addNavMenuSection, registerPageTab } from '@vendure/admin-ui/core';
+import { PageLocationId, addNavMenuSection, registerPageTab } from '@shoplyjs/admin-ui/core';
 import { AngularUiComponent } from './angular-components/angular-ui/angular-ui.component';
 
 export default [

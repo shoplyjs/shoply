@@ -1,23 +1,23 @@
-import { LogicalOperator, SearchInput, SearchResult } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { LogicalOperator, SearchInput, SearchResult } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 import {
     Injector,
     PLUGIN_INIT_OPTIONS,
     RequestContext,
     TransactionalConnection,
     UserInputError,
-} from '@vendure/core';
-import { SearchIndexItem } from '@vendure/core/dist/plugin/default-search-plugin/entities/search-index-item.entity';
-import { SearchStrategy } from '@vendure/core/dist/plugin/default-search-plugin/search-strategy/search-strategy';
-import { getFieldsToSelect } from '@vendure/core/dist/plugin/default-search-plugin/search-strategy/search-strategy-common';
+} from '@shoplyjs/core';
+import { SearchIndexItem } from '@shoplyjs/core/dist/plugin/default-search-plugin/entities/search-index-item.entity';
+import { SearchStrategy } from '@shoplyjs/core/dist/plugin/default-search-plugin/search-strategy/search-strategy';
+import { getFieldsToSelect } from '@shoplyjs/core/dist/plugin/default-search-plugin/search-strategy/search-strategy-common';
 import {
     applyLanguageConstraints,
     createCollectionIdCountMap,
     createFacetIdCountMap,
     createPlaceholderFromId,
     mapToSearchResult,
-} from '@vendure/core/dist/plugin/default-search-plugin/search-strategy/search-strategy-utils';
-import { DefaultSearchPluginInitOptions } from '@vendure/core/dist/plugin/default-search-plugin/types';
+} from '@shoplyjs/core/dist/plugin/default-search-plugin/search-strategy/search-strategy-utils';
+import { DefaultSearchPluginInitOptions } from '@shoplyjs/core/dist/plugin/default-search-plugin/types';
 import { Brackets, SelectQueryBuilder } from 'typeorm';
 
 /**

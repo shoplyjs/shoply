@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { filterAsync } from '@vendure/common/lib/filter-async';
-import { AdjustmentType } from '@vendure/common/lib/generated-types';
+import { filterAsync } from '@shoplyjs/common/lib/filter-async';
+import { AdjustmentType } from '@shoplyjs/common/lib/generated-types';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { RequestContextCacheService } from '../../../cache/request-context-cache.service';

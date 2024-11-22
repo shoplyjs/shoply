@@ -14,7 +14,7 @@ import {
     Transaction,
     TransactionalConnection,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import gql from 'graphql-tag';
 
 @Resolver()
@@ -47,7 +47,10 @@ class TestResolver {
     },
 })
 export class EventBusTransactionsPlugin implements OnModuleInit {
-    constructor(private eventBus: EventBus, private connection: TransactionalConnection) {}
+    constructor(
+        private eventBus: EventBus,
+        private connection: TransactionalConnection,
+    ) {}
 
     onModuleInit(): any {
         this.eventBus.ofType(AssetEvent).subscribe(async event => {

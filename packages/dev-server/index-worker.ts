@@ -1,4 +1,4 @@
-import { bootstrapWorker } from '@vendure/core';
+import { bootstrapWorker } from '@shoplyjs/core';
 
 import { devConfig } from './dev-config';
 

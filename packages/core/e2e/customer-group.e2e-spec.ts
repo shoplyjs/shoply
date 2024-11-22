@@ -1,5 +1,5 @@
-import { pick } from '@vendure/common/lib/pick';
-import { createTestEnvironment } from '@vendure/testing';
+import { pick } from '@shoplyjs/common/lib/pick';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
@@ -273,9 +273,8 @@ describe('CustomerGroup resolver', () => {
         expect(deleteCustomerGroup.message).toBeNull();
         expect(deleteCustomerGroup.result).toBe(DeletionResult.DELETED);
 
-        const { customerGroups } = await adminClient.query<Codegen.GetCustomerGroupsQuery>(
-            GET_CUSTOMER_GROUPS,
-        );
+        const { customerGroups } =
+            await adminClient.query<Codegen.GetCustomerGroupsQuery>(GET_CUSTOMER_GROUPS);
         expect(customerGroups.totalItems).toBe(0);
     });
 

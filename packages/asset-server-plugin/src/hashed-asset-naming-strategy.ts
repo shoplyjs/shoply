@@ -1,4 +1,4 @@
-import { DefaultAssetNamingStrategy, RequestContext } from '@vendure/core';
+import { DefaultAssetNamingStrategy, RequestContext } from '@shoplyjs/core';
 import { createHash } from 'crypto';
 import path from 'path';
 

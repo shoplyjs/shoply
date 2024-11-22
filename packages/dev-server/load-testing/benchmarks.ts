@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { INestApplication } from '@nestjs/common';
-import { GlobalFlag } from '@vendure/common/lib/generated-types';
+import { GlobalFlag } from '@shoplyjs/common/lib/generated-types';
 import {
     bootstrap,
     Importer,
@@ -8,10 +8,10 @@ import {
     LanguageCode,
     OrderService,
     RequestContextService,
-} from '@vendure/core';
-import { populate } from '@vendure/core/cli/populate';
-import { ParsedProductWithVariants } from '@vendure/core/src/index';
-import { clearAllTables } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { populate } from '@shoplyjs/core/cli/populate';
+import { ParsedProductWithVariants } from '@shoplyjs/core/src/index';
+import { clearAllTables } from '@shoplyjs/testing';
 import { spawn } from 'child_process';
 import program from 'commander';
 import path from 'path';

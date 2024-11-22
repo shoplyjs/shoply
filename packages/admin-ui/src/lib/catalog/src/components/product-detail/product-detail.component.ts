@@ -25,10 +25,10 @@ import {
     UpdateProductMutation,
     UpdateProductVariantInput,
     UpdateProductVariantsMutation,
-} from '@vendure/admin-ui/core';
-import { normalizeString } from '@vendure/common/lib/normalize-string';
-import { DEFAULT_CHANNEL_CODE } from '@vendure/common/lib/shared-constants';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/admin-ui/core';
+import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { gql } from 'apollo-angular';
 import { combineLatest, concat, EMPTY, from, Observable, of } from 'rxjs';
 import { distinctUntilChanged, map, mergeMap, shareReplay, switchMap, take } from 'rxjs/operators';

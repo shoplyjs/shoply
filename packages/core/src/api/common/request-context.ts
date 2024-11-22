@@ -1,6 +1,6 @@
-import { CurrencyCode, LanguageCode, Permission } from '@vendure/common/lib/generated-types';
-import { ID, JsonCompatible } from '@vendure/common/lib/shared-types';
-import { isObject } from '@vendure/common/lib/shared-utils';
+import { CurrencyCode, LanguageCode, Permission } from '@shoplyjs/common/lib/generated-types';
+import { ID, JsonCompatible } from '@shoplyjs/common/lib/shared-types';
+import { isObject } from '@shoplyjs/common/lib/shared-utils';
 import { Request } from 'express';
 import { TFunction } from 'i18next';
 

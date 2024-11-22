@@ -1,5 +1,5 @@
-import { mergeConfig } from '@vendure/core';
-import { createTestEnvironment, SimpleGraphQLClient } from '@vendure/testing';
+import { mergeConfig } from '@shoplyjs/core';
+import { createTestEnvironment, SimpleGraphQLClient } from '@shoplyjs/testing';
 import { fail } from 'assert';
 import gql from 'graphql-tag';
 import path from 'path';

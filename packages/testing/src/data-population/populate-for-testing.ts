@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { INestApplicationContext } from '@nestjs/common';
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { VendureConfig } from '@vendure/core';
-import { importProductsFromCsv, populateCollections, populateInitialData } from '@vendure/core/cli';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { VendureConfig } from '@shoplyjs/core';
+import { importProductsFromCsv, populateCollections, populateInitialData } from '@shoplyjs/core/cli';
 
 import { TestServerOptions } from '../types';
 

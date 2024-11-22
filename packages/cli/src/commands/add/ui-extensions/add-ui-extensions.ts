@@ -51,7 +51,7 @@ async function addUiExtensions(options?: AddUiExtensionsOptions): Promise<CliCom
         const version = packageJson.determineVendureVersion();
         await packageJson.installPackages([
             {
-                pkg: '@vendure/ui-devkit',
+                pkg: '@shoplyjs/ui-devkit',
                 isDevDependency: true,
                 version,
             },

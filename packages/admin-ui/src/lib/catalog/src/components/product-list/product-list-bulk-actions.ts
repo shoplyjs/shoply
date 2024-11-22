@@ -11,8 +11,8 @@ import {
     ModalService,
     NotificationService,
     Permission,
-} from '@vendure/admin-ui/core';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/admin-ui/core';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { EMPTY } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 

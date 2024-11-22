@@ -1,15 +1,15 @@
 import { OnModuleInit } from '@nestjs/common';
-import { HistoryEntryType } from '@vendure/common/lib/generated-types';
-import { omit } from '@vendure/common/lib/omit';
-import { pick } from '@vendure/common/lib/pick';
+import { HistoryEntryType } from '@shoplyjs/common/lib/generated-types';
+import { omit } from '@shoplyjs/common/lib/omit';
+import { pick } from '@shoplyjs/common/lib/pick';
 import {
     AccountRegistrationEvent,
     EventBus,
     EventBusModule,
     mergeConfig,
     VendurePlugin,
-} from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { vi } from 'vitest';

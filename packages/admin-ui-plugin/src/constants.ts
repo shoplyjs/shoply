@@ -1,4 +1,4 @@
-import { LanguageCode } from '@vendure/core';
+import { LanguageCode } from '@shoplyjs/core';
 import path from 'path';
 
 export const DEFAULT_APP_PATH = path.join(__dirname, '../admin-ui');

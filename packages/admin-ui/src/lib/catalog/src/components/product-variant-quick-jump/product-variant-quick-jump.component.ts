@@ -4,7 +4,7 @@ import {
     DataService,
     GetProductVariantsQuickJumpDocument,
     GetProductVariantsQuickJumpQuery,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 
@@ -31,7 +31,10 @@ export class ProductVariantQuickJumpComponent implements OnInit {
     @Input() productId: string;
     selectedVariantId: string | undefined;
     variants$: Observable<NonNullable<GetProductVariantsQuickJumpQuery['product']>['variants']>;
-    constructor(private dataService: DataService, private router: Router) {}
+    constructor(
+        private dataService: DataService,
+        private router: Router,
+    ) {}
 
     ngOnInit() {
         this.variants$ = this.dataService

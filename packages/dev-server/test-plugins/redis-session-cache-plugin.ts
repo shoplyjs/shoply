@@ -1,4 +1,4 @@
-import { CachedSession, Logger, SessionCacheStrategy, VendurePlugin } from '@vendure/core';
+import { CachedSession, Logger, SessionCacheStrategy, VendurePlugin } from '@shoplyjs/core';
 import { Redis, RedisOptions } from 'ioredis';
 
 const loggerCtx = 'RedisSessionCacheStrategy';

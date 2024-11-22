@@ -1,5 +1,5 @@
 import { Body, Controller, Param, Post, Req } from '@nestjs/common';
-import { Ctx, Logger, RequestContext, Transaction, ChannelService, LanguageCode } from '@vendure/core';
+import { Ctx, Logger, RequestContext, Transaction, ChannelService, LanguageCode } from '@shoplyjs/core';
 import { Request } from 'express';
 
 import { loggerCtx } from './constants';

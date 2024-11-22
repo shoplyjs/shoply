@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ErrorCode } from '@vendure/common/lib/generated-shop-types';
-import { pick } from '@vendure/common/lib/pick';
-import { mergeConfig, NativeAuthenticationStrategy } from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+import { ErrorCode } from '@shoplyjs/common/lib/generated-shop-types';
+import { pick } from '@shoplyjs/common/lib/pick';
+import { mergeConfig, NativeAuthenticationStrategy } from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -206,9 +206,8 @@ describe('AuthenticationStrategy', () => {
                 },
             ];
 
-            const { customers: customers1 } = await adminClient.query<Codegen.GetCustomersQuery>(
-                GET_CUSTOMERS,
-            );
+            const { customers: customers1 } =
+                await adminClient.query<Codegen.GetCustomersQuery>(GET_CUSTOMERS);
             expect(customers1.items).toEqual(EXPECTED_CUSTOMERS);
             const { authenticate: auth1 } = await shopClient.query<Codegen.AuthenticateMutation>(
                 AUTHENTICATE,
@@ -225,9 +224,8 @@ describe('AuthenticationStrategy', () => {
             currentUserGuard.assertSuccess(auth1);
             expect(auth1.identifier).toBe(userData.email);
 
-            const { customers: customers2 } = await adminClient.query<Codegen.GetCustomersQuery>(
-                GET_CUSTOMERS,
-            );
+            const { customers: customers2 } =
+                await adminClient.query<Codegen.GetCustomersQuery>(GET_CUSTOMERS);
             expect(customers2.items).toEqual(EXPECTED_CUSTOMERS);
 
             await shopClient.asAnonymousUser();
@@ -247,9 +245,8 @@ describe('AuthenticationStrategy', () => {
             currentUserGuard.assertSuccess(auth2);
             expect(auth2.identifier).toBe(userData.email);
 
-            const { customers: customers3 } = await adminClient.query<Codegen.GetCustomersQuery>(
-                GET_CUSTOMERS,
-            );
+            const { customers: customers3 } =
+                await adminClient.query<Codegen.GetCustomersQuery>(GET_CUSTOMERS);
             expect(customers3.items).toEqual(EXPECTED_CUSTOMERS);
         });
 

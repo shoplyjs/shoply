@@ -1,6 +1,6 @@
-import { CreateProductInput, ProductTranslationInput } from '@vendure/common/lib/generated-types';
-import { ensureConfigLoaded, FastImporterService, LanguageCode } from '@vendure/core';
-import { createTestEnvironment } from '@vendure/testing';
+import { CreateProductInput, ProductTranslationInput } from '@shoplyjs/common/lib/generated-types';
+import { ensureConfigLoaded, FastImporterService, LanguageCode } from '@shoplyjs/core';
+import { createTestEnvironment } from '@shoplyjs/testing';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 

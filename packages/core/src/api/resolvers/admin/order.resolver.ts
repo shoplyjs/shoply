@@ -25,8 +25,8 @@ import {
     RefundOrderResult,
     SettlePaymentResult,
     TransitionPaymentToStateResult,
-} from '@vendure/common/lib/generated-types';
-import { PaginatedList } from '@vendure/common/lib/shared-types';
+} from '@shoplyjs/common/lib/generated-types';
+import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
 import { ErrorResultUnion, isGraphQlErrorResult } from '../../../common/error/error-result';
 import { TransactionalConnection } from '../../../connection';
@@ -46,7 +46,10 @@ import { Transaction } from '../../decorators/transaction.decorator';
 
 @Resolver()
 export class OrderResolver {
-    constructor(private orderService: OrderService, private connection: TransactionalConnection) {}
+    constructor(
+        private orderService: OrderService,
+        private connection: TransactionalConnection,
+    ) {}
 
     @Query()
     @Allow(Permission.ReadOrder)

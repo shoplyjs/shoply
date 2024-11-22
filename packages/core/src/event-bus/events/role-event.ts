@@ -1,5 +1,5 @@
-import { CreateRoleInput, UpdateRoleInput } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { CreateRoleInput, UpdateRoleInput } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { Role } from '../../entity';

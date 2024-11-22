@@ -1,7 +1,7 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { DynamicModule } from '@nestjs/common';
 import { GraphQLModule, GraphQLTypesLoader } from '@nestjs/graphql';
-import { notNullOrUndefined } from '@vendure/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
 import { buildSchema, extendSchema, GraphQLSchema, printSchema, ValidationContext } from 'graphql';
 import path from 'path';
 

@@ -5,8 +5,8 @@ import {
     mergeConfig,
     OrderState,
     TransactionalConnection,
-} from '@vendure/core';
-import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@vendure/testing';
+} from '@shoplyjs/core';
+import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import path from 'path';
 import { vi } from 'vitest';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -165,9 +165,8 @@ describe('Order process', () => {
                 quantity: 1,
             });
 
-            const { nextOrderStates } = await shopClient.query<CodegenShop.GetNextOrderStatesQuery>(
-                GET_NEXT_STATES,
-            );
+            const { nextOrderStates } =
+                await shopClient.query<CodegenShop.GetNextOrderStatesQuery>(GET_NEXT_STATES);
 
             expect(nextOrderStates).toEqual(['ValidatingCustomer']);
         });
@@ -265,9 +264,8 @@ describe('Order process', () => {
             transitionEndSpy.mockClear();
             transitionEndSpy2.mockClear();
 
-            const { nextOrderStates } = await shopClient.query<CodegenShop.GetNextOrderStatesQuery>(
-                GET_NEXT_STATES,
-            );
+            const { nextOrderStates } =
+                await shopClient.query<CodegenShop.GetNextOrderStatesQuery>(GET_NEXT_STATES);
 
             expect(nextOrderStates).toEqual(['ArrangingPayment', 'AddingItems', 'Cancelled']);
 

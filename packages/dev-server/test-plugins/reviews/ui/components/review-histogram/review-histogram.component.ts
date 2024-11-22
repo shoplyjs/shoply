@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
-import { SharedModule } from '@vendure/admin-ui/core';
+import { SharedModule } from '@shoplyjs/admin-ui/core';
 
 import { ProductReviewHistogramItem } from '../../generated-types';
 import { StarRatingComponent } from '../star-rating/star-rating.component';

@@ -1,4 +1,4 @@
-import { VendureConfig } from '@vendure/core';
+import { VendureConfig } from '@shoplyjs/core';
 
 import { SimpleGraphQLClient } from './simple-graphql-client';
 import { TestServer } from './test-server';

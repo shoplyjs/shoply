@@ -1,4 +1,4 @@
-import { CollectionDefinition, InitialData } from '@vendure/core';
+import { CollectionDefinition, InitialData } from '@shoplyjs/core';
 import fs from 'fs';
 import path from 'path';
 

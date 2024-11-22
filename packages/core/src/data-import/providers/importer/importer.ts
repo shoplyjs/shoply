@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { ImportInfo, LanguageCode } from '@vendure/common/lib/generated-types';
-import { normalizeString } from '@vendure/common/lib/normalize-string';
-import { ID } from '@vendure/common/lib/shared-types';
+import { ImportInfo, LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 import ProgressBar from 'progress';
 import { Observable } from 'rxjs';
 import { Stream } from 'stream';
@@ -207,7 +207,7 @@ export class Importer {
                 );
                 const groupId = await this.fastImporter.createProductOptionGroup({
                     code,
-                    options: optionGroupMainTranslation.values.map(name => ({} as any)),
+                    options: optionGroupMainTranslation.values.map(name => ({}) as any),
                     translations: optionGroup.translations.map(translation => {
                         return {
                             languageCode: translation.languageCode,

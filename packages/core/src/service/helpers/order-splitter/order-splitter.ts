@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { OrderType } from '@vendure/common/lib/generated-types';
-import { pick } from '@vendure/common/lib/pick';
+import { OrderType } from '@shoplyjs/common/lib/generated-types';
+import { pick } from '@shoplyjs/common/lib/pick';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { ConfigService } from '../../../config/config.service';

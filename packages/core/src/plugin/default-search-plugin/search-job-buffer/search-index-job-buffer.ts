@@ -1,5 +1,5 @@
-import { ID } from '@vendure/common/lib/shared-types';
-import { unique } from '@vendure/common/lib/unique';
+import { ID } from '@shoplyjs/common/lib/shared-types';
+import { unique } from '@shoplyjs/common/lib/unique';
 
 import { Job } from '../../../job-queue/job';
 import { JobBuffer } from '../../../job-queue/job-buffer/job-buffer';

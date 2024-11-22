@@ -1,5 +1,5 @@
-import { LogicalOperator } from '@vendure/common/lib/generated-types';
-import { Type } from '@vendure/common/lib/shared-types';
+import { LogicalOperator } from '@shoplyjs/common/lib/generated-types';
+import { Type } from '@shoplyjs/common/lib/shared-types';
 
 import { VendureEntity } from '../../entity/base/base.entity';
 import { Channel } from '../../entity/channel/channel.entity';

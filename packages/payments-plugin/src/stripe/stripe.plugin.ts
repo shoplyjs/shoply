@@ -1,4 +1,4 @@
-import { LanguageCode, PluginCommonModule, Type, VendurePlugin } from '@vendure/core';
+import { LanguageCode, PluginCommonModule, Type, VendurePlugin } from '@shoplyjs/core';
 import { json } from 'body-parser';
 import { gql } from 'graphql-tag';
 

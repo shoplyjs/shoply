@@ -1,5 +1,5 @@
 import { DynamicModule, Injectable, Type } from '@nestjs/common';
-import { LanguageCode } from '@vendure/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
 import { DataSourceOptions, getMetadataArgsStorage } from 'typeorm';
 
 import { getConfig } from './config-helpers';

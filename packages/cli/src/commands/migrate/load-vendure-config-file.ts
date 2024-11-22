@@ -1,4 +1,4 @@
-import { VendureConfig } from '@vendure/core';
+import { VendureConfig } from '@shoplyjs/core';
 import path from 'node:path';
 import { register } from 'ts-node';
 

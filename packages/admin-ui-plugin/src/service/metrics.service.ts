@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { assertNever } from '@vendure/common/lib/shared-utils';
+import { assertNever } from '@shoplyjs/common/lib/shared-utils';
 import {
     ConfigService,
     Logger,
@@ -7,7 +7,7 @@ import {
     RequestContext,
     TransactionalConnection,
     TtlCache,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 import {
     Duration,
     endOfDay,
@@ -37,7 +37,10 @@ export type MetricData = {
 export class MetricsService {
     private cache = new TtlCache<string, MetricSummary[]>({ ttl: 1000 * 60 * 60 * 24 });
     metricCalculations: MetricCalculation[];
-    constructor(private connection: TransactionalConnection, private configService: ConfigService) {
+    constructor(
+        private connection: TransactionalConnection,
+        private configService: ConfigService,
+    ) {
         this.metricCalculations = [
             new AverageOrderValueMetric(),
             new OrderCountMetric(),

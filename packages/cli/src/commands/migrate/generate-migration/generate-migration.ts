@@ -1,6 +1,6 @@
 import { cancel, isCancel, log, multiselect, select, spinner, text } from '@clack/prompts';
-import { unique } from '@vendure/common/lib/unique';
-import { generateMigration, VendureConfig } from '@vendure/core';
+import { unique } from '@shoplyjs/common/lib/unique';
+import { generateMigration, VendureConfig } from '@shoplyjs/core';
 import * as fs from 'fs-extra';
 import path from 'path';
 

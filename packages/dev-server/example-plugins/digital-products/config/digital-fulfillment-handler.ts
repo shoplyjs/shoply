@@ -1,4 +1,4 @@
-import { FulfillmentHandler, LanguageCode, OrderLine, TransactionalConnection } from '@vendure/core';
+import { FulfillmentHandler, LanguageCode, OrderLine, TransactionalConnection } from '@shoplyjs/core';
 import { In } from 'typeorm';
 
 let connection: TransactionalConnection;

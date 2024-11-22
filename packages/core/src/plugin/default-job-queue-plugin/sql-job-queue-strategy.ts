@@ -1,5 +1,5 @@
-import { JobListOptions, JobState } from '@vendure/common/lib/generated-types';
-import { ID, PaginatedList } from '@vendure/common/lib/shared-types';
+import { JobListOptions, JobState } from '@shoplyjs/common/lib/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
 import { Brackets, Connection, EntityManager, FindOptionsWhere, In, LessThan } from 'typeorm';
 
 import { Injector } from '../../common/injector';
@@ -36,12 +36,17 @@ export class SqlJobQueueStrategy extends PollingJobQueueStrategy implements Insp
         super.destroy();
     }
 
-    async add<Data extends JobData<Data> = object>(job: Job<Data>, jobOptions?: JobQueueStrategyJobOptions<Data>): Promise<Job<Data>> {
+    async add<Data extends JobData<Data> = object>(
+        job: Job<Data>,
+        jobOptions?: JobQueueStrategyJobOptions<Data>,
+    ): Promise<Job<Data>> {
         if (!this.connectionAvailable(this.rawConnection)) {
             throw new Error('Connection not available');
         }
-        const jobRecordRepository = jobOptions?.ctx && this.connection ? this.connection.getRepository(jobOptions.ctx, JobRecord) :
-            this.rawConnection.getRepository(JobRecord);
+        const jobRecordRepository =
+            jobOptions?.ctx && this.connection
+                ? this.connection.getRepository(jobOptions.ctx, JobRecord)
+                : this.rawConnection.getRepository(JobRecord);
         const constrainedData = this.constrainDataSize(job);
         const newRecord = this.toRecord(job, constrainedData, this.setRetries(job.queueName, job));
         const record = await jobRecordRepository.save(newRecord);

@@ -1,4 +1,4 @@
-import { InitialData } from '@vendure/core';
+import { InitialData } from '@shoplyjs/core';
 
 /**
  * Creates a mutable version of a type with readonly properties.

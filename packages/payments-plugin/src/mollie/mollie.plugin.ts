@@ -6,7 +6,7 @@ import {
     RequestContext,
     RuntimeVendureConfig,
     VendurePlugin,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 import { shopApiExtensions, adminApiExtensions } from './api-extensions';
 import { PLUGIN_INIT_OPTIONS } from './constants';

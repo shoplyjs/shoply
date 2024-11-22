@@ -1,6 +1,6 @@
 import { Args, Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { HistoryEntryListOptions, QueryOrdersArgs, SortOrder } from '@vendure/common/lib/generated-types';
-import { PaginatedList } from '@vendure/common/lib/shared-types';
+import { HistoryEntryListOptions, QueryOrdersArgs, SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
 import { Address } from '../../../entity/address/address.entity';
 import { Customer } from '../../../entity/customer/customer.entity';
@@ -62,7 +62,10 @@ export class CustomerEntityResolver {
 
 @Resolver('Customer')
 export class CustomerAdminEntityResolver {
-    constructor(private customerService: CustomerService, private historyService: HistoryService) {}
+    constructor(
+        private customerService: CustomerService,
+        private historyService: HistoryService,
+    ) {}
 
     @ResolveField()
     groups(@Ctx() ctx: RequestContext, @Parent() customer: Customer) {

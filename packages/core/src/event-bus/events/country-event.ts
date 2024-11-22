@@ -1,5 +1,5 @@
-import { CreateCountryInput, UpdateCountryInput } from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
+import { CreateCountryInput, UpdateCountryInput } from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
 
 import { RequestContext } from '../../api';
 import { Country } from '../../entity';

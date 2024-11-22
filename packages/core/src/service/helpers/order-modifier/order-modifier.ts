@@ -7,9 +7,9 @@ import {
     ModifyOrderResult,
     OrderLineInput,
     RefundOrderInput,
-} from '@vendure/common/lib/generated-types';
-import { ID } from '@vendure/common/lib/shared-types';
-import { getGraphQlInputName, summate } from '@vendure/common/lib/shared-utils';
+} from '@shoplyjs/common/lib/generated-types';
+import { ID } from '@shoplyjs/common/lib/shared-types';
+import { getGraphQlInputName, summate } from '@shoplyjs/common/lib/shared-utils';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { isGraphQlErrorResult, JustErrorResults } from '../../../common/error/error-result';

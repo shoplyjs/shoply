@@ -1,4 +1,4 @@
-import { Injector, RequestContext } from '@vendure/core';
+import { Injector, RequestContext } from '@shoplyjs/core';
 
 import { LoadTemplateInput, Partial } from '../types';
 

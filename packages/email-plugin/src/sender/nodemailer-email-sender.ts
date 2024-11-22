@@ -1,6 +1,6 @@
-import { normalizeString } from '@vendure/common/lib/normalize-string';
-import { assertNever } from '@vendure/common/lib/shared-utils';
-import { Logger } from '@vendure/core';
+import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { Logger } from '@shoplyjs/core';
 import fs from 'fs-extra';
 import { createTransport } from 'nodemailer';
 import { default as Mail } from 'nodemailer/lib/mailer';

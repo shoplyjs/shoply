@@ -1,4 +1,4 @@
-import { AdjustmentType } from '@vendure/common/lib/generated-shop-types';
+import { AdjustmentType } from '@shoplyjs/common/lib/generated-shop-types';
 import {
     AccountRegistrationEvent,
     CurrencyCode,
@@ -12,7 +12,7 @@ import {
     ProductVariant,
     ShippingLine,
     User,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 export const mockOrderStateTransitionEvent = new OrderStateTransitionEvent(
     'ArrangingPayment',

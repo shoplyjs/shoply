@@ -1,4 +1,4 @@
-import { BreadcrumbValue } from '@vendure/admin-ui/core';
+import { BreadcrumbValue } from '@shoplyjs/admin-ui/core';
 import { useContext } from 'react';
 import { HostedComponentContext } from '../directives/react-component-host.directive';
 import { HostedReactComponentContext, ReactRouteComponentOptions } from '../types';

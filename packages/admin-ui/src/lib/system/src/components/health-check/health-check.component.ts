@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HealthCheckService } from '@vendure/admin-ui/core';
+import { HealthCheckService } from '@shoplyjs/admin-ui/core';
 
 @Component({
     selector: 'vdr-health-check',

@@ -4,7 +4,7 @@ import {
     RequestContext,
     ShippingLine,
     ShippingLineAssignmentStrategy,
-} from '@vendure/core';
+} from '@shoplyjs/core';
 
 /**
  * @description
