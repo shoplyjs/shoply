@@ -1,11 +1,11 @@
-import { mergeConfig } from '@vendure/core';
+import { mergeConfig } from '@shoplyjs/core';
 import {
     MysqlInitializer,
     PostgresInitializer,
     registerInitializer,
     SqljsInitializer,
     testConfig as defaultTestConfig,
-} from '@vendure/testing';
+} from '@shoplyjs/testing';
 import fs from 'fs-extra';
 import path from 'path';
 import { DataSourceOptions } from 'typeorm';
