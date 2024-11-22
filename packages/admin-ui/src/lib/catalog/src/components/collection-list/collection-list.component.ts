@@ -8,7 +8,7 @@ import {
     LanguageCode,
     NotificationService,
     TypedBaseListComponent,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { combineLatest, Observable, of } from 'rxjs';
 import { distinctUntilChanged, map, switchMap, takeUntil } from 'rxjs/operators';
 import { CollectionOrderEvent } from '../collection-data-table/collection-data-table.component';
@@ -58,7 +58,10 @@ export class CollectionListComponent
         .addCustomFieldSorts(this.customFields)
         .connectToRoute(this.route);
 
-    constructor(protected dataService: DataService, private notificationService: NotificationService) {
+    constructor(
+        protected dataService: DataService,
+        private notificationService: NotificationService,
+    ) {
         super();
         super.configure({
             document: GetCollectionListDocument,

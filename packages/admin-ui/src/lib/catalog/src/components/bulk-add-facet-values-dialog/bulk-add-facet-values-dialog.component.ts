@@ -10,8 +10,8 @@ import {
     UpdateProductsBulkMutationVariables,
     UpdateVariantsBulkMutation,
     UpdateVariantsBulkMutationVariables,
-} from '@vendure/admin-ui/core';
-import { unique } from '@vendure/common/lib/unique';
+} from '@shoplyjs/admin-ui/core';
+import { unique } from '@shoplyjs/common/lib/unique';
 import { Observable, Subscription } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
 
@@ -57,7 +57,10 @@ export class BulkAddFacetValuesDialogComponent
     items: ProductOrVariant[] = [];
     facetValuesRemoved = false;
     private subscription: Subscription;
-    constructor(private dataService: DataService, private changeDetectorRef: ChangeDetectorRef) {}
+    constructor(
+        private dataService: DataService,
+        private changeDetectorRef: ChangeDetectorRef,
+    ) {}
 
     ngOnInit(): void {
         const fetchData$: Observable<any> =

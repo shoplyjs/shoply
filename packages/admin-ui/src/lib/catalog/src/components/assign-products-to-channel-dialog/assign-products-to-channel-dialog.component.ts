@@ -8,7 +8,7 @@ import {
     ItemOf,
     LogicalOperator,
     NotificationService,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { combineLatest, from, lastValueFrom, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -38,7 +38,10 @@ export class AssignProductsToChannelDialogComponent implements OnInit, Dialog<an
         return this.productVariantIds != null;
     }
 
-    constructor(private dataService: DataService, private notificationService: NotificationService) {}
+    constructor(
+        private dataService: DataService,
+        private notificationService: NotificationService,
+    ) {}
 
     ngOnInit() {
         const activeChannelId$ = this.dataService.client

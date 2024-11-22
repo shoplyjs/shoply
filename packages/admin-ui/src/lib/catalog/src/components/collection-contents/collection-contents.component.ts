@@ -16,7 +16,7 @@ import {
     ConfigurableOperationInput,
     DataService,
     GetCollectionContentsQuery,
-} from '@vendure/admin-ui/core';
+} from '@shoplyjs/admin-ui/core';
 import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
 import {
     catchError,
@@ -58,7 +58,11 @@ export class CollectionContentsComponent implements OnInit, OnChanges, OnDestroy
     private refresh$ = new BehaviorSubject<boolean>(true);
     private destroy$ = new Subject<void>();
 
-    constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) {}
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private dataService: DataService,
+    ) {}
 
     ngOnInit() {
         this.contentsCurrentPage$ = this.route.queryParamMap.pipe(

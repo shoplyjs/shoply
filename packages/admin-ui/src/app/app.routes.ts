@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { AppShellComponent, AuthGuard } from '@vendure/admin-ui/core';
+import { AppShellComponent, AuthGuard } from '@shoplyjs/admin-ui/core';
 
 export const routes: Route[] = [
-    { path: 'login', loadChildren: () => import('@vendure/admin-ui/login').then(m => m.LoginModule) },
+    { path: 'login', loadChildren: () => import('@shoplyjs/admin-ui/login').then(m => m.LoginModule) },
     {
         path: '',
         canActivate: [AuthGuard],
@@ -15,31 +15,31 @@ export const routes: Route[] = [
             {
                 path: '',
                 pathMatch: 'full',
-                loadChildren: () => import('@vendure/admin-ui/dashboard').then(m => m.DashboardModule),
+                loadChildren: () => import('@shoplyjs/admin-ui/dashboard').then(m => m.DashboardModule),
             },
             {
                 path: 'catalog',
-                loadChildren: () => import('@vendure/admin-ui/catalog').then(m => m.CatalogModule),
+                loadChildren: () => import('@shoplyjs/admin-ui/catalog').then(m => m.CatalogModule),
             },
             {
                 path: 'customer',
-                loadChildren: () => import('@vendure/admin-ui/customer').then(m => m.CustomerModule),
+                loadChildren: () => import('@shoplyjs/admin-ui/customer').then(m => m.CustomerModule),
             },
             {
                 path: 'orders',
-                loadChildren: () => import('@vendure/admin-ui/order').then(m => m.OrderModule),
+                loadChildren: () => import('@shoplyjs/admin-ui/order').then(m => m.OrderModule),
             },
             {
                 path: 'marketing',
-                loadChildren: () => import('@vendure/admin-ui/marketing').then(m => m.MarketingModule),
+                loadChildren: () => import('@shoplyjs/admin-ui/marketing').then(m => m.MarketingModule),
             },
             {
                 path: 'settings',
-                loadChildren: () => import('@vendure/admin-ui/settings').then(m => m.SettingsModule),
+                loadChildren: () => import('@shoplyjs/admin-ui/settings').then(m => m.SettingsModule),
             },
             {
                 path: 'system',
-                loadChildren: () => import('@vendure/admin-ui/system').then(m => m.SystemModule),
+                loadChildren: () => import('@shoplyjs/admin-ui/system').then(m => m.SystemModule),
             },
         ],
     },

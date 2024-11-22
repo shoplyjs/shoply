@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { GetCollectionListQuery, ItemOf } from '@vendure/admin-ui/core';
+import { GetCollectionListQuery, ItemOf } from '@shoplyjs/admin-ui/core';
 
 /**
  * Removes the root collection and self breadcrumb from the collection breadcrumb list.

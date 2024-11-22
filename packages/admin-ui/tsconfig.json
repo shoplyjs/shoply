@@ -27,37 +27,37 @@
       "esnext.asynciterable"
     ],
     "paths": {
-      "@vendure/admin-ui": [
+      "@shoplyjs/admin-ui": [
         "./src/lib/public_api"
       ],
-      "@vendure/admin-ui/catalog": [
+      "@shoplyjs/admin-ui/catalog": [
         "./src/lib/catalog/src/public_api"
       ],
-      "@vendure/admin-ui/core": [
+      "@shoplyjs/admin-ui/core": [
         "./src/lib/core/src/public_api"
       ],
-      "@vendure/admin-ui/customer": [
+      "@shoplyjs/admin-ui/customer": [
         "./src/lib/customer/src/public_api"
       ],
-      "@vendure/admin-ui/dashboard": [
+      "@shoplyjs/admin-ui/dashboard": [
         "./src/lib/dashboard/src/public_api"
       ],
-      "@vendure/admin-ui/login": [
+      "@shoplyjs/admin-ui/login": [
         "./src/lib/login/src/public_api"
       ],
-      "@vendure/admin-ui/marketing": [
+      "@shoplyjs/admin-ui/marketing": [
         "./src/lib/marketing/src/public_api"
       ],
-      "@vendure/admin-ui/order": [
+      "@shoplyjs/admin-ui/order": [
         "./src/lib/order/src/public_api"
       ],
-      "@vendure/admin-ui/react": [
+      "@shoplyjs/admin-ui/react": [
         "./src/lib/react/src/public_api"
       ],
-      "@vendure/admin-ui/settings": [
+      "@shoplyjs/admin-ui/settings": [
         "./src/lib/settings/src/public_api"
       ],
-      "@vendure/admin-ui/system": [
+      "@shoplyjs/admin-ui/system": [
         "./src/lib/system/src/public_api"
       ]
     },
