@@ -1,16 +1,11 @@
 {
-  "admin-ui/**/*.ts": [
-    "npm run lint",
-    "npm run format",
+  "*.ts": [
+    "eslint --fix",
+    "prettier --write",
     "git add"
   ],
-  "admin-ui/**/*.html": [
-    "npm run format",
-    "git add"
-  ],
-  "packages/!(dev-server)/**/*.ts": [
-    "npm run lint",
-    "npm run format",
+  "*.html": [
+    "prettier --write",
     "git add"
   ]
 }
