@@ -12,6 +12,8 @@ import {
 } from '@shoplyjs/core';
 import { defaultEmailHandlers, EmailPlugin } from '@shoplyjs/email-plugin';
 import 'dotenv/config';
+import { MolliePlugin } from '@shoplyjs/payments-plugin/package/mollie';
+import { StripePlugin } from '@shoplyjs/payments-plugin/package/stripe';
 import path from 'path';
 import { DataSourceOptions } from 'typeorm';
 
@@ -61,6 +63,8 @@ export const devConfig: VendureConfig = {
         importAssetsDir: path.join(__dirname, 'import-assets'),
     },
     plugins: [
+        MolliePlugin.init({ vendureHost: process.env.MOLLIE_HOST || 'http://localhost:3000' }),
+        StripePlugin.init({}),
         // MultivendorPlugin.init({
         //     platformFeePercent: 10,
         //     platformFeeSKU: 'FEE',

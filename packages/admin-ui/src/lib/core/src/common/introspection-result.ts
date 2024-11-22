@@ -110,6 +110,7 @@
       "ManualPaymentStateError",
       "MimeTypeError",
       "MissingConditionsError",
+      "MolliePaymentIntentError",
       "MultipleOrderError",
       "NativeAuthStrategyError",
       "NegativeQuantityError",
@@ -144,6 +145,10 @@
       "OrderModificationStateError",
       "PaymentMethodMissingError",
       "RefundPaymentIdMissingError"
+    ],
+    "MolliePaymentIntentResult": [
+      "MolliePaymentIntent",
+      "MolliePaymentIntentError"
     ],
     "NativeAuthenticationResult": [
       "CurrentUser",

@@ -1649,6 +1649,7 @@ export enum ErrorCode {
   MANUAL_PAYMENT_STATE_ERROR = 'MANUAL_PAYMENT_STATE_ERROR',
   MIME_TYPE_ERROR = 'MIME_TYPE_ERROR',
   MISSING_CONDITIONS_ERROR = 'MISSING_CONDITIONS_ERROR',
+  MOLLIE_PAYMENT_INTENT_ERROR = 'MOLLIE_PAYMENT_INTENT_ERROR',
   MULTIPLE_ORDER_ERROR = 'MULTIPLE_ORDER_ERROR',
   NATIVE_AUTH_STRATEGY_ERROR = 'NATIVE_AUTH_STRATEGY_ERROR',
   NEGATIVE_QUANTITY_ERROR = 'NEGATIVE_QUANTITY_ERROR',
@@ -1658,6 +1659,7 @@ export enum ErrorCode {
   ORDER_LIMIT_ERROR = 'ORDER_LIMIT_ERROR',
   ORDER_MODIFICATION_ERROR = 'ORDER_MODIFICATION_ERROR',
   ORDER_MODIFICATION_STATE_ERROR = 'ORDER_MODIFICATION_STATE_ERROR',
+  ORDER_PAYMENT_STATE_ERROR = 'ORDER_PAYMENT_STATE_ERROR',
   ORDER_STATE_TRANSITION_ERROR = 'ORDER_STATE_TRANSITION_ERROR',
   PAYMENT_METHOD_MISSING_ERROR = 'PAYMENT_METHOD_MISSING_ERROR',
   PAYMENT_ORDER_MISMATCH_ERROR = 'PAYMENT_ORDER_MISMATCH_ERROR',
@@ -2657,6 +2659,43 @@ export type ModifyOrderOptions = {
 
 export type ModifyOrderResult = CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError | IneligibleShippingMethodError | InsufficientStockError | NegativeQuantityError | NoChangesSpecifiedError | Order | OrderLimitError | OrderModificationStateError | PaymentMethodMissingError | RefundPaymentIdMissingError;
 
+export type MolliePaymentIntent = {
+  __typename?: 'MolliePaymentIntent';
+  url: Scalars['String']['output'];
+};
+
+export type MolliePaymentIntentError = ErrorResult & {
+  __typename?: 'MolliePaymentIntentError';
+  errorCode: ErrorCode;
+  message: Scalars['String']['output'];
+};
+
+export type MolliePaymentIntentInput = {
+  /**
+   * Optional preselected Mollie payment method. When this is passed
+   * the payment selection step will be skipped.
+   */
+  molliePaymentMethodCode?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Use this to create a payment intent for a specific order. This allows you to create intents for
+   * orders that are not active orders.
+   */
+  orderId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The code of the Vendure payment method to use for the payment.
+   * Must have Mollie as payment method handler.
+   * Without this, the first method with Mollie as handler will be used.
+   */
+  paymentMethodCode?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The redirect url to which the customer will be redirected after the payment is completed.
+   * The configured fallback redirect will be used if this is not provided.
+   */
+  redirectUrl?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MolliePaymentIntentResult = MolliePaymentIntent | MolliePaymentIntentError;
+
 export type MoveCollectionInput = {
   collectionId: Scalars['ID']['input'];
   index: Scalars['Int']['input'];
@@ -2744,6 +2783,7 @@ export type Mutation = {
   createFacet: Facet;
   /** Create one or more FacetValues */
   createFacetValues: Array<FacetValue>;
+  createMolliePaymentIntent: MolliePaymentIntentResult;
   /** Create existing PaymentMethod */
   createPaymentMethod: PaymentMethod;
   /** Create a new Product */
@@ -3180,6 +3220,11 @@ export type MutationCreateFacetArgs = {
 
 export type MutationCreateFacetValuesArgs = {
   input: Array<CreateFacetValueInput>;
+};
+
+
+export type MutationCreateMolliePaymentIntentArgs = {
+  input: MolliePaymentIntentInput;
 };
 
 
@@ -8390,6 +8435,8 @@ type ErrorResult_MimeTypeError_Fragment = { __typename?: 'MimeTypeError', errorC
 
 type ErrorResult_MissingConditionsError_Fragment = { __typename?: 'MissingConditionsError', errorCode: ErrorCode, message: string };
 
+type ErrorResult_MolliePaymentIntentError_Fragment = { __typename?: 'MolliePaymentIntentError', errorCode: ErrorCode, message: string };
+
 type ErrorResult_MultipleOrderError_Fragment = { __typename?: 'MultipleOrderError', errorCode: ErrorCode, message: string };
 
 type ErrorResult_NativeAuthStrategyError_Fragment = { __typename?: 'NativeAuthStrategyError', errorCode: ErrorCode, message: string };
@@ -8430,7 +8477,7 @@ type ErrorResult_RefundStateTransitionError_Fragment = { __typename?: 'RefundSta
 
 type ErrorResult_SettlePaymentError_Fragment = { __typename?: 'SettlePaymentError', errorCode: ErrorCode, message: string };
 
-export type ErrorResultFragment = ErrorResult_AlreadyRefundedError_Fragment | ErrorResult_CancelActiveOrderError_Fragment | ErrorResult_CancelPaymentError_Fragment | ErrorResult_ChannelDefaultLanguageError_Fragment | ErrorResult_CouponCodeExpiredError_Fragment | ErrorResult_CouponCodeInvalidError_Fragment | ErrorResult_CouponCodeLimitError_Fragment | ErrorResult_CreateFulfillmentError_Fragment | ErrorResult_DuplicateEntityError_Fragment | ErrorResult_EmailAddressConflictError_Fragment | ErrorResult_EmptyOrderLineSelectionError_Fragment | ErrorResult_FacetInUseError_Fragment | ErrorResult_FulfillmentStateTransitionError_Fragment | ErrorResult_GuestCheckoutError_Fragment | ErrorResult_IneligibleShippingMethodError_Fragment | ErrorResult_InsufficientStockError_Fragment | ErrorResult_InsufficientStockOnHandError_Fragment | ErrorResult_InvalidCredentialsError_Fragment | ErrorResult_InvalidFulfillmentHandlerError_Fragment | ErrorResult_ItemsAlreadyFulfilledError_Fragment | ErrorResult_LanguageNotAvailableError_Fragment | ErrorResult_ManualPaymentStateError_Fragment | ErrorResult_MimeTypeError_Fragment | ErrorResult_MissingConditionsError_Fragment | ErrorResult_MultipleOrderError_Fragment | ErrorResult_NativeAuthStrategyError_Fragment | ErrorResult_NegativeQuantityError_Fragment | ErrorResult_NoActiveOrderError_Fragment | ErrorResult_NoChangesSpecifiedError_Fragment | ErrorResult_NothingToRefundError_Fragment | ErrorResult_OrderLimitError_Fragment | ErrorResult_OrderModificationError_Fragment | ErrorResult_OrderModificationStateError_Fragment | ErrorResult_OrderStateTransitionError_Fragment | ErrorResult_PaymentMethodMissingError_Fragment | ErrorResult_PaymentOrderMismatchError_Fragment | ErrorResult_PaymentStateTransitionError_Fragment | ErrorResult_ProductOptionInUseError_Fragment | ErrorResult_QuantityTooGreatError_Fragment | ErrorResult_RefundAmountError_Fragment | ErrorResult_RefundOrderStateError_Fragment | ErrorResult_RefundPaymentIdMissingError_Fragment | ErrorResult_RefundStateTransitionError_Fragment | ErrorResult_SettlePaymentError_Fragment;
+export type ErrorResultFragment = ErrorResult_AlreadyRefundedError_Fragment | ErrorResult_CancelActiveOrderError_Fragment | ErrorResult_CancelPaymentError_Fragment | ErrorResult_ChannelDefaultLanguageError_Fragment | ErrorResult_CouponCodeExpiredError_Fragment | ErrorResult_CouponCodeInvalidError_Fragment | ErrorResult_CouponCodeLimitError_Fragment | ErrorResult_CreateFulfillmentError_Fragment | ErrorResult_DuplicateEntityError_Fragment | ErrorResult_EmailAddressConflictError_Fragment | ErrorResult_EmptyOrderLineSelectionError_Fragment | ErrorResult_FacetInUseError_Fragment | ErrorResult_FulfillmentStateTransitionError_Fragment | ErrorResult_GuestCheckoutError_Fragment | ErrorResult_IneligibleShippingMethodError_Fragment | ErrorResult_InsufficientStockError_Fragment | ErrorResult_InsufficientStockOnHandError_Fragment | ErrorResult_InvalidCredentialsError_Fragment | ErrorResult_InvalidFulfillmentHandlerError_Fragment | ErrorResult_ItemsAlreadyFulfilledError_Fragment | ErrorResult_LanguageNotAvailableError_Fragment | ErrorResult_ManualPaymentStateError_Fragment | ErrorResult_MimeTypeError_Fragment | ErrorResult_MissingConditionsError_Fragment | ErrorResult_MolliePaymentIntentError_Fragment | ErrorResult_MultipleOrderError_Fragment | ErrorResult_NativeAuthStrategyError_Fragment | ErrorResult_NegativeQuantityError_Fragment | ErrorResult_NoActiveOrderError_Fragment | ErrorResult_NoChangesSpecifiedError_Fragment | ErrorResult_NothingToRefundError_Fragment | ErrorResult_OrderLimitError_Fragment | ErrorResult_OrderModificationError_Fragment | ErrorResult_OrderModificationStateError_Fragment | ErrorResult_OrderStateTransitionError_Fragment | ErrorResult_PaymentMethodMissingError_Fragment | ErrorResult_PaymentOrderMismatchError_Fragment | ErrorResult_PaymentStateTransitionError_Fragment | ErrorResult_ProductOptionInUseError_Fragment | ErrorResult_QuantityTooGreatError_Fragment | ErrorResult_RefundAmountError_Fragment | ErrorResult_RefundOrderStateError_Fragment | ErrorResult_RefundPaymentIdMissingError_Fragment | ErrorResult_RefundStateTransitionError_Fragment | ErrorResult_SettlePaymentError_Fragment;
 
 export type ShippingMethodFragment = { __typename?: 'ShippingMethod', id: string, createdAt: any, updatedAt: any, code: string, name: string, description: string, fulfillmentHandlerCode: string, checker: { __typename?: 'ConfigurableOperation', code: string, args: Array<{ __typename?: 'ConfigArg', name: string, value: string }> }, calculator: { __typename?: 'ConfigurableOperation', code: string, args: Array<{ __typename?: 'ConfigArg', name: string, value: string }> }, translations: Array<{ __typename?: 'ShippingMethodTranslation', id: string, languageCode: LanguageCode, name: string, description: string }> };
 

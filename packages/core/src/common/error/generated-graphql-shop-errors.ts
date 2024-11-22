@@ -180,6 +180,17 @@ export class MissingPasswordError extends ErrorResult {
   }
 }
 
+export class MolliePaymentIntentError extends ErrorResult {
+  readonly __typename = 'MolliePaymentIntentError';
+  readonly errorCode = 'MOLLIE_PAYMENT_INTENT_ERROR' as any;
+  readonly message = 'MOLLIE_PAYMENT_INTENT_ERROR';
+  constructor(
+
+  ) {
+    super();
+  }
+}
+
 export class NativeAuthStrategyError extends ErrorResult {
   readonly __typename = 'NativeAuthStrategyError';
   readonly errorCode = 'NATIVE_AUTH_STRATEGY_ERROR' as any;
@@ -371,7 +382,7 @@ export class VerificationTokenInvalidError extends ErrorResult {
 }
 
 
-const errorTypeNames = new Set<string>(['AlreadyLoggedInError', 'CouponCodeExpiredError', 'CouponCodeInvalidError', 'CouponCodeLimitError', 'EmailAddressConflictError', 'GuestCheckoutError', 'IdentifierChangeTokenExpiredError', 'IdentifierChangeTokenInvalidError', 'IneligiblePaymentMethodError', 'IneligibleShippingMethodError', 'InsufficientStockError', 'InvalidCredentialsError', 'MissingPasswordError', 'NativeAuthStrategyError', 'NegativeQuantityError', 'NoActiveOrderError', 'NotVerifiedError', 'OrderLimitError', 'OrderModificationError', 'OrderPaymentStateError', 'OrderStateTransitionError', 'PasswordAlreadySetError', 'PasswordResetTokenExpiredError', 'PasswordResetTokenInvalidError', 'PasswordValidationError', 'PaymentDeclinedError', 'PaymentFailedError', 'VerificationTokenExpiredError', 'VerificationTokenInvalidError']);
+const errorTypeNames = new Set<string>(['AlreadyLoggedInError', 'CouponCodeExpiredError', 'CouponCodeInvalidError', 'CouponCodeLimitError', 'EmailAddressConflictError', 'GuestCheckoutError', 'IdentifierChangeTokenExpiredError', 'IdentifierChangeTokenInvalidError', 'IneligiblePaymentMethodError', 'IneligibleShippingMethodError', 'InsufficientStockError', 'InvalidCredentialsError', 'MissingPasswordError', 'MolliePaymentIntentError', 'NativeAuthStrategyError', 'NegativeQuantityError', 'NoActiveOrderError', 'NotVerifiedError', 'OrderLimitError', 'OrderModificationError', 'OrderPaymentStateError', 'OrderStateTransitionError', 'PasswordAlreadySetError', 'PasswordResetTokenExpiredError', 'PasswordResetTokenInvalidError', 'PasswordValidationError', 'PaymentDeclinedError', 'PaymentFailedError', 'VerificationTokenExpiredError', 'VerificationTokenInvalidError']);
 function isGraphQLError(input: any): input is import('@shoplyjs/common/lib/generated-types').ErrorResult {
   return input instanceof ErrorResult || errorTypeNames.has(input.__typename);
 }
@@ -395,6 +406,11 @@ export const shopErrorOperationTypeResolvers = {
   AuthenticationResult: {
     __resolveType(value: any) {
       return isGraphQLError(value) ? (value as any).__typename : 'CurrentUser';
+    },
+  },
+  MolliePaymentIntentResult: {
+    __resolveType(value: any) {
+      return isGraphQLError(value) ? (value as any).__typename : 'MolliePaymentIntent';
     },
   },
   NativeAuthenticationResult: {
