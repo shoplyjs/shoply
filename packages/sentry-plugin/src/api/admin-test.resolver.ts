@@ -2,6 +2,7 @@ import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { Allow, Permission, UserInputError } from '@shoplyjs/core';
 
 import { SentryService } from '../sentry.service';
+
 import { ErrorTestService } from './error-test.service';
 
 declare const a: number;

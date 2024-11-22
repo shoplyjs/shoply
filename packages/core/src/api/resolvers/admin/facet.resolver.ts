@@ -18,8 +18,8 @@ import {
 } from '@shoplyjs/common/lib/generated-types';
 import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
 
-import { EntityNotFoundError } from '../../../common/error/errors';
 import { ErrorResultUnion } from '../../../common/error/error-result';
+import { EntityNotFoundError } from '../../../common/error/errors';
 import { Translated } from '../../../common/types/locale-types';
 import { ConfigService } from '../../../config/config.service';
 import { Facet } from '../../../entity/facet/facet.entity';

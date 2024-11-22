@@ -63,7 +63,7 @@ describe('BullMQJobQueuePlugin', () => {
         await new Promise(resolve => setTimeout(resolve, 100));
     });
 
-    it('works', () => {
-        expect(1).toBe(1);
+    it('works', async () => {
+        await expect(1).toBe(1);
     });
 });

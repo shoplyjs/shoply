@@ -193,7 +193,8 @@ class ActiveQueue<Data extends JobData<Data> = object> {
 
                 if (timedOut) {
                     Logger.warn(
-                        `Timed out (${stopActiveQueueTimeout}ms) waiting for ${this.activeJobs.length} active jobs in queue "${this.queueName}" to complete. Forcing stop...`,
+                        `Timed out (${stopActiveQueueTimeout}ms) waiting for ${this.activeJobs.length},
+                        active jobs in queue "${this.queueName}" to complete. Forcing stop...`,
                     );
                     this.queueStopped$.next(STOP_SIGNAL);
                     clearTimeout(timeout);

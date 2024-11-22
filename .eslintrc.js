@@ -33,6 +33,7 @@ module.exports = {
     parserOptions: {
         project: true, // Resolve the nearest single tsconfig - See: https://github.com/typescript-eslint/typescript-eslint/issues/1192#issuecomment-1483926773
         sourceType: 'module',
+        warnOnUnsupportedTypeScriptVersion: false,
     },
     plugins: [
         'eslint-plugin-import',
@@ -43,16 +44,16 @@ module.exports = {
     root: true,
     overrides: [
         {
-            files: ['./packages/ui-devkit/src/client/**/*'],
+            files: ['./src/client/**/*'],
             parserOptions: {
-                project: './packages/ui-devkit/tsconfig.json',
+                project: './tsconfig.json',
                 sourceType: 'module',
             },
         },
         {
-            files: ['./packages/ui-devkit/src/compiler/**/*'],
+            files: ['./src/compiler/**/*'],
             parserOptions: {
-                project: './packages/ui-devkit/tsconfig.compiler.json',
+                project: './tsconfig.compiler.json',
                 sourceType: 'module',
             },
         },

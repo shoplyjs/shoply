@@ -100,7 +100,7 @@ export class ProductVariantsEditorComponent implements OnInit, DeactivateAware {
         const product$ = this.refresh$.pipe(
             switchMap(() =>
                 this.dataService.product
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
                     .getProductVariantsOptions(this.route.parent?.snapshot.paramMap.get('id')!)
                     .mapSingle(data => data.product),
             ),

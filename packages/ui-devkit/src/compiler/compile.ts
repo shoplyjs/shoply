@@ -66,6 +66,7 @@ function runCompileMode({
     const distPath = path.join(outputPath, 'dist');
 
     const compile = () =>
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         new Promise<void>(async (resolve, reject) => {
             await setupScaffold(outputPath, extensions);
             await setBaseHref(outputPath, baseHref || DEFAULT_BASE_HREF);
@@ -124,6 +125,7 @@ function runWatchMode({
         /* */
     };
     const compile = () =>
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         new Promise<void>(async (resolve, reject) => {
             await setupScaffold(outputPath, extensions);
             await setBaseHref(outputPath, baseHref || DEFAULT_BASE_HREF);
@@ -224,6 +226,7 @@ function runWatchMode({
                     [] as string[],
                 );
 
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
                 watcher.on('change', async filePath => {
                     const extension = normalizedExtensions.find(e => filePath.includes(e.extensionPath));
                     if (extension) {

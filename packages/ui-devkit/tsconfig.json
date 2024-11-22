@@ -21,5 +21,9 @@
   },
   "files": [
     "./src/client/index.ts"
+  ],
+  "include": [
+    "./src/client/**/*.ts",
+    "./src/compiler/**/*.ts"
   ]
 }

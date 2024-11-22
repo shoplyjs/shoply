@@ -41,7 +41,7 @@ export async function setupScaffold(outputPath: string, extensions: Extension[])
     const modulePathMapping = generateModulePathMapping(normalizedExtensions);
     copyAdminUiSource(outputPath, modulePathMapping);
 
-    await copyExtensionModules(outputPath, normalizedExtensions);
+    copyExtensionModules(outputPath, normalizedExtensions);
 
     const staticAssetExtensions = extensions.filter(isStaticAssetExtension);
     await copyStaticAssets(outputPath, staticAssetExtensions);
@@ -90,7 +90,7 @@ function generateModulePathMapping(extensions: AdminUiExtensionWithId[]) {
  * Copies all files from the extensionPaths of the configured extensions into the
  * admin-ui source tree.
  */
-async function copyExtensionModules(outputPath: string, extensions: AdminUiExtensionWithId[]) {
+function copyExtensionModules(outputPath: string, extensions: AdminUiExtensionWithId[]) {
     const adminUiExtensions = extensions.filter(isAdminUiExtension);
     const extensionRoutesSource = generateLazyExtensionRoutes(adminUiExtensions);
     fs.writeFileSync(path.join(outputPath, EXTENSION_ROUTES_FILE), extensionRoutesSource, 'utf8');

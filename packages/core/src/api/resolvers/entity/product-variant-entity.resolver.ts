@@ -14,9 +14,9 @@ import { Asset, Channel, FacetValue, Product, ProductOption, StockLevel, TaxRate
 import { ProductVariant } from '../../../entity/product-variant/product-variant.entity';
 import { StockMovement } from '../../../entity/stock-movement/stock-movement.entity';
 import { LocaleStringHydrator } from '../../../service/helpers/locale-string-hydrator/locale-string-hydrator';
-import { StockLevelService } from '../../../service/services/stock-level.service';
 import { AssetService } from '../../../service/services/asset.service';
 import { ProductVariantService } from '../../../service/services/product-variant.service';
+import { StockLevelService } from '../../../service/services/stock-level.service';
 import { StockMovementService } from '../../../service/services/stock-movement.service';
 import { ApiType } from '../../common/get-api-type';
 import { RequestContext } from '../../common/request-context';
