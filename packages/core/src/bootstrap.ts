@@ -2,6 +2,7 @@ import { INestApplication, INestApplicationContext } from '@nestjs/common';
 import { NestApplicationContextOptions } from '@nestjs/common/interfaces/nest-application-context-options.interface';
 import { NestApplicationOptions } from '@nestjs/common/interfaces/nest-application-options.interface';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { getConnectionToken } from '@nestjs/typeorm';
 import { DEFAULT_COOKIE_NAME } from '@shoplyjs/common/lib/shared-constants';
 import { Type } from '@shoplyjs/common/lib/shared-types';
@@ -136,6 +137,14 @@ export async function bootstrap(
     earlyMiddlewares.forEach(mid => {
         app.use(mid.route, mid.handler);
     });
+    const swaggerConfig = new DocumentBuilder()
+        .setTitle('Swagger UI')
+        .setDescription('The REST API documentation for the application')
+        .setVersion('1.0')
+        .addBearerAuth() // Optional: Add authentication if needed
+        .build();
+    const document = SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup('swagger', app, document);
     await app.listen(port, hostname || '');
     app.enableShutdownHooks();
     logWelcomeMessage(config);
@@ -330,6 +339,7 @@ function logWelcomeMessage(config: RuntimeVendureConfig) {
     const pathToUrl = (path: string) => `http://${hostname || 'localhost'}:${port}/${path}`;
     apiCliGreetings.push(['Shop API', pathToUrl(shopApiPath)]);
     apiCliGreetings.push(['Admin API', pathToUrl(adminApiPath)]);
+    apiCliGreetings.push(['Swagger UI', pathToUrl('swagger')]);
     apiCliGreetings.push(
         ...getPluginStartupMessages().map(({ label, path }) => [label, pathToUrl(path)] as const),
     );
