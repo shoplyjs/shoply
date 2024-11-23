@@ -390,3 +390,4 @@ Temporary Items
 __admin-ui/
 
 *.turbo
+*.log
