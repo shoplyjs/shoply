@@ -57,13 +57,8 @@ Promise.all([
 ])
     .then(([adminSchemaSuccess, shopSchemaSuccess]) => {
         if (!adminSchemaSuccess || !shopSchemaSuccess) {
-            console.log('Attempting to generate types from existing schema json files...');
+            throw new Error('Could not download introspection schemas, is the server running?');
         }
-
-        const adminSchemaJson = JSON.parse(fs.readFileSync(ADMIN_SCHEMA_OUTPUT_FILE, 'utf-8'));
-        const shopSchemaJson = JSON.parse(fs.readFileSync(SHOP_SCHEMA_OUTPUT_FILE, 'utf-8'));
-        const adminSchema = buildClientSchema(adminSchemaJson.data);
-        const shopSchema = buildClientSchema(shopSchemaJson.data);
 
         const config = {
             namingConvention: {
