@@ -8,11 +8,23 @@
         "dist/**"
       ]
     },
+    "watch": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": []
+    },
     "test": {
       "dependsOn": [
         "build"
       ]
     },
-    "lint": {}
+    "lint": {},
+    "e2e": {
+      "dependsOn": [
+        "build"
+      ],
+      "outputs": []
+    }
   }
 }
