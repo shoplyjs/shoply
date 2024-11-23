@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { AdminUiPlugin } from '@shoplyjs/admin-ui-plugin';
 import { AssetServerPlugin } from '@shoplyjs/asset-server-plugin';
 import { ADMIN_API_PATH, API_PORT, SHOP_API_PATH } from '@shoplyjs/common/lib/shared-constants';
@@ -17,26 +18,17 @@ import { StripePlugin } from '@shoplyjs/payments-plugin/package/stripe';
 import path from 'path';
 import { DataSourceOptions } from 'typeorm';
 
+const isDev = process.env.APP_ENV === 'dev';
+
 /**
  * Config settings used during development
  */
 export const devConfig: VendureConfig = {
     apiOptions: {
         port: API_PORT,
-        adminApiPath: ADMIN_API_PATH,
-        adminApiPlayground: {
-            settings: {
-                'request.credentials': 'include',
-            },
-        },
-        adminApiDebug: true,
-        shopApiPath: SHOP_API_PATH,
-        shopApiPlayground: {
-            settings: {
-                'request.credentials': 'include',
-            },
-        },
-        shopApiDebug: true,
+        adminApiPlayground: false,
+        shopApiPlayground: false,
+        apolloServerPlugins: isDev ? [ApolloServerPluginLandingPageLocalDefault()] : [],
     },
     authOptions: {
         disableAuth: false,
