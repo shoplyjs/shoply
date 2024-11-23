@@ -11,6 +11,7 @@ import { ServiceModule } from '../service/service.module';
 import { ConfigurableOperationCodec } from './common/configurable-operation-codec';
 import { CustomFieldRelationResolverService } from './common/custom-field-relation-resolver.service';
 import { IdCodecService } from './common/id-codec.service';
+import { AuthController } from './controllers/admin/auth.controller';
 import { AdministratorResolver } from './resolvers/admin/administrator.resolver';
 import { AssetResolver } from './resolvers/admin/asset.resolver';
 import { AuthResolver } from './resolvers/admin/auth.resolver';
@@ -167,6 +168,8 @@ export const adminEntityResolvers = [
     JobEntityResolver,
 ];
 
+export const adminControllers = [AuthController];
+
 /**
  * The internal module containing some shared providers used by more than
  * one API module.
@@ -197,6 +200,7 @@ export class ApiSharedModule {}
         ...createDynamicGraphQlModulesForPlugins('admin'),
     ],
     providers: [...adminResolvers, ...entityResolvers, ...adminEntityResolvers],
+    controllers: [...adminControllers],
     exports: [...adminResolvers],
 })
 export class AdminApiModule {}

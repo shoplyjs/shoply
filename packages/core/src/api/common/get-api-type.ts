@@ -17,5 +17,5 @@ export function getApiType(info?: GraphQLResolveInfo): ApiType {
     if (query) {
         return !!query.getFields().administrators ? 'admin' : 'shop';
     }
-    return 'custom';
+    return 'admin';
 }
