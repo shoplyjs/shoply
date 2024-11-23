@@ -28,7 +28,6 @@ jobs:
     - name: npm install
       run: |
         npm install
-        npm install --os=linux --cpu=x64 sharp
     - name: Build
       run: npm run build
   unit-tests:
