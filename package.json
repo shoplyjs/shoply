@@ -14,7 +14,7 @@
     "docs:build": "npm run docs:generate-typescript-docs && npm run docs:generate-graphql-docs",
     "codegen": "tsc -p scripts/codegen/plugins && ts-node scripts/codegen/generate-graphql-types.ts",
     "version": "npm run check-imports && npm run check-angular-versions && npm run build && npm run check-core-type-defs && npm run generate-changelog && git add CHANGELOG* && git add */version.ts",
-    "dev-server:start": "cd packages/dev-server && npm run start",
+    "dev": "cd packages/dev-server && npm run start",
     "e2e": "turbo run e2e --no-cache",
     "check-imports": "ts-node scripts/check-imports.ts",
     "check-core-type-defs": "ts-node scripts/check-core-type-defs.ts",
@@ -22,8 +22,7 @@
     "generate-changelog": "ts-node scripts/changelogs/generate-changelog.ts",
     "build": "turbo run build",
     "test": "turbo run test",
-    "lint": "turbo run lint",
-    "dev": "turbo run dev"
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
