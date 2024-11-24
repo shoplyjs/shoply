@@ -2,6 +2,7 @@ import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import {
     AuthenticationResult,
     MutationAuthenticateArgs,
+    MutationCreateUserArgs,
     MutationLoginArgs,
     NativeAuthenticationResult,
     Permission,
@@ -33,6 +34,20 @@ export class AuthResolver extends BaseAuthResolver {
         administratorService: AdministratorService,
     ) {
         super(authService, userService, administratorService, configService);
+    }
+
+    @Transaction()
+    @Mutation()
+    @Allow(Permission.Public)
+    async createUser(
+        @Args() args: MutationCreateUserArgs,
+        @Ctx() ctx: RequestContext,
+        @Context('req') req: Request,
+        @Context('res') res: Response,
+    ): Promise<any> {
+        await this.administratorService.createStoreOwner(ctx, args);
+
+        return { success: true };
     }
 
     @Transaction()

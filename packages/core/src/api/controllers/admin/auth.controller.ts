@@ -16,6 +16,7 @@ import { NativeAuthStrategyError } from '../../../common/error/generated-graphql
 import { NATIVE_AUTH_STRATEGY_NAME } from '../../../config/auth/native-authentication-strategy';
 import { ConfigService } from '../../../config/config.service';
 import { Logger } from '../../../config/logger/vendure-logger';
+import { ChannelService, SellerService } from '../../../service';
 import { AdministratorService } from '../../../service/services/administrator.service';
 import { AuthService } from '../../../service/services/auth.service';
 import { UserService } from '../../../service/services/user.service';
@@ -34,8 +35,10 @@ export class AuthController extends BaseAuthController {
         userService: UserService,
         configService: ConfigService,
         administratorService: AdministratorService,
+        channelService: ChannelService,
+        sellerService: SellerService,
     ) {
-        super(authService, userService, administratorService, configService);
+        super(authService, userService, administratorService, configService, channelService, sellerService);
     }
 
     @Transaction()
@@ -66,6 +69,11 @@ export class AuthController extends BaseAuthController {
         }
         const user = await super.baseLogin(body, ctx, req, res);
         return user as AuthenticationResult;
+    }
+
+    async signUp(@Body() body: any, @Ctx() ctx: RequestContext, @Req() req: Request) {
+        const administrator = await this.administratorService.createStoreOwner(ctx, body);
+        return administrator;
     }
 
     @Transaction()

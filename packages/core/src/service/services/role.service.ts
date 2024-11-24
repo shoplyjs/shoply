@@ -89,7 +89,12 @@ export class RoleService {
             });
     }
 
-    findOne(ctx: RequestContext, roleId: ID, relations?: RelationPaths<Role>): Promise<Role | undefined> {
+    findOne(
+        ctx: RequestContext,
+        roleId: ID,
+        relations?: RelationPaths<Role>,
+        isPublic: boolean = false,
+    ): Promise<Role | undefined> {
         return this.connection
             .getRepository(ctx, Role)
             .findOne({
@@ -97,7 +102,11 @@ export class RoleService {
                 relations: unique([...(relations ?? []), 'channels']),
             })
             .then(async result => {
-                if (result && (await this.activeUserCanReadRole(ctx, result))) {
+                if (!result) return;
+                const isActiveUserCanReadRole = isPublic
+                    ? true
+                    : await this.activeUserCanReadRole(ctx, result);
+                if (isActiveUserCanReadRole) {
                     return result;
                 }
             });
@@ -245,6 +254,14 @@ export class RoleService {
         await this.checkActiveUserHasSufficientPermissions(ctx, targetChannels, input.permissions);
         const role = await this.createRoleForChannels(ctx, input, targetChannels);
         await this.eventBus.publish(new RoleEvent(ctx, role, 'created', input));
+        return role;
+    }
+
+    async createStoreRole(ctx: RequestContext, input: CreateRoleInput, channel: Channel): Promise<Role> {
+        const targetChannels: Channel[] = [channel];
+        input.permissions = this.getAllAssignablePermissions();
+
+        const role = await this.createRoleForChannels(ctx, input, targetChannels);
         return role;
     }
 

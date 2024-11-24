@@ -2,7 +2,7 @@ import { CurrencyCode, LanguageCode } from '@shoplyjs/common/lib/generated-types
 import { DeepPartial, ID } from '@shoplyjs/common/lib/shared-types';
 import { Column, Entity, Index, ManyToMany, ManyToOne } from 'typeorm';
 
-import { Customer, PaymentMethod, Promotion, Role, ShippingMethod, StockLocation } from '..';
+import { Administrator, Customer, PaymentMethod, Promotion, Role, ShippingMethod, StockLocation } from '..';
 import { VendureEntity } from '../base/base.entity';
 import { Collection } from '../collection/collection.entity';
 import { CustomChannelFields } from '../custom-entity-fields';
@@ -60,6 +60,9 @@ export class Channel extends VendureEntity {
 
     @Column({ default: '', nullable: true })
     description: string;
+
+    @ManyToMany(() => Administrator, admin => admin.channels)
+    administrators: Administrator[];
 
     @Index()
     @ManyToOne(type => Seller, seller => seller.channels)

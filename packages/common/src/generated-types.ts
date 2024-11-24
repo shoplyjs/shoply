@@ -2798,6 +2798,7 @@ export type Mutation = {
   createTaxCategory: TaxCategory;
   /** Create a new TaxRate */
   createTaxRate: TaxRate;
+  createUser: Success;
   /** Create a new Zone */
   createZone: Zone;
   /** Delete an Administrator */
@@ -3271,6 +3272,12 @@ export type MutationCreateTaxCategoryArgs = {
 
 export type MutationCreateTaxRateArgs = {
   input: CreateTaxRateInput;
+};
+
+
+export type MutationCreateUserArgs = {
+  emailAddress: Scalars['String']['input'];
+  password: Scalars['String']['input'];
 };
 
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
+    Channel,
     CreateAdministratorInput,
     DeletionResult,
     UpdateAdministratorInput,
@@ -28,7 +29,9 @@ import { RequestContextService } from '../helpers/request-context/request-contex
 import { getChannelPermissions } from '../helpers/utils/get-user-channels-permissions';
 import { patchEntity } from '../helpers/utils/patch-entity';
 
+import { ChannelService } from './channel.service';
 import { RoleService } from './role.service';
+import { SellerService } from './seller.service';
 import { UserService } from './user.service';
 
 /**
@@ -49,6 +52,8 @@ export class AdministratorService {
         private customFieldRelationService: CustomFieldRelationService,
         private eventBus: EventBus,
         private requestContextService: RequestContextService,
+        private sellerService: SellerService,
+        private channelService: ChannelService,
     ) {}
 
     /** @internal */
@@ -118,6 +123,65 @@ export class AdministratorService {
                 },
             })
             .then(result => result ?? undefined);
+    }
+
+    async createStoreOwner(ctx: RequestContext, input: any): Promise<Administrator> {
+        const seller = await this.sellerService.create(ctx, {
+            name: 'Default Seller',
+        });
+        const channel: any = await this.channelService.createStoreChannel(ctx, {
+            code: 'default',
+            defaultCurrencyCode: 'USD' as any,
+            token: Math.random().toString(36).slice(2),
+            pricesIncludeTax: false,
+            defaultShippingZoneId: '1',
+            defaultLanguageCode: 'en' as any,
+            defaultTaxZoneId: '1',
+            sellerId: seller.id,
+        });
+
+        const storeOwnerRole = await this.roleService.createStoreRole(
+            ctx,
+            {
+                code: 'store-owner',
+                description: 'Store owner',
+                permissions: [],
+            },
+            channel,
+        );
+        const storeOwnerInput = {
+            ...input,
+            firstName: '',
+            lastName: '',
+            roleIds: [storeOwnerRole.id],
+        };
+
+        const administrator = new Administrator(storeOwnerInput);
+        administrator.emailAddress = normalizeEmailAddress(storeOwnerInput.emailAddress);
+        administrator.user = await this.userService.createAdminUser(
+            ctx,
+            storeOwnerInput.emailAddress,
+            storeOwnerInput.password,
+        );
+        administrator.seller = seller;
+        administrator.channels = [channel];
+        let createdAdministrator = await this.connection
+            .getRepository(ctx, Administrator)
+            .save(administrator);
+        for (const roleId of storeOwnerInput.roleIds) {
+            createdAdministrator = await this.assignRole(ctx, createdAdministrator.id, roleId, true);
+        }
+
+        await this.customFieldRelationService.updateRelations(
+            ctx,
+            Administrator,
+            storeOwnerInput,
+            createdAdministrator,
+        );
+
+        // add stock location
+
+        return administrator;
     }
 
     /**
@@ -233,12 +297,17 @@ export class AdministratorService {
      * @description
      * Assigns a Role to the Administrator's User entity.
      */
-    async assignRole(ctx: RequestContext, administratorId: ID, roleId: ID): Promise<Administrator> {
+    async assignRole(
+        ctx: RequestContext,
+        administratorId: ID,
+        roleId: ID,
+        isPublic: boolean = false,
+    ): Promise<Administrator> {
         const administrator = await this.findOne(ctx, administratorId);
         if (!administrator) {
             throw new EntityNotFoundError('Administrator', administratorId);
         }
-        const role = await this.roleService.findOne(ctx, roleId);
+        const role = await this.roleService.findOne(ctx, roleId, ['channels'], isPublic);
         if (!role) {
             throw new EntityNotFoundError('Role', roleId);
         }

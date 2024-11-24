@@ -18,6 +18,7 @@ import { NATIVE_AUTH_STRATEGY_NAME } from '../../../config/auth/native-authentic
 import { ConfigService } from '../../../config/config.service';
 import { LogLevel } from '../../../config/logger/vendure-logger';
 import { User } from '../../../entity/user/user.entity';
+import { ChannelService, SellerService } from '../../../service';
 import { getUserChannelsPermissions } from '../../../service/helpers/utils/get-user-channels-permissions';
 import { AdministratorService } from '../../../service/services/administrator.service';
 import { AuthService } from '../../../service/services/auth.service';
@@ -30,10 +31,12 @@ import { setSessionToken } from '../../common/set-session-token';
 @Controller('auth')
 export class BaseAuthController {
     constructor(
-        private readonly authService: AuthService,
-        private readonly userService: UserService,
-        private readonly administratorService: AdministratorService,
+        protected readonly authService: AuthService,
+        protected readonly userService: UserService,
+        protected readonly administratorService: AdministratorService,
         protected readonly configService: ConfigService,
+        protected readonly channelService?: ChannelService,
+        protected readonly sellerService?: SellerService,
     ) {}
 
     @Post('login')

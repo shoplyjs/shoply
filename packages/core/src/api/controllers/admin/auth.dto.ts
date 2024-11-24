@@ -4,7 +4,7 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 export class AuthLoginDto {
     @ApiProperty({ required: true, default: 'superadmin', example: 'superadmin' })
     @IsEmail()
-    username: string;
+    emailAddress: string;
 
     @ApiProperty({ required: true, default: 'superadmin', example: 'superadmin' })
     @IsNotEmpty()

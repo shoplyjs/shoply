@@ -1,6 +1,7 @@
 import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne } from 'typeorm';
 
+import { Channel, Role, Seller } from '..';
 import { SoftDeletable } from '../../common/types/common-types';
 import { HasCustomFields } from '../../config/custom-field/custom-field-types';
 import { VendureEntity } from '../base/base.entity';
@@ -24,9 +25,9 @@ export class Administrator extends VendureEntity implements SoftDeletable, HasCu
     @Column({ type: Date, nullable: true })
     deletedAt: Date | null;
 
-    @Column() firstName: string;
+    @Column({ nullable: true }) firstName: string;
 
-    @Column() lastName: string;
+    @Column({ nullable: true }) lastName: string;
 
     @Column({ unique: true })
     emailAddress: string;
@@ -34,6 +35,14 @@ export class Administrator extends VendureEntity implements SoftDeletable, HasCu
     @OneToOne(type => User)
     @JoinColumn()
     user: User;
+
+    @ManyToMany(() => Channel, channel => channel.administrators)
+    @JoinTable()
+    channels: Channel[];
+
+    // Administrators belong to a seller (many-to-one relationship)
+    @ManyToOne(() => Seller, seller => seller.administrators)
+    seller: Seller;
 
     @Column(type => CustomAdministratorFields)
     customFields: CustomAdministratorFields;

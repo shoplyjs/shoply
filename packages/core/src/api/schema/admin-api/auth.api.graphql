@@ -3,6 +3,7 @@ type Query {
 }
 
 type Mutation {
+    createUser(emailAddress: String!, password: String!): Success!
     """
     Authenticates the user using the native authentication strategy. This mutation is an alias for authenticate({ native: { ... }})
 

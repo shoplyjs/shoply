@@ -212,6 +212,13 @@ export class ChannelService {
         return entity;
     }
 
+    async createStoreChannel(
+        ctx: RequestContext,
+        input: CreateChannelInput,
+    ): Promise<ErrorResultUnion<CreateChannelResult, Channel>> {
+        return this.create(ctx, input);
+    }
+
     /**
      * @description
      * Removes the entity from the given Channels and saves.
