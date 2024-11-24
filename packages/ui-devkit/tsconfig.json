@@ -11,6 +11,7 @@
     "strict": true,
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
     "target": "es5",
     "module": "esnext",
     "lib": [

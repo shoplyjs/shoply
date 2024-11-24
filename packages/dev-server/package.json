@@ -1,14 +1,14 @@
 {
-    "name": "dev-server",
+    "name": "@shoplyjs/dev-server",
     "version": "2.3.3",
     "main": "index.js",
     "license": "MIT",
     "private": true,
     "scripts": {
         "populate": "node -r ts-node/register -r dotenv/config populate-dev-server.ts",
-        "run:server": "node -r ts-node/register -r dotenv/config index.ts",
-        "run:worker": "node -r ts-node/register -r dotenv/config index-worker.ts",
-        "start": "concurrently npm:run*",
+        "run:server": "node --watch -r ts-node/register -r dotenv/config index.ts",
+        "run:worker": "node --watch -r ts-node/register -r dotenv/config index-worker.ts",
+        "dev": "concurrently npm:run*",
         "load-test:1k": "node -r ts-node/register load-testing/run-load-test.ts 1000",
         "load-test:10k": "node -r ts-node/register load-testing/run-load-test.ts 10000",
         "load-test:100k": "node -r ts-node/register load-testing/run-load-test.ts 100000"
