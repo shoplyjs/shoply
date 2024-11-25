@@ -14,7 +14,7 @@
     "docs:build": "npm run docs:generate-typescript-docs && npm run docs:generate-graphql-docs",
     "codegen": "tsc -p scripts/codegen/plugins && ts-node scripts/codegen/generate-graphql-types.ts",
     "version": "npm run check-imports && npm run check-angular-versions && npm run build && npm run check-core-type-defs && npm run generate-changelog && git add CHANGELOG* && git add */version.ts",
-    "dev": "turbo run watch dev --filter=@shoplyjs/dev-server",
+    "dev": "turbo run dev --filter=@shoplyjs/dev-server",
     "e2e": "turbo run e2e --no-cache",
     "check-imports": "ts-node scripts/check-imports.ts",
     "check-core-type-defs": "ts-node scripts/check-core-type-defs.ts",
