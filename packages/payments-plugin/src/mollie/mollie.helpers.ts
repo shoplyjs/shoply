@@ -1,10 +1,11 @@
-import { CreateParameters } from '@mollie/api-client/dist/types/src/binders/orders/parameters';
-import { Amount } from '@mollie/api-client/dist/types/src/data/global';
-import { OrderAddress as MollieOrderAddress } from '@mollie/api-client/dist/types/src/data/orders/data';
+import { CreateParameters } from '@mollie/api-client/dist/types/binders/orders/parameters';
+import { Amount } from '@mollie/api-client/dist/types/data/global';
+import { OrderAddress as MollieOrderAddress } from '@mollie/api-client/dist/types/data/orders/data';
+import { OrderAddress } from '@shoplyjs/common/lib/generated-types';
 import { CurrencyCode, Customer, Order } from '@shoplyjs/core';
 import currency from 'currency.js';
 
-import { OrderAddress } from './graphql/generated-shop-types';
+// import { OrderAddress } from './graphql/generated-shop-types';
 
 /**
  * Check if given address has mandatory fields for Mollie Order and map to a MollieOrderAddress.

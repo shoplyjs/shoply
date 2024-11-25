@@ -1,4 +1,4 @@
-import type { ListParameters } from '@mollie/api-client/dist/types/src/binders/methods/parameters';
+import type { ListParameters } from '@mollie/api-client/dist/types/binders/methods/parameters';
 import {
     Injector,
     Order,
