@@ -40,8 +40,8 @@ export const devConfig: VendureConfig = {
         },
     },
     dbConnectionOptions: {
-        synchronize: false,
-        logging: false,
+        synchronize: process.env.DB_SYNCHRONIZE === 'true',
+        logging: process.env.LOG_DB === 'true',
         migrations: [path.join(__dirname, 'migrations/*.ts')],
         ...getDbConfig(),
     },
@@ -120,7 +120,6 @@ function getDbConfig(): DataSourceOptions {
         case 'postgres':
             console.log('Using postgres connection');
             return {
-                synchronize: false,
                 type: 'postgres',
                 host: process.env.DB_HOST || 'localhost',
                 port: Number(process.env.DB_PORT) || 5432,
@@ -132,7 +131,6 @@ function getDbConfig(): DataSourceOptions {
         case 'sqlite':
             console.log('Using sqlite connection');
             return {
-                synchronize: false,
                 type: 'better-sqlite3',
                 database: path.join(__dirname, 'vendure.sqlite'),
             };
@@ -148,7 +146,6 @@ function getDbConfig(): DataSourceOptions {
         default:
             console.log('Using mysql connection');
             return {
-                synchronize: true,
                 type: 'mariadb',
                 host: '127.0.0.1',
                 port: 3306,
