@@ -132,24 +132,24 @@
     --color-card-border: var(--color-weight-200);
     --color-card-bg: hsl(0 0% 99%);
 
-    --color-left-nav-bg: var(--color-weight-100);
+    --color-left-nav-bg: #f0f4fa;
     --color-left-nav-text: var(--color-text);
     --color-left-nav-text-hover: var(--color-primary-700);
     --color-surface-bg: white;
-    --color-page-header: hsl(0 0% 98%);
-    --color-page-header-item-bg: var(--color-weight-125);
+    --color-page-header: white;
+    --color-page-header-item-bg: #f0f4f9;
 
     --color-button-bg: hsl(0 0% 98%);
     --color-button-hover-bg: var(--color-weight-100);
     --color-button-ghost-bg: white;
     --color-button-ghost-text: var(--color-text-100);
-    --color-button-ghost-hover-text: var(--color-primary-700);
-    --color-button-ghost-hover-bg: var(--color-primary-100);
+    --color-button-ghost-hover-text: var(--color-text-100);
+    --color-button-ghost-hover-bg: transparent;
     --color-button-small-bg: var(--color-weight-150);
     --color-button-small-hover-bg: var(--color-weight-200);
     --color-button-small-text: var(--color-weight-700);
 
-    --color-channel-switcher-bg: var(--color-weight-150);
+    --color-channel-switcher-bg: #dde3ea;
     --color-channel-switcher-hover-bg: var(--color-weight-125);
 
 
@@ -208,7 +208,7 @@
     }
 
     @media screen and (min-width: $breakpoint-large) {
-        --left-nav-width: 300px;
+        --left-nav-width: 320px;
         --surface-width: calc(100vw - 300px);
         --surface-margin-left: calc(var(--space-unit) * 6);
     }
@@ -251,4 +251,11 @@
     --clr-link-active-color: var(--color-weight-700);
     --clr-link-color: var(--color-weight-700);
     --clr-list-item-color: var(--color-weight-700);
+
+    // Shoplyjs styles
+    --color-hover-bg: #e9eef6;
+    --color-active-bg: #d3e3fd;
+    --color-text-hover: #000;
+    --color-hover-item-bg: #dfe3e7;
+    --input-border-color: var(--color-weight-200);
 }

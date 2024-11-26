@@ -1,7 +1,7 @@
 // Vendure dark theme
 // Based on this dark theme example from Scott Mathis:
 // https://github.com/mathisscott/clarity-theming-starter/blob/20f4680b43a9a7fd3d43a6ba36f717fdafc6e570/src/_dark-theme.scss
-:root [data-theme="dark"] {
+:root [data-theme='dark'] {
     --color-grey-100: hsl(211, 10%, 90%);
     --color-grey-200: hsl(211, 10%, 67%);
     --color-grey-300: hsl(211, 10%, 47%);
@@ -39,15 +39,14 @@
     --color-weight-975: hsl(201 30% 96%);
     --color-weight-1000: hsl(201 30% 98%);
 
-
     --color-scrollbar-bg: var(--color-weight-125);
     --color-scrollbar-thumb: var(--color-weight-200);
     --color-scrollbar-thumb-hover: var(--color-weight-300);
-    --color-surface-bg: hsl(201, 30%, 13%);
-    --color-page-header:hsl(201, 30%, 15%);
+    --color-surface-bg: #1e1f20;
+    --color-page-header: #1e1f20;
     --color-page-header-item-bg: var(--color-weight-150);
     --color-top-bar-bg: hsl(201, 30%, 15%);
-    --color-left-nav-bg: hsl(201, 30%, 20%);
+    --color-left-nav-bg: #282a2c;
     --color-left-nav-text-hover: var(--color-primary-200);
 
     --color-card-border: var(--color-weight-150);
@@ -55,15 +54,15 @@
 
     --color-button-bg: var(--color-weight-150);
     --color-button-hover-bg: var(--color-weight-200);
-    --color-button-ghost-bg: var(--color-weight-125);
+    --color-button-ghost-bg: transparent;
     --color-button-ghost-text: var(--color-text-100);
-    --color-button-ghost-hover-text: var(--color-primary-100);
-    --color-button-ghost-hover-bg: var(--color-weight-200);
+    --color-button-ghost-hover-text: var(--color-text-100);
+    --color-button-ghost-hover-bg: transparent;
     --color-button-small-bg: var(--color-weight-150);
     --color-button-small-hover-bg: var(--color-weight-200);
     --color-button-small-text: var(--color-weight-700);
 
-    --color-channel-switcher-bg: var(--color-weight-125);
+    --color-channel-switcher-bg: transparent;
     --color-channel-switcher-hover-bg: var(--color-weight-100);
 
     --color-chip-warning-border: var(--color-warning-800);
@@ -78,7 +77,7 @@
 
     --color-icon-button: var(--color-grey-200);
     --color-icon-button-hover: var(--color-primary-200);
-    --color-form-input-bg: var(--color-weight-150);
+    --color-form-input-bg: #333537;
     --color-form-input-focus: var(--color-primary-500);
 
     --color-json-editor-background-color: var(--color-grey-600);
@@ -92,7 +91,6 @@
 
     --color-split-view-separator-border: var(--color-weight-150);
     --color-split-view-separator-resize-border: var(--color-primary-700);
-
 
     // clarity styles
     --clr-global-app-background: hsl(201, 30%, 15%);
@@ -167,7 +165,9 @@
     --clr-btn-default-outline-checked-color: hsl(0, 0%, 100%); // checked-color
     --clr-btn-default-outline-checked-bg-color: var(--clr-btn-default-outline-color); // checked-color
     --clr-btn-default-outline-disabled-color: var(--clr-btn-outline-disabled-font-color); // disabled-color
-    --clr-btn-default-outline-disabled-border-color: var(--clr-btn-disabled-border-color); // disabled-border-color
+    --clr-btn-default-outline-disabled-border-color: var(
+        --clr-btn-disabled-border-color
+    ); // disabled-border-color
     --clr-btn-default-outline-disabled-checked-color: var(--clr-btn-disabled-bg-color);
 
     // Primary button
@@ -202,7 +202,9 @@
     --clr-btn-success-outline-checked-color: hsl(0, 0%, 100%); // checked-color
     --clr-btn-success-outline-disabled-color: var(--clr-btn-outline-disabled-font-color); // disabled-color
     --clr-btn-success-outline-disabled-bg-color: transparent; // disabled-background-color
-    --clr-btn-success-outline-disabled-border-color: var(--clr-btn-disabled-border-color); // disabled-border-color
+    --clr-btn-success-outline-disabled-border-color: var(
+        --clr-btn-disabled-border-color
+    ); // disabled-border-color
 
     // Danger button
     --clr-btn-danger-color: hsl(0, 0%, 0%); // color, checked-color,
@@ -225,7 +227,9 @@
     --clr-btn-danger-outline-checked-color: hsl(0, 0%, 100%); // checked-color
     --clr-btn-danger-outline-disabled-color: var(--clr-btn-outline-disabled-font-color); // disabled-color
     --clr-btn-danger-outline-disabled-bg-color: transparent; // disabled-background-color
-    --clr-btn-danger-outline-disabled-border-color: var(--clr-btn-disabled-border-color); // disabled-border-color
+    --clr-btn-danger-outline-disabled-border-color: var(
+        --clr-btn-disabled-border-color
+    ); // disabled-border-color
 
     // Link button
     --clr-btn-link-color: hsl(198, 65%, 57%); // color
@@ -451,7 +455,9 @@
     --clr-signpost-border-size: 0.5rem;
     --clr-signpost-pointer-border: var(--clr-signpost-border-size solid --clr-signpost-content-border-color);
     --clr-signpost-pointer-invisible-border: var(--clr-signpost-border-size solid transparent);
-    --clr-signpost-pointer-psuedo-border: var(--clr-signpost-border-size solid --clr-signpost-content-bg-color);
+    --clr-signpost-pointer-psuedo-border: var(
+        --clr-signpost-border-size solid --clr-signpost-content-bg-color
+    );
 
     // END Signpost overrides
 
@@ -561,7 +567,6 @@
 
     --clr-list-item-color: var(--color-text-100);
 
-
     clr-icon {
         &.is-green,
         &.is-success {
@@ -588,4 +593,10 @@
         }
     }
 
+    // Shoplyjs styles
+    --color-hover-bg: #343537;
+    --color-active-bg: #3e3f42;
+    --color-text-hover: #fff;
+    --color-hover-item-bg: #37393b;
+    --input-border-color: transparent;
 }

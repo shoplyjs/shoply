@@ -1,5 +1,5 @@
 import { Order as MollieOrder, OrderStatus, PaymentMethod as MollieClientMethod } from '@mollie/api-client';
-import { CreateParameters } from '@mollie/api-client/dist/types/src/binders/orders/parameters';
+import { CreateParameters } from '@mollie/api-client/dist/types/binders/orders/parameters';
 import { Inject, Injectable } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import {
@@ -269,6 +269,7 @@ export class MollieService {
         }
         const client = createExtendedMollieClient({ apiKey });
         const mollieOrder = await client.orders.get(orderId);
+        // @ts-ignore
         if (mollieOrder.metadata?.languageCode) {
             // Recreate ctx with the original languageCode
             ctx = new RequestContext({
@@ -277,6 +278,7 @@ export class MollieService {
                 authorizedAsOwnerOnly: false,
                 req: ctx.req,
                 channel: ctx.channel,
+                // @ts-ignore
                 languageCode: mollieOrder.metadata.languageCode as LanguageCode,
             });
         }

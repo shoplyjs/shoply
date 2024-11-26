@@ -40,8 +40,8 @@ export const devConfig: VendureConfig = {
         },
     },
     dbConnectionOptions: {
-        synchronize: false,
-        logging: false,
+        synchronize: process.env.DB_SYNCHRONIZE === 'true',
+        logging: process.env.LOG_DB === 'true',
         migrations: [path.join(__dirname, 'migrations/*.ts')],
         ...getDbConfig(),
     },
@@ -87,29 +87,14 @@ export const devConfig: VendureConfig = {
                 changeEmailAddressUrl: 'http://localhost:4201/change-email-address',
             },
         }),
-        AdminUiPlugin.init({
-            route: 'admin',
-            port: 5001,
-            // Un-comment to compile a custom admin ui
-            // app: compileUiExtensions({
-            //     outputPath: path.join(__dirname, './custom-admin-ui'),
-            //     extensions: [
-            //         {
-            //             id: 'ui-extensions-library',
-            //             extensionPath: path.join(__dirname, 'example-plugins/ui-extensions-library/ui'),
-            //             routes: [{ route: 'ui-library', filePath: 'routes.ts' }],
-            //             providers: ['providers.ts'],
-            //         },
-            //         {
-            //             globalStyles: path.join(
-            //                 __dirname,
-            //                 'test-plugins/with-ui-extension/ui/custom-theme.scss',
-            //             ),
-            //         },
-            //     ],
-            //     devMode: true,
-            // }),
-        }),
+        ...(process.env.APP_ENV === 'true'
+            ? [
+                  AdminUiPlugin.init({
+                      route: 'admin',
+                      port: 3000,
+                  }),
+              ]
+            : [AdminUiPlugin]),
     ],
 };
 
@@ -120,7 +105,6 @@ function getDbConfig(): DataSourceOptions {
         case 'postgres':
             console.log('Using postgres connection');
             return {
-                synchronize: false,
                 type: 'postgres',
                 host: process.env.DB_HOST || 'localhost',
                 port: Number(process.env.DB_PORT) || 5432,
@@ -132,7 +116,6 @@ function getDbConfig(): DataSourceOptions {
         case 'sqlite':
             console.log('Using sqlite connection');
             return {
-                synchronize: false,
                 type: 'better-sqlite3',
                 database: path.join(__dirname, 'vendure.sqlite'),
             };
@@ -148,7 +131,6 @@ function getDbConfig(): DataSourceOptions {
         default:
             console.log('Using mysql connection');
             return {
-                synchronize: true,
                 type: 'mariadb',
                 host: '127.0.0.1',
                 port: 3306,

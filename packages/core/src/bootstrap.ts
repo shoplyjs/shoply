@@ -248,25 +248,35 @@ export async function preBootstrapConfig(
 }
 
 function checkPluginCompatibility(config: RuntimeVendureConfig): void {
-    for (const plugin of config.plugins) {
-        const compatibility = getCompatibility(plugin);
-        const pluginName = (plugin as any).name as string;
-        if (!compatibility) {
+    config.plugins.forEach(plugin => {
+        const pluginName = getPluginName(plugin);
+        const compatibilityRange = getCompatibility(plugin);
+
+        if (!compatibilityRange) {
             Logger.info(
                 `The plugin "${pluginName}" does not specify a compatibility range, so it is not guaranteed to be compatible with this version of Vendure.`,
             );
-        } else {
-            if (!satisfies(VENDURE_VERSION, compatibility, { loose: true, includePrerelease: true })) {
-                Logger.error(
-                    `Plugin "${pluginName}" is not compatible with this version of Vendure. ` +
-                        `It specifies a semver range of "${compatibility}" but the current version is "${VENDURE_VERSION}".`,
-                );
-                throw new InternalServerError(
-                    `Plugin "${pluginName}" is not compatible with this version of Vendure.`,
-                );
-            }
+            return;
         }
-    }
+
+        if (!isCompatible(compatibilityRange)) {
+            Logger.error(
+                `Plugin "${pluginName}" is not compatible with this version of Vendure. ` +
+                    `It specifies a semver range of "${compatibilityRange}" but the current version is "${VENDURE_VERSION}".`,
+            );
+            throw new InternalServerError(
+                `Plugin "${pluginName}" is not compatible with this version of Vendure.`,
+            );
+        }
+    });
+}
+
+function getPluginName(plugin: any): string {
+    return plugin?.name || 'Unknown Plugin';
+}
+
+function isCompatible(compatibilityRange: string): boolean {
+    return satisfies(VENDURE_VERSION, compatibilityRange, { loose: true, includePrerelease: true });
 }
 
 /**

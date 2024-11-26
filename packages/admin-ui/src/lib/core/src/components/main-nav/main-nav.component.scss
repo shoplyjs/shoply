@@ -10,63 +10,93 @@ nav.main-nav {
 }
 
 .main-nav .nav-group {
-    margin-bottom: calc(var(--space-unit) * 2);
     padding: calc(var(--space-unit) * 2) 0;
     overflow: hidden;
-    transition: padding 0.2s ease-in-out, margin-bottom 0.2s ease-in-out;
+    transition:
+        padding 0.2s ease-in-out,
+        margin-bottom 0.2s ease-in-out;
     &.collapsible.collapsed {
         padding: 3px 0;
         margin-bottom: calc(var(--space-unit) * 1);
     }
 
     &.active:not(.collapsible.collapsed) {
-        background-color: var(--color-weight-125);
     }
     .nav-list {
+        padding: 0 12px;
         margin: 0;
-        transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+        transition:
+            max-height 0.2s ease-in-out,
+            opacity 0.2s ease-in-out;
     }
     .section-header {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
+
         justify-content: space-between;
-        padding-inline-end: calc(var(--space-unit) * 4);
+        border-radius: 24px !important;
     }
+
+    .section-header .status-badge {
+        left: 50px;
+    }
+
     .nav-group-header {
         display: block;
-        margin: 0 0 var(--space-unit);
         font-size: var(--font-size-xs);
         letter-spacing: 0.05em;
+        padding: 6px 6px 6px 11px;
+        margin-left: 12px;
+        font-weight: 600;
         color: var(--color-weight-700);
         text-transform: uppercase;
     }
     .nav-link {
         display: flex;
-        align-items: center;
         line-height: 100%;
         border-inline-end: 2px solid transparent;
 
-        padding: var(--space-unit) 0;
-        transition: border 0.1s, color 0.1s;
+        transition:
+        border 0.1s,
+        color 0.1s;
 
         a:link,
         a:visited {
+            padding: 6px 6px 6px 11px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
             color: var(--color-weight-700);
             font-size: var(--font-size-sm);
-            line-height: 14px;
+        }
+        a > span {
+            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            line-height: 1rem;
+            margin-left: 4px;
+            letter-spacing: 0.8px;
         }
         &:hover {
-            color: var(--color-left-nav-text-hover);
-            border-right-color: var(--color-weight-300);
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: var(--color-hover-bg);
+            a > span {
+                color: var(--color-text-hover);
+            }
+            clr-icon {
+                color: var(--color-text-hover);
+            }
         }
 
         &.active,
         &.active a:link,
         &.active a:visited {
-            color: var(--color-text-active);
-            border-right-color: var(--color-primary-500);
+            background-color: var(--color-active-bg);
+            color: var(--color-text-hover);
+            border-radius: 25px;
             clr-icon {
-                color: var(--color-primary-500);
+                color: var(--color-text-hover);
             }
         }
     }
@@ -90,5 +120,22 @@ nav.main-nav {
     top: 6px;
 }
 .nav-group .section-header vdr-status-badge {
-    left: 20px;
+    top: 6px;
+    left: 74px;
+}
+
+section[data-section-id='settings'],
+section[data-section-id='system'] {
+    .section-header {
+        cursor: pointer;
+        &:hover {
+            background-color: var(--color-hover-bg);
+            border-radius: 24px;
+        }
+    }
+}
+
+.nav-group-header[for='settings'],
+.nav-group-header[for='system'] {
+    cursor: pointer;
 }

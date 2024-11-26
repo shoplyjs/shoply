@@ -11,8 +11,11 @@
     border: none;
     border-radius: var(--border-radius-sm);
     cursor: pointer;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 1px 4px rgba(0, 0, 0, 0.03),
-    0px 2px 6px rgba(0, 0, 0, 0.03), 0px 2px 11px rgba(0, 0, 0, 0.04);
+    box-shadow:
+        0px 1px 2px rgba(0, 0, 0, 0.06),
+        0px 1px 4px rgba(0, 0, 0, 0.03),
+        0px 2px 6px rgba(0, 0, 0, 0.03),
+        0px 2px 11px rgba(0, 0, 0, 0.04);
     background-color: var(--color-button-bg);
     color: var(--color-weight-700);
     line-height: var(--cds-global-typography-body-line-height) !important;
@@ -60,10 +63,19 @@
 a.button-ghost:link,
 a.button-ghost:visited {
     color: var(--color-button-ghost-text);
+    &:hover {
+        color: var(--color-button-ghost-hover-text);
+        fill: var(--color-button-ghost-hover-text);
+    }
+}
+
+a.button-ghost:visited:hover clr-icon {
+    fill: var(--color-button-ghost-hover-text);
 }
 
 a.button-ghost:hover {
     color: var(--color-button-ghost-hover-text);
+    fill: var(--color-button-ghost-hover-text);
 }
 
 .button-small {
@@ -87,7 +99,18 @@ a.button-ghost:hover {
     }
 }
 
-.button, .btn, .button-small {
+.arrow-button {
+    @extend .button-small;
+    background-color: transparent;
+    &:not(:disabled):hover {
+        background-color: transparent;
+    }
+}
+
+.button,
+.btn,
+.button-small {
+    border-radius: 8px;
     &.primary,
     &.btn-primary {
         &:not(:disabled) {

@@ -24,7 +24,7 @@
         "access": "public"
     },
     "peerDependencies": {
-        "@mollie/api-client": "3.x",
+        "@mollie/api-client": "^4.1.0",
         "braintree": "3.x",
         "stripe": "13.x"
     },
@@ -43,14 +43,14 @@
         }
     },
     "devDependencies": {
-        "@mollie/api-client": "^3.7.0",
-        "@types/braintree": "^3.3.11",
-        "@types/localtunnel": "2.0.4",
+        "@mollie/api-client": "^4.1.0",
         "@shoplyjs/common": "^2.3.3",
         "@shoplyjs/core": "^2.3.3",
         "@shoplyjs/testing": "^2.3.3",
+        "@types/braintree": "^3.3.11",
+        "@types/localtunnel": "2.0.4",
         "braintree": "^3.22.0",
-        "localtunnel": "2.0.2",
+        "localtunnel": "^1.8.3",
         "nock": "^13.1.4",
         "rimraf": "^5.0.5",
         "stripe": "^13.3.0",

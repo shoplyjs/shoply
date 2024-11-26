@@ -5,7 +5,10 @@
         "^build"
       ],
       "outputs": [
-        "dist/**"
+        "dist/**",
+        "lib/**",
+        "package/**",
+        "compiler/**"
       ]
     },
     "watch": {

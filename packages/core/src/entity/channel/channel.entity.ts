@@ -47,7 +47,7 @@ export class Channel extends VendureEntity {
      * @description
      * The name of the Channel. For example "US Webstore" or "German Webstore".
      */
-    @Column({ unique: true })
+    @Column()
     code: string;
 
     /**

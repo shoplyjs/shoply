@@ -100,7 +100,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
         const mollieOrder = await mollieClient.orders.get(payment.transactionId);
         // Order could have been completed via Mollie dashboard, then we can just settle
         if (!mollieOrder.isCompleted()) {
-            await mollieClient.orders_shipments.create({ orderId: payment.transactionId }); // Creating a shipment captures the payment
+            await mollieClient.orderShipments.create({ orderId: payment.transactionId }); // Creating a shipment captures the payment
         }
         Logger.info(`Settled payment for ${order.code}`, loggerCtx);
         return { success: true };
@@ -118,7 +118,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
                 `No payment with status 'paid' was found in Mollie for order ${order.code} (Mollie order ${mollieOrder.id})`,
             );
         }
-        const refund = await mollieClient.payments_refunds.create({
+        const refund = await mollieClient.paymentRefunds.create({
             paymentId: molliePayment.id,
             description: input.reason,
             amount: toAmount(amount, order.currencyCode),

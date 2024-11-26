@@ -1,6 +1,6 @@
 {
   "admin": {
-    "create-new-administrator": "Create new administrator"
+    "create-new-administrator": "Create a new administrator"
   },
   "asset": {
     "add-asset": "Add asset",
@@ -211,7 +211,7 @@
     "breadcrumb": "Breadcrumb",
     "browser-default": "Browser default",
     "cancel": "Cancel",
-    "cancel-navigation": "Cancel navigation",
+    "cancel-navigation": "Stay",
     "change-selection": "Change selection",
     "channel": "Channel",
     "channels": "Channels",
@@ -223,7 +223,7 @@
     "confirm-bulk-delete": "Delete the selected items?",
     "confirm-bulk-remove-from-channel": "Remove items from current channel?",
     "confirm-delete-note": "Delete note?",
-    "confirm-navigation": "Confirm navigation",
+    "confirm-navigation": "You have unsaved changes",
     "contents": "Contents",
     "create": "Create",
     "created-at": "Created at",
@@ -238,7 +238,7 @@
     "description": "Description",
     "details": "Details",
     "disabled": "Disabled",
-    "discard-changes": "Discard changes",
+    "discard-changes": "Leave",
     "duplicate": "Duplicate",
     "edit": "Edit",
     "edit-field": "Edit field",
@@ -337,7 +337,7 @@
     "status": "Status",
     "tags": "Tags",
     "theme": "Theme",
-    "there-are-unsaved-changes": "There are unsaved changes. Navigating away will cause these changes to be lost.",
+    "there-are-unsaved-changes": "You have unsaved changes. Leaving this page will discard them. Would you like to proceed?",
     "toggle-all": "Toggle all",
     "total-items": "{currentStart} - {currentEnd} of {totalItems}",
     "update": "Update",
