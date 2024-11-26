@@ -17,7 +17,10 @@
                     [leftPx]="8"
                     display="block"
                 >
-                    <div class="section-header">
+                    <div class="section-header" (click)="toggleExpand(section)">
+                        <label class="nav-group-header" [for]="section.id">{{
+                            section.label | translate
+                        }}</label>
                         <ng-container
                             *ngIf="navBuilderService.sectionBadges[section.id] | async as sectionBadge"
                         >
@@ -26,12 +29,11 @@
                                 [type]="sectionBadge"
                             ></vdr-status-badge>
                         </ng-container>
-                        <label class="nav-group-header mx-4" [for]="section.id">{{
-                            section.label | translate
-                        }}</label>
-                        <button *ngIf="section.collapsible" class="button-small bg-weight-150" (click)="toggleExpand(section)">
+                        <button *ngIf="section.collapsible" class="arrow-button">
                             <clr-icon
-                                [attr.shape]="expandedSections.includes(section.id) ? 'caret up' : 'caret down'"
+                                [attr.shape]="
+                                    expandedSections.includes(section.id) ? 'caret up' : 'caret down'
+                                "
                                 size="12"
                                 [title]="'common.expand-entries' | translate"
                             ></clr-icon>
@@ -39,11 +41,7 @@
                     </div>
                     <div class="nav-list" [ngStyle]="getStyleForSection(section)">
                         <ng-container *ngFor="let item of section.items">
-                            <div
-                                *ngIf="shouldDisplayLink(item)"
-                                class="nav-link px-4"
-                                routerLinkActive="active"
-                            >
+                            <div *ngIf="shouldDisplayLink(item)" class="nav-link" routerLinkActive="active">
                                 <a
                                     [attr.data-item-id]="section.id"
                                     [routerLink]="getRouterLink(item)"

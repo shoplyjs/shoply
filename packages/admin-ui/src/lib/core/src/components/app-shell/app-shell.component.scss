@@ -14,7 +14,6 @@
     flex-direction: column;
     overflow: hidden;
     height: 100%;
-    border-inline-end: 1px solid var(--color-weight-150);
     z-index: 2;
     width: var(--left-nav-width);
     max-width: var(--left-nav-width);
@@ -76,9 +75,10 @@
 }
 
 .settings-nav-container {
-    margin: calc(var(--space-unit) * 3) 0 -10px 0;
+    padding-left: 6px;
+    padding-right: 12px;
     hr {
-        margin: 0 calc(var(--space-unit) * 4);
+        margin: 0 calc(var(--space-unit) * 2);
         margin-bottom: calc(var(--space-unit) * 4);
         border: 1px solid var(--color-weight-150);
         box-shadow: 0px 1px 0px var(--color-weight-100);

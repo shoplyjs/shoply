@@ -7,18 +7,31 @@
 
 ::ng-deep {
     .dropdown-menu {
-        max-width: initial;
+        margin: 0;
+        margin-top: 16px;
+        width: 220px;
+        padding: 8px 0;
+        outline: 0;
+        border-radius: 16px;
+        border: none;
+        will-change: transform, opacity;
+        background-color: var(--color-left-nav-bg);
+        box-shadow:
+            0px 3px 6px rgba(0, 0, 0, 0.2),
+            0px 1px 5px rgba(0, 0, 0, 0.14);
     }
     .dropdown-menu .dropdown-item {
+        background-color: var(--color-left-nav-bg) !important;
         display: flex;
-        align-items: center;
-        padding: 3px 24px;
+        padding: 8px 14px;
         clr-icon {
             margin-inline-end: 3px;
         }
-        &:focus {
-            outline: var(--color-dropdown-item-focus-outline) solid 1px;
-            outline-offset: 1px 0;
+        &:hover {
+            background-color: var(--color-hover-item-bg) !important;
+        }
+        &:active {
+            color: var(--color-text-hover);
         }
     }
 }

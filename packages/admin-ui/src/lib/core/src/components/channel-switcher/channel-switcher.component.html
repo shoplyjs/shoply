@@ -1,10 +1,12 @@
 <ng-container>
     <vdr-dropdown>
-        <button class="active-channel m-auto" vdrDropdownTrigger>
-            <vdr-channel-badge [channelCode]="activeChannelCode$ | async"></vdr-channel-badge>
-            <span class="channel-label">{{
-                activeChannelCode$ | async | channelCodeToLabel | translate
-            }}</span>
+        <button class="active-channel" vdrDropdownTrigger>
+            <div class="channel-label-container">
+                <vdr-channel-badge [channelCode]="activeChannelCode$ | async"></vdr-channel-badge>
+                <span class="channel-label">{{
+                    activeChannelCode$ | async | channelCodeToLabel | translate
+                }}</span>
+            </div>
             <span class="trigger"><clr-icon shape="ellipsis-vertical" size="12"></clr-icon></span>
         </button>
         <vdr-dropdown-menu vdrPosition="bottom-right">

@@ -30,10 +30,17 @@
     }
 }
 
+.channel-label-container {
+    display: flex;
+    align-items: center;
+}
+
 .channel-label {
-    margin: 0 3px;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: small;
+    margin-left: 12px;
+    letter-spacing: 0.4px;
     overflow: hidden;
-    flex: 1;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
