@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.loading$ = this.dataService.client
             .getNetworkStatus()
-            .stream$.pipe(map(data => 0 < data.networkStatus.inFlightRequests));
+            .stream$.pipe(map(data => 1 < data.networkStatus.inFlightRequests));
 
         this.dataService.client
             .uiState()
