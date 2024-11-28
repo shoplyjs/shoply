@@ -1,6 +1,6 @@
 {
   "*.ts": [
-    "echo 'Running ESLint...' && eslint --fix --cache --debug",
+    "echo 'Running ESLint...' && eslint --fix --cache",
     "prettier --write"
   ],
   "*.html": [
