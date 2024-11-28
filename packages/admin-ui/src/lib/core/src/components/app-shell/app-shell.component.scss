@@ -85,8 +85,19 @@
     }
 }
 
+.logo-link {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .logo {
-    max-width: 100%;
+    max-width: 100px;
+}
+
+.logo-text:hover {
+    color: var(--color-text-hover);
 }
 
 .wordmark {
