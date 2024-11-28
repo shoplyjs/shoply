@@ -54,10 +54,10 @@
 
     --color-button-bg: var(--color-weight-150);
     --color-button-hover-bg: var(--color-weight-200);
-    --color-button-ghost-bg: transparent;
+    --color-button-ghost-bg: var(--color-surface-bg);
     --color-button-ghost-text: var(--color-text-100);
-    --color-button-ghost-hover-text: var(--color-text-100);
-    --color-button-ghost-hover-bg: transparent;
+    --color-button-ghost-hover-text: var(--color-text-200);
+    --color-button-ghost-hover-bg: var(--color-surface-bg);
     --color-button-small-bg: var(--color-weight-150);
     --color-button-small-hover-bg: var(--color-weight-200);
     --color-button-small-text: var(--color-weight-700);
