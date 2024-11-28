@@ -1,11 +1,9 @@
 {
   "*.ts": [
-    "eslint --fix",
-    "prettier --write",
-    "git add"
+    "echo 'Running ESLint...' && eslint --fix --cache --debug",
+    "prettier --write"
   ],
   "*.html": [
-    "prettier --write",
-    "git add"
+    "prettier --write"
   ]
 }
