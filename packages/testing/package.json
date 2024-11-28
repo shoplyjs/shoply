@@ -8,7 +8,7 @@
         "e2e"
     ],
     "author": "Michael Bromley <michael@michaelbromley.co.uk>",
-    "homepage": "https://www.vendure.io/",
+    "homepage": "https://shoplyjs.com/",
     "license": "MIT",
     "directories": {
         "lib": "lib"

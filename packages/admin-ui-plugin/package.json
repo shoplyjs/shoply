@@ -13,8 +13,8 @@
         "lint": "eslint --fix .",
         "compile": "tsc -p ./tsconfig.build.json --verbose"
     },
-    "homepage": "https://www.vendure.io/",
-    "funding": "https://github.com/sponsors/michaelbromley",
+    "homepage": "https://shoplyjs.com/",
+    "funding": "https://github.com/sponsors/ArseniyX",
     "publishConfig": {
         "access": "public"
     },

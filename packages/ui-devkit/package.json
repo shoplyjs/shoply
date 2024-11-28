@@ -8,14 +8,14 @@
         "extensions"
     ],
     "author": "Michael Bromley <michael@michaelbromley.co.uk>",
-    "homepage": "https://www.vendure.io/",
+    "homepage": "https://shoplyjs.com/",
+    "funding": "https://github.com/sponsors/ArseniyX",
     "license": "MIT",
     "files": [
         "client",
         "compiler",
         "scaffold"
     ],
-    "funding": "https://github.com/sponsors/michaelbromley",
     "publishConfig": {
         "access": "public"
     },

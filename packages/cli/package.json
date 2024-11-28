@@ -1,52 +1,52 @@
 {
-    "name": "@shoplyjs/cli",
-    "version": "2.3.4",
-    "description": "A modern, headless ecommerce framework",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/vendure-ecommerce/vendure/"
-    },
-    "keywords": [
-        "vendure",
-        "ecommerce",
-        "headless",
-        "graphql",
-        "typescript"
-    ],
-    "homepage": "https://www.vendure.io/",
-    "funding": "https://github.com/sponsors/michaelbromley",
-    "private": false,
-    "license": "MIT",
-    "type": "commonjs",
-    "scripts": {
-        "build": "rimraf dist && tsc -p ./tsconfig.cli.json && ts-node ./build.ts",
-        "watch": "tsc -p ./tsconfig.cli.json --watch",
-        "ci": "npm run build",
-        "test": "vitest --config vitest.config.mts --run"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "bin": {
-        "vendure": "dist/cli.js"
-    },
-    "files": [
-        "dist/**/*"
-    ],
-    "dependencies": {
-        "@clack/prompts": "^0.7.0",
-        "@shoplyjs/common": "^2.3.3",
-        "change-case": "^4.1.2",
-        "commander": "^11.0.0",
-        "dotenv": "^16.4.5",
-        "fs-extra": "^11.2.0",
-        "picocolors": "^1.0.0",
-        "ts-morph": "^21.0.1",
-        "ts-node": "^10.9.2",
-        "tsconfig-paths": "^4.2.0"
-    },
-    "devDependencies": {
-        "@shoplyjs/core": "^2.3.3",
-        "typescript": "5.3.3"
-    }
+  "name": "@shoplyjs/cli",
+  "version": "2.3.4",
+  "description": "A modern, headless ecommerce framework",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vendure-ecommerce/vendure/"
+  },
+  "keywords": [
+    "vendure",
+    "ecommerce",
+    "headless",
+    "graphql",
+    "typescript"
+  ],
+  "homepage": "https://shoplyjs.com/",
+  "funding": "https://github.com/sponsors/ArseniyX",
+  "private": false,
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "build": "rimraf dist && tsc -p ./tsconfig.cli.json && ts-node ./build.ts",
+    "watch": "tsc -p ./tsconfig.cli.json --watch",
+    "ci": "npm run build",
+    "test": "vitest --config vitest.config.mts --run"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "vendure": "dist/cli.js"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "@shoplyjs/common": "^2.3.3",
+    "change-case": "^4.1.2",
+    "commander": "^11.0.0",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0",
+    "picocolors": "^1.0.0",
+    "ts-morph": "^21.0.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "devDependencies": {
+    "@shoplyjs/core": "^2.3.3",
+    "typescript": "5.3.3"
+  }
 }

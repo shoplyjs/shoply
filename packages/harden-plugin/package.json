@@ -1,27 +1,27 @@
 {
-    "name": "@shoplyjs/harden-plugin",
-    "version": "2.3.4",
-    "license": "MIT",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "files": [
-        "lib/**/*"
-    ],
-    "scripts": {
-        "watch": "tsc -p ./tsconfig.build.json --watch",
-        "build": "rimraf lib && tsc -p ./tsconfig.build.json",
-        "lint": "eslint --fix ."
-    },
-    "homepage": "https://www.vendure.io/",
-    "funding": "https://github.com/sponsors/michaelbromley",
-    "publishConfig": {
-        "access": "public"
-    },
-    "dependencies": {
-        "graphql-query-complexity": "^0.12.0"
-    },
-    "devDependencies": {
-        "@shoplyjs/common": "^2.3.3",
-        "@shoplyjs/core": "^2.3.3"
-    }
+  "name": "@shoplyjs/harden-plugin",
+  "version": "2.3.4",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "watch": "tsc -p ./tsconfig.build.json --watch",
+    "build": "rimraf lib && tsc -p ./tsconfig.build.json",
+    "lint": "eslint --fix ."
+  },
+  "homepage": "https://shoplyjs.com/",
+  "funding": "https://github.com/sponsors/ArseniyX",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "graphql-query-complexity": "^0.12.0"
+  },
+  "devDependencies": {
+    "@shoplyjs/common": "^2.3.3",
+    "@shoplyjs/core": "^2.3.3"
+  }
 }

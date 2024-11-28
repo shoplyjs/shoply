@@ -12,8 +12,8 @@
         "build": "rimraf lib && tsc -p ./tsconfig.build.json",
         "lint": "eslint --fix ."
     },
-    "homepage": "https://www.vendure.io",
-    "funding": "https://github.com/sponsors/michaelbromley",
+    "homepage": "https://shoplyjs.com/",
+    "funding": "https://github.com/sponsors/ArseniyX",
     "publishConfig": {
         "access": "public"
     },
