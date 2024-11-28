@@ -93,7 +93,6 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
-      "post-commit": "git update-index --again",
       "pre-commit": "lint-staged --debug"
     }
   },
