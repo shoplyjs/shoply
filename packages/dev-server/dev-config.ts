@@ -28,7 +28,13 @@ export const devConfig: VendureConfig = {
         port: API_PORT,
         adminApiPlayground: false,
         shopApiPlayground: false,
-        apolloServerPlugins: isDev ? [ApolloServerPluginLandingPageLocalDefault()] : [],
+        apolloServerPlugins: isDev
+            ? [
+                  ApolloServerPluginLandingPageLocalDefault({
+                      includeCookies: true,
+                  }),
+              ]
+            : [],
     },
     authOptions: {
         disableAuth: false,

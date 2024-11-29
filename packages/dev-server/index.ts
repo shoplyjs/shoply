@@ -6,9 +6,9 @@ import { devConfig } from './dev-config';
  * This bootstraps the dev server, used for testing Vendure during development.
  */
 bootstrap(devConfig)
-    .then(app => {
+    .then(async app => {
         if (process.env.RUN_JOB_QUEUE === '1') {
-            app.get(JobQueueService).start();
+            await app.get(JobQueueService).start();
         }
     })
     .catch(err => {
