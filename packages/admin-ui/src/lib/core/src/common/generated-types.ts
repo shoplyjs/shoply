@@ -972,6 +972,13 @@ export type CreateTaxRateInput = {
   zoneId: Scalars['ID']['input'];
 };
 
+export type CreateWebhookInput = {
+  headers: Array<Scalars['String']['input']>;
+  method: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  url: Scalars['String']['input'];
+};
+
 export type CreateZoneInput = {
   customFields?: InputMaybe<Scalars['JSON']['input']>;
   memberIds?: InputMaybe<Array<Scalars['ID']['input']>>;
@@ -2811,6 +2818,7 @@ export type Mutation = {
   /** Create a new TaxRate */
   createTaxRate: TaxRate;
   createUser: Success;
+  createWebhook: Webhook;
   /** Create a new Zone */
   createZone: Zone;
   /** Delete an Administrator */
@@ -2895,6 +2903,7 @@ export type Mutation = {
   deleteTaxRate: DeletionResponse;
   /** Delete multiple TaxRates */
   deleteTaxRates: Array<DeletionResponse>;
+  deleteWebhook: DeletionResponse;
   /** Delete a Zone */
   deleteZone: DeletionResponse;
   /** Delete a Zone */
@@ -3039,6 +3048,7 @@ export type Mutation = {
   /** Update an existing TaxRate */
   updateTaxRate: TaxRate;
   updateUserChannels: UserStatus;
+  updateWebhook: Webhook;
   /** Update an existing Zone */
   updateZone: Zone;
 };
@@ -3305,6 +3315,11 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationCreateWebhookArgs = {
+  input: CreateWebhookInput;
+};
+
+
 export type MutationCreateZoneArgs = {
   input: CreateZoneInput;
 };
@@ -3532,6 +3547,11 @@ export type MutationDeleteTaxRateArgs = {
 
 export type MutationDeleteTaxRatesArgs = {
   ids: Array<Scalars['ID']['input']>;
+};
+
+
+export type MutationDeleteWebhookArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -3915,6 +3935,11 @@ export type MutationUpdateTaxRateArgs = {
 
 export type MutationUpdateUserChannelsArgs = {
   channels: Array<CurrentUserChannelInput>;
+};
+
+
+export type MutationUpdateWebhookArgs = {
+  input: UpdateWebhookInput;
 };
 
 
@@ -5202,6 +5227,8 @@ export type Query = {
   testShippingMethod: TestShippingMethodResult;
   uiState: UiState;
   userStatus: UserStatus;
+  webhook?: Maybe<Webhook>;
+  webhooks: Array<Webhook>;
   zone?: Maybe<Zone>;
   zones: ZoneList;
 };
@@ -5483,6 +5510,11 @@ export type QueryTestEligibleShippingMethodsArgs = {
 
 export type QueryTestShippingMethodArgs = {
   input: TestShippingMethodInput;
+};
+
+
+export type QueryWebhookArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -6688,6 +6720,14 @@ export type UpdateTaxRateInput = {
   zoneId?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type UpdateWebhookInput = {
+  headers?: InputMaybe<Array<Scalars['String']['input']>>;
+  id: Scalars['ID']['input'];
+  method?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type UpdateZoneInput = {
   customFields?: InputMaybe<Scalars['JSON']['input']>;
   id: Scalars['ID']['input'];
@@ -6724,6 +6764,17 @@ export type UserStatusInput = {
   channels: Array<CurrentUserChannelInput>;
   loginTime: Scalars['String']['input'];
   username: Scalars['String']['input'];
+};
+
+export type Webhook = Node & {
+  __typename?: 'Webhook';
+  createdAt: Scalars['DateTime']['output'];
+  headers: Array<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  method: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  url: Scalars['String']['output'];
 };
 
 export type Zone = Node & {
