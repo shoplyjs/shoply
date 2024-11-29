@@ -20,12 +20,13 @@ import { TransactionalConnection } from '../../connection/transactional-connecti
 import { Channel, TaxRate } from '../../entity';
 import { Country } from '../../entity/region/country.entity';
 import { Zone } from '../../entity/zone/zone.entity';
-import { EventBus } from '../../event-bus';
 import { ZoneEvent } from '../../event-bus/events/zone-event';
 import { ZoneMembersEvent } from '../../event-bus/events/zone-members-event';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { TranslatorService } from '../helpers/translator/translator.service';
 import { patchEntity } from '../helpers/utils/patch-entity';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -42,9 +43,9 @@ export class ZoneService {
     constructor(
         private connection: TransactionalConnection,
         private configService: ConfigService,
-        private eventBus: EventBus,
         private translator: TranslatorService,
         private listQueryBuilder: ListQueryBuilder,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /** @internal */
@@ -120,7 +121,8 @@ export class ZoneService {
         }
         const newZone = await this.connection.getRepository(ctx, Zone).save(zone);
         await this.zones.refresh(ctx);
-        await this.eventBus.publish(new ZoneEvent(ctx, newZone, 'created', input));
+
+        this.eventEmitter.emit(EventNames.ZONE_CREATED, new ZoneEvent(ctx, newZone, 'created', input));
         return assertFound(this.findOne(ctx, newZone.id));
     }
 
@@ -129,7 +131,8 @@ export class ZoneService {
         const updatedZone = patchEntity(zone, input);
         await this.connection.getRepository(ctx, Zone).save(updatedZone, { reload: false });
         await this.zones.refresh(ctx);
-        await this.eventBus.publish(new ZoneEvent(ctx, zone, 'updated', input));
+
+        this.eventEmitter.emit(EventNames.ZONE_UPDATED, new ZoneEvent(ctx, zone, 'updated', input));
         return assertFound(this.findOne(ctx, zone.id));
     }
 
@@ -168,7 +171,8 @@ export class ZoneService {
         } else {
             await this.connection.getRepository(ctx, Zone).remove(zone);
             await this.zones.refresh(ctx);
-            await this.eventBus.publish(new ZoneEvent(ctx, deletedZone, 'deleted', id));
+
+            this.eventEmitter.emit(EventNames.ZONE_DELETED, new ZoneEvent(ctx, deletedZone, 'deleted', id));
             return {
                 result: DeletionResult.DELETED,
                 message: '',
@@ -188,7 +192,11 @@ export class ZoneService {
         zone.members = members;
         await this.connection.getRepository(ctx, Zone).save(zone, { reload: false });
         await this.zones.refresh(ctx);
-        await this.eventBus.publish(new ZoneMembersEvent(ctx, zone, 'assigned', memberIds));
+
+        this.eventEmitter.emit(
+            EventNames.ZONE_MEMBERS_ASSIGNED,
+            new ZoneMembersEvent(ctx, zone, 'assigned', memberIds),
+        );
         return assertFound(this.findOne(ctx, zone.id));
     }
 
@@ -202,7 +210,11 @@ export class ZoneService {
         zone.members = zone.members.filter(country => !memberIds.includes(country.id));
         await this.connection.getRepository(ctx, Zone).save(zone, { reload: false });
         await this.zones.refresh(ctx);
-        await this.eventBus.publish(new ZoneMembersEvent(ctx, zone, 'removed', memberIds));
+
+        this.eventEmitter.emit(
+            EventNames.ZONE_MEMBERS_REMOVED,
+            new ZoneMembersEvent(ctx, zone, 'removed', memberIds),
+        );
         return assertFound(this.findOne(ctx, zone.id));
     }
 

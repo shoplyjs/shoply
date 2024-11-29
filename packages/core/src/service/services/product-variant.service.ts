@@ -39,7 +39,6 @@ import { Product } from '../../entity/product/product.entity';
 import { ProductOption } from '../../entity/product-option/product-option.entity';
 import { ProductVariantTranslation } from '../../entity/product-variant/product-variant-translation.entity';
 import { ProductVariant } from '../../entity/product-variant/product-variant.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { ProductVariantChannelEvent } from '../../event-bus/events/product-variant-channel-event';
 import { ProductVariantEvent } from '../../event-bus/events/product-variant-event';
 import { ProductVariantPriceEvent } from '../../event-bus/events/product-variant-price-event';
@@ -58,6 +57,8 @@ import { RoleService } from './role.service';
 import { StockLevelService } from './stock-level.service';
 import { StockMovementService } from './stock-movement.service';
 import { TaxCategoryService } from './tax-category.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -74,7 +75,6 @@ export class ProductVariantService {
         private facetValueService: FacetValueService,
         private assetService: AssetService,
         private translatableSaver: TranslatableSaver,
-        private eventBus: EventBus,
         private listQueryBuilder: ListQueryBuilder,
         private globalSettingsService: GlobalSettingsService,
         private stockMovementService: StockMovementService,
@@ -85,6 +85,7 @@ export class ProductVariantService {
         private requestCache: RequestContextCacheService,
         private productPriceApplicator: ProductPriceApplicator,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     async findAll(
@@ -386,7 +387,11 @@ export class ProductVariantService {
             ids.push(id);
         }
         const createdVariants = await this.findByIds(ctx, ids);
-        await this.eventBus.publish(new ProductVariantEvent(ctx, createdVariants, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_VARIANT_CREATED,
+            new ProductVariantEvent(ctx, createdVariants, 'created', input),
+        );
+
         return createdVariants;
     }
 
@@ -401,7 +406,11 @@ export class ProductVariantService {
             ctx,
             input.map(i => i.id),
         );
-        await this.eventBus.publish(new ProductVariantEvent(ctx, updatedVariants, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_VARIANT_UPDATED,
+            new ProductVariantEvent(ctx, updatedVariants, 'updated', input),
+        );
+
         return updatedVariants;
     }
 
@@ -600,7 +609,11 @@ export class ProductVariantService {
                     currencyCode: currencyCode ?? ctx.channel.defaultCurrencyCode,
                 }),
             );
-            await this.eventBus.publish(new ProductVariantPriceEvent(ctx, [createdPrice], 'created'));
+            this.eventEmitter.emit(
+                EventNames.PRODUCT_VARIANT_PRICE_CREATED,
+                new ProductVariantPriceEvent(ctx, [createdPrice], 'created'),
+            );
+
             additionalPricesToUpdate = await productVariantPriceUpdateStrategy.onPriceCreated(
                 ctx,
                 createdPrice,
@@ -612,7 +625,11 @@ export class ProductVariantService {
             const updatedPrice = await this.connection
                 .getRepository(ctx, ProductVariantPrice)
                 .save(targetPrice);
-            await this.eventBus.publish(new ProductVariantPriceEvent(ctx, [updatedPrice], 'updated'));
+            this.eventEmitter.emit(
+                EventNames.PRODUCT_VARIANT_PRICE_UPDATED,
+                new ProductVariantPriceEvent(ctx, [updatedPrice], 'updated'),
+            );
+
             additionalPricesToUpdate = await productVariantPriceUpdateStrategy.onPriceUpdated(
                 ctx,
                 updatedPrice,
@@ -630,7 +647,8 @@ export class ProductVariantService {
             const updatedAdditionalPrices = await this.connection
                 .getRepository(ctx, ProductVariantPrice)
                 .save(uniqueAdditionalPricesToUpdate);
-            await this.eventBus.publish(
+            this.eventEmitter.emit(
+                EventNames.PRODUCT_VARIANT_PRICE_UPDATED,
                 new ProductVariantPriceEvent(ctx, updatedAdditionalPrices, 'updated'),
             );
         }
@@ -652,7 +670,11 @@ export class ProductVariantService {
         });
         if (variantPrice) {
             await this.connection.getRepository(ctx, ProductVariantPrice).remove(variantPrice);
-            await this.eventBus.publish(new ProductVariantPriceEvent(ctx, [variantPrice], 'deleted'));
+            this.eventEmitter.emit(
+                EventNames.PRODUCT_VARIANT_PRICE_DELETED,
+                new ProductVariantPriceEvent(ctx, [variantPrice], 'deleted'),
+            );
+
             const { productVariantPriceUpdateStrategy } = this.configService.catalogOptions;
             const allPrices = await this.connection.getRepository(ctx, ProductVariantPrice).find({
                 where: {
@@ -668,7 +690,8 @@ export class ProductVariantService {
                 const updatedAdditionalPrices = await this.connection
                     .getRepository(ctx, ProductVariantPrice)
                     .save(additionalPricesToUpdate);
-                await this.eventBus.publish(
+                this.eventEmitter.emit(
+                    EventNames.PRODUCT_VARIANT_PRICE_UPDATED,
                     new ProductVariantPriceEvent(ctx, updatedAdditionalPrices, 'updated'),
                 );
             }
@@ -684,7 +707,11 @@ export class ProductVariantService {
             variant.deletedAt = new Date();
         }
         await this.connection.getRepository(ctx, ProductVariant).save(variants, { reload: false });
-        await this.eventBus.publish(new ProductVariantEvent(ctx, variants, 'deleted', id));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_VARIANT_DELETED,
+            new ProductVariantEvent(ctx, variants, 'deleted', id),
+        );
+
         return {
             result: DeletionResult.DELETED,
         };
@@ -821,7 +848,8 @@ export class ProductVariantService {
             variants.map(v => v.id),
         );
         for (const variant of variants) {
-            await this.eventBus.publish(
+            this.eventEmitter.emit(
+                EventNames.PRODUCT_VARIANT_CHANNEL_ASSIGNED,
                 new ProductVariantChannelEvent(ctx, variant, input.channelId, 'assigned'),
             );
         }
@@ -877,7 +905,8 @@ export class ProductVariantService {
         // whereby an event listener triggers a query which does not yet have access to the changes
         // within the current transaction.
         for (const variant of variants) {
-            await this.eventBus.publish(
+            this.eventEmitter.emit(
+                EventNames.PRODUCT_VARIANT_CHANNEL_REMOVED,
                 new ProductVariantChannelEvent(ctx, variant, input.channelId, 'removed'),
             );
         }

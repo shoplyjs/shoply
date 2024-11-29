@@ -94,7 +94,6 @@ import { Session } from '../../entity/session/session.entity';
 import { ShippingLine } from '../../entity/shipping-line/shipping-line.entity';
 import { Surcharge } from '../../entity/surcharge/surcharge.entity';
 import { User } from '../../entity/user/user.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { CouponCodeEvent } from '../../event-bus/events/coupon-code-event';
 import { OrderEvent } from '../../event-bus/events/order-event';
 import { OrderLineEvent } from '../../event-bus/events/order-line-event';
@@ -127,6 +126,8 @@ import { PaymentService } from './payment.service';
 import { ProductVariantService } from './product-variant.service';
 import { PromotionService } from './promotion.service';
 import { StockLevelService } from './stock-level.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -153,13 +154,13 @@ export class OrderService {
         private refundStateMachine: RefundStateMachine,
         private historyService: HistoryService,
         private promotionService: PromotionService,
-        private eventBus: EventBus,
         private channelService: ChannelService,
         private orderModifier: OrderModifier,
         private customFieldRelationService: CustomFieldRelationService,
         private requestCache: RequestContextCacheService,
         private translator: TranslatorService,
         private stockLevelService: StockLevelService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /**
@@ -428,7 +429,8 @@ export class OrderService {
         }
         await this.channelService.assignToCurrentChannel(newOrder, ctx);
         const order = await this.connection.getRepository(ctx, Order).save(newOrder);
-        await this.eventBus.publish(new OrderEvent(ctx, order, 'created'));
+
+        this.eventEmitter.emit(EventNames.ORDER_CREATED, new OrderEvent(ctx, order, 'created'));
         const transitionResult = await this.transitionToState(ctx, order.id, 'AddingItems');
         if (isGraphQlErrorResult(transitionResult)) {
             // this should never occur, so we will throw rather than return
@@ -442,7 +444,8 @@ export class OrderService {
         newOrder.active = false;
         await this.channelService.assignToCurrentChannel(newOrder, ctx);
         const order = await this.connection.getRepository(ctx, Order).save(newOrder);
-        await this.eventBus.publish(new OrderEvent(ctx, order, 'created'));
+
+        this.eventEmitter.emit(EventNames.ORDER_DRAFT_CREATED, new OrderEvent(ctx, order, 'created'));
         const transitionResult = await this.transitionToState(ctx, order.id, 'Draft');
         if (isGraphQlErrorResult(transitionResult)) {
             // this should never occur, so we will throw rather than return
@@ -477,7 +480,8 @@ export class OrderService {
         order = patchEntity(order, { customFields });
         const updatedOrder = await this.connection.getRepository(ctx, Order).save(order);
         await this.customFieldRelationService.updateRelations(ctx, Order, { customFields }, updatedOrder);
-        await this.eventBus.publish(new OrderEvent(ctx, updatedOrder, 'updated'));
+        this.eventEmitter.emit(EventNames.ORDER_UPDATED, new OrderEvent(ctx, updatedOrder, 'updated'));
+
         return updatedOrder;
     }
 
@@ -511,7 +515,11 @@ export class OrderService {
         }
 
         const updatedOrder = await this.addCustomerToOrder(ctx, order.id, targetCustomer);
-        await this.eventBus.publish(new OrderEvent(ctx, updatedOrder, 'updated'));
+        this.eventEmitter.emit(
+            EventNames.ORDER_CUSTOMER_UPDATED,
+            new OrderEvent(ctx, updatedOrder, 'updated'),
+        );
+
         await this.historyService.createHistoryEntryForOrder({
             ctx,
             orderId,
@@ -654,7 +662,11 @@ export class OrderService {
             order.lines = order.lines.filter(l => !idsAreEqual(l.id, orderLine.id));
             const deletedOrderLine = new OrderLine(orderLine);
             await this.connection.getRepository(ctx, OrderLine).remove(orderLine);
-            await this.eventBus.publish(new OrderLineEvent(ctx, order, deletedOrderLine, 'deleted'));
+            this.eventEmitter.emit(
+                EventNames.ORDER_LINE_DELETED,
+                new OrderLineEvent(ctx, order, deletedOrderLine, 'deleted'),
+            );
+
             updatedOrderLines = [];
         } else {
             await this.orderModifier.updateOrderLineQuantity(ctx, orderLine, correctedQuantity, order);
@@ -692,7 +704,11 @@ export class OrderService {
         const updatedOrder = await this.applyPriceAdjustments(ctx, order);
         const deletedOrderLine = new OrderLine(orderLine);
         await this.connection.getRepository(ctx, OrderLine).remove(orderLine);
-        await this.eventBus.publish(new OrderLineEvent(ctx, order, deletedOrderLine, 'deleted'));
+        this.eventEmitter.emit(
+            EventNames.ORDER_LINE_DELETED,
+            new OrderLineEvent(ctx, order, deletedOrderLine, 'deleted'),
+        );
+
         return updatedOrder;
     }
 
@@ -785,7 +801,11 @@ export class OrderService {
             type: HistoryEntryType.ORDER_COUPON_APPLIED,
             data: { couponCode, promotionId: validationResult.id },
         });
-        await this.eventBus.publish(new CouponCodeEvent(ctx, couponCode, orderId, 'assigned'));
+        this.eventEmitter.emit(
+            EventNames.ORDER_COUPON_APPLIED,
+            new CouponCodeEvent(ctx, couponCode, orderId, 'assigned'),
+        );
+
         return this.applyPriceAdjustments(ctx, order);
     }
 
@@ -811,7 +831,11 @@ export class OrderService {
                 type: HistoryEntryType.ORDER_COUPON_REMOVED,
                 data: { couponCode },
             });
-            await this.eventBus.publish(new CouponCodeEvent(ctx, couponCode, orderId, 'removed'));
+            this.eventEmitter.emit(
+                EventNames.ORDER_COUPON_REMOVED,
+                new CouponCodeEvent(ctx, couponCode, orderId, 'removed'),
+            );
+
             const result = await this.applyPriceAdjustments(ctx, order);
             await this.connection.getRepository(ctx, OrderLine).save(affectedOrderLines);
             return result;
@@ -967,7 +991,11 @@ export class OrderService {
             return new OrderStateTransitionError({ transitionError, fromState, toState: state });
         }
         await this.connection.getRepository(ctx, Order).save(order, { reload: false });
-        await this.eventBus.publish(new OrderStateTransitionEvent(fromState, state, ctx, order));
+        this.eventEmitter.emit(
+            EventNames.ORDER_STATE_TRANSITION,
+            new OrderStateTransitionEvent(fromState, state, ctx, order),
+        );
+
         await finalize();
         await this.connection.getRepository(ctx, Order).save(order, { reload: false });
         return order;
@@ -1016,7 +1044,8 @@ export class OrderService {
         );
         await this.connection.getRepository(ctx, Refund).save(refund);
         await finalize();
-        await this.eventBus.publish(
+        this.eventEmitter.emit(
+            EventNames.REFAUND_STATE_TRANSITION,
             new RefundStateTransitionEvent(fromState, toState, ctx, refund, refund.payment.order),
         );
         return refund;
@@ -1457,7 +1486,10 @@ export class OrderService {
         const createdRefund = await this.paymentService.createRefund(ctx, input, order, payment);
 
         if (createdRefund instanceof Refund) {
-            await this.eventBus.publish(new RefundEvent(ctx, order, createdRefund, 'created'));
+            this.eventEmitter.emit(
+                EventNames.REFAUND_CREATED,
+                new RefundEvent(ctx, order, createdRefund, 'created'),
+            );
         }
         return createdRefund;
     }
@@ -1481,7 +1513,8 @@ export class OrderService {
         );
         await this.connection.getRepository(ctx, Refund).save(refund);
         await finalize();
-        await this.eventBus.publish(
+        this.eventEmitter.emit(
+            EventNames.REFAUND_STATE_TRANSITION,
             new RefundStateTransitionEvent(fromState, toState, ctx, refund, refund.payment.order),
         );
         return refund;
@@ -1589,7 +1622,6 @@ export class OrderService {
         }
         const deletedOrder = new Order(orderToDelete);
         await this.connection.getRepository(ctx, Order).delete(orderToDelete.id);
-        await this.eventBus.publish(new OrderEvent(ctx, deletedOrder, 'deleted'));
     }
 
     /**

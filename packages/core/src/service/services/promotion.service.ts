@@ -12,7 +12,6 @@ import {
     UpdatePromotionInput,
     UpdatePromotionResult,
 } from '@shoplyjs/common/lib/generated-types';
-import { omit } from '@shoplyjs/common/lib/omit';
 import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
 import { unique } from '@shoplyjs/common/lib/unique';
 import { In, IsNull } from 'typeorm';
@@ -20,7 +19,7 @@ import { In, IsNull } from 'typeorm';
 import { RequestContext } from '../../api/common/request-context';
 import { RelationPaths } from '../../api/decorators/relations.decorator';
 import { ErrorResultUnion, JustErrorResults } from '../../common/error/error-result';
-import { IllegalOperationError, UserInputError } from '../../common/error/errors';
+import { UserInputError } from '../../common/error/errors';
 import { MissingConditionsError } from '../../common/error/generated-graphql-admin-errors';
 import {
     CouponCodeExpiredError,
@@ -37,7 +36,6 @@ import { TransactionalConnection } from '../../connection/transactional-connecti
 import { Order } from '../../entity/order/order.entity';
 import { PromotionTranslation } from '../../entity/promotion/promotion-translation.entity';
 import { Promotion } from '../../entity/promotion/promotion.entity';
-import { EventBus } from '../../event-bus';
 import { PromotionEvent } from '../../event-bus/events/promotion-event';
 import { ConfigArgService } from '../helpers/config-arg/config-arg.service';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
@@ -45,9 +43,10 @@ import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-build
 import { OrderState } from '../helpers/order-state-machine/order-state';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
 import { TranslatorService } from '../helpers/translator/translator.service';
-import { patchEntity } from '../helpers/utils/patch-entity';
 
 import { ChannelService } from './channel.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -67,9 +66,9 @@ export class PromotionService {
         private listQueryBuilder: ListQueryBuilder,
         private configArgService: ConfigArgService,
         private customFieldRelationService: CustomFieldRelationService,
-        private eventBus: EventBus,
         private translatableSaver: TranslatableSaver,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {
         this.availableConditions = this.configService.promotionOptions.promotionConditions || [];
         this.availableActions = this.configService.promotionOptions.promotionActions || [];
@@ -148,7 +147,11 @@ export class PromotionService {
             input,
             newPromotion,
         );
-        await this.eventBus.publish(new PromotionEvent(ctx, promotionWithRelations, 'created', input));
+
+        this.eventEmitter.emit(
+            EventNames.PROMOTION_CREATED,
+            new PromotionEvent(ctx, newPromotion, 'created', input),
+        );
         return assertFound(this.findOne(ctx, newPromotion.id));
     }
 
@@ -187,7 +190,11 @@ export class PromotionService {
             },
         });
         await this.customFieldRelationService.updateRelations(ctx, Promotion, input, updatedPromotion);
-        await this.eventBus.publish(new PromotionEvent(ctx, promotion, 'updated', input));
+
+        this.eventEmitter.emit(
+            EventNames.PROMOTION_UPDATED,
+            new PromotionEvent(ctx, updatedPromotion, 'updated', input),
+        );
         return assertFound(this.findOne(ctx, updatedPromotion.id));
     }
 
@@ -196,7 +203,10 @@ export class PromotionService {
         await this.connection
             .getRepository(ctx, Promotion)
             .update({ id: promotionId }, { deletedAt: new Date() });
-        await this.eventBus.publish(new PromotionEvent(ctx, promotion, 'deleted', promotionId));
+        this.eventEmitter.emit(
+            EventNames.PROMOTION_DELETED,
+            new PromotionEvent(ctx, promotion, 'deleted', promotionId),
+        );
 
         return {
             result: DeletionResult.DELETED,

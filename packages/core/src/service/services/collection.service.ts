@@ -17,7 +17,7 @@ import { pick } from '@shoplyjs/common/lib/pick';
 import { ROOT_COLLECTION_NAME } from '@shoplyjs/common/lib/shared-constants';
 import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
 import { unique } from '@shoplyjs/common/lib/unique';
-import { merge } from 'rxjs';
+import { fromEvent, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { In, IsNull } from 'typeorm';
 
@@ -33,11 +33,8 @@ import { TransactionalConnection } from '../../connection/transactional-connecti
 import { CollectionTranslation } from '../../entity/collection/collection-translation.entity';
 import { Collection } from '../../entity/collection/collection.entity';
 import { ProductVariant } from '../../entity/product-variant/product-variant.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { CollectionEvent } from '../../event-bus/events/collection-event';
 import { CollectionModificationEvent } from '../../event-bus/events/collection-modification-event';
-import { ProductEvent } from '../../event-bus/events/product-event';
-import { ProductVariantEvent } from '../../event-bus/events/product-variant-event';
 import { JobQueue } from '../../job-queue/job-queue';
 import { JobQueueService } from '../../job-queue/job-queue.service';
 import { ConfigArgService } from '../helpers/config-arg/config-arg.service';
@@ -51,6 +48,8 @@ import { moveToIndex } from '../helpers/utils/move-to-index';
 import { AssetService } from './asset.service';
 import { ChannelService } from './channel.service';
 import { RoleService } from './role.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 export type ApplyCollectionFiltersJobData = {
     ctx: SerializedRequestContext;
@@ -75,7 +74,6 @@ export class CollectionService implements OnModuleInit {
         private assetService: AssetService,
         private listQueryBuilder: ListQueryBuilder,
         private translatableSaver: TranslatableSaver,
-        private eventBus: EventBus,
         private jobQueueService: JobQueueService,
         private configService: ConfigService,
         private slugValidator: SlugValidator,
@@ -83,14 +81,15 @@ export class CollectionService implements OnModuleInit {
         private customFieldRelationService: CustomFieldRelationService,
         private translator: TranslatorService,
         private roleService: RoleService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /**
      * @internal
      */
     async onModuleInit() {
-        const productEvents$ = this.eventBus.ofType(ProductEvent);
-        const variantEvents$ = this.eventBus.ofType(ProductVariantEvent);
+        const productEvents$ = fromEvent(this.eventEmitter, EventNames.PRODUCT_CREATED);
+        const variantEvents$ = fromEvent(this.eventEmitter, EventNames.PRODUCT_VARIANT_CREATED);
 
         merge(productEvents$, variantEvents$)
             .pipe(debounceTime(50))
@@ -149,7 +148,8 @@ export class CollectionService implements OnModuleInit {
                         }
                         job.setProgress(Math.ceil((completed / job.data.collectionIds.length) * 100));
                         if (affectedVariantIds.length) {
-                            await this.eventBus.publish(
+                            this.eventEmitter.emit(
+                                EventNames.COLLECTION_MODIFIED,
                                 new CollectionModificationEvent(ctx, collection, affectedVariantIds),
                             );
                         }
@@ -478,7 +478,10 @@ export class CollectionService implements OnModuleInit {
             },
             { ctx },
         );
-        await this.eventBus.publish(new CollectionEvent(ctx, collectionWithRelations, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.COLLECTION_CREATED,
+            new CollectionEvent(ctx, collectionWithRelations, 'created', input),
+        );
         return assertFound(this.findOne(ctx, collection.id));
     }
 
@@ -509,9 +512,15 @@ export class CollectionService implements OnModuleInit {
             );
         } else {
             const affectedVariantIds = await this.getCollectionProductVariantIds(collection);
-            await this.eventBus.publish(new CollectionModificationEvent(ctx, collection, affectedVariantIds));
+            this.eventEmitter.emit(
+                EventNames.COLLECTION_UPDATED,
+                new CollectionEvent(ctx, collection, 'updated', input),
+            );
         }
-        await this.eventBus.publish(new CollectionEvent(ctx, collection, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.COLLECTION_UPDATED,
+            new CollectionEvent(ctx, collection, 'updated', input),
+        );
         return assertFound(this.findOne(ctx, collection.id));
     }
 
@@ -535,11 +544,15 @@ export class CollectionService implements OnModuleInit {
                     .remove(chunkedDeleteId);
             }
             await this.connection.getRepository(ctx, Collection).remove(coll);
-            await this.eventBus.publish(
+            this.eventEmitter.emit(
+                EventNames.COLLECTION_MODIFIED,
                 new CollectionModificationEvent(ctx, deletedColl, affectedVariantIds),
             );
         }
-        await this.eventBus.publish(new CollectionEvent(ctx, deletedCollection, 'deleted', id));
+        this.eventEmitter.emit(
+            EventNames.COLLECTION_DELETED,
+            new CollectionEvent(ctx, deletedCollection, 'deleted', id),
+        );
         return {
             result: DeletionResult.DELETED,
         };
@@ -886,7 +899,8 @@ export class CollectionService implements OnModuleInit {
                 await this.channelService.removeFromChannels(ctx, Collection, collection.id, [
                     input.channelId,
                 ]);
-                await this.eventBus.publish(
+                this.eventEmitter.emit(
+                    EventNames.COLLECTION_MODIFIED,
                     new CollectionModificationEvent(ctx, collection, affectedVariantIds),
                 );
             }),

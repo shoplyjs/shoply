@@ -19,12 +19,10 @@ import { ErrorResultUnion, FacetInUseError, ForbiddenError, UserInputError } fro
 import { ListQueryOptions } from '../../common/types/common-types';
 import { Translated } from '../../common/types/locale-types';
 import { assertFound, idsAreEqual } from '../../common/utils';
-import { ConfigService } from '../../config/config.service';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { FacetTranslation } from '../../entity/facet/facet-translation.entity';
 import { Facet } from '../../entity/facet/facet.entity';
 import { FacetValue } from '../../entity/facet-value/facet-value.entity';
-import { EventBus } from '../../event-bus';
 import { FacetEvent } from '../../event-bus/events/facet-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
@@ -35,6 +33,8 @@ import { translateDeep } from '../helpers/utils/translate-entity';
 import { ChannelService } from './channel.service';
 import { FacetValueService } from './facet-value.service';
 import { RoleService } from './role.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -49,12 +49,11 @@ export class FacetService {
         private facetValueService: FacetValueService,
         private translatableSaver: TranslatableSaver,
         private listQueryBuilder: ListQueryBuilder,
-        private configService: ConfigService,
         private channelService: ChannelService,
         private customFieldRelationService: CustomFieldRelationService,
-        private eventBus: EventBus,
         private translator: TranslatorService,
         private roleService: RoleService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(
@@ -170,7 +169,10 @@ export class FacetService {
             input,
             facet,
         );
-        await this.eventBus.publish(new FacetEvent(ctx, facetWithRelations, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.FACET_CREATED,
+            new FacetEvent(ctx, facetWithRelations, 'created', input),
+        );
         return assertFound(this.findOne(ctx, facet.id));
     }
 
@@ -187,7 +189,7 @@ export class FacetService {
             },
         });
         await this.customFieldRelationService.updateRelations(ctx, Facet, input, facet);
-        await this.eventBus.publish(new FacetEvent(ctx, facet, 'updated', input));
+        this.eventEmitter.emit(EventNames.FACET_UPDATED, new FacetEvent(ctx, facet, 'updated', input));
         return assertFound(this.findOne(ctx, facet.id));
     }
 
@@ -216,11 +218,17 @@ export class FacetService {
 
         if (!isInUse) {
             await this.connection.getRepository(ctx, Facet).remove(facet);
-            await this.eventBus.publish(new FacetEvent(ctx, deletedFacet, 'deleted', id));
+            this.eventEmitter.emit(
+                EventNames.FACET_DELETED,
+                new FacetEvent(ctx, deletedFacet, 'deleted', id),
+            );
             result = DeletionResult.DELETED;
         } else if (force) {
             await this.connection.getRepository(ctx, Facet).remove(facet);
-            await this.eventBus.publish(new FacetEvent(ctx, deletedFacet, 'deleted', id));
+            this.eventEmitter.emit(
+                EventNames.FACET_DELETED,
+                new FacetEvent(ctx, deletedFacet, 'deleted', id),
+            );
             message = ctx.translate('message.facet-force-deleted', i18nVars);
             result = DeletionResult.DELETED;
         } else {

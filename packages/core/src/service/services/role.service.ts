@@ -32,7 +32,6 @@ import { TransactionalConnection } from '../../connection/transactional-connecti
 import { Channel } from '../../entity/channel/channel.entity';
 import { Role } from '../../entity/role/role.entity';
 import { User } from '../../entity/user/user.entity';
-import { EventBus } from '../../event-bus';
 import { RoleEvent } from '../../event-bus/events/role-event';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import {
@@ -42,6 +41,8 @@ import {
 import { patchEntity } from '../helpers/utils/patch-entity';
 
 import { ChannelService } from './channel.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -56,8 +57,8 @@ export class RoleService {
         private channelService: ChannelService,
         private listQueryBuilder: ListQueryBuilder,
         private configService: ConfigService,
-        private eventBus: EventBus,
         private requestContextCache: RequestContextCacheService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     async initRoles() {
@@ -253,7 +254,8 @@ export class RoleService {
         }
         await this.checkActiveUserHasSufficientPermissions(ctx, targetChannels, input.permissions);
         const role = await this.createRoleForChannels(ctx, input, targetChannels);
-        await this.eventBus.publish(new RoleEvent(ctx, role, 'created', input));
+        this.eventEmitter.emit(EventNames.ROLE_CREATED, new RoleEvent(ctx, role, 'created', input));
+
         return role;
     }
 
@@ -295,7 +297,8 @@ export class RoleService {
             updatedRole.channels = targetChannels;
         }
         await this.connection.getRepository(ctx, Role).save(updatedRole, { reload: false });
-        await this.eventBus.publish(new RoleEvent(ctx, role, 'updated', input));
+        this.eventEmitter.emit(EventNames.ROLE_UPDATED, new RoleEvent(ctx, role, 'updated', input));
+
         return await assertFound(this.findOne(ctx, role.id));
     }
 
@@ -309,7 +312,8 @@ export class RoleService {
         }
         const deletedRole = new Role(role);
         await this.connection.getRepository(ctx, Role).remove(role);
-        await this.eventBus.publish(new RoleEvent(ctx, deletedRole, 'deleted', id));
+        this.eventEmitter.emit(EventNames.ROLE_DELETED, new RoleEvent(ctx, deletedRole, 'deleted', id));
+
         return {
             result: DeletionResult.DELETED,
         };

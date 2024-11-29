@@ -19,7 +19,6 @@ import { assertFound, idsAreEqual } from '../../common/utils';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { Customer } from '../../entity/customer/customer.entity';
 import { CustomerGroup } from '../../entity/customer-group/customer-group.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { CustomerGroupChangeEvent } from '../../event-bus/events/customer-group-change-event';
 import { CustomerGroupEvent } from '../../event-bus/events/customer-group-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
@@ -27,6 +26,8 @@ import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-build
 import { patchEntity } from '../helpers/utils/patch-entity';
 
 import { HistoryService } from './history.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -40,8 +41,8 @@ export class CustomerGroupService {
         private connection: TransactionalConnection,
         private listQueryBuilder: ListQueryBuilder,
         private historyService: HistoryService,
-        private eventBus: EventBus,
         private customFieldRelationService: CustomFieldRelationService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(
@@ -107,7 +108,10 @@ export class CustomerGroupService {
         }
         const savedCustomerGroup = await assertFound(this.findOne(ctx, newCustomerGroup.id));
         await this.customFieldRelationService.updateRelations(ctx, CustomerGroup, input, savedCustomerGroup);
-        await this.eventBus.publish(new CustomerGroupEvent(ctx, savedCustomerGroup, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_GROUP_CREATED,
+            new CustomerGroupEvent(ctx, savedCustomerGroup, 'created', input),
+        );
         return assertFound(this.findOne(ctx, savedCustomerGroup.id));
     }
 
@@ -121,7 +125,10 @@ export class CustomerGroupService {
             input,
             updatedCustomerGroup,
         );
-        await this.eventBus.publish(new CustomerGroupEvent(ctx, customerGroup, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_GROUP_UPDATED,
+            new CustomerGroupEvent(ctx, customerGroup, 'updated', input),
+        );
         return assertFound(this.findOne(ctx, customerGroup.id));
     }
 
@@ -130,7 +137,10 @@ export class CustomerGroupService {
         try {
             const deletedGroup = new CustomerGroup(group);
             await this.connection.getRepository(ctx, CustomerGroup).remove(group);
-            await this.eventBus.publish(new CustomerGroupEvent(ctx, deletedGroup, 'deleted', id));
+            this.eventEmitter.emit(
+                EventNames.CUSTOMER_GROUP_DELETED,
+                new CustomerGroupEvent(ctx, deletedGroup, 'deleted', id),
+            );
             return {
                 result: DeletionResult.DELETED,
             };
@@ -163,7 +173,10 @@ export class CustomerGroupService {
         }
 
         await this.connection.getRepository(ctx, Customer).save(customers, { reload: false });
-        await this.eventBus.publish(new CustomerGroupChangeEvent(ctx, customers, group, 'assigned'));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_GROUP_CHANGE_ASSIGNED,
+            new CustomerGroupChangeEvent(ctx, customers, group, 'assigned'),
+        );
 
         return assertFound(this.findOne(ctx, group.id));
     }
@@ -189,7 +202,10 @@ export class CustomerGroupService {
             });
         }
         await this.connection.getRepository(ctx, Customer).save(customers, { reload: false });
-        await this.eventBus.publish(new CustomerGroupChangeEvent(ctx, customers, group, 'removed'));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_GROUP_CHANGE_REMOVED,
+            new CustomerGroupChangeEvent(ctx, customers, group, 'removed'),
+        );
         return assertFound(this.findOne(ctx, group.id));
     }
 

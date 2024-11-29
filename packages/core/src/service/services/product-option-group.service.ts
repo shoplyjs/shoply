@@ -17,13 +17,14 @@ import { Product } from '../../entity/product/product.entity';
 import { ProductOptionGroupTranslation } from '../../entity/product-option-group/product-option-group-translation.entity';
 import { ProductOptionGroup } from '../../entity/product-option-group/product-option-group.entity';
 import { ProductVariant } from '../../entity/product-variant/product-variant.entity';
-import { EventBus } from '../../event-bus';
 import { ProductOptionGroupEvent } from '../../event-bus/events/product-option-group-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
 import { TranslatorService } from '../helpers/translator/translator.service';
 
 import { ProductOptionService } from './product-option.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -38,8 +39,8 @@ export class ProductOptionGroupService {
         private translatableSaver: TranslatableSaver,
         private customFieldRelationService: CustomFieldRelationService,
         private productOptionService: ProductOptionService,
-        private eventBus: EventBus,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(
@@ -106,7 +107,11 @@ export class ProductOptionGroupService {
             input,
             group,
         );
-        await this.eventBus.publish(new ProductOptionGroupEvent(ctx, groupWithRelations, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_OPTION_GROUP_CREATED,
+            new ProductOptionGroupEvent(ctx, groupWithRelations, 'created', input),
+        );
+
         return assertFound(this.findOne(ctx, group.id));
     }
 
@@ -121,7 +126,11 @@ export class ProductOptionGroupService {
             translationType: ProductOptionGroupTranslation,
         });
         await this.customFieldRelationService.updateRelations(ctx, ProductOptionGroup, input, group);
-        await this.eventBus.publish(new ProductOptionGroupEvent(ctx, group, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_OPTION_GROUP_UPDATED,
+            new ProductOptionGroupEvent(ctx, group, 'updated', input),
+        );
+
         return assertFound(this.findOne(ctx, group.id));
     }
 
@@ -183,7 +192,11 @@ export class ProductOptionGroupService {
                 Logger.error(e.message, undefined, e.stack);
             }
         }
-        await this.eventBus.publish(new ProductOptionGroupEvent(ctx, deletedOptionGroup, 'deleted', id));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_OPTION_GROUP_DELETED,
+            new ProductOptionGroupEvent(ctx, deletedOptionGroup, 'deleted', id),
+        );
+
         return {
             result: DeletionResult.DELETED,
         };

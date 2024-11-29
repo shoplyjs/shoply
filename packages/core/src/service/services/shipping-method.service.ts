@@ -24,7 +24,6 @@ import { Logger } from '../../config/logger/vendure-logger';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { ShippingMethodTranslation } from '../../entity/shipping-method/shipping-method-translation.entity';
 import { ShippingMethod } from '../../entity/shipping-method/shipping-method.entity';
-import { EventBus } from '../../event-bus';
 import { ShippingMethodEvent } from '../../event-bus/events/shipping-method-event';
 import { ConfigArgService } from '../helpers/config-arg/config-arg.service';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
@@ -34,6 +33,8 @@ import { TranslatorService } from '../helpers/translator/translator.service';
 
 import { ChannelService } from './channel.service';
 import { RoleService } from './role.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -52,8 +53,8 @@ export class ShippingMethodService {
         private configArgService: ConfigArgService,
         private translatableSaver: TranslatableSaver,
         private customFieldRelationService: CustomFieldRelationService,
-        private eventBus: EventBus,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /** @internal */
@@ -133,7 +134,8 @@ export class ShippingMethodService {
             input,
             newShippingMethod,
         );
-        await this.eventBus.publish(
+        this.eventEmitter.emit(
+            EventNames.SHIPPING_METHOD_CREATED,
             new ShippingMethodEvent(ctx, shippingMethodWithRelations, 'created', input),
         );
         return assertFound(this.findOne(ctx, newShippingMethod.id));
@@ -177,7 +179,11 @@ export class ShippingMethodService {
         await this.connection
             .getRepository(ctx, ShippingMethod)
             .save(updatedShippingMethod, { reload: false });
-        await this.eventBus.publish(new ShippingMethodEvent(ctx, shippingMethod, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.SHIPPING_METHOD_UPDATED,
+            new ShippingMethodEvent(ctx, updatedShippingMethod, 'updated', input),
+        );
+
         return assertFound(this.findOne(ctx, shippingMethod.id));
     }
 
@@ -188,7 +194,11 @@ export class ShippingMethodService {
         });
         shippingMethod.deletedAt = new Date();
         await this.connection.getRepository(ctx, ShippingMethod).save(shippingMethod, { reload: false });
-        await this.eventBus.publish(new ShippingMethodEvent(ctx, shippingMethod, 'deleted', id));
+        this.eventEmitter.emit(
+            EventNames.SHIPPING_METHOD_DELETED,
+            new ShippingMethodEvent(ctx, shippingMethod, 'deleted', id),
+        );
+
         return {
             result: DeletionResult.DELETED,
         };

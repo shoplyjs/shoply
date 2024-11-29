@@ -18,12 +18,13 @@ import { Fulfillment } from '../../entity/fulfillment/fulfillment.entity';
 import { Order } from '../../entity/order/order.entity';
 import { OrderLine } from '../../entity/order-line/order-line.entity';
 import { FulfillmentLine } from '../../entity/order-line-reference/fulfillment-line.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { FulfillmentEvent } from '../../event-bus/events/fulfillment-event';
 import { FulfillmentStateTransitionEvent } from '../../event-bus/events/fulfillment-state-transition-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { FulfillmentState } from '../helpers/fulfillment-state-machine/fulfillment-state';
 import { FulfillmentStateMachine } from '../helpers/fulfillment-state-machine/fulfillment-state-machine';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -36,9 +37,9 @@ export class FulfillmentService {
     constructor(
         private connection: TransactionalConnection,
         private fulfillmentStateMachine: FulfillmentStateMachine,
-        private eventBus: EventBus,
         private configService: ConfigService,
         private customFieldRelationService: CustomFieldRelationService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /**
@@ -110,7 +111,8 @@ export class FulfillmentService {
             fulfillmentPartial,
             newFulfillment,
         );
-        await this.eventBus.publish(
+        this.eventEmitter.emit(
+            EventNames.FULFILLMENT_CREATED,
             new FulfillmentEvent(ctx, fulfillmentWithRelations, {
                 orders,
                 lines,
@@ -183,7 +185,10 @@ export class FulfillmentService {
             return new FulfillmentStateTransitionError({ transitionError, fromState, toState: state });
         }
         await this.connection.getRepository(ctx, Fulfillment).save(fulfillment, { reload: false });
-        await this.eventBus.publish(new FulfillmentStateTransitionEvent(fromState, state, ctx, fulfillment));
+        this.eventEmitter.emit(
+            EventNames.FULFILLMENT_STATE_TRANSITION,
+            new FulfillmentStateTransitionEvent(fromState, state, ctx, fulfillment),
+        );
         await finalize();
         return { fulfillment, orders, fromState, toState: state };
     }

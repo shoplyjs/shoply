@@ -17,11 +17,12 @@ import { ProductOptionTranslation } from '../../entity/product-option/product-op
 import { ProductOption } from '../../entity/product-option/product-option.entity';
 import { ProductOptionGroup } from '../../entity/product-option-group/product-option-group.entity';
 import { ProductVariant } from '../../entity/product-variant/product-variant.entity';
-import { EventBus } from '../../event-bus';
 import { ProductOptionEvent } from '../../event-bus/events/product-option-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
 import { TranslatorService } from '../helpers/translator/translator.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -35,8 +36,8 @@ export class ProductOptionService {
         private connection: TransactionalConnection,
         private translatableSaver: TranslatableSaver,
         private customFieldRelationService: CustomFieldRelationService,
-        private eventBus: EventBus,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(ctx: RequestContext): Promise<Array<Translated<ProductOption>>> {
@@ -80,7 +81,11 @@ export class ProductOptionService {
             input as CreateProductOptionInput,
             option,
         );
-        await this.eventBus.publish(new ProductOptionEvent(ctx, optionWithRelations, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_OPTION_CREATED,
+            new ProductOptionEvent(ctx, optionWithRelations, 'created', input),
+        );
+
         return assertFound(this.findOne(ctx, option.id));
     }
 
@@ -92,7 +97,11 @@ export class ProductOptionService {
             translationType: ProductOptionTranslation,
         });
         await this.customFieldRelationService.updateRelations(ctx, ProductOption, input, option);
-        await this.eventBus.publish(new ProductOptionEvent(ctx, option, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_OPTION_UPDATED,
+            new ProductOptionEvent(ctx, option, 'updated', input),
+        );
+
         return assertFound(this.findOne(ctx, option.id));
     }
 
@@ -131,7 +140,11 @@ export class ProductOptionService {
                 Logger.error(e.message, undefined, e.stack);
             }
         }
-        await this.eventBus.publish(new ProductOptionEvent(ctx, deletedProductOption, 'deleted', id));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_OPTION_DELETED,
+            new ProductOptionEvent(ctx, deletedProductOption, 'deleted', id),
+        );
+
         return {
             result: DeletionResult.DELETED,
         };

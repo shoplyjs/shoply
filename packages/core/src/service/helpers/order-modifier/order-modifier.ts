@@ -50,7 +50,6 @@ import { Cancellation } from '../../../entity/stock-movement/cancellation.entity
 import { Release } from '../../../entity/stock-movement/release.entity';
 import { Sale } from '../../../entity/stock-movement/sale.entity';
 import { Surcharge } from '../../../entity/surcharge/surcharge.entity';
-import { EventBus } from '../../../event-bus/event-bus';
 import { OrderLineEvent } from '../../../event-bus/events/order-line-event';
 import { CountryService } from '../../services/country.service';
 import { HistoryService } from '../../services/history.service';
@@ -64,6 +63,8 @@ import { ShippingCalculator } from '../shipping-calculator/shipping-calculator';
 import { TranslatorService } from '../translator/translator.service';
 import { getOrdersFromLines, orderLinesAreAllCancelled } from '../utils/order-utils';
 import { patchEntity } from '../utils/patch-entity';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -90,10 +91,10 @@ export class OrderModifier {
         private productVariantService: ProductVariantService,
         private customFieldRelationService: CustomFieldRelationService,
         private promotionService: PromotionService,
-        private eventBus: EventBus,
         private shippingCalculator: ShippingCalculator,
         private historyService: HistoryService,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /**
@@ -207,7 +208,10 @@ export class OrderModifier {
         );
         order.lines.push(lineWithRelations);
         await this.connection.getRepository(ctx, Order).save(order, { reload: false });
-        await this.eventBus.publish(new OrderLineEvent(ctx, order, lineWithRelations, 'created'));
+        this.eventEmitter.emit(
+            EventNames.ORDER_LINE_CREATED,
+            new OrderLineEvent(ctx, order, lineWithRelations, 'created'),
+        );
         return lineWithRelations;
     }
 
@@ -250,7 +254,10 @@ export class OrderModifier {
             }
         }
         await this.connection.getRepository(ctx, OrderLine).save(orderLine);
-        await this.eventBus.publish(new OrderLineEvent(ctx, order, orderLine, 'updated'));
+        this.eventEmitter.emit(
+            EventNames.ORDER_LINE_UPDATED,
+            new OrderLineEvent(ctx, order, orderLine, 'updated'),
+        );
         return orderLine;
     }
 
@@ -342,7 +349,10 @@ export class OrderModifier {
                     quantity: orderLine.quantity - line.quantity,
                 });
 
-                await this.eventBus.publish(new OrderLineEvent(ctx, order, orderLine, 'cancelled'));
+                this.eventEmitter.emit(
+                    EventNames.ORDER_LINE_CANCELLED,
+                    new OrderLineEvent(ctx, order, orderLine, 'cancelled'),
+                );
             }
         }
 
