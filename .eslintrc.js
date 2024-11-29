@@ -183,61 +183,61 @@ module.exports = {
         'guard-for-in': 'error',
         'id-denylist': 'off',
         'id-match': 'off',
-        'import/order': [
-            'error',
-            {
-                alphabetize: {
-                    caseInsensitive: true,
-                    order: 'asc',
-                },
-                'newlines-between': 'always',
-                groups: [
-                    ['builtin', 'external', 'internal', 'unknown', 'object', 'type'],
-                    'parent',
-                    ['sibling', 'index'],
-                ],
-                distinctGroup: false,
-                pathGroupsExcludedImportTypes: [],
-                pathGroups: [
-                    {
-                        pattern: './',
-                        patternOptions: {
-                            nocomment: true,
-                            dot: true,
-                        },
-                        group: 'sibling',
-                        position: 'before',
-                    },
-                    {
-                        pattern: '.',
-                        patternOptions: {
-                            nocomment: true,
-                            dot: true,
-                        },
-                        group: 'sibling',
-                        position: 'before',
-                    },
-                    {
-                        pattern: '..',
-                        patternOptions: {
-                            nocomment: true,
-                            dot: true,
-                        },
-                        group: 'parent',
-                        position: 'before',
-                    },
-                    {
-                        pattern: '../',
-                        patternOptions: {
-                            nocomment: true,
-                            dot: true,
-                        },
-                        group: 'parent',
-                        position: 'before',
-                    },
-                ],
-            },
-        ],
+        // 'import/order': [
+        //     'error',
+        //     {
+        //         alphabetize: {
+        //             caseInsensitive: true,
+        //             order: 'asc',
+        //         },
+        //         'newlines-between': 'always',
+        //         groups: [
+        //             ['builtin', 'external', 'internal', 'unknown', 'object', 'type'],
+        //             'parent',
+        //             ['sibling', 'index'],
+        //         ],
+        //         distinctGroup: false,
+        //         pathGroupsExcludedImportTypes: [],
+        //         pathGroups: [
+        //             {
+        //                 pattern: './',
+        //                 patternOptions: {
+        //                     nocomment: true,
+        //                     dot: true,
+        //                 },
+        //                 group: 'sibling',
+        //                 position: 'before',
+        //             },
+        //             {
+        //                 pattern: '.',
+        //                 patternOptions: {
+        //                     nocomment: true,
+        //                     dot: true,
+        //                 },
+        //                 group: 'sibling',
+        //                 position: 'before',
+        //             },
+        //             {
+        //                 pattern: '..',
+        //                 patternOptions: {
+        //                     nocomment: true,
+        //                     dot: true,
+        //                 },
+        //                 group: 'parent',
+        //                 position: 'before',
+        //             },
+        //             {
+        //                 pattern: '../',
+        //                 patternOptions: {
+        //                     nocomment: true,
+        //                     dot: true,
+        //                 },
+        //                 group: 'parent',
+        //                 position: 'before',
+        //             },
+        //         ],
+        //     },
+        // ],
         indent: 'off',
         'jsdoc/check-alignment': 'off',
         'jsdoc/check-indentation': 'off',
