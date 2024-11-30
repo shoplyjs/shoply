@@ -6,8 +6,8 @@ import {
     SearchInput,
     SearchResponse,
     SearchResult,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, JsonCompatible } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, JsonCompatible } from '@shoplyjs/common/dist/shared-types';
 import { Asset, SerializedRequestContext } from '@shoplyjs/core';
 
 export type ElasticSearchResult = SearchResult & {

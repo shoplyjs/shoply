@@ -1,5 +1,5 @@
 import { stitchSchemas, ValidationLevel } from '@graphql-tools/stitch';
-import { Mutation, Query } from '@shoplyjs/common/lib/generated-shop-types';
+import { Mutation, Query } from '@shoplyjs/common/dist/generated-shop-types';
 import {
     buildASTSchema,
     GraphQLInputFieldConfigMap,

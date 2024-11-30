@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Type } from '@shoplyjs/common/lib/shared-types';
+import { Type } from '@shoplyjs/common/dist/shared-types';
 import { from, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 

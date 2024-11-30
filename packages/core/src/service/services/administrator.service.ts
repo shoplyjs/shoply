@@ -4,8 +4,8 @@ import {
     CreateAdministratorInput,
     DeletionResult,
     UpdateAdministratorInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 import { In, IsNull } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';
@@ -19,7 +19,6 @@ import { Administrator } from '../../entity/administrator/administrator.entity';
 import { NativeAuthenticationMethod } from '../../entity/authentication-method/native-authentication-method.entity';
 import { Role } from '../../entity/role/role.entity';
 import { User } from '../../entity/user/user.entity';
-import { EventBus } from '../../event-bus';
 import { AdministratorEvent } from '../../event-bus/events/administrator-event';
 import { RoleChangeEvent } from '../../event-bus/events/role-change-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
@@ -33,6 +32,8 @@ import { ChannelService } from './channel.service';
 import { RoleService } from './role.service';
 import { SellerService } from './seller.service';
 import { UserService } from './user.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -50,10 +51,10 @@ export class AdministratorService {
         private userService: UserService,
         private roleService: RoleService,
         private customFieldRelationService: CustomFieldRelationService,
-        private eventBus: EventBus,
         private requestContextService: RequestContextService,
         private sellerService: SellerService,
         private channelService: ChannelService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /** @internal */
@@ -205,7 +206,11 @@ export class AdministratorService {
             input,
             createdAdministrator,
         );
-        await this.eventBus.publish(new AdministratorEvent(ctx, createdAdministrator, 'created', input));
+
+        this.eventEmitter.emit(
+            EventNames.ADMINISTRATOR_CREATED,
+            new AdministratorEvent(ctx, createdAdministrator, 'created', input),
+        );
         return createdAdministrator;
     }
 
@@ -257,8 +262,14 @@ export class AdministratorService {
             for (const roleId of input.roleIds) {
                 updatedAdministrator = await this.assignRole(ctx, administrator.id, roleId);
             }
-            await this.eventBus.publish(new RoleChangeEvent(ctx, administrator, addIds, 'assigned'));
-            await this.eventBus.publish(new RoleChangeEvent(ctx, administrator, removeIds, 'removed'));
+            this.eventEmitter.emit(
+                EventNames.ROLE_ASSIGNED,
+                new RoleChangeEvent(ctx, administrator, addIds, 'assigned'),
+            );
+            this.eventEmitter.emit(
+                EventNames.ROLE_REMOVED,
+                new RoleChangeEvent(ctx, administrator, removeIds, 'removed'),
+            );
         }
         await this.customFieldRelationService.updateRelations(
             ctx,
@@ -266,7 +277,10 @@ export class AdministratorService {
             input,
             updatedAdministrator,
         );
-        await this.eventBus.publish(new AdministratorEvent(ctx, administrator, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.ADMINISTRATOR_UPDATED,
+            new AdministratorEvent(ctx, administrator, 'updated', input),
+        );
         return updatedAdministrator;
     }
 
@@ -331,7 +345,10 @@ export class AdministratorService {
         await this.connection.getRepository(ctx, Administrator).update({ id }, { deletedAt: new Date() });
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await this.userService.softDelete(ctx, administrator.user.id);
-        await this.eventBus.publish(new AdministratorEvent(ctx, administrator, 'deleted', id));
+        this.eventEmitter.emit(
+            EventNames.ADMINISTRATOR_DELETED,
+            new AdministratorEvent(ctx, administrator, 'deleted', id),
+        );
         return {
             result: DeletionResult.DELETED,
         };

@@ -1,6 +1,6 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { Type } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { Type } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { getNamedType, GraphQLResolveInfo, GraphQLSchema, isObjectType } from 'graphql';
 import { getMetadataArgsStorage } from 'typeorm';
 
@@ -148,10 +148,10 @@ export const Relations: <T extends VendureEntity>(data: FieldsDecoratorConfig<T>
             return cachedResult;
         }
         const fields = graphqlFields(info);
-        const targetFields = isPaginatedListQuery(info) ? fields.items ?? {} : fields;
+        const targetFields = isPaginatedListQuery(info) ? (fields.items ?? {}) : fields;
         const entity = typeof data === 'function' ? data : data.entity;
-        const maxDepth = typeof data === 'function' ? DEFAULT_DEPTH : data.depth ?? DEFAULT_DEPTH;
-        const omit = typeof data === 'function' ? [] : data.omit ?? [];
+        const maxDepth = typeof data === 'function' ? DEFAULT_DEPTH : (data.depth ?? DEFAULT_DEPTH);
+        const omit = typeof data === 'function' ? [] : (data.omit ?? []);
         const relationFields = getRelationPaths(targetFields, entity, maxDepth);
         let result = unique(relationFields);
         for (const omitPath of omit) {

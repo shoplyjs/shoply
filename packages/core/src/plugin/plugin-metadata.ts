@@ -1,7 +1,7 @@
 import { DynamicModule } from '@nestjs/common';
 import { MODULE_METADATA } from '@nestjs/common/constants';
-import { Type } from '@shoplyjs/common/lib/shared-types';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { Type } from '@shoplyjs/common/dist/shared-types';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 
 import { APIExtensionDefinition, PluginConfigurationFn } from './vendure-plugin';
 
@@ -20,7 +20,7 @@ export function getEntitiesFromPlugins(plugins?: Array<Type<any> | DynamicModule
     return plugins
         .map(p => reflectMetadata(p, PLUGIN_METADATA.ENTITIES))
         .reduce((all, entities) => {
-            const resolvedEntities = typeof entities === 'function' ? entities() : entities ?? [];
+            const resolvedEntities = typeof entities === 'function' ? entities() : (entities ?? []);
             return [...all, ...resolvedEntities];
         }, []);
 }
@@ -68,7 +68,7 @@ export function graphQLResolversFor(
     return apiExtensions
         ? typeof apiExtensions.resolvers === 'function'
             ? apiExtensions.resolvers()
-            : apiExtensions.resolvers ?? []
+            : (apiExtensions.resolvers ?? [])
         : [];
 }
 

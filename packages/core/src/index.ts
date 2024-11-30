@@ -16,11 +16,11 @@ export * from './data-import/index';
 export * from './service/index';
 export * from './i18n/index';
 export * from './worker/index';
-export * from '@shoplyjs/common/lib/shared-types';
+export * from '@shoplyjs/common/dist/shared-types';
 export {
     Permission,
     LanguageCode,
     CurrencyCode,
     AssetType,
     AdjustmentType,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';

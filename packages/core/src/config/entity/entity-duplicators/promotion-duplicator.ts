@@ -3,7 +3,7 @@ import {
     LanguageCode,
     Permission,
     PromotionTranslationInput,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 
 import { isGraphQlErrorResult } from '../../../common/error/error-result';
 import { Injector } from '../../../common/injector';

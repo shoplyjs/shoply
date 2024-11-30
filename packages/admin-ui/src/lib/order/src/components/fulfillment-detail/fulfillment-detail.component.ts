@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { CustomFieldConfig, OrderDetailFragment, ServerConfigService } from '@shoplyjs/admin-ui/core';
-import { isObject } from '@shoplyjs/common/lib/shared-utils';
+import { isObject } from '@shoplyjs/common/dist/shared-utils';
 
 @Component({
     selector: 'vdr-fulfillment-detail',

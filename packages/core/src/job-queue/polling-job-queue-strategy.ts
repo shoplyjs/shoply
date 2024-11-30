@@ -1,6 +1,6 @@
-import { JobState } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { isObject } from '@shoplyjs/common/lib/shared-utils';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { isObject } from '@shoplyjs/common/dist/shared-utils';
 import { from, interval, mergeMap, race, Subject, Subscription } from 'rxjs';
 import { filter, switchMap, take, throttleTime } from 'rxjs/operators';
 

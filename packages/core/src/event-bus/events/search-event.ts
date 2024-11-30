@@ -1,4 +1,4 @@
-import { SearchInput } from '@shoplyjs/common/lib/generated-types';
+import { SearchInput } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { VendureEvent } from '../vendure-event';

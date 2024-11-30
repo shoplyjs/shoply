@@ -4,33 +4,32 @@ import {
     OrderLineInput,
     StockLevelInput,
     StockMovementListOptions,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 import { In } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';
 import { idsAreEqual } from '../../common/utils';
-import { ConfigService } from '../../config/config.service';
 import { ShippingCalculator } from '../../config/shipping-method/shipping-calculator';
 import { ShippingEligibilityChecker } from '../../config/shipping-method/shipping-eligibility-checker';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { Order } from '../../entity/order/order.entity';
 import { OrderLine } from '../../entity/order-line/order-line.entity';
 import { ProductVariant } from '../../entity/product-variant/product-variant.entity';
-import { ShippingMethod } from '../../entity/shipping-method/shipping-method.entity';
 import { Allocation } from '../../entity/stock-movement/allocation.entity';
 import { Cancellation } from '../../entity/stock-movement/cancellation.entity';
 import { Release } from '../../entity/stock-movement/release.entity';
 import { Sale } from '../../entity/stock-movement/sale.entity';
 import { StockAdjustment } from '../../entity/stock-movement/stock-adjustment.entity';
 import { StockMovement } from '../../entity/stock-movement/stock-movement.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { StockMovementEvent } from '../../event-bus/events/stock-movement-event';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 
 import { GlobalSettingsService } from './global-settings.service';
 import { StockLevelService } from './stock-level.service';
 import { StockLocationService } from './stock-location.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -42,16 +41,14 @@ import { StockLocationService } from './stock-location.service';
 export class StockMovementService {
     shippingEligibilityCheckers: ShippingEligibilityChecker[];
     shippingCalculators: ShippingCalculator[];
-    private activeShippingMethods: ShippingMethod[];
 
     constructor(
         private connection: TransactionalConnection,
         private listQueryBuilder: ListQueryBuilder,
         private globalSettingsService: GlobalSettingsService,
         private stockLevelService: StockLevelService,
-        private eventBus: EventBus,
         private stockLocationService: StockLocationService,
-        private configService: ConfigService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /**
@@ -121,7 +118,11 @@ export class StockMovementService {
                 input.stockLocationId,
                 delta,
             );
-            await this.eventBus.publish(new StockMovementEvent(ctx, [adjustment]));
+
+            this.eventEmitter.emit(
+                EventNames.STOCK_MOVEMENT_CREATED,
+                new StockMovementEvent(ctx, [adjustment]),
+            );
             adjustments.push(adjustment);
         }
 
@@ -187,7 +188,10 @@ export class StockMovementService {
         }
         const savedAllocations = await this.connection.getRepository(ctx, Allocation).save(allocations);
         if (savedAllocations.length) {
-            await this.eventBus.publish(new StockMovementEvent(ctx, savedAllocations));
+            this.eventEmitter.emit(
+                EventNames.STOCK_MOVEMENT_CREATED,
+                new StockMovementEvent(ctx, savedAllocations),
+            );
         }
         return savedAllocations;
     }
@@ -247,7 +251,10 @@ export class StockMovementService {
         }
         const savedSales = await this.connection.getRepository(ctx, Sale).save(sales);
         if (savedSales.length) {
-            await this.eventBus.publish(new StockMovementEvent(ctx, savedSales));
+            this.eventEmitter.emit(
+                EventNames.STOCK_MOVEMENT_CREATED,
+                new StockMovementEvent(ctx, savedSales),
+            );
         }
         return savedSales;
     }
@@ -302,7 +309,10 @@ export class StockMovementService {
         }
         const savedCancellations = await this.connection.getRepository(ctx, Cancellation).save(cancellations);
         if (savedCancellations.length) {
-            await this.eventBus.publish(new StockMovementEvent(ctx, savedCancellations));
+            this.eventEmitter.emit(
+                EventNames.STOCK_MOVEMENT_CREATED,
+                new StockMovementEvent(ctx, savedCancellations),
+            );
         }
         return savedCancellations;
     }
@@ -351,7 +361,10 @@ export class StockMovementService {
         }
         const savedReleases = await this.connection.getRepository(ctx, Release).save(releases);
         if (savedReleases.length) {
-            await this.eventBus.publish(new StockMovementEvent(ctx, savedReleases));
+            this.eventEmitter.emit(
+                EventNames.STOCK_MOVEMENT_CREATED,
+                new StockMovementEvent(ctx, savedReleases),
+            );
         }
         return savedReleases;
     }

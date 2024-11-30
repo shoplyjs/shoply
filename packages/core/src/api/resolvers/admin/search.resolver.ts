@@ -1,6 +1,6 @@
 import { Mutation, Query, ResolveField, Resolver } from '@nestjs/graphql';
-import { Permission, SearchResponse } from '@shoplyjs/common/lib/generated-types';
-import { Omit } from '@shoplyjs/common/lib/omit';
+import { Permission, SearchResponse } from '@shoplyjs/common/dist/generated-types';
+import { Omit } from '@shoplyjs/common/dist/omit';
 
 import { InternalServerError } from '../../../common/error/errors';
 import { Translated } from '../../../common/types/locale-types';

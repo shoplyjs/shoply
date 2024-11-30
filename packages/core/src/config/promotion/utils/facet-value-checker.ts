@@ -1,5 +1,5 @@
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 
 import { RequestContext } from '../../../api';
 import { TtlCache } from '../../../common/ttl-cache';

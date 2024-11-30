@@ -5,7 +5,7 @@ import {
     LanguageCode,
     Permission,
     ProductTranslationInput,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 import { IsNull } from 'typeorm';
 
 import { idsAreEqual } from '../../../common';

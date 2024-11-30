@@ -16,7 +16,7 @@ import {
     ViewChildren,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { unique } from '@shoplyjs/common/dist/unique';
 
 export const OPTION_VALUE_INPUT_VALUE_ACCESSOR: Provider = {
     provide: NG_VALUE_ACCESSOR,

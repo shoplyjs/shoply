@@ -4,8 +4,8 @@ import {
     Permission,
     QuerySearchArgs,
     SearchResponse,
-} from '@shoplyjs/common/lib/generated-types';
-import { Omit } from '@shoplyjs/common/lib/omit';
+} from '@shoplyjs/common/dist/generated-types';
+import { Omit } from '@shoplyjs/common/dist/omit';
 import {
     Allow,
     Collection,

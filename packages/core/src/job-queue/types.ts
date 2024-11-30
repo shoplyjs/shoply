@@ -1,5 +1,5 @@
-import { JobState } from '@shoplyjs/common/lib/generated-types';
-import { ID, JsonCompatible } from '@shoplyjs/common/lib/shared-types';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
+import { ID, JsonCompatible } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../api/common/request-context';
 

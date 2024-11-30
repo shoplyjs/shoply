@@ -4,18 +4,20 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateSellerInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { assertFound } from '../../common/utils';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { Seller } from '../../entity/seller/seller.entity';
-import { EventBus, SellerEvent } from '../../event-bus/index';
+import { SellerEvent } from '../../event-bus/index';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { patchEntity } from '../helpers/utils/patch-entity';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -28,8 +30,8 @@ export class SellerService {
     constructor(
         private connection: TransactionalConnection,
         private listQueryBuilder: ListQueryBuilder,
-        private eventBus: EventBus,
         private customFieldRelationService: CustomFieldRelationService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     async initSellers() {
@@ -61,7 +63,11 @@ export class SellerService {
             input,
             seller,
         );
-        await this.eventBus.publish(new SellerEvent(ctx, sellerWithRelations, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.SELLER_CREATED,
+            new SellerEvent(ctx, sellerWithRelations, 'created', input),
+        );
+
         return assertFound(this.findOne(ctx, seller.id));
     }
 
@@ -75,7 +81,11 @@ export class SellerService {
             input,
             seller,
         );
-        await this.eventBus.publish(new SellerEvent(ctx, sellerWithRelations, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.SELLER_UPDATED,
+            new SellerEvent(ctx, sellerWithRelations, 'updated', input),
+        );
+
         return seller;
     }
 
@@ -83,7 +93,8 @@ export class SellerService {
         const seller = await this.connection.getEntityOrThrow(ctx, Seller, id);
         await this.connection.getRepository(ctx, Seller).remove(seller);
         const deletedSeller = new Seller(seller);
-        await this.eventBus.publish(new SellerEvent(ctx, deletedSeller, 'deleted', id));
+        this.eventEmitter.emit(EventNames.SELLER_DELETED, new SellerEvent(ctx, deletedSeller, 'deleted', id));
+
         return {
             result: DeletionResult.DELETED,
         };

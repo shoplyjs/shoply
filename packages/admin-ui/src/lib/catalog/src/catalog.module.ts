@@ -12,7 +12,7 @@ import {
     PageService,
     SharedModule,
 } from '@shoplyjs/admin-ui/core';
-import { SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { SortOrder } from '@shoplyjs/common/dist/generated-types';
 
 import { createRoutes } from './catalog.routes';
 import { ApplyFacetDialogComponent } from './components/apply-facet-dialog/apply-facet-dialog.component';

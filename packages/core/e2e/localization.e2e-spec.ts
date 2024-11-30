@@ -1,4 +1,4 @@
-import { pick } from '@shoplyjs/common/lib/pick';
+import { pick } from '@shoplyjs/common/dist/pick';
 import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';

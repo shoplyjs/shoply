@@ -1,5 +1,5 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { Omit } from '@shoplyjs/common/lib/omit';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { Omit } from '@shoplyjs/common/dist/omit';
 import { Injector, RequestContext, SerializedRequestContext, VendureEvent } from '@shoplyjs/core';
 import { Attachment } from 'nodemailer/lib/mailer';
 import SESTransport from 'nodemailer/lib/ses-transport';

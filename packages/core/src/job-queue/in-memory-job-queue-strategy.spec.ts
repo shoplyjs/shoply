@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { JobListOptions, SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { JobListOptions, SortOrder } from '@shoplyjs/common/dist/generated-types';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { InMemoryJobQueueStrategy } from './in-memory-job-queue-strategy';

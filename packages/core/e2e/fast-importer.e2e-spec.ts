@@ -1,4 +1,4 @@
-import { CreateProductInput, ProductTranslationInput } from '@shoplyjs/common/lib/generated-types';
+import { CreateProductInput, ProductTranslationInput } from '@shoplyjs/common/dist/generated-types';
 import { ensureConfigLoaded, FastImporterService, LanguageCode } from '@shoplyjs/core';
 import { createTestEnvironment } from '@shoplyjs/testing';
 import path from 'path';

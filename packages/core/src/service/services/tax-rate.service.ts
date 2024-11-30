@@ -4,8 +4,8 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateTaxRateInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { RelationPaths } from '../../api/decorators/relations.decorator';
@@ -19,12 +19,12 @@ import { CustomerGroup } from '../../entity/customer-group/customer-group.entity
 import { TaxCategory } from '../../entity/tax-category/tax-category.entity';
 import { TaxRate } from '../../entity/tax-rate/tax-rate.entity';
 import { Zone } from '../../entity/zone/zone.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { TaxRateEvent } from '../../event-bus/events/tax-rate-event';
-import { TaxRateModificationEvent } from '../../event-bus/events/tax-rate-modification-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { patchEntity } from '../helpers/utils/patch-entity';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -44,10 +44,10 @@ export class TaxRateService {
 
     constructor(
         private connection: TransactionalConnection,
-        private eventBus: EventBus,
         private listQueryBuilder: ListQueryBuilder,
         private configService: ConfigService,
         private customFieldRelationService: CustomFieldRelationService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /**
@@ -100,8 +100,11 @@ export class TaxRateService {
         const newTaxRate = await this.connection.getRepository(ctx, TaxRate).save(taxRate);
         await this.customFieldRelationService.updateRelations(ctx, TaxRate, input, newTaxRate);
         await this.updateActiveTaxRates(ctx);
-        await this.eventBus.publish(new TaxRateModificationEvent(ctx, newTaxRate));
-        await this.eventBus.publish(new TaxRateEvent(ctx, newTaxRate, 'created', input));
+
+        this.eventEmitter.emit(
+            EventNames.TAX_RATE_CREATED,
+            new TaxRateEvent(ctx, newTaxRate, 'created', input),
+        );
         return assertFound(this.findOne(ctx, newTaxRate.id));
     }
 
@@ -136,8 +139,10 @@ export class TaxRateService {
         // TaxRate when updating its own tax rate cache.
         await this.connection.commitOpenTransaction(ctx);
 
-        await this.eventBus.publish(new TaxRateModificationEvent(ctx, updatedTaxRate));
-        await this.eventBus.publish(new TaxRateEvent(ctx, updatedTaxRate, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.TAX_RATE_UPDATED,
+            new TaxRateEvent(ctx, updatedTaxRate, 'updated', input),
+        );
 
         return assertFound(this.findOne(ctx, taxRate.id));
     }
@@ -147,7 +152,11 @@ export class TaxRateService {
         const deletedTaxRate = new TaxRate(taxRate);
         try {
             await this.connection.getRepository(ctx, TaxRate).remove(taxRate);
-            await this.eventBus.publish(new TaxRateEvent(ctx, deletedTaxRate, 'deleted', id));
+
+            this.eventEmitter.emit(
+                EventNames.TAX_RATE_DELETED,
+                new TaxRateEvent(ctx, deletedTaxRate, 'deleted', id),
+            );
             return {
                 result: DeletionResult.DELETED,
             };

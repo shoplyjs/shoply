@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
-import { Permission } from '@shoplyjs/common/lib/generated-types';
+import { Permission } from '@shoplyjs/common/dist/generated-types';
 
 export const PERMISSIONS_METADATA_KEY = '__permissions__';
 

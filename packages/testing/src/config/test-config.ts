@@ -1,4 +1,4 @@
-import { ADMIN_API_PATH, SHOP_API_PATH } from '@shoplyjs/common/lib/shared-constants';
+import { ADMIN_API_PATH, SHOP_API_PATH } from '@shoplyjs/common/dist/shared-constants';
 import {
     DefaultAssetNamingStrategy,
     defaultConfig,

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Type } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { Type } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { SelectQueryBuilder } from 'typeorm';
 
 import { RequestContext } from '../../../api/common/request-context';
@@ -303,7 +303,7 @@ export class EntityHydrator {
 
     private isTranslatable<T extends VendureEntity>(input: T | T[] | undefined): boolean {
         return Array.isArray(input)
-            ? input[0]?.hasOwnProperty('translations') ?? false
-            : input?.hasOwnProperty('translations') ?? false;
+            ? (input[0]?.hasOwnProperty('translations') ?? false)
+            : (input?.hasOwnProperty('translations') ?? false);
     }
 }

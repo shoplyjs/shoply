@@ -1,5 +1,5 @@
-import { ConfigArg } from '@shoplyjs/common/lib/generated-types';
-import { Json } from '@shoplyjs/common/lib/shared-types';
+import { ConfigArg } from '@shoplyjs/common/dist/generated-types';
+import { Json } from '@shoplyjs/common/dist/shared-types';
 import { createHash } from 'crypto';
 
 import { RequestContext } from '../../api/common/request-context';

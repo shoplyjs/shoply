@@ -1,4 +1,4 @@
-import { CreateAddressInput, CreateCustomerInput } from '@shoplyjs/common/lib/generated-types';
+import { CreateAddressInput, CreateCustomerInput } from '@shoplyjs/common/dist/generated-types';
 import faker from 'faker/locale/en_GB';
 import gql from 'graphql-tag';
 

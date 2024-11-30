@@ -4,8 +4,8 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateTaxCategoryInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { EntityNotFoundError } from '../../common/error/errors';
@@ -14,10 +14,11 @@ import { assertFound } from '../../common/utils';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { TaxCategory } from '../../entity/tax-category/tax-category.entity';
 import { TaxRate } from '../../entity/tax-rate/tax-rate.entity';
-import { EventBus } from '../../event-bus';
 import { TaxCategoryEvent } from '../../event-bus/events/tax-category-event';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { patchEntity } from '../helpers/utils/patch-entity';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -29,8 +30,8 @@ import { patchEntity } from '../helpers/utils/patch-entity';
 export class TaxCategoryService {
     constructor(
         private connection: TransactionalConnection,
-        private eventBus: EventBus,
         private listQueryBuilder: ListQueryBuilder,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(
@@ -61,7 +62,11 @@ export class TaxCategoryService {
                 .update({ isDefault: true }, { isDefault: false });
         }
         const newTaxCategory = await this.connection.getRepository(ctx, TaxCategory).save(taxCategory);
-        await this.eventBus.publish(new TaxCategoryEvent(ctx, newTaxCategory, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.TAX_CATEGORY_CREATED,
+            new TaxCategoryEvent(ctx, newTaxCategory, 'created', input),
+        );
+
         return assertFound(this.findOne(ctx, newTaxCategory.id));
     }
 
@@ -77,7 +82,11 @@ export class TaxCategoryService {
                 .update({ isDefault: true }, { isDefault: false });
         }
         await this.connection.getRepository(ctx, TaxCategory).save(updatedTaxCategory, { reload: false });
-        await this.eventBus.publish(new TaxCategoryEvent(ctx, taxCategory, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.TAX_CATEGORY_UPDATED,
+            new TaxCategoryEvent(ctx, updatedTaxCategory, 'updated', input),
+        );
+
         return assertFound(this.findOne(ctx, taxCategory.id));
     }
 
@@ -101,7 +110,11 @@ export class TaxCategoryService {
         try {
             const deletedTaxCategory = new TaxCategory(taxCategory);
             await this.connection.getRepository(ctx, TaxCategory).remove(taxCategory);
-            await this.eventBus.publish(new TaxCategoryEvent(ctx, deletedTaxCategory, 'deleted', id));
+            this.eventEmitter.emit(
+                EventNames.TAX_CATEGORY_DELETED,
+                new TaxCategoryEvent(ctx, deletedTaxCategory, 'deleted', id),
+            );
+
             return {
                 result: DeletionResult.DELETED,
             };

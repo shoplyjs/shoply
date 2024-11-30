@@ -1,4 +1,4 @@
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 
 import { InjectableStrategy } from '../../common/types/injectable-strategy';
 import { UserChannelPermissions } from '../../service/helpers/utils/get-user-channels-permissions';

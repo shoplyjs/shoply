@@ -1,5 +1,5 @@
-import { LogicalOperator, SearchInput, SearchResult } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { LogicalOperator, SearchInput, SearchResult } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import {
     Injector,
     PLUGIN_INIT_OPTIONS,

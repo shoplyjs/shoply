@@ -1,4 +1,4 @@
-import { AdjustmentType } from '@shoplyjs/common/lib/generated-shop-types';
+import { AdjustmentType } from '@shoplyjs/common/dist/generated-shop-types';
 import {
     AccountRegistrationEvent,
     CurrencyCode,

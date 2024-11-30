@@ -7,7 +7,7 @@ import {
     GetStockLocationListQuery,
     ItemOf,
 } from '@shoplyjs/admin-ui/core';
-import { generateAllCombinations } from '@shoplyjs/common/lib/shared-utils';
+import { generateAllCombinations } from '@shoplyjs/common/dist/shared-utils';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 

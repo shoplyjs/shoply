@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { QueryOrdersArgs } from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+import { QueryOrdersArgs } from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 import {
     Ctx,
     Order,

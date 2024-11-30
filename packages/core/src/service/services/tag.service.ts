@@ -4,9 +4,9 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateTagInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 
 import { RequestContext } from '../../api/common/request-context';
 import { ListQueryOptions, Taggable } from '../../common/types/common-types';

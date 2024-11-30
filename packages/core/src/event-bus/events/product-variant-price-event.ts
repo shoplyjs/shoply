@@ -1,4 +1,4 @@
-import { CreateProductVariantInput, UpdateProductVariantInput } from '@shoplyjs/common/lib/generated-types';
+import { CreateProductVariantInput, UpdateProductVariantInput } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { ProductVariantPrice } from '../../entity';

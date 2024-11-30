@@ -1,5 +1,5 @@
-import { CreateProvinceInput, UpdateProvinceInput } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { CreateProvinceInput, UpdateProvinceInput } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api';
 import { Province } from '../../entity/region/province.entity';

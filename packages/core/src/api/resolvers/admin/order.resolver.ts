@@ -25,8 +25,8 @@ import {
     RefundOrderResult,
     SettlePaymentResult,
     TransitionPaymentToStateResult,
-} from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { ErrorResultUnion, isGraphQlErrorResult } from '../../../common/error/error-result';
 import { TransactionalConnection } from '../../../connection';

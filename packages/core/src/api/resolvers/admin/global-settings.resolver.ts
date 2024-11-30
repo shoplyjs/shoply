@@ -8,8 +8,8 @@ import {
     Permission,
     ServerConfig,
     UpdateGlobalSettingsResult,
-} from '@shoplyjs/common/lib/generated-types';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+} from '@shoplyjs/common/dist/generated-types';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import {
     GraphQLOutputType,
     GraphQLResolveInfo,

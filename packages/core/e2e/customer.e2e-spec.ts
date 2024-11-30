@@ -1,7 +1,7 @@
 import { OnModuleInit } from '@nestjs/common';
-import { HistoryEntryType } from '@shoplyjs/common/lib/generated-types';
-import { omit } from '@shoplyjs/common/lib/omit';
-import { pick } from '@shoplyjs/common/lib/pick';
+import { HistoryEntryType } from '@shoplyjs/common/dist/generated-types';
+import { omit } from '@shoplyjs/common/dist/omit';
+import { pick } from '@shoplyjs/common/dist/pick';
 import {
     AccountRegistrationEvent,
     EventBus,

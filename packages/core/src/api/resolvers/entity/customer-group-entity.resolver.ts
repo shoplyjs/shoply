@@ -1,6 +1,6 @@
 import { Args, Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { Permission, QueryCustomersArgs } from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+import { Permission, QueryCustomersArgs } from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { Customer } from '../../../entity/customer/customer.entity';
 import { CustomerGroup } from '../../../entity/customer-group/customer-group.entity';

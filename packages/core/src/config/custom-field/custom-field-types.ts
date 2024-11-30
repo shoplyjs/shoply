@@ -11,14 +11,14 @@ import {
     RelationCustomFieldConfig as GraphQLRelationCustomFieldConfig,
     StringCustomFieldConfig as GraphQLStringCustomFieldConfig,
     TextCustomFieldConfig as GraphQLTextCustomFieldConfig,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 import {
     CustomFieldsObject,
     CustomFieldType,
     DefaultFormComponentId,
     Type,
     UiComponentConfig,
-} from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { Injector } from '../../common/injector';

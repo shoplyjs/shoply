@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import crypto from 'crypto';
 import ms from 'ms';
 import { EntitySubscriberInterface, InsertEvent, RemoveEvent, UpdateEvent } from 'typeorm';

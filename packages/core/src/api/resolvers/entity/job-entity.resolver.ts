@@ -1,6 +1,6 @@
 import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { omit } from '@shoplyjs/common/lib/omit';
-import { pick } from '@shoplyjs/common/lib/pick';
+import { omit } from '@shoplyjs/common/dist/omit';
+import { pick } from '@shoplyjs/common/dist/pick';
 
 import { Job } from '../../../job-queue/job';
 import { RequestContext, SerializedRequestContext } from '../../common/request-context';

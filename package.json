@@ -7,7 +7,7 @@
   },
   "scripts": {
     "watch": "turbo run watch --parallel",
-    "watch:core-common": "turbo run watch --filter=@shoplyjs/common --filter=@shoplyjs/core --parallel",
+    "watch:common": "turbo run watch --filter=@shoplyjs/common --filter=@shoplyjs/core --parallel",
     "format": "prettier --write --html-whitespace-sensitivity ignore",
     "docs:generate-typescript-docs": "ts-node scripts/docs/generate-typescript-docs.ts",
     "docs:generate-graphql-docs": "ts-node scripts/docs/generate-graphql-docs.ts --api=shop && ts-node scripts/docs/generate-graphql-docs.ts --api=admin",

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CurrencyCode, LanguageCode, Permission } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { CurrencyCode, LanguageCode, Permission } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import { Request } from 'express';
 import { GraphQLResolveInfo } from 'graphql';
 import ms from 'ms';

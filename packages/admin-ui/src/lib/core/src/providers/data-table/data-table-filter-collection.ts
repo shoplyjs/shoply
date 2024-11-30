@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { CustomFieldType } from '@shoplyjs/common/lib/shared-types';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { CustomFieldType } from '@shoplyjs/common/dist/shared-types';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 import extend from 'just-extend';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, takeUntil } from 'rxjs/operators';

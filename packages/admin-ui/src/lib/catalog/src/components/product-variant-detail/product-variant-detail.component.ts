@@ -22,8 +22,8 @@ import {
     TypedBaseDetailComponent,
     UpdateProductVariantInput,
 } from '@shoplyjs/admin-ui/core';
-import { pick } from '@shoplyjs/common/lib/pick';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { pick } from '@shoplyjs/common/dist/pick';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { combineLatest, concat, Observable } from 'rxjs';
 import {
     distinctUntilChanged,

@@ -3,7 +3,7 @@ import {
     DuplicateEntityResult,
     MutationDuplicateEntityArgs,
     Permission,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 
 import { EntityDuplicatorService } from '../../../service/helpers/entity-duplicator/entity-duplicator.service';
 import { RequestContext } from '../../common/request-context';

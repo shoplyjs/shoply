@@ -1,4 +1,4 @@
-import { ConfigArg } from '@shoplyjs/common/lib/generated-types';
+import { ConfigArg } from '@shoplyjs/common/dist/generated-types';
 import { SelectQueryBuilder } from 'typeorm';
 
 import {

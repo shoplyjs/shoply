@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { INestApplication } from '@nestjs/common';
-import { GlobalFlag } from '@shoplyjs/common/lib/generated-types';
+import { GlobalFlag } from '@shoplyjs/common/dist/generated-types';
 import {
     bootstrap,
     Importer,

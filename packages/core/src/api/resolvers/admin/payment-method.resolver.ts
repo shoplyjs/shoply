@@ -11,8 +11,8 @@ import {
     Permission,
     QueryPaymentMethodArgs,
     QueryPaymentMethodsArgs,
-} from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { Translated } from '../../../common/types/locale-types';
 import { PaymentMethod } from '../../../entity/payment-method/payment-method.entity';

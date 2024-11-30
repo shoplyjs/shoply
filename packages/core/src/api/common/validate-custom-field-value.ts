@@ -1,4 +1,4 @@
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 
 import { UserInputError } from '../../common/error/errors';
 import { Injector } from '../../common/injector';

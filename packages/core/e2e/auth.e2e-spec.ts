@@ -2,7 +2,7 @@
 import {
     SUPER_ADMIN_USER_IDENTIFIER,
     SUPER_ADMIN_USER_PASSWORD,
-} from '@shoplyjs/common/lib/shared-constants';
+} from '@shoplyjs/common/dist/shared-constants';
 import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';

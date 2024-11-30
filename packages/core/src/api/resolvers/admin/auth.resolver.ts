@@ -7,7 +7,7 @@ import {
     NativeAuthenticationResult,
     Permission,
     Success,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 import { Request, Response } from 'express';
 
 import { NativeAuthStrategyError } from '../../../common/error/generated-graphql-admin-errors';

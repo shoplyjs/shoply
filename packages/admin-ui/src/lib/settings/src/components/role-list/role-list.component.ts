@@ -8,7 +8,7 @@ import {
     ROLE_FRAGMENT,
     TypedBaseListComponent,
 } from '@shoplyjs/admin-ui/core';
-import { CUSTOMER_ROLE_CODE, SUPER_ADMIN_ROLE_CODE } from '@shoplyjs/common/lib/shared-constants';
+import { CUSTOMER_ROLE_CODE, SUPER_ADMIN_ROLE_CODE } from '@shoplyjs/common/dist/shared-constants';
 import { gql } from 'apollo-angular';
 
 export const GET_ROLE_LIST = gql`

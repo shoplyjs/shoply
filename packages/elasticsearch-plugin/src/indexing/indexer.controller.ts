@@ -1,7 +1,7 @@
 import { Client } from '@elastic/elasticsearch';
 import { Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { unique } from '@shoplyjs/common/dist/unique';
 import {
     Asset,
     asyncObservable,

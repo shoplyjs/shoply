@@ -1,5 +1,5 @@
-import { isClassInstance, isObject } from '@shoplyjs/common/lib/shared-utils';
-import { simpleDeepClone } from '@shoplyjs/common/lib/simple-deep-clone';
+import { isClassInstance, isObject } from '@shoplyjs/common/dist/shared-utils';
+import { simpleDeepClone } from '@shoplyjs/common/dist/simple-deep-clone';
 
 import { PartialVendureConfig, VendureConfig } from './vendure-config';
 

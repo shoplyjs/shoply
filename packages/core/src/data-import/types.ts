@@ -1,5 +1,5 @@
-import { ConfigurableOperationInput, LanguageCode, Permission } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ConfigurableOperationInput, LanguageCode, Permission } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 
 import { Zone } from '../entity/zone/zone.entity';
 

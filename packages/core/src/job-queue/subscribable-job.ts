@@ -1,6 +1,6 @@
-import { JobState } from '@shoplyjs/common/lib/generated-types';
-import { pick } from '@shoplyjs/common/lib/pick';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
+import { pick } from '@shoplyjs/common/dist/pick';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import ms from 'ms';
 import { interval, Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map, switchMap, takeWhile, tap } from 'rxjs/operators';

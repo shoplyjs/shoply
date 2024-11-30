@@ -2,8 +2,8 @@ import { Module, Provider, Type as NestType } from '@nestjs/common';
 import { MODULE_METADATA } from '@nestjs/common/constants';
 import { ModuleMetadata } from '@nestjs/common/interfaces';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
-import { pick } from '@shoplyjs/common/lib/pick';
-import { Type } from '@shoplyjs/common/lib/shared-types';
+import { pick } from '@shoplyjs/common/dist/pick';
+import { Type } from '@shoplyjs/common/dist/shared-types';
 import { DocumentNode, GraphQLScalarType } from 'graphql';
 
 import { RuntimeVendureConfig } from '../config/vendure-config';

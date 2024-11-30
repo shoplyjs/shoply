@@ -1,5 +1,5 @@
-import { ConfigArgType } from '@shoplyjs/common/lib/shared-types';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { ConfigArgType } from '@shoplyjs/common/dist/shared-types';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 
 import {
     ConfigArgDefinition,

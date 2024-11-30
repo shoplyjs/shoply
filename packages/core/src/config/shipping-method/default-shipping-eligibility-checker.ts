@@ -1,4 +1,4 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 
 import { ShippingEligibilityChecker } from './shipping-eligibility-checker';
 

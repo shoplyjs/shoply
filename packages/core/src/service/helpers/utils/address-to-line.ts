@@ -1,4 +1,4 @@
-import { OrderAddress } from '@shoplyjs/common/lib/generated-types';
+import { OrderAddress } from '@shoplyjs/common/dist/generated-types';
 
 import { Address } from '../../../entity/address/address.entity';
 

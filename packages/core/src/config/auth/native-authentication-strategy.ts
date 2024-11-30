@@ -1,4 +1,4 @@
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 

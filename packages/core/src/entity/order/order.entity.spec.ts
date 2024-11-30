@@ -1,5 +1,5 @@
-import { AdjustmentType } from '@shoplyjs/common/lib/generated-types';
-import { summate } from '@shoplyjs/common/lib/shared-utils';
+import { AdjustmentType } from '@shoplyjs/common/dist/generated-types';
+import { summate } from '@shoplyjs/common/dist/shared-utils';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 import { ensureConfigLoaded } from '../../config/config-helpers';

@@ -1,5 +1,5 @@
-import { Type } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { Type } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { OrderByCondition } from 'typeorm';
 import { DataSource } from 'typeorm/data-source/DataSource';
 import { ColumnMetadata } from 'typeorm/metadata/ColumnMetadata';

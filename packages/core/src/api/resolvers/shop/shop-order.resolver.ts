@@ -24,9 +24,9 @@ import {
     ShippingMethodQuote,
     TransitionOrderToStateResult,
     UpdateOrderItemsResult,
-} from '@shoplyjs/common/lib/generated-shop-types';
-import { QueryCountriesArgs } from '@shoplyjs/common/lib/generated-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+} from '@shoplyjs/common/dist/generated-shop-types';
+import { QueryCountriesArgs } from '@shoplyjs/common/dist/generated-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 
 import { ErrorResultUnion, isGraphQlErrorResult } from '../../../common/error/error-result';
 import { ForbiddenError } from '../../../common/error/errors';

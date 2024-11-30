@@ -8,7 +8,7 @@ import {
     LanguageCode,
     ServerConfigService,
 } from '@shoplyjs/admin-ui/core';
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
 
 @Component({
     selector: 'vdr-create-product-option-group-dialog',

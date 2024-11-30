@@ -2,7 +2,7 @@ import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import {
     SUPER_ADMIN_USER_IDENTIFIER,
     SUPER_ADMIN_USER_PASSWORD,
-} from '@shoplyjs/common/lib/shared-constants';
+} from '@shoplyjs/common/dist/shared-constants';
 import { VendureConfig } from '@shoplyjs/core';
 import FormData from 'form-data';
 import fs from 'fs';

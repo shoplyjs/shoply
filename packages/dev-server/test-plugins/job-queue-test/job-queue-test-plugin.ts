@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { JobState } from '@shoplyjs/common/lib/generated-types';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
 import { JobQueue, JobQueueService, Logger, PluginCommonModule, VendurePlugin } from '@shoplyjs/core';
 import { gql } from 'graphql-tag';
 import { forkJoin, Observable, of } from 'rxjs';

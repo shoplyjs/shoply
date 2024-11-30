@@ -1,5 +1,5 @@
 import { Args, Mutation, Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import {
     ActiveOrderStrategy,
     Ctx,

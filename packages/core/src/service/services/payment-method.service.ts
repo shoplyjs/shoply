@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PaymentMethodQuote } from '@shoplyjs/common/lib/generated-shop-types';
+import { PaymentMethodQuote } from '@shoplyjs/common/dist/generated-shop-types';
 import {
     AssignPaymentMethodsToChannelInput,
     ConfigurableOperationDefinition,
@@ -9,9 +9,9 @@ import {
     Permission,
     RemovePaymentMethodsFromChannelInput,
     UpdatePaymentMethodInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { RelationPaths } from '../../api/decorators/relations.decorator';
@@ -19,14 +19,12 @@ import { ForbiddenError, UserInputError } from '../../common/error/errors';
 import { ListQueryOptions } from '../../common/types/common-types';
 import { Translated } from '../../common/types/locale-types';
 import { assertFound, idsAreEqual } from '../../common/utils';
-import { ConfigService } from '../../config/config.service';
 import { PaymentMethodEligibilityChecker } from '../../config/payment/payment-method-eligibility-checker';
 import { PaymentMethodHandler } from '../../config/payment/payment-method-handler';
 import { TransactionalConnection } from '../../connection/transactional-connection';
 import { Order } from '../../entity/order/order.entity';
 import { PaymentMethodTranslation } from '../../entity/payment-method/payment-method-translation.entity';
 import { PaymentMethod } from '../../entity/payment-method/payment-method.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { PaymentMethodEvent } from '../../event-bus/events/payment-method-event';
 import { ConfigArgService } from '../helpers/config-arg/config-arg.service';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
@@ -36,6 +34,8 @@ import { TranslatorService } from '../helpers/translator/translator.service';
 
 import { ChannelService } from './channel.service';
 import { RoleService } from './role.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -47,15 +47,14 @@ import { RoleService } from './role.service';
 export class PaymentMethodService {
     constructor(
         private connection: TransactionalConnection,
-        private configService: ConfigService,
         private roleService: RoleService,
         private listQueryBuilder: ListQueryBuilder,
-        private eventBus: EventBus,
         private configArgService: ConfigArgService,
         private channelService: ChannelService,
         private customFieldRelationService: CustomFieldRelationService,
         private translatableSaver: TranslatableSaver,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(
@@ -109,7 +108,11 @@ export class PaymentMethodService {
             },
         });
         await this.customFieldRelationService.updateRelations(ctx, PaymentMethod, input, savedPaymentMethod);
-        await this.eventBus.publish(new PaymentMethodEvent(ctx, savedPaymentMethod, 'created', input));
+
+        this.eventEmitter.emit(
+            EventNames.PAYMENT_METHOD_CREATED,
+            new PaymentMethodEvent(ctx, savedPaymentMethod, 'created', input),
+        );
         return assertFound(this.findOne(ctx, savedPaymentMethod.id));
     }
 
@@ -140,7 +143,11 @@ export class PaymentMethodService {
             input,
             updatedPaymentMethod,
         );
-        await this.eventBus.publish(new PaymentMethodEvent(ctx, updatedPaymentMethod, 'updated', input));
+
+        this.eventEmitter.emit(
+            EventNames.PAYMENT_METHOD_UPDATED,
+            new PaymentMethodEvent(ctx, updatedPaymentMethod, 'updated', input),
+        );
         await this.connection.getRepository(ctx, PaymentMethod).save(updatedPaymentMethod, { reload: false });
         return assertFound(this.findOne(ctx, updatedPaymentMethod.id));
     }
@@ -168,7 +175,8 @@ export class PaymentMethodService {
             try {
                 const deletedPaymentMethod = new PaymentMethod(paymentMethod);
                 await this.connection.getRepository(ctx, PaymentMethod).remove(paymentMethod);
-                await this.eventBus.publish(
+                this.eventEmitter.emit(
+                    EventNames.PAYMENT_METHOD_DELETED,
                     new PaymentMethodEvent(ctx, deletedPaymentMethod, 'deleted', paymentMethodId),
                 );
                 return {
@@ -185,7 +193,8 @@ export class PaymentMethodService {
             // but will remove from the current channel
             paymentMethod.channels = paymentMethod.channels.filter(c => !idsAreEqual(c.id, ctx.channelId));
             await this.connection.getRepository(ctx, PaymentMethod).save(paymentMethod);
-            await this.eventBus.publish(
+            this.eventEmitter.emit(
+                EventNames.PAYMENT_METHOD_DELETED,
                 new PaymentMethodEvent(ctx, paymentMethod, 'deleted', paymentMethodId),
             );
             return {

@@ -383,7 +383,7 @@ export class VerificationTokenInvalidError extends ErrorResult {
 
 
 const errorTypeNames = new Set<string>(['AlreadyLoggedInError', 'CouponCodeExpiredError', 'CouponCodeInvalidError', 'CouponCodeLimitError', 'EmailAddressConflictError', 'GuestCheckoutError', 'IdentifierChangeTokenExpiredError', 'IdentifierChangeTokenInvalidError', 'IneligiblePaymentMethodError', 'IneligibleShippingMethodError', 'InsufficientStockError', 'InvalidCredentialsError', 'MissingPasswordError', 'MolliePaymentIntentError', 'NativeAuthStrategyError', 'NegativeQuantityError', 'NoActiveOrderError', 'NotVerifiedError', 'OrderLimitError', 'OrderModificationError', 'OrderPaymentStateError', 'OrderStateTransitionError', 'PasswordAlreadySetError', 'PasswordResetTokenExpiredError', 'PasswordResetTokenInvalidError', 'PasswordValidationError', 'PaymentDeclinedError', 'PaymentFailedError', 'VerificationTokenExpiredError', 'VerificationTokenInvalidError']);
-function isGraphQLError(input: any): input is import('@shoplyjs/common/lib/generated-types').ErrorResult {
+function isGraphQLError(input: any): input is import('@shoplyjs/common/dist/generated-types').ErrorResult {
   return input instanceof ErrorResult || errorTypeNames.has(input.__typename);
 }
 

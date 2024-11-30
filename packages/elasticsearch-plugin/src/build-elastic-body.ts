@@ -1,4 +1,4 @@
-import { LanguageCode, LogicalOperator, PriceRange, SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode, LogicalOperator, PriceRange, SortOrder } from '@shoplyjs/common/dist/generated-types';
 import { DeepRequired, ID, UserInputError } from '@shoplyjs/core';
 
 import { SearchConfig } from './options';

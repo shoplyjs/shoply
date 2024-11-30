@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { omit } from '@shoplyjs/common/lib/omit';
+import { omit } from '@shoplyjs/common/dist/omit';
 import {
     CUSTOMER_ROLE_CODE,
     DEFAULT_CHANNEL_CODE,
     SUPER_ADMIN_ROLE_CODE,
-} from '@shoplyjs/common/lib/shared-constants';
+} from '@shoplyjs/common/dist/shared-constants';
 import { createTestEnvironment, E2E_DEFAULT_CHANNEL_TOKEN } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';

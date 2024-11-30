@@ -1,4 +1,4 @@
-import { OrderType } from '@shoplyjs/common/lib/generated-types';
+import { OrderType } from '@shoplyjs/common/dist/generated-types';
 import {
     CreatePaymentResult,
     LanguageCode,

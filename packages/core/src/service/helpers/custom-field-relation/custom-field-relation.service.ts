@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { pick } from '@shoplyjs/common/lib/pick';
-import { ID, Type } from '@shoplyjs/common/lib/shared-types';
-import { getGraphQlInputName } from '@shoplyjs/common/lib/shared-utils';
+import { pick } from '@shoplyjs/common/dist/pick';
+import { ID, Type } from '@shoplyjs/common/dist/shared-types';
+import { getGraphQlInputName } from '@shoplyjs/common/dist/shared-utils';
 import { In } from 'typeorm';
 
 import { RequestContext } from '../../../api/common/request-context';

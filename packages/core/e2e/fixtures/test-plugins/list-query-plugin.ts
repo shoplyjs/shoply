@@ -1,7 +1,7 @@
 import { Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { DeepPartial, ID } from '@shoplyjs/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { DeepPartial, ID } from '@shoplyjs/common/dist/shared-types';
 import {
     Ctx,
     Customer,

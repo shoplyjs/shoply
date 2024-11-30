@@ -1,5 +1,5 @@
-import { JobListOptions } from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+import { JobListOptions } from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { InjectableStrategy } from '../../common';
 import { JobData, JobQueueStrategyJobOptions } from '../../job-queue';

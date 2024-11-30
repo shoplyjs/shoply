@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import {
     BehaviorSubject,
     combineLatest,

@@ -10,11 +10,11 @@ import {
     LogicalOperator,
     Permission,
     UpdateAssetInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { omit } from '@shoplyjs/common/lib/omit';
-import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
-import { unique } from '@shoplyjs/common/lib/unique';
+} from '@shoplyjs/common/dist/generated-types';
+import { omit } from '@shoplyjs/common/dist/omit';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/dist/shared-types';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { ReadStream as FSReadStream } from 'fs';
 import { ReadStream } from 'fs-extra';
 import { IncomingMessage } from 'http';
@@ -51,6 +51,8 @@ import { patchEntity } from '../helpers/utils/patch-entity';
 import { ChannelService } from './channel.service';
 import { RoleService } from './role.service';
 import { TagService } from './tag.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sizeOf = require('image-size');
@@ -100,6 +102,7 @@ export class AssetService {
         private channelService: ChannelService,
         private roleService: RoleService,
         private customFieldRelationService: CustomFieldRelationService,
+        private eventEmitter: EventEmitter2,
     ) {
         this.permittedMimeTypes = this.configService.assetOptions.permittedFileTypes
             .map(val => (/\.[\w]+/.test(val) ? mime.lookup(val) || undefined : val))
@@ -311,7 +314,7 @@ export class AssetService {
                 result.tags = tags;
                 await this.connection.getRepository(ctx, Asset).save(result);
             }
-            await this.eventBus.publish(new AssetEvent(ctx, result, 'created', input));
+            this.eventEmitter.emit(EventNames.ASSET_CREATED, new AssetEvent(ctx, result, 'created', input));
             resolve(result);
         });
     }
@@ -333,7 +336,7 @@ export class AssetService {
             asset.tags = await this.tagService.valuesToTags(ctx, input.tags);
         }
         const updatedAsset = await this.connection.getRepository(ctx, Asset).save(asset);
-        await this.eventBus.publish(new AssetEvent(ctx, updatedAsset, 'updated', input));
+        this.eventEmitter.emit(EventNames.ASSET_UPDATED, new AssetEvent(ctx, updatedAsset, 'updated', input));
         return updatedAsset;
     }
 
@@ -385,7 +388,10 @@ export class AssetService {
             await Promise.all(
                 assets.map(async asset => {
                     await this.channelService.removeFromChannels(ctx, Asset, asset.id, [ctx.channelId]);
-                    await this.eventBus.publish(new AssetChannelEvent(ctx, asset, ctx.channelId, 'removed'));
+                    this.eventEmitter.emit(
+                        EventNames.ASSET_DELETED,
+                        new AssetChannelEvent(ctx, asset, ctx.channelId, 'removed'),
+                    );
                 }),
             );
             const isOnlyChannel = channelsOfAssets.length === 1;
@@ -401,7 +407,10 @@ export class AssetService {
         await Promise.all(
             assets.map(async asset => {
                 await this.channelService.removeFromChannels(ctx, Asset, asset.id, channelsOfAssets);
-                await this.eventBus.publish(new AssetChannelEvent(ctx, asset, ctx.channelId, 'removed'));
+                this.eventEmitter.emit(
+                    EventNames.ASSET_DELETED,
+                    new AssetChannelEvent(ctx, asset, ctx.channelId, 'removed'),
+                );
             }),
         );
         return this.deleteUnconditional(ctx, assets);
@@ -426,7 +435,8 @@ export class AssetService {
         await Promise.all(
             assets.map(async asset => {
                 await this.channelService.assignToChannels(ctx, Asset, asset.id, [input.channelId]);
-                return await this.eventBus.publish(
+                return this.eventEmitter.emit(
+                    EventNames.ASSET_CHANNEL_ASSIGNED,
                     new AssetChannelEvent(ctx, asset, input.channelId, 'assigned'),
                 );
             }),
@@ -502,7 +512,10 @@ export class AssetService {
             } catch (e: any) {
                 Logger.error('error.could-not-delete-asset-file', undefined, e.stack);
             }
-            await this.eventBus.publish(new AssetEvent(ctx, deletedAsset, 'deleted', deletedAsset.id));
+            this.eventEmitter.emit(
+                EventNames.ASSET_DELETED,
+                new AssetEvent(ctx, deletedAsset, 'deleted', deletedAsset.id),
+            );
         }
         return {
             result: DeletionResult.DELETED,

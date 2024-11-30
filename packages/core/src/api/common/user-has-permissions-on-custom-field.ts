@@ -1,4 +1,4 @@
-import { Permission } from '@shoplyjs/common/lib/generated-types';
+import { Permission } from '@shoplyjs/common/dist/generated-types';
 
 import { CustomFieldConfig } from '../../config/custom-field/custom-field-types';
 

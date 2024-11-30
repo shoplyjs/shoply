@@ -1,4 +1,4 @@
-import { SUPER_ADMIN_USER_IDENTIFIER } from '@shoplyjs/common/lib/shared-constants';
+import { SUPER_ADMIN_USER_IDENTIFIER } from '@shoplyjs/common/dist/shared-constants';
 import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import { fail } from 'assert';
 import gql from 'graphql-tag';

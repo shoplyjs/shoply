@@ -1,10 +1,10 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import {
     DEFAULT_AUTH_TOKEN_HEADER_KEY,
     SUPER_ADMIN_USER_IDENTIFIER,
     SUPER_ADMIN_USER_PASSWORD,
     DEFAULT_CHANNEL_TOKEN_KEY,
-} from '@shoplyjs/common/lib/shared-constants';
+} from '@shoplyjs/common/dist/shared-constants';
 
 import { TypeORMHealthCheckStrategy } from '../health-check/typeorm-health-check-strategy';
 import { InMemoryJobQueueStrategy } from '../job-queue/in-memory-job-queue-strategy';

@@ -1,5 +1,5 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 import {
     Asset,
     ID,

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import {
     DefaultLogger,
     DefaultOrderPlacedStrategy,

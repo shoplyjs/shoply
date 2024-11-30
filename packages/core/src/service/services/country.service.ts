@@ -4,8 +4,8 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateCountryInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { RelationPaths } from '../../api/decorators/relations.decorator';
@@ -17,12 +17,12 @@ import { TransactionalConnection } from '../../connection/transactional-connecti
 import { Address } from '../../entity';
 import { Country } from '../../entity/region/country.entity';
 import { RegionTranslation } from '../../entity/region/region-translation.entity';
-import { Region } from '../../entity/region/region.entity';
-import { EventBus } from '../../event-bus';
 import { CountryEvent } from '../../event-bus/events/country-event';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
 import { TranslatorService } from '../helpers/translator/translator.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -36,8 +36,8 @@ export class CountryService {
         private connection: TransactionalConnection,
         private listQueryBuilder: ListQueryBuilder,
         private translatableSaver: TranslatableSaver,
-        private eventBus: EventBus,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(
@@ -102,7 +102,7 @@ export class CountryService {
             entityType: Country,
             translationType: RegionTranslation,
         });
-        await this.eventBus.publish(new CountryEvent(ctx, country, 'created', input));
+        this.eventEmitter.emit(EventNames.COUNTRY_CREATED, new CountryEvent(ctx, country, 'created', input));
         return assertFound(this.findOne(ctx, country.id));
     }
 
@@ -113,7 +113,7 @@ export class CountryService {
             entityType: Country,
             translationType: RegionTranslation,
         });
-        await this.eventBus.publish(new CountryEvent(ctx, country, 'updated', input));
+        this.eventEmitter.emit(EventNames.COUNTRY_UPDATED, new CountryEvent(ctx, country, 'updated', input));
         return assertFound(this.findOne(ctx, country.id));
     }
 
@@ -133,7 +133,10 @@ export class CountryService {
         } else {
             const deletedCountry = new Country(country);
             await this.connection.getRepository(ctx, Country).remove(country);
-            await this.eventBus.publish(new CountryEvent(ctx, deletedCountry, 'deleted', id));
+            this.eventEmitter.emit(
+                EventNames.COUNTRY_DELETED,
+                new CountryEvent(ctx, deletedCountry, 'deleted', id),
+            );
             return {
                 result: DeletionResult.DELETED,
                 message: '',

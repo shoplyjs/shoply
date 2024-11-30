@@ -1,6 +1,6 @@
 import { OnApplicationBootstrap } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import {
     Asset,
     Channel,

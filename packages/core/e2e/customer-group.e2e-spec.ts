@@ -1,4 +1,4 @@
-import { pick } from '@shoplyjs/common/lib/pick';
+import { pick } from '@shoplyjs/common/dist/pick';
 import { createTestEnvironment } from '@shoplyjs/testing';
 import path from 'path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { DeletionResponse, DeletionResult, LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { CustomFieldsObject, ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+import { DeletionResponse, DeletionResult, LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { CustomFieldsObject, ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 import {
     assertFound,
     CustomFieldRelationService,

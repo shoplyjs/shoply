@@ -13,8 +13,8 @@ import {
     QueryCollectionArgs,
     QueryCollectionsArgs,
     QueryPreviewCollectionVariantsArgs,
-} from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { UserInputError } from '../../../common/error/errors';
 import { Translated } from '../../../common/types/locale-types';

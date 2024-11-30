@@ -16,8 +16,8 @@ import {
     TypedBaseDetailComponent,
     UpdateAdministratorInput,
 } from '@shoplyjs/admin-ui/core';
-import { CUSTOMER_ROLE_CODE } from '@shoplyjs/common/lib/shared-constants';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { CUSTOMER_ROLE_CODE } from '@shoplyjs/common/dist/shared-constants';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import { gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { mergeMap, take } from 'rxjs/operators';

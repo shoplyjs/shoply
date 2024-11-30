@@ -1,6 +1,6 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 import { Observable } from 'rxjs';
 
 import { RequestContext } from '../../../api/common/request-context';

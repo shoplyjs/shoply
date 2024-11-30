@@ -5,13 +5,12 @@ import {
     DeletionResponse,
     DeletionResult,
     ProductFilterParameter,
-    ProductListOptions,
     RemoveOptionGroupFromProductResult,
     RemoveProductsFromChannelInput,
     UpdateProductInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { FindOptionsUtils, In, IsNull } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';
@@ -29,7 +28,6 @@ import { ProductTranslation } from '../../entity/product/product-translation.ent
 import { Product } from '../../entity/product/product.entity';
 import { ProductOptionGroup } from '../../entity/product-option-group/product-option-group.entity';
 import { ProductVariant } from '../../entity/product-variant/product-variant.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { ProductChannelEvent } from '../../event-bus/events/product-channel-event';
 import { ProductEvent } from '../../event-bus/events/product-event';
 import { ProductOptionGroupChangeEvent } from '../../event-bus/events/product-option-group-change-event';
@@ -44,6 +42,8 @@ import { ChannelService } from './channel.service';
 import { FacetValueService } from './facet-value.service';
 import { ProductOptionGroupService } from './product-option-group.service';
 import { ProductVariantService } from './product-variant.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -63,11 +63,11 @@ export class ProductService {
         private facetValueService: FacetValueService,
         private listQueryBuilder: ListQueryBuilder,
         private translatableSaver: TranslatableSaver,
-        private eventBus: EventBus,
         private slugValidator: SlugValidator,
         private customFieldRelationService: CustomFieldRelationService,
         private translator: TranslatorService,
         private productOptionGroupService: ProductOptionGroupService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     async findAll(
@@ -235,7 +235,8 @@ export class ProductService {
         });
         await this.customFieldRelationService.updateRelations(ctx, Product, input, product);
         await this.assetService.updateEntityAssets(ctx, product, input);
-        await this.eventBus.publish(new ProductEvent(ctx, product, 'created', input));
+        this.eventEmitter.emit(EventNames.PRODUCT_CREATED, new ProductEvent(ctx, product, 'created', input));
+
         return assertFound(this.findOne(ctx, product.id));
     }
 
@@ -265,7 +266,11 @@ export class ProductService {
             },
         });
         await this.customFieldRelationService.updateRelations(ctx, Product, input, updatedProduct);
-        await this.eventBus.publish(new ProductEvent(ctx, updatedProduct, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_UPDATED,
+            new ProductEvent(ctx, updatedProduct, 'updated', input),
+        );
+
         return assertFound(this.findOne(ctx, updatedProduct.id));
     }
 
@@ -278,7 +283,10 @@ export class ProductService {
         });
         product.deletedAt = new Date();
         await this.connection.getRepository(ctx, Product).save(product, { reload: false });
-        await this.eventBus.publish(new ProductEvent(ctx, product, 'deleted', productId));
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_DELETED,
+            new ProductEvent(ctx, product, 'deleted', productId),
+        );
 
         const variantResult = await this.productVariantService.softDelete(
             ctx,
@@ -337,7 +345,10 @@ export class ProductService {
             .getRepository(ctx, Product)
             .find({ where: { id: In(input.productIds) } });
         for (const product of products) {
-            await this.eventBus.publish(new ProductChannelEvent(ctx, product, input.channelId, 'assigned'));
+            this.eventEmitter.emit(
+                EventNames.PRODUCT_CHANNEL_ASSIGNED,
+                new ProductChannelEvent(ctx, product, input.channelId, 'assigned'),
+            );
         }
         return this.findByIds(
             ctx,
@@ -363,7 +374,10 @@ export class ProductService {
             .getRepository(ctx, Product)
             .find({ where: { id: In(input.productIds) } });
         for (const product of products) {
-            await this.eventBus.publish(new ProductChannelEvent(ctx, product, input.channelId, 'removed'));
+            this.eventEmitter.emit(
+                EventNames.PRODUCT_CHANNEL_REMOVED,
+                new ProductChannelEvent(ctx, product, input.channelId, 'removed'),
+            );
         }
         return this.findByIds(
             ctx,
@@ -399,7 +413,8 @@ export class ProductService {
         }
 
         await this.connection.getRepository(ctx, Product).save(product, { reload: false });
-        await this.eventBus.publish(
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_OPTION_GROUP_ASSIGNED,
             new ProductOptionGroupChangeEvent(ctx, product, optionGroupId, 'assigned'),
         );
         return assertFound(this.findOne(ctx, productId));
@@ -449,7 +464,8 @@ export class ProductService {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             throw new InternalServerError(result.message!);
         }
-        await this.eventBus.publish(
+        this.eventEmitter.emit(
+            EventNames.PRODUCT_OPTION_GROUP_DELETED,
             new ProductOptionGroupChangeEvent(ctx, product, optionGroupId, 'removed'),
         );
         return assertFound(this.findOne(ctx, productId));

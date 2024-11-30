@@ -15,8 +15,8 @@ import {
     UpdateProductVariantInput,
     UpdateProductVariantsMutation,
 } from '@shoplyjs/admin-ui/core';
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import { forkJoin, Observable, of, throwError } from 'rxjs';
 import { map, mergeMap, shareReplay, switchMap } from 'rxjs/operators';
 
