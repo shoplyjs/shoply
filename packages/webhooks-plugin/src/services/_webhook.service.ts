@@ -4,7 +4,6 @@ import { EventBus, RequestContext, TransactionalConnection } from '@shoplyjs/cor
 import fetch from 'node-fetch';
 
 import { Webhook } from '../entities/webhook.entity';
-import { CreateWebhookInput, UpdateWebhookInput } from '@shoplyjs/common/lib/generated-types';
 import { UpdateWebhookDto } from '../dto/update-webhook.dto';
 import { CreateWebhookDto } from '../dto/create-webhook.dto';
 import { WebhookEvent } from '../webhook.event';

@@ -1,6 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { DeletionResponse } from '@shoplyjs/common/lib/generated-types';
 import { Allow, Ctx, Permission, RequestContext, Transaction } from '@shoplyjs/core';
 
 import { Webhook } from '../entities/webhook.entity';

@@ -56,6 +56,7 @@ export class EmailProcessor {
         let emailDetails: EmailDetails = {} as any;
         try {
             const bodySource = await this.options.templateLoader.loadTemplate(
+                // @ts-ignore
                 new Injector(this.moduleRef),
                 ctx,
                 {
@@ -90,6 +91,7 @@ export class EmailProcessor {
     }
 
     async getTransportSettings(ctx?: RequestContext): Promise<EmailTransportOptions> {
+        // @ts-ignore
         const transport = await resolveTransportSettings(this.options, new Injector(this.moduleRef), ctx);
         if (isDevModeOptions(this.options)) {
             if (transport && transport.type !== 'file') {

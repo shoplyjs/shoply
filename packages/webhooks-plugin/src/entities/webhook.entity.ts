@@ -1,6 +1,6 @@
 import { DeepPartial, VendureEntity } from '@shoplyjs/core';
 import { BeforeInsert, Column, Entity } from 'typeorm';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 
 @Entity()
 export class Webhook extends VendureEntity {

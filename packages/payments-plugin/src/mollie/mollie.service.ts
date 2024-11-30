@@ -72,6 +72,7 @@ export class MollieService {
         private variantService: ProductVariantService,
         private moduleRef: ModuleRef,
     ) {
+        // @ts-ignore
         this.injector = new Injector(this.moduleRef);
     }
 

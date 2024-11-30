@@ -40,13 +40,15 @@ export class StripeService {
         const amountInMinorUnits = getAmountInStripeMinorUnits(order);
 
         const additionalParams = await this.options.paymentIntentCreateParams?.(
+            // @ts-ignore
             new Injector(this.moduleRef),
             ctx,
             order,
         );
         const metadata = sanitizeMetadata({
             ...(typeof this.options.metadata === 'function'
-                ? await this.options.metadata(new Injector(this.moduleRef), ctx, order)
+                ? // @ts-ignore
+                  await this.options.metadata(new Injector(this.moduleRef), ctx, order)
                 : {}),
             channelToken: ctx.channel.token,
             orderId: order.id,
@@ -175,6 +177,7 @@ export class StripeService {
             stripeCustomerId = stripeCustomers.data[0].id;
         } else {
             const additionalParams = await this.options.customerCreateParams?.(
+                // @ts-ignore
                 new Injector(this.moduleRef),
                 ctx,
                 order,
