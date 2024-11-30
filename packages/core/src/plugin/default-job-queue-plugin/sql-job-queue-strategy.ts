@@ -43,10 +43,14 @@ export class SqlJobQueueStrategy extends PollingJobQueueStrategy implements Insp
         if (!this.connectionAvailable(this.rawConnection)) {
             throw new Error('Connection not available');
         }
-        const jobRecordRepository =
-            jobOptions?.ctx && this.connection
-                ? this.connection.getRepository(jobOptions.ctx, JobRecord)
-                : this.rawConnection.getRepository(JobRecord);
+        // TODO: Ensure if transaction is needed
+        // const jobRecordRepository =
+        //     jobOptions?.ctx && this.connection
+        //         ? this.connection.getRepository(jobOptions.ctx, JobRecord)
+        //         : this.rawConnection.getRepository(JobRecord);
+
+        const jobRecordRepository = this.rawConnection.getRepository(JobRecord);
+
         const constrainedData = this.constrainDataSize(job);
         const newRecord = this.toRecord(job, constrainedData, this.setRetries(job.queueName, job));
         const record = await jobRecordRepository.save(newRecord);

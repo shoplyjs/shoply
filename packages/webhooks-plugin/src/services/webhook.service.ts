@@ -1,6 +1,6 @@
-import { Injectable, OnApplicationBootstrap, OnApplicationShutdown, Type } from '@nestjs/common';
-import { ChannelEvent, EntityNotFoundError, Logger, VendureEvent } from '@shoplyjs/core';
-import { EventBus, RequestContext, TransactionalConnection } from '@shoplyjs/core';
+import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { EntityNotFoundError, Logger } from '@shoplyjs/core';
+import { RequestContext, TransactionalConnection } from '@shoplyjs/core';
 import fetch from 'node-fetch';
 
 import { Webhook } from '../entities/webhook.entity';
@@ -11,6 +11,8 @@ import { WebhookEvent } from '../webhook.event';
 
 @Injectable()
 export class WebhookService implements OnApplicationBootstrap {
+    private eventHandlers = new Map<string, (data: any) => void>();
+
     constructor(
         private connection: TransactionalConnection,
         private eventEmitter: EventEmitter2,
@@ -20,15 +22,28 @@ export class WebhookService implements OnApplicationBootstrap {
         const webhooks = await this.findAll();
 
         for (const webhook of webhooks) {
-            const eventName = webhook.event;
             this.subscribeWebhookEvent(webhook);
         }
     }
 
     subscribeWebhookEvent(webhook: Webhook) {
-        this.eventEmitter.on(webhook.event, data => {
+        const eventHandler = (data: any) => {
             this.proceedWebhook(webhook, data).catch(err => err);
-        });
+        };
+
+        this.eventEmitter.on(webhook.event, eventHandler);
+        this.eventHandlers.set(`${webhook.event}:${webhook.id}`, eventHandler);
+    }
+
+    private unsubscribeCustomWebhookEvent(eventType: string, webhookId: string): void {
+        const eventHandler = this.eventHandlers.get(`${eventType}:${webhookId}`);
+        if (eventHandler) {
+            this.eventEmitter.removeListener(eventType, eventHandler);
+            this.eventHandlers.delete(`${eventType}:${webhookId}`);
+            Logger.info(`Unsubscribed from event: ${eventType} for webhook ID: ${webhookId}`);
+        } else {
+            Logger.warn(`No event handler found for event: ${eventType} and webhook ID: ${webhookId}`);
+        }
     }
 
     async proceedWebhook(currentWebhook: Webhook, data: any) {
@@ -60,7 +75,7 @@ export class WebhookService implements OnApplicationBootstrap {
             ...input,
         });
 
-        this.eventEmitter.emit('webhook.created', new WebhookEvent(ctx, webhook, 'created'));
+        this.subscribeWebhookEvent(webhook);
         return webhook;
     }
 
@@ -77,9 +92,8 @@ export class WebhookService implements OnApplicationBootstrap {
 
         // Re-subscribe if the event type has changed
         if (currentWebhook.event !== input.event) {
-            this.unsubscribeCustomWebhookEvent(currentWebhook.event);
-            const eventName = `${updatedWebhook.event}:${updatedWebhook.id}`;
-            // this.subscribeWebhookEvent(eventName);
+            this.unsubscribeCustomWebhookEvent(currentWebhook.event, String(currentWebhook.id));
+            this.subscribeWebhookEvent(updatedWebhook);
         }
 
         return updatedWebhook;
@@ -91,35 +105,7 @@ export class WebhookService implements OnApplicationBootstrap {
             throw new EntityNotFoundError('Webhook', id);
         }
         await this.connection.getRepository(ctx, Webhook).delete({ id });
-        const eventName = `${webhook.event}:${webhook.id}`;
-        this.unsubscribeCustomWebhookEvent(eventName);
-    }
-
-    @OnEvent('webhook.created')
-    private onWebhookCreated({ webhook }: WebhookEvent) {
-        this.subscribeWebhookEvent(webhook as Webhook);
-    }
-
-    // @OnEvent('*', { async: true })
-    // private async subscribeWebhookEvent({ ctx }: any) {
-    //     debugger;
-    //     // const webhooks = await this.findWebhooksForEvent(eventType);
-    //     // const { input } = (event || {}) as any;
-
-    //     // for (const webhook of webhooks) {
-    //     //     try {
-    //     //         await this.callRestWebhook(webhook, input);
-    //     //     } catch (error) {
-    //     //         Logger.warn(
-    //     //             `Failed to trigger webhook for ${eventType} at ${webhook.url}: ${JSON.stringify(error)}`,
-    //     //             WebhookService.name,
-    //     //         );
-    //     //     }
-    //     // }
-    // }
-
-    private unsubscribeCustomWebhookEvent(eventType: string): void {
-        // this.eventBus.unRegister(eventType);
+        this.unsubscribeCustomWebhookEvent(webhook.event, String(webhook.id));
     }
 
     private async callRestWebhook(webhook: Webhook, data: any): Promise<void> {
@@ -143,9 +129,5 @@ export class WebhookService implements OnApplicationBootstrap {
             );
             return;
         }
-    }
-
-    private async findWebhooksForEvent(eventType: string): Promise<Webhook[]> {
-        return this.connection.getRepository(Webhook).find({ where: { event: eventType } });
     }
 }
