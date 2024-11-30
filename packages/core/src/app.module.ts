@@ -13,7 +13,6 @@ import { I18nService } from './i18n/i18n.service';
 import { PluginModule } from './plugin/plugin.module';
 import { ProcessContextModule } from './process-context/process-context.module';
 import { ServiceModule } from './service/service.module';
-import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
     imports: [
@@ -25,9 +24,6 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
         HealthCheckModule,
         ServiceModule,
         ConnectionModule,
-        EventEmitterModule.forRoot({
-            wildcard: true,
-        }),
     ],
 })
 export class AppModule implements NestModule, OnApplicationShutdown {

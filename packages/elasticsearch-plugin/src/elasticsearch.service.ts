@@ -11,6 +11,7 @@ import {
     Job,
     Logger,
     RequestContext,
+    SearchService,
 } from '@shoplyjs/core';
 import equal from 'fast-deep-equal/es6';
 
@@ -42,6 +43,7 @@ export class ElasticsearchService implements OnModuleInit, OnModuleDestroy {
         private elasticsearchIndexService: ElasticsearchIndexService,
         private facetValueService: FacetValueService,
         private collectionService: CollectionService,
+        private searchService: SearchService,
     ) {
         searchService.adopt(this);
     }

@@ -10,6 +10,7 @@ import { I18nModule } from '../i18n/i18n.module';
 import { JobQueueModule } from '../job-queue/job-queue.module';
 import { ProcessContextModule } from '../process-context/process-context.module';
 import { ServiceModule } from '../service/service.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -29,6 +30,9 @@ import { ServiceModule } from '../service/service.module';
  */
 @Module({
     imports: [
+        EventEmitterModule.forRoot({
+            wildcard: true,
+        }),
         EventBusModule,
         ConfigModule,
         ConnectionModule.forPlugin(),
@@ -41,6 +45,9 @@ import { ServiceModule } from '../service/service.module';
         DataImportModule,
     ],
     exports: [
+        EventEmitterModule.forRoot({
+            wildcard: true,
+        }),
         EventBusModule,
         ConfigModule,
         ConnectionModule.forPlugin(),

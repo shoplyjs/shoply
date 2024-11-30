@@ -94,7 +94,7 @@ export class CollectionService implements OnModuleInit {
         merge(productEvents$, variantEvents$)
             .pipe(debounceTime(50))
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            .subscribe(async event => {
+            .subscribe(async (event: any) => {
                 const collections = await this.connection.rawConnection
                     .getRepository(Collection)
                     .createQueryBuilder('collection')
