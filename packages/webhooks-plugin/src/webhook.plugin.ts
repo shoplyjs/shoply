@@ -4,7 +4,6 @@ import { adminApiExtensions } from './api/api-extension';
 import { WebhookController } from './api/webhook.controller';
 import { WebhookResolver } from './api/webhook.resolver';
 import { Webhook } from './entities/webhook.entity';
-import './types';
 import { WebhookService } from './services/webhook.service';
 
 @VendurePlugin({
