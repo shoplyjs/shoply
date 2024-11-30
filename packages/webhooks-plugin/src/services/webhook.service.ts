@@ -6,26 +6,35 @@ import fetch from 'node-fetch';
 import { Webhook } from '../entities/webhook.entity';
 import { UpdateWebhookDto } from '../dto/update-webhook.dto';
 import { CreateWebhookDto } from '../dto/create-webhook.dto';
+import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
+import { WebhookEvent } from '../webhook.event';
 
 @Injectable()
 export class WebhookService implements OnApplicationBootstrap {
     constructor(
         private connection: TransactionalConnection,
-        private eventBus: EventBus,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     async onApplicationBootstrap() {
         const webhooks = await this.findAll();
-        const events = new Set(
-            webhooks.map(webhook => {
-                return `${webhook.event}:${webhook.id}`;
-            }),
-        );
 
-        for (const eventType of events) {
-            if (!eventType.startsWith('ChannelEvent:')) continue;
-            this.eventBus.register(ChannelEvent, eventType);
-            this.subscribeWebhookEvent(eventType);
+        for (const webhook of webhooks) {
+            const eventName = webhook.event;
+            this.subscribeWebhookEvent(webhook);
+        }
+    }
+
+    subscribeWebhookEvent(webhook: Webhook) {
+        this.eventEmitter.on(webhook.event, data => {
+            this.proceedWebhook(webhook, data).catch(err => err);
+        });
+    }
+
+    async proceedWebhook(currentWebhook: Webhook, data: any) {
+        if (String(data.ctx.channelId) !== String(currentWebhook.channelId)) return;
+        if (currentWebhook.approach === 'rest') {
+            await this.callRestWebhook(currentWebhook, data);
         }
     }
 
@@ -34,7 +43,7 @@ export class WebhookService implements OnApplicationBootstrap {
     }
 
     async findAll(): Promise<Webhook[]> {
-        return this.connection.getRepository(Webhook).find();
+        return this.connection.rawConnection.getRepository(Webhook).find();
     }
 
     async findOne(ctx: RequestContext, id: string): Promise<Webhook | null> {
@@ -51,7 +60,7 @@ export class WebhookService implements OnApplicationBootstrap {
             ...input,
         });
 
-        this.subscribeWebhookEvent(webhook.event);
+        this.eventEmitter.emit('webhook.created', new WebhookEvent(ctx, webhook, 'created'));
         return webhook;
     }
 
@@ -70,7 +79,7 @@ export class WebhookService implements OnApplicationBootstrap {
         if (currentWebhook.event !== input.event) {
             this.unsubscribeCustomWebhookEvent(currentWebhook.event);
             const eventName = `${updatedWebhook.event}:${updatedWebhook.id}`;
-            this.subscribeWebhookEvent(eventName);
+            // this.subscribeWebhookEvent(eventName);
         }
 
         return updatedWebhook;
@@ -86,41 +95,54 @@ export class WebhookService implements OnApplicationBootstrap {
         this.unsubscribeCustomWebhookEvent(eventName);
     }
 
-    private subscribeWebhookEvent(eventType: string): void {
-        this.eventBus.subscribe(eventType, async (event: VendureEvent) => {
-            const webhooks = await this.findWebhooksForEvent(eventType);
-            const { input } = (event || {}) as any;
-
-            for (const webhook of webhooks) {
-                try {
-                    await this.callRestWebhook(webhook, input);
-                } catch (error) {
-                    Logger.warn(
-                        `Failed to trigger webhook for ${eventType} at ${webhook.url}: ${JSON.stringify(error)}`,
-                        WebhookService.name,
-                    );
-                }
-            }
-        });
+    @OnEvent('webhook.created')
+    private onWebhookCreated({ webhook }: WebhookEvent) {
+        this.subscribeWebhookEvent(webhook as Webhook);
     }
 
+    // @OnEvent('*', { async: true })
+    // private async subscribeWebhookEvent({ ctx }: any) {
+    //     debugger;
+    //     // const webhooks = await this.findWebhooksForEvent(eventType);
+    //     // const { input } = (event || {}) as any;
+
+    //     // for (const webhook of webhooks) {
+    //     //     try {
+    //     //         await this.callRestWebhook(webhook, input);
+    //     //     } catch (error) {
+    //     //         Logger.warn(
+    //     //             `Failed to trigger webhook for ${eventType} at ${webhook.url}: ${JSON.stringify(error)}`,
+    //     //             WebhookService.name,
+    //     //         );
+    //     //     }
+    //     // }
+    // }
+
     private unsubscribeCustomWebhookEvent(eventType: string): void {
-        this.eventBus.unRegister(eventType);
+        // this.eventBus.unRegister(eventType);
     }
 
     private async callRestWebhook(webhook: Webhook, data: any): Promise<void> {
-        const payload = JSON.stringify({ data });
-        const response = await fetch(webhook.url, {
-            method: webhook.method,
-            headers: webhook.headers,
-            body: payload,
-        });
+        try {
+            const payload = JSON.stringify({ data: data.input || {} });
+            const response = await fetch(webhook.url, {
+                method: webhook.method,
+                headers: webhook.headers,
+                body: payload,
+            });
 
-        if (!response.ok) {
-            throw new Error(`HTTP Request failed with status: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`HTTP Request failed with status: ${response.status}`);
+            }
+
+            Logger.info(`Webhook triggered for ${webhook.event} at ${webhook.url}`, WebhookService.name);
+        } catch (e: any) {
+            Logger.warn(
+                `Failed to trigger webhook for ${webhook.event} at ${webhook.url}: ${e.message}`,
+                WebhookService.name,
+            );
+            return;
         }
-
-        Logger.info(`Webhook triggered for ${webhook.event} at ${webhook.url}`, WebhookService.name);
     }
 
     private async findWebhooksForEvent(eventType: string): Promise<Webhook[]> {
