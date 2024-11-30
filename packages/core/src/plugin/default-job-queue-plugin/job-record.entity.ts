@@ -1,5 +1,5 @@
-import { JobState } from '@shoplyjs/common/lib/generated-types';
-import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
+import { DeepPartial } from '@shoplyjs/common/dist/shared-types';
 import { Column, Entity } from 'typeorm';
 
 import { VendureEntity } from '../../entity/base/base.entity';

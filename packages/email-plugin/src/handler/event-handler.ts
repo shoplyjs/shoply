@@ -1,5 +1,5 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { Type } from '@shoplyjs/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { Type } from '@shoplyjs/common/dist/shared-types';
 import { Injector, Logger } from '@shoplyjs/core';
 
 import { serializeAttachments } from '../attachment-utils';

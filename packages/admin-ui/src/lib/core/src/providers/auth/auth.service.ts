@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 

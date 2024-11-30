@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import * as fs from 'fs-extra';
 import { globSync } from 'glob';
 import * as path from 'path';

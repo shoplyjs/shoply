@@ -1,4 +1,4 @@
-import { Type } from '@shoplyjs/common/lib/shared-types';
+import { Type } from '@shoplyjs/common/dist/shared-types';
 import { getMetadataArgsStorage } from 'typeorm';
 
 import { CustomFieldConfig, CustomFields } from '../config/custom-field/custom-field-types';

@@ -1,4 +1,4 @@
-import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { DeepPartial } from '@shoplyjs/common/dist/shared-types';
 import { User, VendureEntity } from '@shoplyjs/core';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 

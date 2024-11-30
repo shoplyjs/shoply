@@ -1,4 +1,4 @@
-import { CurrencyCode, LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { CurrencyCode, LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 import { CachedSession } from '../../config/session-cache/session-cache-strategy';

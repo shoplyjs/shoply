@@ -1,4 +1,4 @@
-import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { DeepPartial } from '@shoplyjs/common/dist/shared-types';
 import { describe, expect, it } from 'vitest';
 
 import { Calculated } from '../../common/index';

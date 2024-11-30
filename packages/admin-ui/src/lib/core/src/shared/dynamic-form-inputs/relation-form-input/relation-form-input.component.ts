@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { DefaultFormComponentId } from '@shoplyjs/common/lib/shared-types';
+import { DefaultFormComponentId } from '@shoplyjs/common/dist/shared-types';
 
 import { FormInputComponent } from '../../../common/component-registry-types';
 import { RelationCustomFieldConfig } from '../../../common/generated-types';

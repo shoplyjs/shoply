@@ -1,5 +1,5 @@
-import { AssetType } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { AssetType } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import { lastValueFrom, Observable, Observer } from 'rxjs';
 import { FindOptionsRelations } from 'typeorm/find-options/FindOptionsRelations';
 

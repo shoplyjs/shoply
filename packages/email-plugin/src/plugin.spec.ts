@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
 import {
     DefaultLogger,
     EventBus,

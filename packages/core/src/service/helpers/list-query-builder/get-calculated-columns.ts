@@ -1,4 +1,4 @@
-import { Type } from '@shoplyjs/common/lib/shared-types';
+import { Type } from '@shoplyjs/common/dist/shared-types';
 
 import { CalculatedColumnDefinition, CALCULATED_PROPERTIES } from '../../../common/calculated-decorator';
 

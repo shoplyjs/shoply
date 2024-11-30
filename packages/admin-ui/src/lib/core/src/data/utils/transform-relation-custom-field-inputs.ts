@@ -1,5 +1,5 @@
-import { getGraphQlInputName } from '@shoplyjs/common/lib/shared-utils';
-import { simpleDeepClone } from '@shoplyjs/common/lib/simple-deep-clone';
+import { getGraphQlInputName } from '@shoplyjs/common/dist/shared-utils';
+import { simpleDeepClone } from '@shoplyjs/common/dist/simple-deep-clone';
 
 import { CustomFieldConfig } from '../../common/generated-types';
 

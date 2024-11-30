@@ -14,8 +14,8 @@ import {
     NotificationService,
     SelectionManager,
 } from '@shoplyjs/admin-ui/core';
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 

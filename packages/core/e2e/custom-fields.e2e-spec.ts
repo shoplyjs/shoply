@@ -1,4 +1,4 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import { Asset, CustomFields, mergeConfig, TransactionalConnection } from '@shoplyjs/core';
 import { createTestEnvironment } from '@shoplyjs/testing';
 import { fail } from 'assert';

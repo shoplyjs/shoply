@@ -10,8 +10,8 @@ import {
     Permission,
     QueryCustomerGroupArgs,
     QueryCustomerGroupsArgs,
-} from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { CustomerGroup } from '../../../entity/customer-group/customer-group.entity';
 import { CustomerGroupService } from '../../../service/services/customer-group.service';

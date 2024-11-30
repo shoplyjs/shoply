@@ -1,4 +1,4 @@
-import { HistoryEntryType } from '@shoplyjs/common/lib/generated-types';
+import { HistoryEntryType } from '@shoplyjs/common/dist/generated-types';
 
 import { RefundState } from '../../service/helpers/refund-state-machine/refund-state';
 

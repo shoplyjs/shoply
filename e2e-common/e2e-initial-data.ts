@@ -1,4 +1,4 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import { InitialData } from '@shoplyjs/core/dist/data-import/index';
 
 export const initialData: InitialData = {

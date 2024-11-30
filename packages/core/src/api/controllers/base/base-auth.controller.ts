@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
-import { AuthenticationResult as ShopAuthenticationResult } from '@shoplyjs/common/lib/generated-shop-types';
+import { AuthenticationResult as ShopAuthenticationResult } from '@shoplyjs/common/dist/generated-shop-types';
 import {
     AuthenticationResult as AdminAuthenticationResult,
     CurrentUser,
     CurrentUserChannel,
     Success,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 import { Request, Response } from 'express';
 
 import { isGraphQlErrorResult } from '../../../common/error/error-result';

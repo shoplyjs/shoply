@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigurableOperation, ConfigurableOperationInput } from '@shoplyjs/common/lib/generated-types';
-import { Type } from '@shoplyjs/common/lib/shared-types';
+import { ConfigurableOperation, ConfigurableOperationInput } from '@shoplyjs/common/dist/generated-types';
+import { Type } from '@shoplyjs/common/dist/shared-types';
 
 import { ConfigurableOperationDef } from '../../common/configurable-operation';
 import { InternalServerError } from '../../common/error/errors';

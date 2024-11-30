@@ -4,7 +4,7 @@ import {
     RegisterCustomerInput,
     UpdateCustomerInput as UpdateCustomerShopInput,
     VerifyCustomerAccountResult,
-} from '@shoplyjs/common/lib/generated-shop-types';
+} from '@shoplyjs/common/dist/generated-shop-types';
 import {
     AddNoteToCustomerInput,
     CreateAddressInput,
@@ -20,8 +20,8 @@ import {
     UpdateCustomerInput,
     UpdateCustomerNoteInput,
     UpdateCustomerResult,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 import { IsNull } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';
@@ -51,7 +51,6 @@ import { CustomerGroup } from '../../entity/customer-group/customer-group.entity
 import { HistoryEntry } from '../../entity/history-entry/history-entry.entity';
 import { Order } from '../../entity/order/order.entity';
 import { User } from '../../entity/user/user.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { AccountRegistrationEvent } from '../../event-bus/events/account-registration-event';
 import { AccountVerifiedEvent } from '../../event-bus/events/account-verified-event';
 import { CustomerAddressEvent } from '../../event-bus/events/customer-address-event';
@@ -70,6 +69,8 @@ import { ChannelService } from './channel.service';
 import { CountryService } from './country.service';
 import { HistoryService } from './history.service';
 import { UserService } from './user.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -85,11 +86,11 @@ export class CustomerService {
         private userService: UserService,
         private countryService: CountryService,
         private listQueryBuilder: ListQueryBuilder,
-        private eventBus: EventBus,
         private historyService: HistoryService,
         private channelService: ChannelService,
         private customFieldRelationService: CustomFieldRelationService,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(
@@ -268,7 +269,10 @@ export class CustomerService {
                 }
             }
         }
-        await this.eventBus.publish(new AccountRegistrationEvent(ctx, customer.user));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_REGISTERED,
+            new AccountRegistrationEvent(ctx, customer.user),
+        );
         await this.channelService.assignToCurrentChannel(customer, ctx);
         const createdCustomer = await this.connection.getRepository(ctx, Customer).save(customer);
         await this.customFieldRelationService.updateRelations(ctx, Customer, input, createdCustomer);
@@ -291,7 +295,10 @@ export class CustomerService {
                 },
             });
         }
-        await this.eventBus.publish(new CustomerEvent(ctx, createdCustomer, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_CREATED,
+            new CustomerEvent(ctx, createdCustomer, 'created', input),
+        );
         return createdCustomer;
     }
 
@@ -364,7 +371,10 @@ export class CustomerService {
                 input,
             },
         });
-        await this.eventBus.publish(new CustomerEvent(ctx, customer, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_UPDATED,
+            new CustomerEvent(ctx, customer, 'updated', input),
+        );
         return assertFound(this.findOne(ctx, customer.id));
     }
 
@@ -449,7 +459,10 @@ export class CustomerService {
         await this.connection.getRepository(ctx, User).save(user, { reload: false });
         await this.connection.getRepository(ctx, Customer).save(customer, { reload: false });
         if (!user.verified) {
-            await this.eventBus.publish(new AccountRegistrationEvent(ctx, user));
+            this.eventEmitter.emit(
+                EventNames.CUSTOMER_EMAIL_UPDATE_VERIFIED,
+                new AccountRegistrationEvent(ctx, user),
+            );
         } else {
             await this.historyService.createHistoryEntryForCustomer({
                 customerId: customer.id,
@@ -472,7 +485,10 @@ export class CustomerService {
         const user = await this.userService.getUserByEmailAddress(ctx, emailAddress);
         if (user && !user.verified) {
             await this.userService.setVerificationToken(ctx, user);
-            await this.eventBus.publish(new AccountRegistrationEvent(ctx, user));
+            this.eventEmitter.emit(
+                EventNames.CUSTOMER_EMAIL_UPDATE_VERIFIED,
+                new AccountRegistrationEvent(ctx, user),
+            );
         }
     }
 
@@ -506,7 +522,7 @@ export class CustomerService {
             },
         });
         const user = assertFound(this.findOneByUserId(ctx, result.id));
-        await this.eventBus.publish(new AccountVerifiedEvent(ctx, customer));
+        this.eventEmitter.emit(EventNames.CUSTOMER_VERIFIED, new AccountVerifiedEvent(ctx, customer));
         return user;
     }
 
@@ -518,7 +534,7 @@ export class CustomerService {
     async requestPasswordReset(ctx: RequestContext, emailAddress: string): Promise<void> {
         const user = await this.userService.setPasswordResetToken(ctx, emailAddress);
         if (user) {
-            await this.eventBus.publish(new PasswordResetEvent(ctx, user));
+            this.eventEmitter.emit(EventNames.PASSWORD_RESET_REQUESTED, new PasswordResetEvent(ctx, user));
             const customer = await this.findOneByUserId(ctx, user.id);
             if (!customer) {
                 throw new InternalServerError('error.cannot-locate-customer-for-user');
@@ -558,7 +574,10 @@ export class CustomerService {
             type: HistoryEntryType.CUSTOMER_PASSWORD_RESET_VERIFIED,
             data: {},
         });
-        await this.eventBus.publish(new PasswordResetVerifiedEvent(ctx, result));
+        this.eventEmitter.emit(
+            EventNames.PASSWORD_RESET_VERIFIED,
+            new PasswordResetVerifiedEvent(ctx, result),
+        );
         return result;
     }
 
@@ -602,7 +621,10 @@ export class CustomerService {
         if (this.configService.authOptions.requireVerification) {
             user.getNativeAuthenticationMethod().pendingIdentifier = normalizedEmailAddress;
             await this.userService.setIdentifierChangeToken(ctx, user);
-            await this.eventBus.publish(new IdentifierChangeRequestEvent(ctx, user));
+            this.eventEmitter.emit(
+                EventNames.CUSTOMER_EMAIL_UPDATE_REQUESTED,
+                new IdentifierChangeRequestEvent(ctx, user),
+            );
             return true;
         } else {
             const oldIdentifier = user.identifier;
@@ -610,7 +632,10 @@ export class CustomerService {
             customer.emailAddress = normalizedEmailAddress;
             await this.connection.getRepository(ctx, User).save(user, { reload: false });
             await this.connection.getRepository(ctx, Customer).save(customer, { reload: false });
-            await this.eventBus.publish(new IdentifierChangeEvent(ctx, user, oldIdentifier));
+            this.eventEmitter.emit(
+                EventNames.IDENTIFIER_CHANGED,
+                new IdentifierChangeEvent(ctx, user, oldIdentifier),
+            );
             await this.historyService.createHistoryEntryForCustomer({
                 customerId: customer.id,
                 ctx,
@@ -645,7 +670,10 @@ export class CustomerService {
         if (!customer) {
             return false;
         }
-        await this.eventBus.publish(new IdentifierChangeEvent(ctx, user, oldIdentifier));
+        this.eventEmitter.emit(
+            EventNames.IDENTIFIER_CHANGED,
+            new IdentifierChangeEvent(ctx, user, oldIdentifier),
+        );
         customer.emailAddress = user.identifier;
         await this.connection.getRepository(ctx, Customer).save(customer, { reload: false });
         await this.historyService.createHistoryEntryForCustomer({
@@ -688,7 +716,10 @@ export class CustomerService {
         } else {
             customer = await this.connection.getRepository(ctx, Customer).save(new Customer(input));
             await this.channelService.assignToCurrentChannel(customer, ctx);
-            await this.eventBus.publish(new CustomerEvent(ctx, customer, 'created', input));
+            this.eventEmitter.emit(
+                EventNames.CUSTOMER_CREATED,
+                new CustomerEvent(ctx, customer, 'created', input),
+            );
         }
         return this.connection.getRepository(ctx, Customer).save(customer);
     }
@@ -721,7 +752,10 @@ export class CustomerService {
             data: { address: addressToLine(createdAddress) },
         });
         createdAddress.customer = customer;
-        await this.eventBus.publish(new CustomerAddressEvent(ctx, createdAddress, 'created', input));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_ADDRESS_CREATED,
+            new CustomerAddressEvent(ctx, createdAddress, 'created', input),
+        );
         return createdAddress;
     }
 
@@ -758,7 +792,10 @@ export class CustomerService {
             },
         });
         updatedAddress.customer = customer;
-        await this.eventBus.publish(new CustomerAddressEvent(ctx, updatedAddress, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_ADDRESS_UPDATED,
+            new CustomerAddressEvent(ctx, updatedAddress, 'updated', input),
+        );
         return updatedAddress;
     }
 
@@ -788,7 +825,10 @@ export class CustomerService {
         const deletedAddress = new Address(address);
         await this.connection.getRepository(ctx, Address).remove(address);
         address.customer = customer;
-        await this.eventBus.publish(new CustomerAddressEvent(ctx, deletedAddress, 'deleted', id));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_ADDRESS_DELETED,
+            new CustomerAddressEvent(ctx, deletedAddress, 'deleted', id),
+        );
         return true;
     }
 
@@ -803,7 +843,10 @@ export class CustomerService {
         if (customer.user) {
             await this.userService.softDelete(ctx, customer.user.id);
         }
-        await this.eventBus.publish(new CustomerEvent(ctx, customer, 'deleted', customerId));
+        this.eventEmitter.emit(
+            EventNames.CUSTOMER_DELETED,
+            new CustomerEvent(ctx, customer, 'deleted', customerId),
+        );
         return {
             result: DeletionResult.DELETED,
         };

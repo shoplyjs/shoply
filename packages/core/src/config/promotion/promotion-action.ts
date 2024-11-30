@@ -1,5 +1,5 @@
-import { ConfigArg } from '@shoplyjs/common/lib/generated-types';
-import { pick } from '@shoplyjs/common/lib/pick';
+import { ConfigArg } from '@shoplyjs/common/dist/generated-types';
+import { pick } from '@shoplyjs/common/dist/pick';
 
 import { RequestContext } from '../../api/common/request-context';
 import {

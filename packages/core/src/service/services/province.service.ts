@@ -4,8 +4,8 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateProvinceInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { RelationPaths } from '../../api/decorators/relations.decorator';
@@ -16,11 +16,12 @@ import { TransactionalConnection } from '../../connection/transactional-connecti
 import { Province } from '../../entity/region/province.entity';
 import { RegionTranslation } from '../../entity/region/region-translation.entity';
 import { Region } from '../../entity/region/region.entity';
-import { EventBus } from '../../event-bus';
 import { ProvinceEvent } from '../../event-bus/events/province-event';
 import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-builder';
 import { TranslatableSaver } from '../helpers/translatable-saver/translatable-saver';
 import { TranslatorService } from '../helpers/translator/translator.service';
+import { EventNames } from '@shoplyjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -34,8 +35,8 @@ export class ProvinceService {
         private connection: TransactionalConnection,
         private listQueryBuilder: ListQueryBuilder,
         private translatableSaver: TranslatableSaver,
-        private eventBus: EventBus,
         private translator: TranslatorService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     findAll(
@@ -73,7 +74,11 @@ export class ProvinceService {
             entityType: Province as Type<Region>,
             translationType: RegionTranslation,
         });
-        await this.eventBus.publish(new ProvinceEvent(ctx, province, 'created', input));
+
+        this.eventEmitter.emit(
+            EventNames.PROVINCE_CREATED,
+            new ProvinceEvent(ctx, province, 'created', input),
+        );
         return assertFound(this.findOne(ctx, province.id));
     }
 
@@ -84,7 +89,11 @@ export class ProvinceService {
             entityType: Province as Type<Region>,
             translationType: RegionTranslation,
         });
-        await this.eventBus.publish(new ProvinceEvent(ctx, province, 'updated', input));
+        this.eventEmitter.emit(
+            EventNames.PROVINCE_UPDATED,
+            new ProvinceEvent(ctx, province, 'updated', input),
+        );
+
         return assertFound(this.findOne(ctx, province.id));
     }
 
@@ -93,7 +102,11 @@ export class ProvinceService {
 
         const deletedProvince = new Province(region);
         await this.connection.getRepository(ctx, Province).remove(region);
-        await this.eventBus.publish(new ProvinceEvent(ctx, deletedProvince, 'deleted', id));
+        this.eventEmitter.emit(
+            EventNames.PROVINCE_DELETED,
+            new ProvinceEvent(ctx, deletedProvince, 'deleted', id),
+        );
+
         return {
             result: DeletionResult.DELETED,
             message: '',

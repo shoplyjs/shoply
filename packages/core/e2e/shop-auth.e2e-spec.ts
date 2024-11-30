@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { OnModuleInit } from '@nestjs/common';
-import { ErrorCode, RegisterCustomerInput } from '@shoplyjs/common/lib/generated-shop-types';
-import { pick } from '@shoplyjs/common/lib/pick';
+import { ErrorCode, RegisterCustomerInput } from '@shoplyjs/common/dist/generated-shop-types';
+import { pick } from '@shoplyjs/common/dist/pick';
 import {
     AccountRegistrationEvent,
     EventBus,

@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { Asset } from '@shoplyjs/common/lib/generated-types';
+import { Asset } from '@shoplyjs/common/dist/generated-types';
 import {
     Allow,
     AssetService,

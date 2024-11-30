@@ -1,4 +1,4 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { Translatable, Translation } from '../../../common/types/locale-types';

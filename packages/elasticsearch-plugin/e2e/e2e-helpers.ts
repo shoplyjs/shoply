@@ -1,5 +1,5 @@
 import { Client } from '@elastic/elasticsearch';
-import { SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { SortOrder } from '@shoplyjs/common/dist/generated-types';
 import { SimpleGraphQLClient } from '@shoplyjs/testing';
 import { expect } from 'vitest';
 

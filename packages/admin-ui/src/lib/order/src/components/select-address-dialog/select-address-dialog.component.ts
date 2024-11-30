@@ -9,7 +9,7 @@ import {
     GetCustomerAddressesDocument,
     OrderAddressFragment,
 } from '@shoplyjs/admin-ui/core';
-import { pick } from '@shoplyjs/common/lib/pick';
+import { pick } from '@shoplyjs/common/dist/pick';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 

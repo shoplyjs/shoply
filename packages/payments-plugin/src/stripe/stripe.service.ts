@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import { ConfigArg } from '@shoplyjs/common/lib/generated-types';
+import { ConfigArg } from '@shoplyjs/common/dist/generated-types';
 import {
     Customer,
     Injector,

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { GlobalFlag, LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { GlobalFlag, LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { parse, Options } from 'csv-parse';
 import { Stream } from 'stream';
 

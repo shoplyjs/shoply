@@ -50,7 +50,7 @@ async function addJobQueue(
     });
 
     addImportsToFile(serviceRef.classDeclaration.getSourceFile(), {
-        moduleSpecifier: '@shoplyjs/common/lib/generated-types',
+        moduleSpecifier: '@shoplyjs/common/dist/generated-types',
         namedImports: ['JobState'],
     });
 

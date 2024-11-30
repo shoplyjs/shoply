@@ -1,5 +1,5 @@
 import { Mutation, Query, Resolver } from '@nestjs/graphql';
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import { Allow, CrudPermissionDefinition, PermissionDefinition, VendurePlugin } from '@shoplyjs/core';
 import gql from 'graphql-tag';
 

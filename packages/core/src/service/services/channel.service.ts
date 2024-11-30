@@ -7,10 +7,10 @@ import {
     DeletionResult,
     UpdateChannelInput,
     UpdateChannelResult,
-} from '@shoplyjs/common/lib/generated-types';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
-import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+} from '@shoplyjs/common/dist/generated-types';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { FindOptionsWhere } from 'typeorm';
 
 import { RelationPaths } from '../../api';
@@ -36,7 +36,6 @@ import { ProductVariant } from '../../entity/product-variant/product-variant.ent
 import { Seller } from '../../entity/seller/seller.entity';
 import { Session } from '../../entity/session/session.entity';
 import { Zone } from '../../entity/zone/zone.entity';
-import { EventBus } from '../../event-bus';
 import { ChangeChannelEvent } from '../../event-bus/events/change-channel-event';
 import { ChannelEvent } from '../../event-bus/events/channel-event';
 import { CustomFieldRelationService } from '../helpers/custom-field-relation/custom-field-relation.service';
@@ -44,6 +43,8 @@ import { ListQueryBuilder } from '../helpers/list-query-builder/list-query-build
 import { patchEntity } from '../helpers/utils/patch-entity';
 
 import { GlobalSettingsService } from './global-settings.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -60,8 +61,8 @@ export class ChannelService {
         private configService: ConfigService,
         private globalSettingsService: GlobalSettingsService,
         private customFieldRelationService: CustomFieldRelationService,
-        private eventBus: EventBus,
         private listQueryBuilder: ListQueryBuilder,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /**
@@ -120,7 +121,10 @@ export class ChannelService {
         const defaultChannel = await this.getDefaultChannel(ctx);
         const channelIds = unique([ctx.channelId, defaultChannel.id]);
         entity.channels = channelIds.map(id => ({ id })) as any;
-        await this.eventBus.publish(new ChangeChannelEvent(ctx, entity, [ctx.channelId], 'assigned'));
+        this.eventEmitter.emit(
+            EventNames.CHANGE_CHANNEL_ASSIGNED,
+            new ChangeChannelEvent(ctx, entity, [ctx.channelId], 'assigned'),
+        );
         return entity;
     }
 
@@ -208,7 +212,10 @@ export class ChannelService {
             .of(entity.id)
             .add(newChannelIds);
 
-        await this.eventBus.publish(new ChangeChannelEvent(ctx, entity, channelIds, 'assigned', entityType));
+        this.eventEmitter.emit(
+            EventNames.CHANGE_CHANNEL_ASSIGNED,
+            new ChangeChannelEvent(ctx, entity, channelIds, 'assigned', entityType),
+        );
         return entity;
     }
 
@@ -254,7 +261,10 @@ export class ChannelService {
             .relation('channels')
             .of(entity.id)
             .remove(existingChannelIds);
-        await this.eventBus.publish(new ChangeChannelEvent(ctx, entity, channelIds, 'removed', entityType));
+        this.eventEmitter.emit(
+            EventNames.CHANGE_CHANNEL_ASSIGNED,
+            new ChangeChannelEvent(ctx, entity, channelIds, 'removed', entityType),
+        );
         return entity;
     }
 
@@ -362,7 +372,7 @@ export class ChannelService {
         }
         await this.customFieldRelationService.updateRelations(ctx, Channel, input, newChannel);
         await this.allChannels.refresh(ctx);
-        await this.eventBus.publish(new ChannelEvent(ctx, newChannel, 'created', input));
+        this.eventEmitter.emit(EventNames.CHANNEL_CREATED, new ChannelEvent(ctx, channel, 'created', input));
         return newChannel;
     }
 
@@ -458,7 +468,7 @@ export class ChannelService {
         await this.connection.getRepository(ctx, Channel).save(updatedChannel, { reload: false });
         await this.customFieldRelationService.updateRelations(ctx, Channel, input, updatedChannel);
         await this.allChannels.refresh(ctx);
-        await this.eventBus.publish(new ChannelEvent(ctx, channel, 'updated', input));
+        this.eventEmitter.emit(EventNames.CHANNEL_UPDATED, new ChannelEvent(ctx, channel, 'updated', input));
         return assertFound(this.findOne(ctx, channel.id));
     }
 
@@ -470,7 +480,7 @@ export class ChannelService {
         await this.connection.getRepository(ctx, ProductVariantPrice).delete({
             channelId: id,
         });
-        await this.eventBus.publish(new ChannelEvent(ctx, deletedChannel, 'deleted', id));
+        this.eventEmitter.emit(EventNames.CHANNEL_DELETED, new ChannelEvent(ctx, channel, 'deleted', id));
 
         return {
             result: DeletionResult.DELETED,

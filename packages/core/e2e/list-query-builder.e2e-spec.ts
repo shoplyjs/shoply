@@ -1,4 +1,4 @@
-import { LogicalOperator } from '@shoplyjs/common/lib/generated-types';
+import { LogicalOperator } from '@shoplyjs/common/dist/generated-types';
 import { mergeConfig } from '@shoplyjs/core';
 import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';

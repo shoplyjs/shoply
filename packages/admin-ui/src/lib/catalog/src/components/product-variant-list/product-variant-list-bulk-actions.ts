@@ -12,7 +12,7 @@ import {
     Permission,
     ProductVariant,
 } from '@shoplyjs/admin-ui/core';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { EMPTY } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { AssignProductsToChannelDialogComponent } from '../assign-products-to-channel-dialog/assign-products-to-channel-dialog.component';

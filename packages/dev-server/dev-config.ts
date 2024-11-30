@@ -2,7 +2,7 @@
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { AdminUiPlugin } from '@shoplyjs/admin-ui-plugin';
 import { AssetServerPlugin } from '@shoplyjs/asset-server-plugin';
-import { ADMIN_API_PATH, API_PORT, SHOP_API_PATH } from '@shoplyjs/common/lib/shared-constants';
+import { ADMIN_API_PATH, API_PORT, SHOP_API_PATH } from '@shoplyjs/common/dist/shared-constants';
 import {
     DefaultJobQueuePlugin,
     DefaultLogger,
@@ -29,11 +29,13 @@ export const devConfig: VendureConfig = {
         port: API_PORT,
         adminApiPlayground: false,
         shopApiPlayground: false,
-        apolloServerPlugins: [
-            ApolloServerPluginLandingPageLocalDefault({
-                includeCookies: true,
-            }),
-        ],
+        apolloServerPlugins: isDev
+            ? [
+                  ApolloServerPluginLandingPageLocalDefault({
+                      includeCookies: true,
+                  }),
+              ]
+            : [],
     },
     authOptions: {
         disableAuth: false,

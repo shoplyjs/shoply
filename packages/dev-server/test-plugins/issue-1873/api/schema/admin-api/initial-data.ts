@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import { LanguageCode, Permission } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode, Permission } from '@shoplyjs/common/dist/generated-types';
 import type { InitialData } from '@shoplyjs/core';
 
 export const initialData: InitialData = {

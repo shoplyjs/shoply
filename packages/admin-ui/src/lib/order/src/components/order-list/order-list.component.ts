@@ -10,7 +10,7 @@ import {
     ServerConfigService,
     TypedBaseListComponent,
 } from '@shoplyjs/admin-ui/core';
-import { Order } from '@shoplyjs/common/lib/generated-types';
+import { Order } from '@shoplyjs/common/dist/generated-types';
 import { tap } from 'rxjs/operators';
 
 @Component({

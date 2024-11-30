@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MutationUpdaterFn, SingleExecutionResult, WatchQueryFetchPolicy } from '@apollo/client/core';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { simpleDeepClone } from '@shoplyjs/common/lib/simple-deep-clone';
+import { simpleDeepClone } from '@shoplyjs/common/dist/simple-deep-clone';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql/language/ast';
 import { Observable } from 'rxjs';

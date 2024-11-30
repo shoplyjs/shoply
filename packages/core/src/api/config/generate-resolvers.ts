@@ -1,5 +1,5 @@
 import { IFieldResolver, IResolvers } from '@graphql-tools/utils';
-import { StockMovementType } from '@shoplyjs/common/lib/generated-types';
+import { StockMovementType } from '@shoplyjs/common/dist/generated-types';
 import { GraphQLSchema } from 'graphql';
 import { GraphQLDateTime, GraphQLJSON } from 'graphql-scalars';
 
@@ -271,7 +271,7 @@ function generateCustomFieldRelationResolvers(
 
 function getCustomScalars(configService: ConfigService, apiType: 'admin' | 'shop') {
     return getPluginAPIExtensions(configService.plugins, apiType)
-        .map(e => (typeof e.scalars === 'function' ? e.scalars() : e.scalars ?? {}))
+        .map(e => (typeof e.scalars === 'function' ? e.scalars() : (e.scalars ?? {})))
         .reduce(
             (all, scalarMap) => ({
                 ...all,

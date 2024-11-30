@@ -15,8 +15,8 @@ import {
     QueryFacetsArgs,
     QueryFacetValuesArgs,
     RemoveFacetFromChannelResult,
-} from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { ErrorResultUnion } from '../../../common/error/error-result';
 import { EntityNotFoundError } from '../../../common/error/errors';

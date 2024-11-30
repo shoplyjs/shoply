@@ -3,7 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { Logger } from '../config/logger/vendure-logger';
 import { TransactionalConnection } from '../connection/transactional-connection';
 import { Administrator } from '../entity/administrator/administrator.entity';
-import { EventBus } from '../event-bus';
 import { InitializerEvent } from '../event-bus/events/initializer-event';
 
 import { AdministratorService } from './services/administrator.service';
@@ -15,6 +14,7 @@ import { ShippingMethodService } from './services/shipping-method.service';
 import { StockLocationService } from './services/stock-location.service';
 import { TaxRateService } from './services/tax-rate.service';
 import { ZoneService } from './services/zone.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 /**
  * @description
@@ -35,8 +35,8 @@ export class InitializerService {
         private globalSettingsService: GlobalSettingsService,
         private taxRateService: TaxRateService,
         private sellerService: SellerService,
-        private eventBus: EventBus,
         private stockLocationService: StockLocationService,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     async onModuleInit() {
@@ -56,7 +56,7 @@ export class InitializerService {
         await this.shippingMethodService.initShippingMethods();
         await this.taxRateService.initTaxRates();
         await this.stockLocationService.initStockLocations();
-        await this.eventBus.publish(new InitializerEvent());
+        this.eventEmitter.emit('initializer.initialized', new InitializerEvent());
     }
 
     /**

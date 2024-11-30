@@ -25,8 +25,8 @@ import {
     UpdateCustomerEmailAddressResult,
     UpdateCustomerPasswordResult,
     VerifyCustomerAccountResult,
-} from '@shoplyjs/common/lib/generated-shop-types';
-import { HistoryEntryType } from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-shop-types';
+import { HistoryEntryType } from '@shoplyjs/common/dist/generated-types';
 import { Request, Response } from 'express';
 
 import { isGraphQlErrorResult } from '../../../common/error/error-result';

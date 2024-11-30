@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm/dist/common/typeorm.decorators';
-import { ID, Type } from '@shoplyjs/common/lib/shared-types';
+import { ID, Type } from '@shoplyjs/common/dist/shared-types';
 import {
     DataSource,
     EntityManager,

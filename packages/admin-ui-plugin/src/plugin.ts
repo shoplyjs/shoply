@@ -2,13 +2,13 @@ import { MiddlewareConsumer, NestModule } from '@nestjs/common';
 import {
     DEFAULT_AUTH_TOKEN_HEADER_KEY,
     DEFAULT_CHANNEL_TOKEN_KEY,
-} from '@shoplyjs/common/lib/shared-constants';
+} from '@shoplyjs/common/dist/shared-constants';
 import {
     AdminUiAppConfig,
     AdminUiAppDevModeConfig,
     AdminUiConfig,
     Type,
-} from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/shared-types';
 import {
     ConfigService,
     createProxyHandler,

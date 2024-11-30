@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { ShippingCalculationResult } from '../../../config/shipping-method/shipping-calculator';

@@ -1,6 +1,6 @@
-import { Permission } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { Permission } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 
 import { Role } from '../../../entity/role/role.entity';
 import { User } from '../../../entity/user/user.entity';

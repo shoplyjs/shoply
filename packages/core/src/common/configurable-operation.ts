@@ -7,14 +7,14 @@ import {
     LocalizedString,
     Maybe,
     StringFieldOption,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 import {
     ConfigArgType,
     DefaultFormComponentConfig,
     ID,
     UiComponentConfig,
-} from '@shoplyjs/common/lib/shared-types';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+} from '@shoplyjs/common/dist/shared-types';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 
 import { RequestContext } from '../api/common/request-context';
 

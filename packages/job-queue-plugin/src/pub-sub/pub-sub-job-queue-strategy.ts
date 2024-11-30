@@ -1,5 +1,5 @@
 import { Message, PubSub, Subscription, Topic } from '@google-cloud/pubsub';
-import { JobState } from '@shoplyjs/common/lib/generated-types';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
 import {
     InjectableJobQueueStrategy,
     Injector,

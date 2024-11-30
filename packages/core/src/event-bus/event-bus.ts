@@ -1,6 +1,6 @@
 import { Injectable, OnModuleDestroy } from '@nestjs/common';
-import { Type } from '@shoplyjs/common/lib/shared-types';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { Type } from '@shoplyjs/common/dist/shared-types';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import { Observable, Subject } from 'rxjs';
 import { filter, mergeMap, takeUntil } from 'rxjs/operators';
 import { EntityManager } from 'typeorm';

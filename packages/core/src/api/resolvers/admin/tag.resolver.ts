@@ -8,7 +8,7 @@ import {
     QueryTagArgs,
     QueryTagsArgs,
     TagList,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 
 import { Tag } from '../../../entity/tag/tag.entity';
 import { TagService } from '../../../service/services/tag.service';

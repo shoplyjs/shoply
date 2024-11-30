@@ -1,4 +1,4 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import { ConfigModule, VendurePlugin } from '@shoplyjs/core';
 
 @VendurePlugin({

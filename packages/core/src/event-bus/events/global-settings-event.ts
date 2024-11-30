@@ -1,4 +1,4 @@
-import { UpdateGlobalSettingsInput } from '@shoplyjs/common/lib/generated-types';
+import { UpdateGlobalSettingsInput } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api';
 import { GlobalSettings } from '../../entity/global-settings/global-settings.entity';

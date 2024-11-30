@@ -3,7 +3,7 @@ import {
     DuplicateEntityInput,
     DuplicateEntityResult,
     EntityDuplicatorDefinition,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { DuplicateEntityError } from '../../../common/error/generated-graphql-admin-errors';

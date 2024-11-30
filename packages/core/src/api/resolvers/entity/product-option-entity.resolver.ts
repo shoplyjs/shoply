@@ -1,5 +1,5 @@
 import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { Permission } from '@shoplyjs/common/lib/generated-types';
+import { Permission } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContextCacheService } from '../../../cache/request-context-cache.service';
 import { Translated } from '../../../common/types/locale-types';

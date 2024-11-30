@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { Permission } from '@shoplyjs/common/lib/generated-shop-types';
+import { Permission } from '@shoplyjs/common/dist/generated-shop-types';
 import { Allow, InternalServerError, VendurePlugin } from '@shoplyjs/core';
 
 @Controller('test')

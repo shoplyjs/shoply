@@ -1,6 +1,6 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { IdOperators } from '@shoplyjs/common/lib/generated-types';
+import { IdOperators } from '@shoplyjs/common/dist/generated-types';
 import { GraphQLNamedType, GraphQLSchema, OperationDefinitionNode } from 'graphql';
 import { Observable } from 'rxjs';
 

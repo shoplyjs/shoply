@@ -1,4 +1,4 @@
-import { assertNever, getGraphQlInputName } from '@shoplyjs/common/lib/shared-utils';
+import { assertNever, getGraphQlInputName } from '@shoplyjs/common/dist/shared-utils';
 import {
     buildSchema,
     extendSchema,

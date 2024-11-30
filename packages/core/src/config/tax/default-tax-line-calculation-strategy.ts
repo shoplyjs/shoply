@@ -1,4 +1,4 @@
-import { TaxLine } from '@shoplyjs/common/lib/generated-types';
+import { TaxLine } from '@shoplyjs/common/dist/generated-types';
 
 import { CalculateTaxLinesArgs, TaxLineCalculationStrategy } from './tax-line-calculation-strategy';
 

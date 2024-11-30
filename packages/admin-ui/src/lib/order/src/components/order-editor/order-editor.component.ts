@@ -26,8 +26,8 @@ import {
     transformRelationCustomFieldInputs,
     TypedBaseDetailComponent,
 } from '@shoplyjs/admin-ui/core';
-import { assertNever, notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
-import { simpleDeepClone } from '@shoplyjs/common/lib/simple-deep-clone';
+import { assertNever, notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
+import { simpleDeepClone } from '@shoplyjs/common/dist/simple-deep-clone';
 import { EMPTY, Observable, of } from 'rxjs';
 import { map, mapTo, shareReplay, switchMap, take, takeUntil } from 'rxjs/operators';
 import {

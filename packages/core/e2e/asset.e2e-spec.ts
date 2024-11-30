@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { omit } from '@shoplyjs/common/lib/omit';
-import { pick } from '@shoplyjs/common/lib/pick';
+import { omit } from '@shoplyjs/common/dist/omit';
+import { pick } from '@shoplyjs/common/dist/pick';
 import { mergeConfig } from '@shoplyjs/core';
 import { createTestEnvironment } from '@shoplyjs/testing';
 import fs from 'fs-extra';

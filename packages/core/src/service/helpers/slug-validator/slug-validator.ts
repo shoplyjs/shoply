@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
-import { ID, Type } from '@shoplyjs/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
+import { ID, Type } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { TransactionalConnection } from '../../../connection/transactional-connection';

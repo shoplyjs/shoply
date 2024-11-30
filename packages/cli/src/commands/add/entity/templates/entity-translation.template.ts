@@ -1,5 +1,5 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { DeepPartial } from '@shoplyjs/common/dist/shared-types';
 import { HasCustomFields, Translation, VendureEntity } from '@shoplyjs/core';
 import { Column, Entity, Index, ManyToOne } from 'typeorm';
 

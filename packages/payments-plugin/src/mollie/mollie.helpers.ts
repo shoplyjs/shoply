@@ -1,7 +1,7 @@
 import { CreateParameters } from '@mollie/api-client/dist/types/binders/orders/parameters';
 import { Amount } from '@mollie/api-client/dist/types/data/global';
 import { OrderAddress as MollieOrderAddress } from '@mollie/api-client/dist/types/data/orders/data';
-import { OrderAddress } from '@shoplyjs/common/lib/generated-types';
+import { OrderAddress } from '@shoplyjs/common/dist/generated-types';
 import { CurrencyCode, Customer, Order } from '@shoplyjs/core';
 import currency from 'currency.js';
 

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CreateFacetValueInput, Dialog, LanguageCode } from '@shoplyjs/admin-ui/core';
 
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
 
 @Component({
     selector: 'vdr-create-facet-value-dialog',

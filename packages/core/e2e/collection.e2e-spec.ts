@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ROOT_COLLECTION_NAME } from '@shoplyjs/common/lib/shared-constants';
+import { ROOT_COLLECTION_NAME } from '@shoplyjs/common/dist/shared-constants';
 import {
     DefaultJobQueuePlugin,
     facetValueCollectionFilter,

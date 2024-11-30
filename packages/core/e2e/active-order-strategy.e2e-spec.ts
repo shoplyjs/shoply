@@ -1,4 +1,4 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import { mergeConfig, orderPercentageDiscount } from '@shoplyjs/core';
 import { createTestEnvironment } from '@shoplyjs/testing';
 import gql from 'graphql-tag';

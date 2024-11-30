@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { SearchInput, SearchResponse } from '@shoplyjs/common/lib/generated-types';
-import { Omit } from '@shoplyjs/common/lib/omit';
+import { SearchInput, SearchResponse } from '@shoplyjs/common/dist/generated-types';
+import { Omit } from '@shoplyjs/common/dist/omit';
 
 import { RequestContext } from '../../api/common/request-context';
 import { InternalServerError } from '../../common/error/errors';
@@ -55,7 +55,6 @@ export class FulltextSearchService {
     ): Promise<Omit<Omit<SearchResponse, 'facetValues'>, 'collections'>> {
         const items = await this._searchStrategy.getSearchResults(ctx, input, enabledOnly);
         const totalItems = await this._searchStrategy.getTotalCount(ctx, input, enabledOnly);
-        await this.eventBus.publish(new SearchEvent(ctx, input));
 
         return {
             items,

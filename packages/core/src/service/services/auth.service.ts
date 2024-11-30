@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 
 import { ApiType } from '../../api/common/get-api-type';
 import { RequestContext } from '../../api/common/request-context';
@@ -20,12 +20,13 @@ import { TransactionalConnection } from '../../connection/transactional-connecti
 import { ExternalAuthenticationMethod } from '../../entity/authentication-method/external-authentication-method.entity';
 import { AuthenticatedSession } from '../../entity/session/authenticated-session.entity';
 import { User } from '../../entity/user/user.entity';
-import { EventBus } from '../../event-bus/event-bus';
 import { AttemptedLoginEvent } from '../../event-bus/events/attempted-login-event';
 import { LoginEvent } from '../../event-bus/events/login-event';
 import { LogoutEvent } from '../../event-bus/events/logout-event';
 
 import { SessionService } from './session.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventNames } from '@shoplyjs/common';
 
 /**
  * @description
@@ -39,7 +40,7 @@ export class AuthService {
         private connection: TransactionalConnection,
         private configService: ConfigService,
         private sessionService: SessionService,
-        private eventBus: EventBus,
+        private eventEmitter: EventEmitter2,
     ) {}
 
     /**
@@ -52,7 +53,8 @@ export class AuthService {
         authenticationMethod: string,
         authenticationData: any,
     ): Promise<AuthenticatedSession | InvalidCredentialsError | NotVerifiedError> {
-        await this.eventBus.publish(
+        this.eventEmitter.emit(
+            EventNames.ATTEMPTED_LOGIN,
             new AttemptedLoginEvent(
                 ctx,
                 authenticationMethod,
@@ -104,7 +106,7 @@ export class AuthService {
             user,
             authenticationStrategyName,
         );
-        await this.eventBus.publish(new LoginEvent(ctx, user));
+        this.eventEmitter.emit(EventNames.LOGIN, new LoginEvent(ctx, user));
         return session;
     }
 
@@ -147,7 +149,7 @@ export class AuthService {
             if (typeof authenticationStrategy.onLogOut === 'function') {
                 await authenticationStrategy.onLogOut(ctx, session.user);
             }
-            await this.eventBus.publish(new LogoutEvent(ctx));
+            this.eventEmitter.emit(EventNames.LOGOUT, new LogoutEvent(ctx));
             return this.sessionService.deleteSessionsByUser(ctx, session.user);
         }
     }

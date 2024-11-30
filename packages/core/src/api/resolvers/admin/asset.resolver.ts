@@ -9,8 +9,8 @@ import {
     Permission,
     QueryAssetArgs,
     QueryAssetsArgs,
-} from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { Administrator } from '../../../entity/administrator/administrator.entity';
 import { Asset } from '../../../entity/asset/asset.entity';

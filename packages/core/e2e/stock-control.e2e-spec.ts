@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { pick } from '@shoplyjs/common/lib/pick';
+import { pick } from '@shoplyjs/common/dist/pick';
 import {
     DefaultOrderPlacedStrategy,
     manualFulfillmentHandler,

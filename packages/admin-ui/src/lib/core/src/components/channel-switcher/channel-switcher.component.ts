@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import { combineLatest, Observable } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 

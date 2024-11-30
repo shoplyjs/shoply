@@ -1,4 +1,4 @@
-import { omit } from '@shoplyjs/common/lib/omit';
+import { omit } from '@shoplyjs/common/dist/omit';
 import { User } from '@shoplyjs/core';
 import { createTestEnvironment } from '@shoplyjs/testing';
 import * as fs from 'fs';

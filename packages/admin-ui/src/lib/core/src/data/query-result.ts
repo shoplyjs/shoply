@@ -1,5 +1,5 @@
 import { ApolloQueryResult, NetworkStatus } from '@apollo/client/core';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { merge, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, finalize, map, skip, take, takeUntil, tap } from 'rxjs/operators';

@@ -1,4 +1,4 @@
-import { ConfigArg, RefundOrderInput } from '@shoplyjs/common/lib/generated-types';
+import { ConfigArg, RefundOrderInput } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import {

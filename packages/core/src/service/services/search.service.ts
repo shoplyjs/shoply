@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { JobState } from '@shoplyjs/common/lib/generated-types';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { Logger } from '../../config/logger/vendure-logger';

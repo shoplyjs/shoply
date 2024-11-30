@@ -1,5 +1,5 @@
-import { CustomFieldType } from '@shoplyjs/common/lib/shared-types';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { CustomFieldType } from '@shoplyjs/common/dist/shared-types';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 import { CustomFieldConfig } from '../generated-types';
 
 export function getCustomFieldsDefaults(customFieldConfig: CustomFieldConfig[]): {

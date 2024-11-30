@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { AdminUiAppConfig, AdminUiAppDevModeConfig } from '@shoplyjs/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { AdminUiAppConfig, AdminUiAppDevModeConfig } from '@shoplyjs/common/dist/shared-types';
 import { ChildProcess, spawn } from 'child_process';
 import { FSWatcher, watch as chokidarWatch } from 'chokidar';
 import * as fs from 'fs-extra';

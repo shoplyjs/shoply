@@ -1,5 +1,5 @@
-import { ConfigurableOperation } from '@shoplyjs/common/lib/generated-types';
-import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { ConfigurableOperation } from '@shoplyjs/common/dist/generated-types';
+import { DeepPartial } from '@shoplyjs/common/dist/shared-types';
 import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 
 import { ChannelAware } from '../../common/types/common-types';

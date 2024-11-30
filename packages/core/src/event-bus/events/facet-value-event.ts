@@ -2,8 +2,8 @@ import {
     CreateFacetValueInput,
     CreateFacetValueWithFacetInput,
     UpdateFacetValueInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api';
 import { FacetValue } from '../../entity';

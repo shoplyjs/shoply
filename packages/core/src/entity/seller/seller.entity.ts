@@ -1,4 +1,4 @@
-import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { DeepPartial } from '@shoplyjs/common/dist/shared-types';
 import { Column, Entity, OneToMany } from 'typeorm';
 
 import { Channel, Administrator } from '..';

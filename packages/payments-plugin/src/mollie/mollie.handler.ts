@@ -4,7 +4,7 @@ import createMollieClient, {
     RefundStatus,
     Order as MollieOrder,
 } from '@mollie/api-client';
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import {
     CreatePaymentErrorResult,
     CreatePaymentResult,

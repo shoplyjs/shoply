@@ -25,7 +25,7 @@ import {
     TypedBaseDetailComponent,
     UpdateShippingMethodInput,
 } from '@shoplyjs/admin-ui/core';
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
 import { gql } from 'apollo-angular';
 import { combineLatest, merge, Observable, of, Subject } from 'rxjs';
 import { mergeMap, switchMap, take, takeUntil } from 'rxjs/operators';

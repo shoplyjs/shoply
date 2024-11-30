@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion, no-console */
-import { CurrencyCode, SortOrder } from '@shoplyjs/common/lib/generated-types';
-import { pick } from '@shoplyjs/common/lib/pick';
+import { CurrencyCode, SortOrder } from '@shoplyjs/common/dist/generated-types';
+import { pick } from '@shoplyjs/common/dist/pick';
 import {
     DefaultJobQueuePlugin,
     DefaultLogger,
