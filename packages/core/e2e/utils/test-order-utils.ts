@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import { PaymentMethodHandler } from '@shoplyjs/core';
 import { SimpleGraphQLClient } from '@shoplyjs/testing';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

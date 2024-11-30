@@ -1,4 +1,4 @@
-import { Type } from '@shoplyjs/common/lib/shared-types';
+import { Type } from '@shoplyjs/common/dist/shared-types';
 import { VendureEvent, Injector } from '@shoplyjs/core';
 
 import { StellateService } from './service/stellate.service';

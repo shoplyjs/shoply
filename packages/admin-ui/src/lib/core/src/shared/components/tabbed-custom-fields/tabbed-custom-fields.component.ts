@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { DefaultFormComponentId } from '@shoplyjs/common/lib/shared-types';
+import { DefaultFormComponentId } from '@shoplyjs/common/dist/shared-types';
 
 import { CustomFieldConfig } from '../../../common/generated-types';
 import { CustomFieldEntityName } from '../../../providers/custom-field-component/custom-field-component.service';

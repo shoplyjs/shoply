@@ -1,4 +1,4 @@
-import { simpleDeepClone } from '@shoplyjs/common/lib/simple-deep-clone';
+import { simpleDeepClone } from '@shoplyjs/common/dist/simple-deep-clone';
 
 import { Transitions } from './types';
 

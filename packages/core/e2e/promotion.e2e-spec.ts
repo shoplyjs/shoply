@@ -1,4 +1,4 @@
-import { pick } from '@shoplyjs/common/lib/pick';
+import { pick } from '@shoplyjs/common/dist/pick';
 import { PromotionAction, PromotionCondition, PromotionOrderAction } from '@shoplyjs/core';
 import {
     createErrorResultGuard,

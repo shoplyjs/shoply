@@ -1,4 +1,4 @@
-import { HistoryEntryType } from '@shoplyjs/common/lib/generated-types';
+import { HistoryEntryType } from '@shoplyjs/common/dist/generated-types';
 
 import { PaymentState } from '../../service/helpers/payment-state-machine/payment-state';
 import { orderTotalIsCovered } from '../../service/helpers/utils/order-utils';

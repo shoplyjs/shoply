@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { SearchInput, SearchResponse } from '@shoplyjs/common/lib/generated-types';
-import { Omit } from '@shoplyjs/common/lib/omit';
+import { SearchInput, SearchResponse } from '@shoplyjs/common/dist/generated-types';
+import { Omit } from '@shoplyjs/common/dist/omit';
 
 import { RequestContext } from '../../api/common/request-context';
 import { InternalServerError } from '../../common/error/errors';

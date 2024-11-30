@@ -1,4 +1,4 @@
-import { CustomFieldsObject, CustomFieldType } from '@shoplyjs/common/lib/shared-types';
+import { CustomFieldsObject, CustomFieldType } from '@shoplyjs/common/dist/shared-types';
 
 import { CustomFieldConfig, LanguageCode } from '../generated-types';
 

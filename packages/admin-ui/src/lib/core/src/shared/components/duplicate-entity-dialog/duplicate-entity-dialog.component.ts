@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 
 import { lastValueFrom, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';

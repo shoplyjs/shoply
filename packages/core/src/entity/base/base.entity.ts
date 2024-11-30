@@ -1,4 +1,4 @@
-import { DeepPartial, ID } from '@shoplyjs/common/lib/shared-types';
+import { DeepPartial, ID } from '@shoplyjs/common/dist/shared-types';
 import { CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { PrimaryGeneratedId } from '../entity-id.decorator';

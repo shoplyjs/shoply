@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { omit } from '@shoplyjs/common/lib/omit';
-import { pick } from '@shoplyjs/common/lib/pick';
-import { summate } from '@shoplyjs/common/lib/shared-utils';
+import { omit } from '@shoplyjs/common/dist/omit';
+import { pick } from '@shoplyjs/common/dist/pick';
+import { summate } from '@shoplyjs/common/dist/shared-utils';
 import {
     defaultShippingCalculator,
     defaultShippingEligibilityChecker,

@@ -10,7 +10,7 @@ import {
     WidgetLayout,
     WidgetLayoutDefinition,
 } from '@shoplyjs/admin-ui/core';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 

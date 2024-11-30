@@ -1,4 +1,4 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 
 import { TransactionalConnection } from '../../../connection/transactional-connection';
 import { PromotionItemAction } from '../promotion-action';

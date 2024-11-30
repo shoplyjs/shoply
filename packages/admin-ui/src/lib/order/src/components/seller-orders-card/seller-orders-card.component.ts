@@ -6,7 +6,7 @@ import {
     GetSellerOrdersQuery,
     GetSellerOrdersQueryVariables,
 } from '@shoplyjs/admin-ui/core';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
 import { Observable } from 'rxjs';
 
 import { GET_SELLER_ORDERS } from './seller-orders-card.graphql';

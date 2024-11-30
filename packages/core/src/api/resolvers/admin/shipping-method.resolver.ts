@@ -13,8 +13,8 @@ import {
     QueryShippingMethodsArgs,
     QueryTestEligibleShippingMethodsArgs,
     QueryTestShippingMethodArgs,
-} from '@shoplyjs/common/lib/generated-types';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { Translated } from '../../../common/types/locale-types';
 import { ShippingMethod } from '../../../entity/shipping-method/shipping-method.entity';

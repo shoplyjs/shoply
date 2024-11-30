@@ -4,7 +4,7 @@ import {
     RegisterCustomerInput,
     UpdateCustomerInput as UpdateCustomerShopInput,
     VerifyCustomerAccountResult,
-} from '@shoplyjs/common/lib/generated-shop-types';
+} from '@shoplyjs/common/dist/generated-shop-types';
 import {
     AddNoteToCustomerInput,
     CreateAddressInput,
@@ -20,8 +20,8 @@ import {
     UpdateCustomerInput,
     UpdateCustomerNoteInput,
     UpdateCustomerResult,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 import { IsNull } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';

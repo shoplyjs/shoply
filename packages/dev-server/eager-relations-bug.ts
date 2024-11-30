@@ -1,5 +1,5 @@
 import { Mutation, Resolver } from '@nestjs/graphql';
-import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { DeepPartial } from '@shoplyjs/common/dist/shared-types';
 import {
     ActiveOrderService,
     Ctx,

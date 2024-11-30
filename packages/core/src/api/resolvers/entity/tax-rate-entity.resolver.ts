@@ -1,5 +1,5 @@
 import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { Permission } from '@shoplyjs/common/lib/generated-types';
+import { Permission } from '@shoplyjs/common/dist/generated-types';
 
 import { Channel } from '../../../entity/channel/channel.entity';
 import { CustomerGroup } from '../../../entity/customer-group/customer-group.entity';

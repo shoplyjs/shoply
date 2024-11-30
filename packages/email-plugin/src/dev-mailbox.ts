@@ -1,4 +1,4 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
 import { Channel, RequestContext } from '@shoplyjs/core';
 import { Request, Router } from 'express';
 import fs from 'fs-extra';

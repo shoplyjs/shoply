@@ -1,5 +1,5 @@
-import { JobState } from '@shoplyjs/common/lib/generated-types';
-import { isClassInstance, isObject } from '@shoplyjs/common/lib/shared-utils';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
+import { isClassInstance, isObject } from '@shoplyjs/common/dist/shared-utils';
 
 import { Logger } from '../config/logger/vendure-logger';
 

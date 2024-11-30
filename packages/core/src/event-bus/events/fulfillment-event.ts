@@ -1,4 +1,4 @@
-import { ConfigurableOperationInput, OrderLineInput } from '@shoplyjs/common/lib/generated-types';
+import { ConfigurableOperationInput, OrderLineInput } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api';
 import { Order } from '../../entity';

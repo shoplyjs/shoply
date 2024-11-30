@@ -1,14 +1,14 @@
 import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { NotVerifiedError } from '@shoplyjs/common/lib/generated-shop-types';
+import { NotVerifiedError } from '@shoplyjs/common/dist/generated-shop-types';
 import {
     MutationLoginArgs,
     MutationAuthenticateArgs,
     NativeAuthenticationResult,
     AuthenticationResult,
     Permission,
-} from '@shoplyjs/common/lib/generated-types';
-import { Success } from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { Success } from '@shoplyjs/common/dist/generated-types';
 import { Request, Response } from 'express';
 
 import { REQUEST_CONTEXT_KEY } from '../../../common/constants';

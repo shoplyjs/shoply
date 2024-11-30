@@ -1,6 +1,6 @@
 import { FormControl, Validators } from '@angular/forms';
 import { OrderDetailFragment } from '@shoplyjs/admin-ui/core';
-import { summate } from '@shoplyjs/common/lib/shared-utils';
+import { summate } from '@shoplyjs/common/dist/shared-utils';
 
 export type Payment = NonNullable<OrderDetailFragment['payments']>[number];
 export type RefundablePayment = Payment & {

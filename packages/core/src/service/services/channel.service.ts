@@ -7,10 +7,10 @@ import {
     DeletionResult,
     UpdateChannelInput,
     UpdateChannelResult,
-} from '@shoplyjs/common/lib/generated-types';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
-import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+} from '@shoplyjs/common/dist/generated-types';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { FindOptionsWhere } from 'typeorm';
 
 import { RelationPaths } from '../../api';

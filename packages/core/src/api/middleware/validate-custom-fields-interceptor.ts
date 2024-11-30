@@ -1,8 +1,8 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { getGraphQlInputName } from '@shoplyjs/common/lib/shared-utils';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { getGraphQlInputName } from '@shoplyjs/common/dist/shared-utils';
 import {
     GraphQLInputType,
     GraphQLList,

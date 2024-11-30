@@ -1,6 +1,6 @@
-import { omit } from '@shoplyjs/common/lib/omit';
-import { pick } from '@shoplyjs/common/lib/pick';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { omit } from '@shoplyjs/common/dist/omit';
+import { pick } from '@shoplyjs/common/dist/pick';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';
 import path from 'path';

@@ -8,9 +8,9 @@ import {
     Permission,
     RemoveShippingMethodsFromChannelInput,
     UpdateShippingMethodInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { omit } from '@shoplyjs/common/lib/omit';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { omit } from '@shoplyjs/common/dist/omit';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 import { IsNull } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';

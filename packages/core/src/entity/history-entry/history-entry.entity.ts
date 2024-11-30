@@ -1,4 +1,4 @@
-import { HistoryEntryType } from '@shoplyjs/common/lib/generated-types';
+import { HistoryEntryType } from '@shoplyjs/common/dist/generated-types';
 import { Column, Entity, Index, ManyToOne, TableInheritance } from 'typeorm';
 
 import { Administrator } from '../administrator/administrator.entity';

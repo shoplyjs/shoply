@@ -1,5 +1,5 @@
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 import { Logger } from '@shoplyjs/core';
 import fs from 'fs-extra';
 import { createTransport } from 'nodemailer';

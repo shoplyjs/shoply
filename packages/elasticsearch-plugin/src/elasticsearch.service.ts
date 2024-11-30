@@ -1,6 +1,6 @@
 import { Client } from '@elastic/elasticsearch';
 import { Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
-import { SearchResultAsset } from '@shoplyjs/common/lib/generated-types';
+import { SearchResultAsset } from '@shoplyjs/common/dist/generated-types';
 import {
     Collection,
     CollectionService,

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ErrorCode } from '@shoplyjs/common/lib/generated-shop-types';
-import { pick } from '@shoplyjs/common/lib/pick';
+import { ErrorCode } from '@shoplyjs/common/dist/generated-shop-types';
+import { pick } from '@shoplyjs/common/dist/pick';
 import { mergeConfig, NativeAuthenticationStrategy } from '@shoplyjs/core';
 import { createErrorResultGuard, createTestEnvironment, ErrorResultGuard } from '@shoplyjs/testing';
 import gql from 'graphql-tag';

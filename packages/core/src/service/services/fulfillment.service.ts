@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigurableOperationInput, OrderLineInput } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { isObject } from '@shoplyjs/common/lib/shared-utils';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { ConfigurableOperationInput, OrderLineInput } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { isObject } from '@shoplyjs/common/dist/shared-utils';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { In, Not } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';

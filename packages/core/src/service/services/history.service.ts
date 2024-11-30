@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateCustomerInput as UpdateCustomerShopInput } from '@shoplyjs/common/lib/generated-shop-types';
+import { UpdateCustomerInput as UpdateCustomerShopInput } from '@shoplyjs/common/dist/generated-shop-types';
 import {
     HistoryEntryListOptions,
     HistoryEntryType,
     OrderLineInput,
     UpdateAddressInput,
     UpdateCustomerInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { TransactionalConnection } from '../../connection/transactional-connection';

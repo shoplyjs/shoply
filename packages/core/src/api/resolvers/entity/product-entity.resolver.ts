@@ -1,7 +1,7 @@
 import { Args, Info, Parent, ResolveField, Resolver } from '@nestjs/graphql';
-import { ProductVariantListOptions } from '@shoplyjs/common/lib/generated-types';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+import { ProductVariantListOptions } from '@shoplyjs/common/dist/generated-types';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { Translated } from '../../../common/types/locale-types';
 import { idsAreEqual } from '../../../common/utils';

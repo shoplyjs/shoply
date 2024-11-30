@@ -1,4 +1,4 @@
-import { ID, Type } from '@shoplyjs/common/lib/shared-types';
+import { ID, Type } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api';
 import { ChannelAware } from '../../common';

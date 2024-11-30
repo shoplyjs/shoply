@@ -1,4 +1,4 @@
-import { ConfigArg } from '@shoplyjs/common/lib/generated-types';
+import { ConfigArg } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import {

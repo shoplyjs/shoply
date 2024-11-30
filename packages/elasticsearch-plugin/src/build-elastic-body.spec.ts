@@ -1,4 +1,4 @@
-import { LanguageCode, LogicalOperator, SortOrder } from '@shoplyjs/common/lib/generated-types';
+import { LanguageCode, LogicalOperator, SortOrder } from '@shoplyjs/common/dist/generated-types';
 import { DeepRequired } from '@shoplyjs/core';
 import { describe, expect, it } from 'vitest';
 

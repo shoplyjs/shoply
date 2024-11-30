@@ -1,4 +1,4 @@
-import { StockMovementType } from '@shoplyjs/common/lib/generated-types';
+import { StockMovementType } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { StockMovement } from '../../entity/stock-movement/stock-movement.entity';

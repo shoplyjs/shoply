@@ -3,7 +3,7 @@ import {
     FacetTranslationInput,
     LanguageCode,
     Permission,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 
 import { Injector } from '../../../common/injector';
 import { TransactionalConnection } from '../../../connection/transactional-connection';

@@ -1,6 +1,6 @@
-import { LogicalOperator } from '@shoplyjs/common/lib/generated-types';
-import { Type } from '@shoplyjs/common/lib/shared-types';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+import { LogicalOperator } from '@shoplyjs/common/dist/generated-types';
+import { Type } from '@shoplyjs/common/dist/shared-types';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { DateUtils } from 'typeorm/util/DateUtils';
 

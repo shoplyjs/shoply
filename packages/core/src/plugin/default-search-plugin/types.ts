@@ -1,5 +1,5 @@
-import { SearchInput as GeneratedSearchInput } from '@shoplyjs/common/lib/generated-types';
-import { ID, JsonCompatible } from '@shoplyjs/common/lib/shared-types';
+import { SearchInput as GeneratedSearchInput } from '@shoplyjs/common/dist/generated-types';
+import { ID, JsonCompatible } from '@shoplyjs/common/dist/shared-types';
 
 import { SerializedRequestContext } from '../../api/common/request-context';
 import { Asset } from '../../entity/asset/asset.entity';

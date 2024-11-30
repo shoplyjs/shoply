@@ -1,4 +1,4 @@
-import { TaxLine } from '@shoplyjs/common/lib/generated-types';
+import { TaxLine } from '@shoplyjs/common/dist/generated-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { InjectableStrategy } from '../../common/types/injectable-strategy';

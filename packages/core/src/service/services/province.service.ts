@@ -4,8 +4,8 @@ import {
     DeletionResponse,
     DeletionResult,
     UpdateProvinceInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID, PaginatedList, Type } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID, PaginatedList, Type } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { RelationPaths } from '../../api/decorators/relations.decorator';

@@ -1,6 +1,6 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { Omit } from '@shoplyjs/common/lib/omit';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { Omit } from '@shoplyjs/common/dist/omit';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../api/common/request-context';
 import { Surcharge } from '../entity';

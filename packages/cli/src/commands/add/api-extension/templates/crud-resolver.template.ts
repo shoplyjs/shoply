@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { DeletionResponse, Permission } from '@shoplyjs/common/lib/generated-types';
-import { CustomFieldsObject } from '@shoplyjs/common/lib/shared-types';
+import { DeletionResponse, Permission } from '@shoplyjs/common/dist/generated-types';
+import { CustomFieldsObject } from '@shoplyjs/common/dist/shared-types';
 import {
     Allow,
     Ctx,

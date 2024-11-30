@@ -5,9 +5,9 @@ import {
     OrderTaxSummary,
     OrderType,
     TaxLine,
-} from '@shoplyjs/common/lib/generated-types';
-import { DeepPartial, ID } from '@shoplyjs/common/lib/shared-types';
-import { summate } from '@shoplyjs/common/lib/shared-utils';
+} from '@shoplyjs/common/dist/generated-types';
+import { DeepPartial, ID } from '@shoplyjs/common/dist/shared-types';
+import { summate } from '@shoplyjs/common/dist/shared-utils';
 import { Column, Entity, Index, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
 
 import { Calculated } from '../../common/calculated-decorator';

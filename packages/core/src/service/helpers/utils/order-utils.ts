@@ -1,7 +1,7 @@
-import { OrderLineInput } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { summate } from '@shoplyjs/common/lib/shared-utils';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { OrderLineInput } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { summate } from '@shoplyjs/common/dist/shared-utils';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { In } from 'typeorm';
 
 import { RequestContext } from '../../../api/common/request-context';

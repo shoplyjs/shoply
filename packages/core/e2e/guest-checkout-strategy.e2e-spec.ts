@@ -1,4 +1,4 @@
-import { CreateCustomerInput, SetCustomerForOrderResult } from '@shoplyjs/common/lib/generated-shop-types';
+import { CreateCustomerInput, SetCustomerForOrderResult } from '@shoplyjs/common/dist/generated-shop-types';
 import {
     GuestCheckoutStrategy,
     Order,

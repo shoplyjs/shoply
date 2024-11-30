@@ -7,9 +7,9 @@ import {
     QueryProductArgs,
     QueryProductsArgs,
     SearchResponse,
-} from '@shoplyjs/common/lib/generated-shop-types';
-import { Omit } from '@shoplyjs/common/lib/omit';
-import { PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-shop-types';
+import { Omit } from '@shoplyjs/common/dist/omit';
+import { PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { InternalServerError, UserInputError } from '../../../common/error/errors';
 import { ListQueryOptions } from '../../../common/types/common-types';

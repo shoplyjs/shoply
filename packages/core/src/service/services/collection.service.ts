@@ -12,11 +12,11 @@ import {
     PreviewCollectionVariantsInput,
     RemoveCollectionsFromChannelInput,
     UpdateCollectionInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { pick } from '@shoplyjs/common/lib/pick';
-import { ROOT_COLLECTION_NAME } from '@shoplyjs/common/lib/shared-constants';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
-import { unique } from '@shoplyjs/common/lib/unique';
+} from '@shoplyjs/common/dist/generated-types';
+import { pick } from '@shoplyjs/common/dist/pick';
+import { ROOT_COLLECTION_NAME } from '@shoplyjs/common/dist/shared-constants';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { fromEvent, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { In, IsNull } from 'typeorm';

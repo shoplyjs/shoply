@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { summate } from '@shoplyjs/common/lib/shared-utils';
+import { summate } from '@shoplyjs/common/dist/shared-utils';
 import {
     defaultShippingCalculator,
     defaultShippingEligibilityChecker,

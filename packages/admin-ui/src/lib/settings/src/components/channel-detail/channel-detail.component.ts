@@ -17,7 +17,7 @@ import {
     TypedBaseDetailComponent,
     UpdateChannelInput,
 } from '@shoplyjs/admin-ui/core';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
 import { gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map, mergeMap, take, takeUntil } from 'rxjs/operators';

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DeletionResponse, DeletionResult } from '@shoplyjs/common/lib/generated-types';
+import { DeletionResponse, DeletionResult } from '@shoplyjs/common/dist/generated-types';
 import type { ID, ListQueryOptions, PaginatedList, Translated } from '@shoplyjs/core';
 import {
     assertFound,

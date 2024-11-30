@@ -26,9 +26,9 @@ import {
     UpdateProductVariantInput,
     UpdateProductVariantsMutation,
 } from '@shoplyjs/admin-ui/core';
-import { normalizeString } from '@shoplyjs/common/lib/normalize-string';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { normalizeString } from '@shoplyjs/common/dist/normalize-string';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { gql } from 'apollo-angular';
 import { combineLatest, concat, EMPTY, from, Observable, of } from 'rxjs';
 import { distinctUntilChanged, map, mergeMap, shareReplay, switchMap, take } from 'rxjs/operators';

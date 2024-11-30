@@ -1,5 +1,5 @@
-import { JobListOptions, JobState } from '@shoplyjs/common/lib/generated-types';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { JobListOptions, JobState } from '@shoplyjs/common/dist/generated-types';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import {
     ID,
     Injector,

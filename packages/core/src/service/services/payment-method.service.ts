@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PaymentMethodQuote } from '@shoplyjs/common/lib/generated-shop-types';
+import { PaymentMethodQuote } from '@shoplyjs/common/dist/generated-shop-types';
 import {
     AssignPaymentMethodsToChannelInput,
     ConfigurableOperationDefinition,
@@ -9,9 +9,9 @@ import {
     Permission,
     RemovePaymentMethodsFromChannelInput,
     UpdatePaymentMethodInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/lib/shared-constants';
-import { ID, PaginatedList } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { DEFAULT_CHANNEL_CODE } from '@shoplyjs/common/dist/shared-constants';
+import { ID, PaginatedList } from '@shoplyjs/common/dist/shared-types';
 
 import { RequestContext } from '../../api/common/request-context';
 import { RelationPaths } from '../../api/decorators/relations.decorator';

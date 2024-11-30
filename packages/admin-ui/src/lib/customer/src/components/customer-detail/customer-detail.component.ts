@@ -23,7 +23,7 @@ import {
     UpdateCustomerInput,
     UpdateCustomerMutation,
 } from '@shoplyjs/admin-ui/core';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import { gql } from 'apollo-angular';
 import { EMPTY, forkJoin, from, Observable, Subject } from 'rxjs';
 import {

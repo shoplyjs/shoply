@@ -11,7 +11,7 @@ import {
     PaymentWithRefundsFragment,
     RefundOrderInput,
 } from '@shoplyjs/admin-ui/core';
-import { summate } from '@shoplyjs/common/lib/shared-utils';
+import { summate } from '@shoplyjs/common/dist/shared-utils';
 import { getRefundablePayments, RefundablePayment } from '../../common/get-refundable-payments';
 
 type SelectionLine = { quantity: number; cancel: boolean };

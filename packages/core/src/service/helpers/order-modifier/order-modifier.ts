@@ -7,9 +7,9 @@ import {
     ModifyOrderResult,
     OrderLineInput,
     RefundOrderInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { getGraphQlInputName, summate } from '@shoplyjs/common/lib/shared-utils';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { getGraphQlInputName, summate } from '@shoplyjs/common/dist/shared-utils';
 
 import { RequestContext } from '../../../api/common/request-context';
 import { isGraphQlErrorResult, JustErrorResults } from '../../../common/error/error-result';

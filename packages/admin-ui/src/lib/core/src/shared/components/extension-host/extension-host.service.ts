@@ -4,8 +4,8 @@ import {
     ActiveRouteData,
     ExtensionMessage,
     MessageResponse,
-} from '@shoplyjs/common/lib/extension-host-types';
-import { assertNever } from '@shoplyjs/common/lib/shared-utils';
+} from '@shoplyjs/common/dist/extension-host-types';
+import { assertNever } from '@shoplyjs/common/dist/shared-utils';
 import { parse } from 'graphql';
 import { merge, Observer, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';

@@ -1,5 +1,5 @@
-import { LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { CustomFieldsObject, ID } from '@shoplyjs/common/lib/shared-types';
+import { LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { CustomFieldsObject, ID } from '@shoplyjs/common/dist/shared-types';
 
 import { VendureEntity } from '../../entity/base/base.entity';
 import { TranslatableRelationsKeys } from '../../service/helpers/utils/translate-entity';

@@ -1,5 +1,5 @@
-import { StockMovementType } from '@shoplyjs/common/lib/generated-types';
-import { DeepPartial } from '@shoplyjs/common/lib/shared-types';
+import { StockMovementType } from '@shoplyjs/common/dist/generated-types';
+import { DeepPartial } from '@shoplyjs/common/dist/shared-types';
 import { ChildEntity, Index, ManyToOne } from 'typeorm';
 
 import { OrderLine } from '../order-line/order-line.entity';

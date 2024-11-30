@@ -1,4 +1,4 @@
-import { JobState } from '@shoplyjs/common/lib/generated-types';
+import { JobState } from '@shoplyjs/common/dist/generated-types';
 import { Subject, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 

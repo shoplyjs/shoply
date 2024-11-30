@@ -6,7 +6,7 @@ import {
     Dialog,
     GetProductVariantOptionsQuery,
 } from '@shoplyjs/admin-ui/core';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
 import { combineLatest } from 'rxjs';
 
 @Component({

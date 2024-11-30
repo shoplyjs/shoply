@@ -1,7 +1,7 @@
 import {
     AuthenticationResult as ShopAuthenticationResult,
     PasswordValidationError,
-} from '@shoplyjs/common/lib/generated-shop-types';
+} from '@shoplyjs/common/dist/generated-shop-types';
 import {
     AuthenticationResult as AdminAuthenticationResult,
     CurrentUser,
@@ -9,7 +9,7 @@ import {
     MutationAuthenticateArgs,
     MutationLoginArgs,
     Success,
-} from '@shoplyjs/common/lib/generated-types';
+} from '@shoplyjs/common/dist/generated-types';
 import { Request, Response } from 'express';
 
 import { isGraphQlErrorResult } from '../../../common/error/error-result';

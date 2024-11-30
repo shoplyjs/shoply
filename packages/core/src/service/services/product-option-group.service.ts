@@ -3,8 +3,8 @@ import {
     CreateProductOptionGroupInput,
     DeletionResult,
     UpdateProductOptionGroupInput,
-} from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
+} from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
 import { FindManyOptions, Like } from 'typeorm';
 
 import { RequestContext } from '../../api/common/request-context';

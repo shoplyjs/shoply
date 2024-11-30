@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { JobState, LanguageCode } from '@shoplyjs/common/lib/generated-types';
-import { ID } from '@shoplyjs/common/lib/shared-types';
-import { notNullOrUndefined } from '@shoplyjs/common/lib/shared-utils';
-import { unique } from '@shoplyjs/common/lib/unique';
+import { JobState, LanguageCode } from '@shoplyjs/common/dist/generated-types';
+import { ID } from '@shoplyjs/common/dist/shared-types';
+import { notNullOrUndefined } from '@shoplyjs/common/dist/shared-utils';
+import { unique } from '@shoplyjs/common/dist/unique';
 import { Observable } from 'rxjs';
 import { Equal, FindManyOptions, FindOptionsWhere, In, IsNull } from 'typeorm';
 

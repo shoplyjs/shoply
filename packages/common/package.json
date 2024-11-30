@@ -1,7 +1,7 @@
 {
   "name": "@shoplyjs/common",
   "version": "2.3.4",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "license": "MIT",
   "scripts": {
     "watch": "tsc -p ./tsconfig.build.json -w",
