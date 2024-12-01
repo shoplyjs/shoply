@@ -18,7 +18,7 @@ export class Webhook extends VendureEntity {
     eventId: string;
 
     @Column({ enum: ['rest', 'graphql'], default: 'rest' })
-    approach: string;
+    clientType: string;
 
     @Column()
     url: string;

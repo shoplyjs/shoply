@@ -19,23 +19,23 @@ export class WebhookResolver {
 
     @Query()
     @Allow(Permission.ReadAdministrator)
-    webhook(@Ctx() ctx: RequestContext): Promise<Webhook | null> {
-        return this.webhookService.findOne(ctx, '123');
+    webhook(@Ctx() ctx: RequestContext, @Args() args: any) {
+        return this.webhookService.findOne(ctx, args.id);
     }
 
     @Transaction()
     @Mutation()
     @Allow(Permission.CreateAdministrator)
-    async createWebhook(@Ctx() ctx: RequestContext, @Args() args: CreateWebhookDto): Promise<Webhook> {
-        const webhook = await this.webhookService.create(ctx, args);
+    async createWebhook(@Ctx() ctx: RequestContext, @Args() args: any): Promise<Webhook> {
+        const webhook = await this.webhookService.create(ctx, args.input);
         return webhook;
     }
 
     @Transaction()
     @Mutation()
     @Allow(Permission.UpdateAdministrator)
-    async updateWebhook(@Ctx() ctx: RequestContext, @Args() args: UpdateWebhookDto): Promise<Webhook> {
-        const webhook = await this.webhookService.update(ctx, args, args.id);
+    async updateWebhook(@Ctx() ctx: RequestContext, @Args() args: any): Promise<Webhook> {
+        const webhook = await this.webhookService.update(ctx, args.input, String(args.id));
         return webhook;
     }
 

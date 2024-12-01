@@ -1,13 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsObject, IsString, IsUrl, Max, MaxLength, ValidateNested } from 'class-validator';
+import { IsEnum, IsObject, IsString, IsUrl, Max, MaxLength } from 'class-validator';
+import { EventNames } from '@shoplyjs/common';
 
 export class CreateWebhookDto {
     @ApiProperty({
         required: true,
         description: 'The event type that triggers the webhook.',
-        example: 'ProductEvent',
+        example: 'product.created',
+        enum: Object.values(EventNames),
     })
-    @IsString()
+    @IsEnum(Object.values(EventNames), {
+        message: 'event must be one of ProductEvent, OrderEvent, CustomerEvent',
+    })
+    @IsString({ message: 'event must be a string' })
     @MaxLength(255, { message: 'event must be less than 255 characters' })
     event: string;
 

@@ -1,7 +1,12 @@
 {
   "name": "@shoplyjs/webhooks-plugin",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "./src",
+    "./dist"
+  ],
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
     "watch": "tsc -p ./tsconfig.build.json -w"
@@ -14,7 +19,14 @@
   },
   "peerDependencies": {
     "@nestjs/swagger": "^8.0.7",
-    "class-validator": "^0.14.1",
-    "class-transformer": "^0.5.1"
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1"
+  },
+  "devDependencies": {
+    "@shoplyjs/testing": "^2.3.4",
+    "@swc/core": "^1.9.3",
+    "graphql-tag": "^2.12.6",
+    "unplugin-swc": "^1.5.1",
+    "vitest": "^2.1.6"
   }
 }

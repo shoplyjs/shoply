@@ -5,10 +5,11 @@ export const adminApiExtensions = gql`
         id: ID!
         createdAt: DateTime!
         updatedAt: DateTime!
-        name: String!
+        event: String!
         url: String!
         method: String!
-        headers: [String!]!
+        clientType: String
+        headers: [String]
     }
 
     extend type Query {
@@ -23,17 +24,19 @@ export const adminApiExtensions = gql`
     }
 
     input CreateWebhookInput {
-        name: String!
+        event: String!
         url: String!
         method: String!
-        headers: [String!]!
+        clientType: String
+        headers: [String]
     }
 
     input UpdateWebhookInput {
         id: ID!
-        name: String
+        event: String
         url: String
         method: String
-        headers: [String!]
+        clientType: String
+        headers: [String]
     }
 `;

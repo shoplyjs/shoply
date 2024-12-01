@@ -48,7 +48,7 @@ export class WebhookService implements OnApplicationBootstrap {
 
     async proceedWebhook(currentWebhook: Webhook, data: any) {
         if (String(data.ctx.channelId) !== String(currentWebhook.channelId)) return;
-        if (currentWebhook.approach === 'rest') {
+        if (currentWebhook.clientType === 'rest') {
             await this.callRestWebhook(currentWebhook, data);
         }
     }
@@ -124,7 +124,7 @@ export class WebhookService implements OnApplicationBootstrap {
             Logger.info(`Webhook triggered for ${webhook.event} at ${webhook.url}`, WebhookService.name);
         } catch (e: any) {
             Logger.warn(
-                `Failed to trigger webhook for ${webhook.event} at ${webhook.url}: ${e.message}`,
+                `Failed to trigger webhook for ${webhook.event} at ${webhook.url}: ${(e as Error).message}`,
                 WebhookService.name,
             );
             return;
