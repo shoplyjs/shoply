@@ -1,0 +1,34 @@
+{
+  "name": "@shoplyjs/webhook-plugin",
+  "version": "1.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "watch": "tsc -p ./tsconfig.build.json -w"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "ArseniyX",
+  "license": "MIT",
+  "description": "Core webhooks for ShoplyJS",
+  "dependencies": {
+    "@shoplyjs/core": "^2.3.4"
+  },
+  "peerDependencies": {
+    "@nestjs/swagger": "^8.0.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1"
+  },
+  "devDependencies": {
+    "@shoplyjs/testing": "^2.3.4",
+    "@swc/core": "^1.9.3",
+    "graphql-tag": "^2.12.6",
+    "unplugin-swc": "^1.5.1",
+    "vitest": "^2.1.6"
+  }
+}

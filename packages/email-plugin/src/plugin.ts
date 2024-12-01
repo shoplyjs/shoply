@@ -344,6 +344,7 @@ export class EmailPlugin implements OnApplicationBootstrap, OnApplicationShutdow
     async onApplicationBootstrap(): Promise<void> {
         await this.initInjectableStrategies();
         await this.setupEventSubscribers();
+        // @ts-ignore
         const transport = await resolveTransportSettings(this.options, new Injector(this.moduleRef));
         if (!isDevModeOptions(this.options) && transport.type === 'testing') {
             // When running tests, we don't want to go through the JobQueue system,
@@ -376,6 +377,7 @@ export class EmailPlugin implements OnApplicationBootstrap, OnApplicationShutdow
     }
 
     private async initInjectableStrategies() {
+        // @ts-ignore
         const injector = new Injector(this.moduleRef);
         if (typeof this.options.emailGenerator?.init === 'function') {
             await this.options.emailGenerator.init(injector);
@@ -409,6 +411,7 @@ export class EmailPlugin implements OnApplicationBootstrap, OnApplicationShutdow
         Logger.debug(`Handling event "${handler.type}"`, loggerCtx);
         const { type } = handler;
         try {
+            // @ts-ignore
             const injector = new Injector(this.moduleRef);
             let globalTemplateVars = this.options.globalTemplateVars;
             if (typeof globalTemplateVars === 'function') {

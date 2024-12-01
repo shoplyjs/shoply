@@ -106,6 +106,7 @@ export class ElasticsearchIndexerController implements OnModuleInit, OnModuleDes
             defaultVariantRelations,
             this.options.hydrateProductVariantRelations,
         );
+        // @ts-ignore
         this.injector = new Injector(this.moduleRef);
     }
 

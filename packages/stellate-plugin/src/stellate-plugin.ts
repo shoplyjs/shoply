@@ -268,6 +268,7 @@ export class StellatePlugin implements OnApplicationBootstrap {
     ) {}
 
     onApplicationBootstrap() {
+        //@ts-ignore
         const injector = new Injector(this.moduleRef);
 
         for (const purgeRule of this.options.purgeRules ?? []) {

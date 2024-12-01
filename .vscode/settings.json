@@ -56,5 +56,11 @@
         "inputrules",
         "gapcursor",
         "webcomponents"
+    ],
+
+    "folders": [
+        {
+            "path": "./src"
+        }
     ]
 }

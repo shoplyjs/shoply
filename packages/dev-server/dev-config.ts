@@ -13,6 +13,7 @@ import {
 } from '@shoplyjs/core';
 import { defaultEmailHandlers, EmailPlugin } from '@shoplyjs/email-plugin';
 import 'dotenv/config';
+import { WebhookPlugin } from '@shoplyjs/webhook-plugin';
 import { MolliePlugin } from '@shoplyjs/payments-plugin/package/mollie';
 import { StripePlugin } from '@shoplyjs/payments-plugin/package/stripe';
 import path from 'path';
@@ -42,7 +43,7 @@ export const devConfig: VendureConfig = {
         requireVerification: true,
         customPermissions: [],
         cookieOptions: {
-            secret: 'abc',
+            secret: process.env.COOKIE_SECRET,
         },
     },
     dbConnectionOptions: {
@@ -93,6 +94,7 @@ export const devConfig: VendureConfig = {
                 changeEmailAddressUrl: 'http://localhost:4201/change-email-address',
             },
         }),
+        WebhookPlugin,
         ...(process.env.APP_ENV === 'true'
             ? [
                   AdminUiPlugin.init({

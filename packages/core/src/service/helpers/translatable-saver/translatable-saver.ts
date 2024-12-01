@@ -93,6 +93,7 @@ export class TranslatableSaver {
      */
     async update<T extends Translatable & VendureEntity>(options: UpdateTranslatableOptions<T>): Promise<T> {
         const { ctx, entityType, translationType, input, beforeSave, typeOrmSubscriberData } = options;
+        // @ts-ignore
         const existingTranslations = await this.connection.getRepository(ctx, translationType).find({
             relationLoadStrategy: 'query',
             loadEagerRelations: false,

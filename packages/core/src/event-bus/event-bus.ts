@@ -96,11 +96,57 @@ export type BlockingEventHandlerOptions<T extends VendureEvent> = {
  * */
 @Injectable()
 export class EventBus implements OnModuleDestroy {
+    private eventMap: Map<string, Type<VendureEvent>> = new Map();
     private eventStream = new Subject<VendureEvent>();
     private destroy$ = new Subject<void>();
     private blockingEventHandlers = new Map<Type<VendureEvent>, Array<BlockingEventHandlerOptions<any>>>();
 
     constructor(private transactionSubscriber: TransactionSubscriber) {}
+
+    /**
+     * Registers an event type with the event bus.
+     *
+     * @param eventClass - The class type of the event to register.
+     * @param eventType - An optional custom name for the event type. Defaults to the class name.
+     */
+    register<T extends VendureEvent>(eventClass: Type<T>, eventType?: string): void {
+        const typeName = eventType ?? eventClass.name;
+        if (this.eventMap.has(typeName)) {
+            Logger.warn(`Event type ${typeName} already registered`);
+            return;
+        }
+        this.eventMap.set(typeName, eventClass);
+    }
+
+    /**
+     * Unregister an event type.
+     *
+     * @param eventType - The name or class type of the event to unregister.
+     */
+    unRegister(eventType: string): void {
+        this.eventMap.delete(eventType);
+    }
+
+    /**
+     * Subscribes to an event type, invoking the provided handler when an event of that type is emitted.
+     *
+     * @param eventType - The name or class type of the event to subscribe to.
+     * @param handler - A callback function to execute when the event is emitted.
+     * @throws Error if the event type is not registered.
+     */
+    subscribe(eventType: string | Type<VendureEvent>, handler: (event: VendureEvent) => void): void {
+        const eventClass = typeof eventType === 'string' ? this.eventMap.get(eventType) : eventType;
+        if (!eventClass) {
+            throw new Error(
+                `Event type ${typeof eventType === 'string' ? eventType : eventType.name} not registered`,
+            );
+        }
+        this.eventStream.subscribe(event => {
+            if (event instanceof eventClass) {
+                handler(event);
+            }
+        });
+    }
 
     /**
      * @description
@@ -111,11 +157,17 @@ export class EventBus implements OnModuleDestroy {
      * await eventBus.publish(new SomeEvent());
      * ```
      */
-    async publish<T extends VendureEvent>(event: T): Promise<void> {
+    async publish<T extends VendureEvent>(event: T, eventName?: string): Promise<void> {
+        // Check if the event type is registered and register it if not
+
+        this.register<T>(event.constructor as Type<T>, eventName);
+
+        // Publish the event to the event stream
         this.eventStream.next(event);
+
+        // Execute any blocking event handlers related to the event
         await this.executeBlockingEventHandlers(event);
     }
-
     /**
      * @description
      * Returns an RxJS Observable stream of events of the given type.
