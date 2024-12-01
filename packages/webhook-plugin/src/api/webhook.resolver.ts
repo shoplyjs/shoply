@@ -4,8 +4,6 @@ import { Allow, Ctx, Permission, RequestContext, Transaction } from '@shoplyjs/c
 
 import { Webhook } from '../entities/webhook.entity';
 import { WebhookService } from '../services/webhook.service';
-import { UpdateWebhookDto } from '../dto/update-webhook.dto';
-import { CreateWebhookDto } from '../dto/create-webhook.dto';
 
 @Resolver()
 export class WebhookResolver {
@@ -14,7 +12,7 @@ export class WebhookResolver {
     @Query()
     @Allow(Permission.ReadAdministrator)
     webhooks(@Ctx() ctx: RequestContext): Promise<Webhook[]> {
-        return this.webhookService.findAllByAdministrator(ctx);
+        return this.webhookService.findAll();
     }
 
     @Query()

@@ -1,19 +1,21 @@
 {
-  "name": "@shoplyjs/webhooks-plugin",
-  "version": "1.0.0",
+  "name": "@shoplyjs/webhook-plugin",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "./src",
-    "./dist"
+    "dist/**/*"
   ],
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
     "watch": "tsc -p ./tsconfig.build.json -w"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "ArseniyX",
   "license": "MIT",
-  "description": "Core webhooks for Vendure and ShoplyJS",
+  "description": "Core webhooks for ShoplyJS",
   "dependencies": {
     "@shoplyjs/core": "^2.3.4"
   },

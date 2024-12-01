@@ -12,6 +12,6 @@
         "sourceMap": true,
         "baseUrl": "./"
     },
-    "include": ["./src",],
+    "include": ["./src"],
     "exclude": ["./vitest.config.mts", "./e2e"]
 }

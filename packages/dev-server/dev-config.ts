@@ -13,7 +13,7 @@ import {
 } from '@shoplyjs/core';
 import { defaultEmailHandlers, EmailPlugin } from '@shoplyjs/email-plugin';
 import 'dotenv/config';
-import { WebhookPlugin } from '@shoplyjs/webhooks-plugin';
+import { WebhookPlugin } from '@shoplyjs/webhook-plugin';
 import { MolliePlugin } from '@shoplyjs/payments-plugin/package/mollie';
 import { StripePlugin } from '@shoplyjs/payments-plugin/package/stripe';
 import path from 'path';

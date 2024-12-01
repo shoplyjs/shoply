@@ -14,7 +14,7 @@ export class WebhookController {
     @Get()
     @Allow(Permission.ReadAdministrator)
     getWebhooks(@Ctx() ctx: RequestContext) {
-        return this.webhookService.findAllByAdministrator(ctx);
+        return this.webhookService.findAll();
     }
 
     @Get(':id')
