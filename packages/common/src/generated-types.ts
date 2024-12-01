@@ -968,9 +968,10 @@ export type CreateTaxRateInput = {
 };
 
 export type CreateWebhookInput = {
+  clientType?: InputMaybe<Scalars['String']['input']>;
+  event: Scalars['String']['input'];
   headers: Array<Scalars['String']['input']>;
   method: Scalars['String']['input'];
-  name: Scalars['String']['input'];
   url: Scalars['String']['input'];
 };
 
@@ -6633,10 +6634,11 @@ export type UpdateTaxRateInput = {
 };
 
 export type UpdateWebhookInput = {
+  clientType?: InputMaybe<Scalars['String']['input']>;
+  event?: InputMaybe<Scalars['String']['input']>;
   headers?: InputMaybe<Array<Scalars['String']['input']>>;
   id: Scalars['ID']['input'];
   method?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -6661,11 +6663,12 @@ export type User = Node & {
 
 export type Webhook = Node & {
   __typename?: 'Webhook';
+  clientType?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
+  event: Scalars['String']['output'];
   headers: Array<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   method: Scalars['String']['output'];
-  name: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
   url: Scalars['String']['output'];
 };
