@@ -17,7 +17,7 @@ export class WebhookEventHandler {
         this.eventHandlers.set(`${webhook.event}:${webhook.id}`, eventHandler);
     }
 
-    unsubscribeWebhookEvent(eventType: string, webhookId: string): void {
+    unsubscribeWebhookEvent(eventType: string, webhookId: string) {
         const eventHandler = this.eventHandlers.get(`${eventType}:${webhookId}`);
         if (eventHandler) {
             this.eventEmitter.removeListener(eventType, eventHandler);
@@ -37,8 +37,9 @@ export class WebhookEventHandler {
     }
 
     private async callRestWebhook(webhook: Webhook, data: any): Promise<void> {
+        const { ctx, ...rest } = data || {};
         try {
-            const payload = JSON.stringify({ data: data.input || {} });
+            const payload = JSON.stringify({ data: rest || {} });
             const response = await fetch(webhook.url, {
                 method: webhook.method,
                 headers: webhook.headers,

@@ -48,22 +48,26 @@ export class WebhookService implements OnApplicationBootstrap {
     }
 
     async update(ctx: RequestContext, input: UpdateWebhookDto, id: string): Promise<Webhook> {
-        const currentWebhook = await this.findOne(ctx, id);
-        if (!currentWebhook) {
-            throw new EntityNotFoundError('Webhook', id);
-        }
-        const updatedWebhook = await this.connection.getRepository(ctx, Webhook).save({
+        const repository = this.connection.getRepository(ctx, Webhook);
+
+        const existingEntity = await repository.preload({
+            id: +id,
             ...input,
-            id,
             channelId: ctx.channelId,
         });
 
-        if (currentWebhook.event !== input.event) {
-            this.eventHandler.unsubscribeWebhookEvent(currentWebhook.event, String(currentWebhook.id));
-            this.eventHandler.subscribeWebhookEvent(updatedWebhook);
+        if (!existingEntity) {
+            throw new EntityNotFoundError('Webhook', id);
         }
 
-        return updatedWebhook;
+        const updatedEntity = await repository.save(existingEntity);
+
+        if (existingEntity.event !== input.event) {
+            this.eventHandler.unsubscribeWebhookEvent(existingEntity.event, String(existingEntity.id));
+            this.eventHandler.subscribeWebhookEvent(updatedEntity);
+        }
+
+        return updatedEntity;
     }
 
     async delete(ctx: RequestContext, id: string): Promise<void> {

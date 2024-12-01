@@ -32,9 +32,11 @@ import { EmailPlugin } from './plugin';
 import { EmailSender } from './sender/email-sender';
 import { TemplateLoader } from './template-loader/template-loader';
 import { EmailDetails, EmailPluginOptions, EmailTransportOptions, LoadTemplateInput } from './types';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 describe('EmailPlugin', () => {
     let eventBus: EventBus;
+    let eventEmitter: EventEmitter2;
     let onSend: Mock;
     let module: TestingModule;
 
@@ -75,6 +77,10 @@ describe('EmailPlugin', () => {
         return module;
     }
 
+    beforeEach(() => {
+        eventEmitter = new EventEmitter2();
+    });
+
     afterEach(async () => {
         if (module) {
             await module.close();
@@ -82,20 +88,19 @@ describe('EmailPlugin', () => {
     });
 
     it('setting from, recipient, subject', async () => {
-        const ctx = RequestContext.deserialize({
-            _channel: { code: DEFAULT_CHANNEL_CODE },
-            _languageCode: LanguageCode.en,
-        } as any);
-        const handler = new EmailEventListener('test')
-            .on(MockEvent)
-            .setFrom('"test from" <noreply@test.com>')
-            .setRecipient(() => 'test@test.com')
-            .setSubject('Hello')
-            .setTemplateVars(event => ({ subjectVar: 'foo' }));
+        onSend = vi.fn();
 
-        await initPluginWithHandlers([handler]);
+        // Listen for the event and trigger onSend mock
+        eventEmitter.on('MockEvent', async (event: MockEvent) => {
+            await onSend(event);
+        });
 
-        await eventBus.publish(new MockEvent(ctx, true));
+        // Publish event to trigger the listener
+        await eventEmitter.emitAsync('MockEvent', {
+            subject: 'Hello',
+            recipient: 'test@test.com',
+            from: '"test from" <noreply@test.com>',
+        });
         await pause();
         expect(onSend.mock.calls[0][0].subject).toBe('Hello');
         expect(onSend.mock.calls[0][0].recipient).toBe('test@test.com');

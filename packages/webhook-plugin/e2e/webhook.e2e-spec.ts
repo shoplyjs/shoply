@@ -128,45 +128,4 @@ describe('Webhook GraphQL API', () => {
         expect(result.createWebhook).toHaveProperty('method', input.method);
         expect(result.createWebhook.headers).toEqual(input.headers);
     });
-
-    // it('updates an existing webhook', async () => {
-    //     const mutation = gql`
-    //         mutation UpdateWebhook($input: UpdateWebhookInput!) {
-    //             updateWebhook(input: $input) {
-    //                 id
-    //                 event
-    //                 url
-    //                 method
-    //                 headers
-    //             }
-    //         }
-    //     `;
-
-    //     const input = {
-    //         id: sampleWebhook.id,
-    //         event: 'customer.created',
-    //     };
-
-    //     const result = await adminClient.query(mutation, { input });
-
-    //     expect(result.updateWebhook).toBeDefined();
-    //     expect(result.updateWebhook).toHaveProperty('id', input.id);
-    //     expect(result.updateWebhook).toHaveProperty('event', input.event);
-    // });
-
-    // it('deletes a webhook', async () => {
-    //     const mutation = gql`
-    //         mutation DeleteWebhook($id: ID!) {
-    //             deleteWebhook(id: $id) {
-    //                 result
-    //                 message
-    //             }
-    //         }
-    //     `;
-
-    //     const result = await adminClient.query(mutation, { id: sampleWebhook.id });
-
-    //     expect(result.deleteWebhook).toBeDefined();
-    //     expect(result.deleteWebhook).toHaveProperty('result', 'SUCCESS');
-    // });
 });

@@ -121,6 +121,7 @@ export class TestServer {
             const usingCookie =
                 tokenMethod === 'cookie' || (Array.isArray(tokenMethod) && tokenMethod.includes('cookie'));
             if (usingCookie) {
+                // @ts-ignore
                 configureSessionCookies(app, config);
             }
             const earlyMiddlewares = config.apiOptions.middleware.filter(mid => mid.beforeListen);

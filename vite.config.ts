@@ -1,13 +1,12 @@
-// eslint-ignore
+import { defineConfig } from 'vitest/config';
 import path from 'path';
 import swc from 'unplugin-swc';
-import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
     test: {
-        include: ['./e2e/**/*.e2e-spec.ts'],
+        include: ['**/*.e2e-spec.ts', '**/*.test.{js,ts}'], // Include all relevant test files
         typecheck: {
-            tsconfig: path.join(__dirname, 'tsconfig.e2e.json'),
+            tsconfig: path.join(__dirname, 'tsconfig.json'), // Path to your main tsconfig
         },
     },
     plugins: [
