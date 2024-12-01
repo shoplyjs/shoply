@@ -17,7 +17,7 @@ export class WebhookEventHandler {
         this.eventHandlers.set(`${webhook.event}:${webhook.id}`, eventHandler);
     }
 
-    unsubscribeWebhookEvent(eventType: string, webhookId: string): void {
+    unsubscribeWebhookEvent(eventType: string, webhookId: string) {
         const eventHandler = this.eventHandlers.get(`${eventType}:${webhookId}`);
         if (eventHandler) {
             this.eventEmitter.removeListener(eventType, eventHandler);

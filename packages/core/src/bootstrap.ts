@@ -131,6 +131,7 @@ export async function bootstrap(
     const usingCookie =
         tokenMethod === 'cookie' || (Array.isArray(tokenMethod) && tokenMethod.includes('cookie'));
     if (usingCookie) {
+        // @ts-ignore
         configureSessionCookies(app, config);
     }
     const earlyMiddlewares = middleware.filter(mid => mid.beforeListen);
@@ -148,6 +149,7 @@ export async function bootstrap(
     await app.listen(port, hostname || '');
     app.enableShutdownHooks();
     logWelcomeMessage(config);
+    // @ts-ignore
     return app;
 }
 
