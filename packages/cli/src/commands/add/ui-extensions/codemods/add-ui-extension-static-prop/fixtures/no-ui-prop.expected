@@ -1,6 +1,6 @@
 import * as path from 'path';
-import { AdminUiExtension } from '@vendure/ui-devkit/compiler';
-import { PluginCommonModule, Type, VendurePlugin } from '@vendure/core';
+import { AdminUiExtension } from '@shoplyjs/ui-devkit/compiler';
+import { PluginCommonModule, Type, VendurePlugin } from '@shoplyjs/core';
 type PluginInitOptions = any;
 
 @VendurePlugin({

@@ -10,7 +10,7 @@
         "noLib": false,
         "skipLibCheck": true,
         "sourceMap": true,
-        "baseUrl": "./"
+        "baseUrl": "./src"
     },
     "include": ["./src"],
     "exclude": ["./vitest.config.mts", "./e2e"]
