@@ -1,8 +1,8 @@
 # Vendure Admin UI
 
-This is the administration interface for Vendure.
+This is the administration interface for Vendure. It is an Angular application built with the Angular CLI.
 
-It is an Angular application built with the Angular CLI.
+![Dashboard](./static/logo.png)
 
 The UI is powered by the [Clarity Design System](https://clarity.design).
 

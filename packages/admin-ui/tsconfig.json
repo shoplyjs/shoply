@@ -59,6 +59,9 @@
       ],
       "@shoplyjs/admin-ui/system": [
         "./src/lib/system/src/public_api"
+      ],
+      "@shoplyjs/admin-ui/apps": [
+        "./src/lib/apps/src/public_api"
       ]
     },
     "useDefineForClassFields": false
