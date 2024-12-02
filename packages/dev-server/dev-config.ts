@@ -18,6 +18,7 @@ import { MolliePlugin } from '@shoplyjs/payments-plugin/package/mollie';
 import { StripePlugin } from '@shoplyjs/payments-plugin/package/stripe';
 import path from 'path';
 import { DataSourceOptions } from 'typeorm';
+import { compileUiExtensions } from '@shoplyjs/ui-devkit/compiler';
 
 const isDev = process.env.APP_ENV === 'dev';
 
@@ -95,11 +96,27 @@ export const devConfig: VendureConfig = {
             },
         }),
         WebhookPlugin,
-        ...(process.env.APP_ENV === 'true'
+        ...(process.env.APP_ENV === 'dev'
             ? [
                   AdminUiPlugin.init({
                       route: 'admin',
                       port: 3000,
+                      app: compileUiExtensions({
+                          outputPath: path.join(__dirname, '../shoply-app/dist'),
+                          extensions: [
+                              {
+                                  extensionPath: path.join(__dirname, '../shoply-app'),
+                                  routes: [{ route: 'apps', filePath: 'routes.ts' }],
+                                  staticAssets: [
+                                      {
+                                          path: path.join(__dirname, '../shoply-app/dist'),
+                                          rename: 'shoply-app',
+                                      },
+                                  ],
+                              },
+                          ],
+                          devMode: true,
+                      }),
                   }),
               ]
             : [AdminUiPlugin]),

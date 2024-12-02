@@ -3,7 +3,7 @@ import { AdminUiConfig } from '@shoplyjs/common/dist/shared-types';
 let vendureUiConfig: AdminUiConfig | undefined;
 
 export async function loadAppConfig(): Promise<void> {
-    vendureUiConfig = await fetch('./vendure-ui-config.json').then(res => res.json());
+    vendureUiConfig = await fetch('./shoplyjs-ui-config.json').then(res => res.json());
 }
 
 export function getAppConfig(): AdminUiConfig {

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "vendure-admin": {
+    "shoplyjs-admin": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -35,7 +35,7 @@
                 "input": "static-assets",
                 "output": "/"
               },
-              "src/vendure-ui-config.json",
+              "src/shoplyjs-ui-config.json",
               "src/theme.min.css",
               "src/assets",
               "src/i18n-messages",
@@ -109,7 +109,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vendure-admin:build"
+            "browserTarget": "shoplyjs-admin:build"
           }
         }
       }

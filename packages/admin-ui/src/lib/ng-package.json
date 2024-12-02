@@ -8,7 +8,7 @@
     "./static/favicon.ico",
     "./static/index.html",
     "./static/polyfills.ts",
-    "./static/vendure-ui-config.json",
+    "./static/shoplyjs-ui-config.json",
     "./static/assets/*.*",
     "./static/styles/**/*.scss",
     "./static/fonts/*.woff2",

@@ -5,13 +5,14 @@
   "scripts": {
     "ng": "ng",
     "start": "node scripts/set-version.js && ng serve",
-    "build:app": "ng build vendure-admin --configuration production",
-    "build": "ng build --configuration=production vendure-admin && ng build --configuration=production vendure-admin-lib",
+    "build:app": "ng build shoplyjs-admin --configuration production",
+    "build": "ng build --configuration=production shoplyjs-admin && ng build --configuration=production shoplyjs-admin-lib",
     "watch": "ng build --watch=true",
     "test": "ng test --watch=false --browsers=ChromeHeadlessCI --progress=false",
     "lint": "ng lint --fix",
     "extract-translations": "node scripts/extract-translations.js",
-    "ngcc": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "ngcc": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
+    "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
   },
   "homepage": "https://shoplyjs.com/",
   "funding": "https://github.com/sponsors/ArseniyX",
@@ -23,12 +24,13 @@
   "exports": {
     ".": {
       "types": "./package/index.d.ts",
-      "esm2022": "./package/esm2022/vendure-admin-ui.mjs",
-      "esm": "./package/esm2022/vendure-admin-ui.mjs",
-      "default": "./package/fesm2022/vendure-admin-ui.mjs"
+      "esm2022": "./package/esm2022/shoplyjs-admin-ui.mjs",
+      "esm": "./package/esm2022/shoplyjs-admin-ui.mjs",
+      "default": "./package/fesm2022/shoplyjs-admin-ui.mjs"
     }
   },
   "dependencies": {
+    "@angular-architects/module-federation": "^18.0.6",
     "@angular/animations": "^17.2.4",
     "@angular/cdk": "^17.2.2",
     "@angular/common": "^17.2.4",
@@ -76,6 +78,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rxjs": "^7.8.1",
+    "tailwindcss": "^3.4.1",
     "tslib": "^2.6.2",
     "zone.js": "~0.14.4"
   },
@@ -111,6 +114,7 @@
     "karma-jasmine-html-reporter": "^1.7.0",
     "karma-mocha-reporter": "^2.2.5",
     "ng-packagr": "^17.3.0",
+    "ngx-build-plus": "^18.0.0",
     "puppeteer": "^19.8.3",
     "rimraf": "^5.0.5",
     "typescript": "5.4.2"

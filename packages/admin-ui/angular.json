@@ -1,186 +1,194 @@
 {
-  "$schema": "../../node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "vendure-admin": {
-      "root": "",
-      "sourceRoot": "src",
-      "projectType": "application",
-      "prefix": "vdr",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "baseHref": "/admin/",
-            "outputPath": "dist",
-            "index": "src/lib/static/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/lib/static/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/lib/static/",
-                "output": "/"
-              }
-            ],
-            "styles": [
-              "src/lib/static/styles/styles.scss"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "./src/lib/static/styles",
-                "./src/lib/static/fonts"
-              ]
-            },
-            "allowedCommonJsDependencies": [
-              "graphql-tag",
-              "zen-observable",
-              "lodash",
-              "dayjs",
-              "apollo-upload-client",
-              "@clr/icons",
-              "@clr/icons/shapes/all-shapes",
-              "@shoplyjs/common/dist/generated-types",
-              "@shoplyjs/common/dist/simple-deep-clone",
-              "@shoplyjs/common/dist/shared-constants",
-              "@shoplyjs/common/dist/shared-utils",
-              "@shoplyjs/common/dist/normalize-string",
-              "@shoplyjs/common/dist/unique",
-              "@shoplyjs/common/dist/omit",
-              "@shoplyjs/common/dist/pick",
-              "@messageformat/core"
-            ],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": {
-                "styles": {
-                  "inlineCritical": false
-                }
-              },
-              "outputHashing": "all",
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false
-            }
-          },
-          "defaultConfiguration": ""
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "vendure-admin:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "vendure-admin:build:production"
-            },
-            "plugin": {
-              "buildTarget": "vendure-admin:build:plugin-watch"
-            },
-            "plugin-dev": {
-              "buildTarget": "vendure-admin:build:plugin-dev-watch"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "vendure-admin:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/lib/static/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/lib/static/styles/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/lib/static/favicon.ico",
-              "src/lib/static/assets"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "./src/lib/static/styles",
-                "./src/lib/static/fonts"
-              ]
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "vendure-admin-lib": {
-      "projectType": "library",
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "vdr",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "./tsconfig.lib.json",
-            "project": "./src/lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "./tsconfig.lib.prod.json"
-            }
-          }
-        }
-      }
-    }
-  },
-  "schematics": {
-    "@schematics/angular:component": {
-      "skipTests": true,
-      "changeDetection": "OnPush",
-      "project": "vendure-admin-lib"
-    }
-  },
-  "cli": {
-    "packageManager": "npm",
-    "analytics": "61fa89f7-706a-46c0-bcdb-b1d3664195ce",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
-  }
+	"$schema": "../../node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"shoplyjs-admin": {
+			"root": "",
+			"sourceRoot": "src",
+			"projectType": "application",
+			"prefix": "vdr",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"baseHref": "/admin/",
+						"outputPath": "dist",
+						"index": "src/lib/static/index.html",
+						"main": "src/main.ts",
+						"polyfills": "src/lib/static/polyfills.ts",
+						"tsConfig": "src/tsconfig.app.json",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "src/lib/static/",
+								"output": "/"
+							}
+						],
+						"styles": [
+							"src/lib/static/styles/styles.scss"
+						],
+						"stylePreprocessorOptions": {
+							"includePaths": [
+								"./src/lib/static/styles",
+								"./src/lib/static/fonts"
+							]
+						},
+						"allowedCommonJsDependencies": [
+							"graphql-tag",
+							"zen-observable",
+							"lodash",
+							"dayjs",
+							"apollo-upload-client",
+							"@clr/icons",
+							"@clr/icons/shapes/all-shapes",
+							"@shoplyjs/common/dist/generated-types",
+							"@shoplyjs/common/dist/simple-deep-clone",
+							"@shoplyjs/common/dist/shared-constants",
+							"@shoplyjs/common/dist/shared-utils",
+							"@shoplyjs/common/dist/normalize-string",
+							"@shoplyjs/common/dist/unique",
+							"@shoplyjs/common/dist/omit",
+							"@shoplyjs/common/dist/pick",
+							"@messageformat/core"
+						],
+						"vendorChunk": true,
+						"extractLicenses": false,
+						"buildOptimizer": false,
+						"sourceMap": true,
+						"optimization": false,
+						"namedChunks": true,
+						"extraWebpackConfig": "webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
+								}
+							],
+							"optimization": {
+								"styles": {
+									"inlineCritical": false
+								}
+							},
+							"outputHashing": "all",
+							"namedChunks": false,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"extraWebpackConfig": "webpack.prod.config.js"
+						}
+					},
+					"defaultConfiguration": ""
+				},
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"options": {
+						"buildTarget": "shoplyjs-admin:build",
+						"port": 4200,
+						"publicHost": "http://localhost:4200",
+						"extraWebpackConfig": "webpack.config.js"
+					},
+					"configurations": {
+						"production": {
+							"buildTarget": "shoplyjs-admin:build:production",
+							"extraWebpackConfig": "webpack.prod.config.js"
+						},
+						"plugin": {
+							"buildTarget": "shoplyjs-admin:build:plugin-watch"
+						},
+						"plugin-dev": {
+							"buildTarget": "shoplyjs-admin:build:plugin-dev-watch"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "ngx-build-plus:extract-i18n",
+					"options": {
+						"buildTarget": "shoplyjs-admin:build",
+						"extraWebpackConfig": "webpack.config.js"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "src/test.ts",
+						"polyfills": "src/lib/static/polyfills.ts",
+						"tsConfig": "src/tsconfig.spec.json",
+						"karmaConfig": "src/karma.conf.js",
+						"styles": [
+							"src/lib/static/styles/styles.scss"
+						],
+						"scripts": [],
+						"assets": [
+							"src/lib/static/favicon.ico",
+							"src/lib/static/assets"
+						],
+						"stylePreprocessorOptions": {
+							"includePaths": [
+								"./src/lib/static/styles",
+								"./src/lib/static/fonts"
+							]
+						}
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"src/**/*.ts",
+							"src/**/*.html"
+						]
+					}
+				}
+			}
+		},
+		"shoplyjs-admin-lib": {
+			"projectType": "library",
+			"root": "",
+			"sourceRoot": "src",
+			"prefix": "vdr",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
+					"options": {
+						"tsConfig": "./tsconfig.lib.json",
+						"project": "./src/lib/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "./tsconfig.lib.prod.json"
+						}
+					}
+				}
+			}
+		}
+	},
+	"schematics": {
+		"@schematics/angular:component": {
+			"skipTests": true,
+			"changeDetection": "OnPush",
+			"project": "shoplyjs-admin-lib"
+		}
+	},
+	"cli": {
+		"packageManager": "npm",
+		"analytics": "61fa89f7-706a-46c0-bcdb-b1d3664195ce",
+		"schematicCollections": [
+			"@angular-eslint/schematics"
+		]
+	}
 }
