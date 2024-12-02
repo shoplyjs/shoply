@@ -173,6 +173,23 @@ export class BaseNavComponent implements OnInit, OnDestroy {
                 ],
             },
             {
+                id: 'apps',
+                label: _('nav.apps'),
+                icon: 'application',
+                requiresPermission: allow(Permission.ReadCustomerGroup),
+                collapsible: true,
+                collapsedByDefault: true,
+                items: [
+                    {
+                        requiresPermission: allow(Permission.ReadCustomerGroup),
+                        id: 'apps',
+                        label: _('nav.apps'),
+                        routerLink: ['/apps', 'apps'],
+                        icon: 'apps',
+                    },
+                ],
+            },
+            {
                 id: 'settings',
                 label: _('nav.settings'),
                 icon: 'cog',
@@ -299,7 +316,7 @@ export class BaseNavComponent implements OnInit, OnDestroy {
                                     ({
                                         type: jobs.length === 0 ? 'none' : 'info',
                                         propagateToSection: jobs.length > 0,
-                                    } as NavMenuBadge),
+                                    }) as NavMenuBadge,
                             ),
                         ),
                     },

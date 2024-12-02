@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent, AppComponentModule } from '@shoplyjs/admin-ui/core';
-
 import { routes } from './app.routes';
 
 @NgModule({
