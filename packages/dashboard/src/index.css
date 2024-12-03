@@ -1,0 +1,22 @@
+@import '../node_modules/modern-normalize/modern-normalize.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.markdown-body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+.markdown-body p {
+  margin: 10px 0;
+}
