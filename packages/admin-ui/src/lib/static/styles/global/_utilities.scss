@@ -1,10 +1,10 @@
 /////////////// layout ///////////////
 .block {
-    display: block !important;
+    display: block;
 }
 
 .flex {
-    display: flex !important;
+    display: flex;
 }
 
 .flex.center {
@@ -30,13 +30,13 @@
 
 .sm\:hidden {
     @media screen and (max-width: $breakpoint-small) {
-        display: none !important;
+        display: none;
     }
 }
 
 .md\:hidden {
     @media screen and (max-width: $breakpoint-medium) {
-        display: none !important;
+        display: none;
     }
 }
 
@@ -94,7 +94,7 @@ $breakpoint-glue: '\\:' !default;
                                 $space == auto,
                                 $space,
                                 calc(#{$space} * var(--space-unit))
-                            ) !important;
+                            );
                         }
                     }
                     .#{$breakName}\:m#{$prefix}-#{$space} {
@@ -103,7 +103,7 @@ $breakpoint-glue: '\\:' !default;
                                 $space == auto,
                                 $space,
                                 calc(#{$space} * var(--space-unit))
-                            ) !important;
+                            );
                         }
                     }
                 }
@@ -118,7 +118,7 @@ $breakpoint-glue: '\\:' !default;
                             $space == auto,
                             $space,
                             calc(#{$space} * var(--space-unit))
-                        ) !important;
+                        );
                     }
                 }
                 .m#{$prefix}-#{$space} {
@@ -127,7 +127,7 @@ $breakpoint-glue: '\\:' !default;
                             $space == auto,
                             $space,
                             calc(#{$space} * var(--space-unit))
-                        ) !important;
+                        );
                     }
                 }
             }
