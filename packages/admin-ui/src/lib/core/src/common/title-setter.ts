@@ -10,5 +10,7 @@ export function titleSetter() {
     const titleService = inject(Title);
     const i18nService = inject(I18nService);
     const brand = getAppConfig().brand || 'Vendure';
-    return (title: string) => titleService.setTitle(`${i18nService.translate(title)} • ${brand}`);
+    return (title: string) => {
+        return titleService.setTitle(`${i18nService.translate(title)} • ${brand}`);
+    };
 }

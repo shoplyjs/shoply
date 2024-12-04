@@ -124,6 +124,7 @@ nav.main-nav {
     left: 74px;
 }
 
+section[data-section-id='plugins'],
 section[data-section-id='settings'],
 section[data-section-id='system'] {
     .section-header {
@@ -135,6 +136,7 @@ section[data-section-id='system'] {
     }
 }
 
+.nav-group-header[for='plugins'],
 .nav-group-header[for='settings'],
 .nav-group-header[for='system'] {
     cursor: pointer;
