@@ -7,6 +7,7 @@ import { ViewEncapsulation } from '@angular/core';
 @Component({
     selector: 'vdr-react-wrapper',
     encapsulation: ViewEncapsulation.Emulated,
+    styleUrls: ['./react-wrapper.component.scss'],
     template: `<div #reactContainer></div>`,
 })
 export class ReactWrapperComponent implements AfterViewInit {
@@ -14,13 +15,13 @@ export class ReactWrapperComponent implements AfterViewInit {
     reactContainer!: ViewContainerRef;
 
     async ngAfterViewInit() {
-        const { default: Counter } = await loadRemoteModule({
+        const { default: DefaultComponent } = await loadRemoteModule({
             remoteName: 'reactApp',
             remoteEntry: 'http://localhost:8081/remoteEntry.js',
-            exposedModule: './Counter',
+            exposedModule: './Home',
         });
 
-        const reactElement = React.createElement(Counter);
+        const reactElement = React.createElement(DefaultComponent);
 
         const container = this.reactContainer.element.nativeElement;
         const root = ReactDOM.createRoot(container);
