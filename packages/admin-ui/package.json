@@ -8,6 +8,7 @@
     "build:app": "ng build shoplyjs-admin --configuration production",
     "build": "ng build --configuration=production shoplyjs-admin && ng build --configuration=production shoplyjs-admin-lib",
     "watch": "ng build --watch=true",
+    "dev": "ng serve",
     "test": "ng test --watch=false --browsers=ChromeHeadlessCI --progress=false",
     "lint": "ng lint --fix",
     "extract-translations": "node scripts/extract-translations.js",
