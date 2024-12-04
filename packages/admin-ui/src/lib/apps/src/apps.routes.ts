@@ -7,5 +7,8 @@ export const appsRoutes: Routes = [
         path: '',
         component: AppsComponent,
         pathMatch: 'full',
+        data: {
+            breadcrumb: 'breadcrumb.apps',
+        },
     },
 ];
