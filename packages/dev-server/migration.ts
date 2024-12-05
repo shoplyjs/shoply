@@ -1,7 +1,7 @@
 import { generateMigration, revertLastMigration, runMigrations } from '@shoplyjs/core';
 import program from 'commander';
 
-import { devConfig } from './dev-config';
+import { devConfig } from './vendure-config';
 
 program
     .command('generate <name>')

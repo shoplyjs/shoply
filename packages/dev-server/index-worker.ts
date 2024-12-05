@@ -1,6 +1,6 @@
 import { bootstrapWorker } from '@shoplyjs/core';
 
-import { devConfig } from './dev-config';
+import { devConfig } from './vendure-config';
 
 bootstrapWorker(devConfig)
     .then(worker => worker.startJobQueue())

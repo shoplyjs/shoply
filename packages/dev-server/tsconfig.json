@@ -1,11 +1,9 @@
 {
-  "extends": "../../tsconfig",
-  "compilerOptions": {
-    "module": "NodeNext",
-    "sourceMap": true,
-    "jsx": "react"
-  },
-  "exclude": [
-    "node_modules"
-  ],
+    "extends": "../../tsconfig",
+    "compilerOptions": {
+        "module": "NodeNext",
+        "sourceMap": true,
+        "jsx": "react"
+    },
+    "exclude": ["node_modules"]
 }

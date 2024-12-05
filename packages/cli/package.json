@@ -27,6 +27,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "./dist/cli.js",
   "bin": {
     "vendure": "dist/cli.js"
   },

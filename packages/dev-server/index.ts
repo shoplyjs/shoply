@@ -1,6 +1,6 @@
 import { bootstrap, JobQueueService } from '@shoplyjs/core';
 
-import { devConfig } from './dev-config';
+import { devConfig } from './vendure-config';
 
 /**
  * This bootstraps the dev server, used for testing Vendure during development.

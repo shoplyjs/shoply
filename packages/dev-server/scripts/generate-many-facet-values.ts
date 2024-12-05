@@ -8,7 +8,7 @@ import {
     RequestContextService,
 } from '@shoplyjs/core';
 
-import { devConfig } from '../dev-config';
+import { devConfig } from '../vendure-config';
 
 const FACET_VALUE_COUNT = 1500;
 

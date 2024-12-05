@@ -11,7 +11,7 @@ import {
 } from '@shoplyjs/core';
 import dayjs from 'dayjs';
 
-import { devConfig } from '../dev-config';
+import { devConfig } from '../vendure-config';
 
 const loggerCtx = 'DataSync script';
 

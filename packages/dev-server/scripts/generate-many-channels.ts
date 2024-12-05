@@ -9,7 +9,7 @@ import {
     RoleService,
 } from '@shoplyjs/core';
 
-import { devConfig } from '../dev-config';
+import { devConfig } from '../vendure-config';
 
 const CHANNEL_COUNT = 1001;
 

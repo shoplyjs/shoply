@@ -9,6 +9,7 @@ import {
     DefaultSearchPlugin,
     dummyPaymentHandler,
     LogLevel,
+    UuidIdStrategy,
     VendureConfig,
 } from '@shoplyjs/core';
 import { defaultEmailHandlers, EmailPlugin } from '@shoplyjs/email-plugin';
@@ -26,6 +27,10 @@ const isDev = process.env.APP_ENV === 'dev';
  * Config settings used during development
  */
 export const devConfig: VendureConfig = {
+    // TODO: uncomment this when we have a proper ID strategy
+    // entityOptions: {
+    //     entityIdStrategy: new UuidIdStrategy(),
+    // },
     apiOptions: {
         port: API_PORT,
         adminApiPlayground: false,

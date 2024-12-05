@@ -1,6 +1,6 @@
 import { bootstrapWorker, Logger, ProductService, RequestContextService } from '@shoplyjs/core';
 
-import { devConfig } from './dev-config';
+import { devConfig } from './vendure-config';
 
 if (require.main === module) {
     getProductCount()

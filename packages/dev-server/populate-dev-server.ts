@@ -7,7 +7,7 @@ import path from 'path';
 
 import { initialData } from '../core/mock-data/data-sources/initial-data';
 
-import { devConfig } from './dev-config';
+import { devConfig } from './vendure-config';
 
 /* eslint-disable no-console */
 
