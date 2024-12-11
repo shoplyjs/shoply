@@ -83,6 +83,20 @@ export class BaseNavComponent implements OnInit, OnDestroy {
 
         this.navBuilderService.defineNavMenuSections([
             {
+                id: 'sales',
+                label: _('nav.orders'),
+                requiresPermission: allow(Permission.ReadOrder),
+                items: [
+                    {
+                        requiresPermission: allow(Permission.ReadOrder),
+                        id: 'orders',
+                        label: _('nav.orders'),
+                        routerLink: ['/orders'],
+                        icon: 'shopping-cart',
+                    },
+                ],
+            },
+            {
                 requiresPermission: allow(
                     Permission.ReadCatalog,
                     Permission.ReadProduct,
@@ -91,7 +105,7 @@ export class BaseNavComponent implements OnInit, OnDestroy {
                     Permission.ReadAsset,
                 ),
                 id: 'catalog',
-                label: _('nav.catalog'),
+                label: _('nav.products'),
                 items: [
                     {
                         requiresPermission: allow(Permission.ReadCatalog, Permission.ReadProduct),
@@ -123,20 +137,7 @@ export class BaseNavComponent implements OnInit, OnDestroy {
                     },
                 ],
             },
-            {
-                id: 'sales',
-                label: _('nav.sales'),
-                requiresPermission: allow(Permission.ReadOrder),
-                items: [
-                    {
-                        requiresPermission: allow(Permission.ReadOrder),
-                        id: 'orders',
-                        label: _('nav.orders'),
-                        routerLink: ['/orders'],
-                        icon: 'shopping-cart',
-                    },
-                ],
-            },
+
             {
                 id: 'customers',
                 label: _('nav.customers'),
