@@ -57,8 +57,8 @@ nav.main-nav {
         border-inline-end: 2px solid transparent;
 
         transition:
-        border 0.1s,
-        color 0.1s;
+            border 0.1s,
+            color 0.1s;
 
         a:link,
         a:visited {
@@ -81,11 +81,16 @@ nav.main-nav {
             border-radius: 25px;
             cursor: pointer;
             background-color: var(--color-hover-bg);
+            transition: all 0.2s ease;
+
             a > span {
                 color: var(--color-text-hover);
+                transition: color 0.2s ease;
             }
+
             clr-icon {
                 color: var(--color-text-hover);
+                transition: color 0.2s ease;
             }
         }
 
@@ -124,6 +129,7 @@ nav.main-nav {
     left: 74px;
 }
 
+section[data-section-id='plugins'],
 section[data-section-id='settings'],
 section[data-section-id='system'] {
     .section-header {
@@ -131,10 +137,12 @@ section[data-section-id='system'] {
         &:hover {
             background-color: var(--color-hover-bg);
             border-radius: 24px;
+            transition: all 0.3s ease;
         }
     }
 }
 
+.nav-group-header[for='plugins'],
 .nav-group-header[for='settings'],
 .nav-group-header[for='system'] {
     cursor: pointer;

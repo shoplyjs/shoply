@@ -46,7 +46,7 @@
     --color-page-header: #1e1f20;
     --color-page-header-item-bg: var(--color-weight-150);
     --color-top-bar-bg: hsl(201, 30%, 15%);
-    --color-left-nav-bg: #282a2c;
+    --color-left-nav-bg: #2b2d30;
     --color-left-nav-text-hover: var(--color-primary-200);
 
     --color-card-border: var(--color-weight-150);
@@ -594,9 +594,9 @@
     }
 
     // Shoplyjs styles
-    --color-hover-bg: #343537;
-    --color-active-bg: #3e3f42;
-    --color-text-hover: #fff;
-    --color-hover-item-bg: #37393b;
+    --color-hover-bg: #36383a; /* Slightly more contrast than #343537 */
+    --color-active-bg: #414346; /* Slightly lighter than #3e3f42 */
+    --color-text-hover: #f9f9fa; /* Softer white for a unique but bright appearance */
+    --color-hover-item-bg: #393b3d; /* Subtle adjustment to #37393b */
     --input-border-color: transparent;
 }

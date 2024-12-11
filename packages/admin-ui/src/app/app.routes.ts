@@ -34,10 +34,6 @@ export const routes: Route[] = [
                 loadChildren: () => import('@shoplyjs/admin-ui/marketing').then(m => m.MarketingModule),
             },
             {
-                path: 'apps',
-                loadChildren: () => import('@shoplyjs/admin-ui/apps').then(m => m.AppsModule),
-            },
-            {
                 path: 'settings',
                 loadChildren: () => import('@shoplyjs/admin-ui/settings').then(m => m.SettingsModule),
             },
@@ -45,7 +41,7 @@ export const routes: Route[] = [
                 path: 'system',
                 loadChildren: () => import('@shoplyjs/admin-ui/system').then(m => m.SystemModule),
             },
-            { path: '**', redirectTo: '' },
+            { path: '**', loadChildren: () => import('@shoplyjs/admin-ui/apps').then(m => m.AppsModule) },
         ],
     },
 ];
