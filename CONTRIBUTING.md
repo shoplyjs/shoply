@@ -1,99 +1,59 @@
-# Contribution Guidelines
+# Contributing to ShoplyJS
 
-Hi! Thank you for taking the time to contribute to Vendure!
+We love open-source contributions! Whether you're fixing a bug, adding a new feature, or improving documentation, we appreciate your help in making ShoplyJS better. This guide will help you get started with contributing to the ShoplyJS project.
 
-In order to make the best use of both your time and that of the Vendure maintainers, please follow the guidelines in this document.
+## Table of Contents
 
-## Branches
+- [Code of Conduct](#code-of-conduct)
+- [How to Contribute](#how-to-contribute)
+  - [Reporting Issues](#reporting-issues)
+  - [Submitting Pull Requests](#submitting-pull-requests)
+- [Development Setup](#development-setup)
+- [Coding Guidelines](#coding-guidelines)
+- [Test Guidelines](#test-guidelines)
+- [Documentation](#documentation)
+- [Style Guide](#style-guide)
+- [License](#license)
 
-There are 3 important branches to know about:
+## Code of Conduct
 
-* `master` - the default branch
-* `minor` - a branch for commits which introduce new features which would go in the next [SemVer minor](https://semver.org/) release.
-* `major` - a branch for commits which introduce breaking changes which would go in the next [SemVer major](https://semver.org/) release.
+Please review and follow our [Code of Conduct](CODE_OF_CONDUCT.md). We are committed to maintaining a respectful and inclusive environment for all contributors.
 
-Bug fixes should go direct in the `master` branch, from which new patch releases will be made regularly. Periodically the master branch will be merged into the `minor` and `major` branches.
+## How to Contribute
 
-## Bug fixes
+### Reporting Issues
 
-If you would like to contribute a bugfix, please first create an issue detailing the bug, and indicate that you intend to fix it. When creating commits, please follow the commit message format below.
+If you find a bug, have a feature request, or encounter any other issues, please [open an issue](https://github.com/<your-org>/shoplyjs/issues) in the repository. Be sure to include as much detail as possible:
 
-## New features
+- Steps to reproduce the issue (if applicable)
+- Expected and actual behavior
+- Version of ShoplyJS you're using
+- Your environment details (browser, OS, etc.)
 
-Again, please create a feature request detailing the functionality you intend to add, and state that you would like to implement it. When creating commits, please follow the commit message format below. New feature pull requests should be made against the `minor` branch.
+### Submitting Pull Requests
 
-When adding new public APIs to support your new feature, add a `@since 1.2.0` tag (where "1.2.0" corresponds to what will be the next minor version) to the doc block. This will let readers of the documentation know the version in which the API was introduced. See the [docs readme](./docs/README.md) for more details on the valid docs tags.
+If you'd like to contribute code, follow these steps:
 
-```TypeScript
-/**
- * @description
- * Sets the value of the new API thing.
- *
- * @since 1.2.0
- */
-myNewApi: number;
-```
+1. Fork the repository and clone it to your local machine.
+2. Create a new branch for your changes (`git checkout -b feature-name`).
+3. Make your changes and write meaningful commit messages.
+4. Run the tests and ensure everything works as expected.
+5. Push your changes to your fork (`git push origin feature-name`).
+6. Create a pull request to the main branch of the ShoplyJS repository.
+7. Ensure your pull request adheres to the [coding guidelines](#coding-guidelines).
 
-## Commit message format
+We will review your pull request and get back to you as soon as possible. If we need any changes, we'll provide feedback.
 
-This repo uses [Conventional Commits](https://www.conventionalcommits.org).
+## Development Setup
 
-```
-type(scope): Message in present tense
-```
-`type` may be one of:
-* **feat** (new feature)
-* **fix** (bug fix)
-* **docs** (changes to documentation)
-* **perf** (performance improvements)
-* **style** (formatting, missing semi colons, etc; no code change)
-* **refactor** (refactoring production code)
-* **test** (adding missing tests, refactoring tests; no production code change)
-* **chore** (updating build tasks etc; no production code change)
+### Prerequisites
 
-`scope` indicates the package affected by the commit:
+- Node.js (version >=x.x.x)
+- npm or yarn (depending on your preference)
 
-* admin-ui
-* admin-ui-plugin
-* asset-server-plugin
-* common
-* core
-* create
-* email-plugin
-* etc.
+### Setup
 
-If a commit affects more than one package, separate them with a comma:
-
-```
-fix(core,common): Fix the thing
-```
-
-If a commit applies to no particular package (e.g. a tooling change in the root package.json), the scope can be omitted.
-
-#### Breaking Changes
-
-If your contribution includes any breaking changes (including any changes to the DB schema; backwards-incompatible changes to the GraphQL APIs or VendureConfig; backwards-incompatible changes to current behavior), please include a `BREAKING CHANGE` section in your commit message as per the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-both-and-breaking-change-footer).
-
-Please also make your pull request against the `major` branch rather than `master` in the case of breaking changes.
-
-Example:
-
-```
-feat(core): Add new field to Customer
-
-Relates to #123. This commit adds the "foo" field to the Custom entity.
-
-BREAKING CHANGE: A DB migration will be required in order to add the new "foo" field to the customer table.
-```
-
-#### Linting
-
-Commit messages are linted on commit, so you'll know if your message is not quite right.
-
-## Setting up the dev environment
-
-After cloning the Vendure repo, please follow the [Development guide](https://github.com/vendure-ecommerce/vendure/blob/master/README.md#development) in the README for instructions on how to get up and running locally.
-
-## Contributing Admin UI translations
-
-If you wish to contribute translations of the Admin UI into another language (or improve an existing set of translations), please see the [Localization guide](https://github.com/vendure-ecommerce/vendure/blob/master/packages/admin-ui/README.md#localization) in the admin-ui package.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/<your-org>/shoplyjs.git
+   cd shoplyjs

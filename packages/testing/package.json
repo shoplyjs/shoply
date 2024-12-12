@@ -1,9 +1,9 @@
 {
     "name": "@shoplyjs/testing",
     "version": "2.3.4",
-    "description": "End-to-end testing tools for Vendure projects",
+    "description": "End-to-end testing tools for ShoplyJS projects",
     "keywords": [
-        "vendure",
+        "shoplyjs",
         "testing",
         "e2e"
     ],
@@ -23,7 +23,7 @@
     "types": "lib/index.d.ts",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/vendure-ecommerce/vendure.git"
+        "url": "git+https://github.com/shoplyjs/shoply.git"
     },
     "funding": "https://github.com/sponsors/michaelbromley",
     "scripts": {
@@ -33,7 +33,7 @@
         "ci": "npm run build"
     },
     "bugs": {
-        "url": "https://github.com/vendure-ecommerce/vendure/issues"
+        "url": "https://github.com/shoplyjs/shoply/issues"
     },
     "dependencies": {
         "@graphql-typed-document-node/core": "^3.2.0",
