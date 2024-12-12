@@ -1,13 +1,7 @@
 import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { NotVerifiedError } from '@shoplyjs/common/dist/generated-shop-types';
-import {
-    MutationLoginArgs,
-    MutationAuthenticateArgs,
-    NativeAuthenticationResult,
-    AuthenticationResult,
-    Permission,
-} from '@shoplyjs/common/dist/generated-types';
+import { AuthenticationResult, Permission } from '@shoplyjs/common/dist/generated-types';
 import { Success } from '@shoplyjs/common/dist/generated-types';
 import { Request, Response } from 'express';
 

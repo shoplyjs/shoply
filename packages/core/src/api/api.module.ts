@@ -10,11 +10,14 @@ import { ServiceModule } from '../service/service.module';
 
 import { AdminApiModule, ApiSharedModule, ShopApiModule } from './api-internal-modules';
 import { configureGraphQLModule } from './config/configure-graphql-module';
-import { AuthGuard } from './middleware/auth-guard';
 import { ExceptionLoggerFilter } from './middleware/exception-logger.filter';
 import { IdInterceptor } from './middleware/id-interceptor';
 import { TranslateErrorResultInterceptor } from './middleware/translate-error-result-interceptor';
 import { ValidateCustomFieldsInterceptor } from './middleware/validate-custom-fields-interceptor';
+import { AuthGuard } from '../common/guards/auth.guard';
+import { SessionManager } from '../common/managers/session.manager';
+import { ChannelManager } from '../common/managers/channel.manager';
+import { PermissionChecker } from '../common/managers/permission-checker';
 
 /**
  * The ApiModule is responsible for the public API of the application. This is where requests
@@ -70,6 +73,9 @@ import { ValidateCustomFieldsInterceptor } from './middleware/validate-custom-fi
             provide: APP_FILTER,
             useClass: ExceptionLoggerFilter,
         },
+        SessionManager,
+        ChannelManager,
+        PermissionChecker,
     ],
 })
 export class ApiModule implements NestModule {

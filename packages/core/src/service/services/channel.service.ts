@@ -5,6 +5,7 @@ import {
     CurrencyCode,
     DeletionResponse,
     DeletionResult,
+    LanguageCode,
     UpdateChannelInput,
     UpdateChannelResult,
 } from '@shoplyjs/common/dist/generated-types';
@@ -284,7 +285,7 @@ export class ChannelService {
 
         if (allChannels.length === 1 || channelToken === '') {
             // there is only the default channel, so return it
-            return this.getDefaultChannel(ctx);
+            return this.getEmptyChannel();
         }
         const channel = allChannels.find(c => c.token === channelToken);
         if (!channel) {
@@ -305,6 +306,23 @@ export class ChannelService {
             throw new InternalServerError('error.default-channel-not-found');
         }
         return defaultChannel;
+    }
+
+    getEmptyChannel(): Channel {
+        const emptyChannel = new Channel({
+            code: '',
+            createdAt: new Date(),
+            defaultCurrencyCode: CurrencyCode.USD,
+            defaultLanguageCode: LanguageCode.en,
+            pricesIncludeTax: false,
+            availableCurrencyCodes: [CurrencyCode.USD],
+            availableLanguageCodes: [LanguageCode.en],
+            outOfStockThreshold: 0,
+            token: '',
+            trackInventory: true,
+            updatedAt: new Date(),
+        });
+        return emptyChannel;
     }
 
     findAll(
