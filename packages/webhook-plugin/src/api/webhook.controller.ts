@@ -2,11 +2,17 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { Allow, Ctx, Permission, RequestContext } from '@shoplyjs/core';
 
 import { WebhookService } from '../services/webhook.service';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiHeader } from '@nestjs/swagger';
 import { CreateWebhookDto } from '../dto/create-webhook.dto';
 import { UpdateWebhookDto } from '../dto/update-webhook.dto';
 
 @ApiBearerAuth('access-token')
+@ApiHeader({
+    name: 'vendure-token',
+    example: 'h9o71qyipeqr404nka2',
+    description: 'Authentication token required for login',
+    required: true,
+})
 @Controller('webhooks')
 export class WebhookController {
     constructor(private webhookService: WebhookService) {}
