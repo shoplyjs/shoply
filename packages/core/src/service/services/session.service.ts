@@ -89,6 +89,7 @@ export class SessionService implements EntitySubscriberInterface {
         const activeOrder = await this.orderService.mergeOrders(ctx, user, guestOrder, existingOrder);
         const authenticatedSession = await this.connection.getRepository(ctx, AuthenticatedSession).save(
             new AuthenticatedSession({
+                activeChannel: ctx.channel,
                 token,
                 user,
                 activeOrder,
