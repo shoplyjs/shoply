@@ -1,9 +1,9 @@
 {
     "name": "@shoplyjs/ui-devkit",
     "version": "2.3.4",
-    "description": "A library for authoring Vendure Admin UI extensions",
+    "description": "A library for authoring ShoplyJS Admin UI extensions",
     "keywords": [
-        "vendure",
+        "shoplyjs",
         "javascript",
         "extensions"
     ],
@@ -23,7 +23,7 @@
     "types": "client/index.d.ts",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/vendure-ecommerce/vendure.git"
+        "url": "git+https://github.com/shoplyjs/shoply.git"
     },
     "scripts": {
         "build:client": "rimraf ./client && rollup -c rollup.config.mjs --configProduction",
@@ -33,7 +33,7 @@
         "lint": "eslint --fix ."
     },
     "bugs": {
-        "url": "https://github.com/vendure-ecommerce/vendure/issues"
+        "url": "https://github.com/shoplyjs/shoply/issues"
     },
     "dependencies": {
         "@angular-devkit/build-angular": "17.3.11",
