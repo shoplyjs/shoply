@@ -13,6 +13,8 @@ import { I18nService } from './i18n/i18n.service';
 import { PluginModule } from './plugin/plugin.module';
 import { ProcessContextModule } from './process-context/process-context.module';
 import { ServiceModule } from './service/service.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { ShopModule } from './modules/shop/shop.module';
 
 @Module({
     imports: [
@@ -24,6 +26,8 @@ import { ServiceModule } from './service/service.module';
         HealthCheckModule,
         ServiceModule,
         ConnectionModule,
+        AdminModule,
+        ShopModule,
     ],
 })
 export class AppModule implements NestModule, OnApplicationShutdown {

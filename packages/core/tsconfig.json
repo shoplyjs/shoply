@@ -8,6 +8,11 @@
         "strictPropertyInitialization": false,
         "sourceMap": true,
         "allowJs": true,
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "paths": {
+            "@modules/*": ["src/modules/*"],
+            "@common/*": ["src/common/*"]
+        }
     }
 }

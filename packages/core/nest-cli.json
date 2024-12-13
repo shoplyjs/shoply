@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "tsConfigPath": "tsconfig.json"
+  },
+  "generateOptions": {
+    "module": {
+      "path": "src/modules"
+    },
+    "service": {
+      "path": "src/modules"
+    },
+    "resolver": {
+      "path": "src/modules"
+    }
+  }
+}
